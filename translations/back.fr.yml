@@ -1,0 +1,17 @@
+back:
+    reservation:
+        state:
+            0: "En attente"
+            1: "Accepté et payé"
+            2: "Accepté et non payé"
+            3: "Annulé par le client"
+            4: "Annulé par l'Agence"
+            5: "Paiement échoué"
+            6: "Accepté et totalement payé"
+            7: "Paiement refuser par la banque"
+            8: "Offre"
+            9: "Paiement annulé"
+        paymentMethod:
+            0: "Offre"
+            1: "Paiement à l'arrivée"
+            2: "Versement"

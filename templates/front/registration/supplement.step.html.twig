@@ -1,0 +1,30 @@
+
+<form action="{{ path('inscription_supplements_page') }}" method="POST">
+
+
+    <div class="row">
+        {% for supplement in event.supplements %}
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> <input type="checkbox" class="btn btn-primary" name="supplements[]"
+                                                   value="{{ supplement.id }}"> {{ supplement.designation }}</h5>
+                    <p class="card-text">
+                        <strong>{{ 'Price'|trans }}:</strong> {{ getPriceByDevise(supplement.prix, app.session.get('currency')) }} {{ getDevise(app.session.get('currency')) }} <br/>
+                        <strong>{{ 'Place'|trans }}:</strong> {{ supplement.lieu }}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+       {% endfor %}
+    </div>
+
+<div class="row">
+<div class="col-md-12">
+    <input class="btn btn-primary" type="submit" value="Valider" />
+</div>
+</div>
+
+
+</form>

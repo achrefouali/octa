@@ -1,0 +1,39 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Page</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ page.id }}</td>
+            </tr>
+            <tr>
+                <th>Menu</th>
+                <td>{{ page.menu.title }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ page.title }}</td>
+            </tr>
+            <tr>
+                <th>Titre Anglais</th>
+                <td>{{ page.titleEn }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{% if page.enabled %}Oui{% else %}Non{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('back_page_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('back_page_edit', { 'id': page.id }) }}">Modifier</a>
+        </li>
+    </ul>
+{% endblock %}

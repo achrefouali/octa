@@ -1,0 +1,59 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Type Participant {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_participant_type_new') }}" class="btn btn-success">+ Ajouter</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Label</th>
+                        <th>Tarif Prix</th>
+                        <th>Actif</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for participant_type in participant_types %}
+                        <tr>
+                            <td>{{ participant_type.id }}</td>
+                            <td>{{ participant_type.label }}</td>
+                            <td>{{ participant_type.tarif.prix }}</td>
+                            <td>{{ participant_type.enabled ? 'Oui' : 'Non' }}</td>
+                            <td>
+                                <a href="{{ path('back_participant_type_show', {'id': participant_type.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_participant_type_edit', {'id': participant_type.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

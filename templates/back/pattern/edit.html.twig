@@ -1,0 +1,23 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un motif{% endblock %}
+{% block subtitle %} Ajouter un motif {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Motifs" ,
+            "class":"",
+            "value": {
+                "notification":"form-control",
+                "propertyPath":"form-control",
+                "classPath":"form-control",
+                "enabled":"form-control"
+         }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_pattern_edit', {id: pattern.id}), path('back_pattern_index'))}}
+{% endblock %}

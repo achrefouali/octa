@@ -1,0 +1,36 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Supplement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ supplement.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ supplement.designation }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ supplement.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ supplement.prix }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ supplement.lieu }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_supplement_index', {'event': supplement.event.id}) }}">Retour à la liste</a>
+
+    <a href="{{ path('back_supplement_edit', {'id': supplement.id}) }}">Modifier</a>
+
+
+{% endblock %}

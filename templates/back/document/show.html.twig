@@ -1,0 +1,43 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+
+
+<table class="table">
+    <h1>Document</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ document.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ document.designation }}</td>
+            </tr>
+            <tr>
+                <th>Lien</th>
+                <td>{{ document.file }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ document.enabled ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ document.createdAt ? document.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ document.updatedAt ? document.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_document_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_document_edit', {'id': document.id}) }}">Modifier</a>
+
+
+{% endblock %}

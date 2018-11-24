@@ -1,0 +1,30 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier un Type de participant{% endblock %}
+{% block subtitle %} Modifier un Type de participant {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Type de participant" ,
+            "class":"",
+            "value": {
+                "label": "form-control",
+                "tarif": "form-control",
+                "enabled": "form-control"
+            }
+
+
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_participant_type_edit', {id: participant_type.id}), path('back_participant_type_index'))}}
+
+
+
+
+
+{% endblock %}
+

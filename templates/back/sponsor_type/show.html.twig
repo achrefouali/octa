@@ -1,0 +1,35 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>SponsorType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sponsor_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ sponsor_type.label }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ sponsor_type.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ sponsor_type.createdAt ? sponsor_type.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ sponsor_type.updatedAt ? sponsor_type.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_sponsor_type_index') }}">back to list</a>
+
+    <a href="{{ path('back_sponsor_type_edit', {'id': sponsor_type.id}) }}">edit</a>
+
+{% endblock %}

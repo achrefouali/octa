@@ -1,0 +1,35 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}Tarif{% endblock %}
+{% block content %}
+    <h1>Tarif</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tarif.id }}</td>
+            </tr>
+            <tr>
+                <th>Conférence</th>
+                <td>{{ tarif.event.designation }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ tarif.label }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ tarif.prix }}</td>
+            </tr>
+            <tr>
+                <th>Prix d'accompagnat </th>
+                <td>{{ tarif.prixAccompagnant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_tarif_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_tarif_edit', {'id': tarif.id}) }}">Modifier</a>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+ ALTER TABLE reservations ADD devis VARCHAR(255) DEFAULT NULL;
+
+
+ALTER TABLE reservations_event ADD devis VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE reservations_hotel ADD devis VARCHAR(255) DEFAULT NULL;

@@ -1,0 +1,34 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Ville</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ville.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ ville.name }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ ville.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ ville.createdAt ? ville.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ ville.updatedAt ? ville.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_ville_index', {'pays': ville.pays.id}) }}">Retour à la liste</a>
+
+    <a href="{{ path('back_ville_edit', {'id': ville.id}) }}">Modifier</a>
+{% endblock %}

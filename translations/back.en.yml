@@ -1,0 +1,17 @@
+back:
+    reservation:
+        state:
+            0: "Waiting"
+            1: "Accepted and payed"
+            2: "Accepted and not payed"
+            3: "Annuled By Client"
+            4: "Annuled By Agency"
+            5: "Payment failed"
+            6: "Accepted and Total payed"
+            7: "Payment Refused by the bank"
+            8: "Offer"
+            9: "Payment Cancelled"
+        paymentMethod:
+            0: "Offer"
+            1: "Payment upon arrival"
+            2: "Deposit"

@@ -1,0 +1,11 @@
+{# templates/emails/registration.html.twig #}
+<h3>Vous venez de réservez votre Logement</h3>
+
+Bonjour {{ name }}! félicitation.
+
+Merci d'avoir choisi {{ hotel.designation }} comme logement pour l'évènnement FANAF 2019
+
+Merci!
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('assets/front/img/logo.png')) }}">

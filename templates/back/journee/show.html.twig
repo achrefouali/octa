@@ -1,0 +1,43 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Journee</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ journee.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ journee.designation }}</td>
+            </tr>
+            <tr>
+                <th>Designation_en</th>
+                <td>{{ journee.designationEn }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ journee.date ? journee.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ journee.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ journee.createdAt ? journee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ journee.updatedAt ? journee.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_journee_index',{'event': journee.event.id}) }}">back to list</a>
+
+    <a href="{{ path('back_journee_edit', {'id': journee.id}) }}">edit</a>
+
+{% endblock %}

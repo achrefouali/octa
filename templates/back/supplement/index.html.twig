@@ -1,0 +1,59 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Pages {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_supplement_new', {event: event.id}) }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+    <a href="{{ path('back_event_index') }}" class="btn btn-primary">Retour</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Designation</th>
+                        <th>Prix</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for supplement in supplements %}
+                        <tr>
+                            <td>{{ supplement.id }}</td>
+                            <td>{{ supplement.designation }}</td>
+                            <td>{{ supplement.prix }} DT</td>
+                            <td>
+                                <a href="{{ path('back_supplement_show', {'id': supplement.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_supplement_edit', {'id': supplement.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

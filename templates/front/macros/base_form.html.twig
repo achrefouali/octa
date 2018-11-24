@@ -1,0 +1,59 @@
+{% macro form(form, fieldsets=[], class=null ,action=null) %}
+
+    {% for fieldset in fieldsets %}
+        <div class="panel panel-default" {% if fieldset.class is defined %} {{ fieldset.class }} {% endif %}>
+            {{ form_start(form, {"attr": {"id": "my-id-here", "class": class, 'action': action, 'method': 'POST'}}) }}
+
+            <div class="panel-body panel-body-nopadding">
+
+                {% for field,class  in fieldset.value %}
+
+
+                    {%  if field == "email" %}
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.email.first, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-8">
+                                    {{ form_widget(form.email.first, {'attr': {'class': "form-control"}}) }}
+                                    {{ form_errors(form.email.first) }}
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.email.second, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-8">
+                                    {{ form_widget(form.email.second, {'attr': {'class': "form-control"}}) }}
+                                    {{ form_errors(form.email.second) }}
+                                </div>
+                            </div>
+                </div>
+                    {% else %}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-8">
+                                {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                                {{ form_errors(attribute(form, field)) }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+                {{ form_rest(form) }}
+            </div><!-- panel-body -->
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button id="submit-button" class="btn btn-primary">Soumettre</button>&nbsp;
+                    </div>
+                </div>
+            </div><!-- panel-footer -->
+            </form>
+        </div><!-- panel -->
+    {% endfor %}
+{% endmacro %}{# empty Twig template #}

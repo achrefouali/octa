@@ -1,0 +1,39 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Motif</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pattern.id }}</td>
+            </tr>
+            <tr>
+                <th>PropertyPath</th>
+                <td>{{ pattern.propertyPath }}</td>
+            </tr>
+            <tr>
+                <th>ClassPath</th>
+                <td>{{ pattern.classPath }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ pattern.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ pattern.createdAt ? pattern.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ pattern.updatedAt ? pattern.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_pattern_index') }}">back to list</a>
+
+    <a href="{{ path('back_pattern_edit', {'id': pattern.id}) }}">edit</a>
+
+{% endblock %}

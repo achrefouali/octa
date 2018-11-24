@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier un Supplement{% endblock %}
+{% block subtitle %} Modifier un Supplement {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Supplement" ,
+            "class":"",
+            "value": {
+            "designation":"form-control",
+            "lieu":"form-control",
+            "prix":"form-control",
+            "enabled":"form-control",
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_supplement_edit', {id: supplement.id}), path('back_supplement_index', {event: supplement.event.id}))}}
+
+
+
+
+
+{% endblock %}
+

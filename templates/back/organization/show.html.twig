@@ -1,0 +1,28 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Organisme</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ organisme.id }}</td>
+        </tr>
+        <tr>
+            <th>Pays</th>
+            <td>{{ organisme.pays }}</td>
+        </tr>
+        <tr>
+            <th>Société</th>
+            <td>{{ organisme.society }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_organizme_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_organizme_edit', {'id': organisme.id}) }}">Modifier</a>
+
+{% endblock %}

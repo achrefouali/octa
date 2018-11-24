@@ -1,0 +1,68 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Vidéos {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_video_new') }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+    {#<a href="{{ path('back_journee_index', {event: journee.event.id}) }}" class="btn btn-primary">Retour</a><br />#}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Path</th>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Enabled</th>
+                        <th>CreatedAt</th>
+                        <th>UpdatedAt</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for video in videos %}
+                        <tr>
+                            <td>{{ video.id }}</td>
+                            <td>{{ video.path }}</td>
+                            <td>{{ video.name }}</td>
+                            <td>{{ video.size }}</td>
+                            <td>{{ video.enabled ? 'Yes' : 'No' }}</td>
+                            <td>{{ video.createdAt ? video.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ video.updatedAt ? video.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('back_video_show', {'id': video.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_video_edit', {'id': video.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+            {% block javascripts %}
+                {{ parent() }}
+
+                <script>
+                    jQuery(document).ready(function () {
+
+                        "use strict";
+
+                        jQuery('.table').dataTable();
+                    });
+
+
+                    // Select2
+                    jQuery('select').select2({
+                        minimumResultsForSearch: -1
+                    });
+
+                    jQuery('select').removeClass('form-control');
+                </script>
+            {% endblock %}

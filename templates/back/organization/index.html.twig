@@ -1,0 +1,59 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion des organismes {% endblock %}
+{% block subtitle %} Liste des organismes  {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_organizme_new') }}" class="btn btn-success">+ Ajouter</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Pays</th>
+                        <th>Société</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for organisme in organizations %}
+                        <tr>
+                            <td>{{ organisme.id }}</td>
+                            <td>{{ organisme.pays }}</td>
+                            <td>{{ organisme.society }}</td>
+                            <td>
+
+                                <a href="{{ path('back_organisme_show', {'id': organisme.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_organizme_edit', {'id': organisme.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

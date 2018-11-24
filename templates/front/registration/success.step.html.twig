@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <h1 class="display-4">{{ 'Thank you for your registration'|trans({}, 'front') }}</h1>
+
+    <p class="lead">
+
+
+            {#{{ 'An email has been sent to the email address indicated with a login and password to connect to your personal space.'|trans({}, 'front') }}#}
+            {{ 'We have registered your application for registration at the conference.Validation will be sent to you by email in the shortest time.'|trans({}, 'front') }}
+
+
+        {{ 'Use your current login and password to connect to your personal space.'|trans({}, 'front') }}
+
+        <br />
+        {{ 'Username'|trans({}, 'front') }}: {{ 'Your E-mail'|trans({}, 'front') }}
+        {{ 'Password'|trans({}, 'front') }}: <strong>{% if password is not empty %}{{ password }}{% else %}{{ 'Your old password'|trans({}, 'front') }}{% endif %}</strong>
+    </p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ path('home') }}" role="button">{{ 'Back To Home'|trans({}, 'front') }}</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('front_login') }}" role="button">{{ 'Login'|trans({}, 'front') }}</a>
+    </p>
+</div>

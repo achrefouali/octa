@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion Menu {% endblock %}
+{% block subtitle %} Ajouter un Menu {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Menu" ,
+            "class":"",
+            "value": {
+            "title":"form-control",
+            "titleEn":"form-control",
+            "link":"form-control",
+            "order":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_menu_new'), path('back_menu_index'))}}
+
+
+
+
+
+{% endblock %}

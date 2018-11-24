@@ -1,0 +1,27 @@
+parameters:
+
+
+    reservation_state:
+        0: "Waiting"
+        1: "Accepted and payed"
+        2: "Accepted and not payed"
+        3: "Annuled By Client"
+        4: "Annuled By Agency"
+        5: "Payment failed"
+        6: "Accepted and Total payed"
+        7: "Payment Refused by the bank"
+        8: "Offre"
+        9: "Payment Cancelled"
+
+    paymentMethod:
+        0: "Offre"
+        1: "Paiement à l'arrivé"
+        2: "Versement"
+    notificationType:
+        1: "Courriel informatif d'inscription administrateur"
+        2: "Courriel de bienvenue lors de l'inscription"
+        3: "Courriel d'activation d'un utilisateur"
+        4: "Courriel permettant de réinitialiser un mot de passe oublié"
+        5: "Courriel informant le nouveau email et mot de passe"
+        6: "Courriel informant le nouveau email"
+        7: "Divers"

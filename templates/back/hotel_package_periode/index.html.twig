@@ -1,0 +1,65 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Périodes d'un Package Hotel {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_hotel_package_periode_new', {'package': package.id}) }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+    <a href="{{ path('back_hotel_package_index', {'hotel': package.hotel.id}) }}" class="btn btn-primary">Retour</a><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix d'achat</th>
+                <th>Commision</th>
+                <th>Date Debut</th>
+                <th>Date Fin</th>
+                <th>Actif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel_package_periode in hotel_package_periodes %}
+            <tr>
+                <td>{{ hotel_package_periode.id }}</td>
+                <td>{{ hotel_package_periode.prixAchat }}</td>
+                <td>{{ hotel_package_periode.commision }}</td>
+                <td>{{ hotel_package_periode.dateDebut ? hotel_package_periode.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hotel_package_periode.dateFin ? hotel_package_periode.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hotel_package_periode.enabled ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('back_hotel_package_periode_show', {'id': hotel_package_periode.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('back_hotel_package_periode_edit', {'id': hotel_package_periode.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+</table>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

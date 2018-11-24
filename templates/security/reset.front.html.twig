@@ -1,0 +1,83 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Page | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'Registration'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+    <section>
+        <div class="container">
+            <h3>Mot de passe oublié </h3>
+
+        </div>
+
+        <div class="container">
+            <div class="well">
+
+                {% if error !="" %}
+
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                {% if valid !="" %}
+
+                    <div class=" alert alert-success">
+                        {{ valid }}
+                    </div>
+                {% endif %}
+                <p>
+                    Veuillez saisir votre adresse e-mail pour rechercher votre compte.</p>
+                <form action="{{ path('reset_password') }}" method="post">
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="email">{{ 'Email'|trans }}</label>
+                            <input type="email" id="email" name="_email" value="" class="form-control"/>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'reset'|trans }}
+                        </button>
+                        <a href="{{ path('inscription_page') }}" > {{ 'Register'|trans }}</a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+
+{% endblock %}

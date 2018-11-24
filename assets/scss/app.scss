@@ -1,0 +1,1354 @@
+
+
+// $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+//
+// // set if you're also including font-awesome
+//$fa-font-path: "~font-awesome/fonts";
+$owl-image-path : "~owl.carousel/src/img/";
+$flag-icon-css-path: '~flag-icon-css/flags';
+ //@import "~bootstrap/scss/bootstrap";
+ @import "~bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+ @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+ @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
+ @import "~bootstrap-select/sass/bootstrap-select";
+ @import "~owl.carousel/src/scss/owl.carousel";
+ @import "~owl.carousel/src/scss/owl.theme.default";
+
+ @import "~@fancyapps/fancybox/dist/jquery.fancybox.css";
+ @import "~flag-icon-css/sass/flag-icon";
+ @import "~datatables.net-bs/css/dataTables.bootstrap.min.css";
+
+
+
+.btn-primary {
+ color: #fff;
+ background-color: #b21e8e;
+ border-color: #b21c9f;
+}
+
+
+.stepwizard-step p {
+ margin-top: 10px;
+}
+
+.stepwizard-row {
+ display: table-row;
+}
+
+.stepwizard {
+ display: table;
+ width: 100%;
+ position: relative;
+}
+
+.stepwizard-step button[disabled] {
+ opacity: 1 !important;
+ filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+ top: 14px;
+ bottom: 0;
+ position: absolute;
+ content: " ";
+ width: 100%;
+ height: 1px;
+ background-color: #ccc;
+ z-order: 0;
+}
+
+.stepwizard-step {
+ display: table-cell;
+ text-align: center;
+ position: relative;
+}
+
+.btn-circle {
+ width: 30px;
+ height: 30px;
+ text-align: center;
+ padding: 6px 0;
+ font-size: 12px;
+ line-height: 1.428571429;
+ border-radius: 15px;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.hotel-page .accordion {
+ background-color: #eee;
+ color: #444;
+ cursor: pointer;
+ padding: 18px;
+ width: 100%;
+ text-align: left;
+ border: none;
+ outline: none;
+ transition: 0.4s;
+ height: 150px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.hotel-page .active, .hotel-page .accordion:hover {
+ background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.hotel-page .panel {
+ padding: 0 18px;
+ background-color: white;
+ max-height: 0;
+ overflow: hidden;
+ transition: max-height 0.2s ease-out;
+}
+
+.hotel-page .accordion:after {
+ content: '\02795'; /* Unicode character for "plus" sign (+) */
+ font-size: 13px;
+ color: #777;
+ float: right;
+ margin-left: 5px;
+}
+
+.hotel-page .active:after {
+ content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+
+/* details hotel */
+/*****************globals*************/
+
+.hotel-page .preview {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-box-orient: vertical;
+ -webkit-box-direction: normal;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+}
+
+@media screen and (max-width: 996px) {
+ .hotel-page .preview {
+  margin-bottom: 20px;
+ }
+}
+
+.hotel-page .preview-pic {
+ -webkit-box-flex: 1;
+ -webkit-flex-grow: 1;
+ -ms-flex-positive: 1;
+ flex-grow: 1;
+}
+
+.hotel-page .preview-thumbnail.nav-tabs {
+ border: none;
+ margin-top: 15px;
+ overflow: hidden;
+ height: 100px;
+}
+
+.hotel-page .preview-thumbnail.nav-tabs li {
+ width: 30%;
+ margin-right: 2.5%;
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
+
+.hotel-page .preview-thumbnail.nav-tabs li img {
+ max-width: 100%;
+ display: block;
+}
+
+.hotel-page .preview-thumbnail.nav-tabs li a {
+ padding: 0;
+ margin: 0;
+}
+
+.hotel-page .preview-thumbnail.nav-tabs li:last-of-type {
+ margin-right: 0;
+}
+
+.hotel-page .tab-content {
+ overflow: hidden;
+}
+
+.hotel-page .tab-content img {
+ width: 100%;
+ -webkit-animation-name: opacity;
+ animation-name: opacity;
+ -webkit-animation-duration: .3s;
+ animation-duration: .3s;
+}
+
+.hotel-page .card {
+ margin-bottom: 40px;
+ background: #fefefe;
+ padding: 3em;
+ line-height: 1.5em;
+}
+
+@media screen and (min-width: 997px) {
+ .hotel-page .wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+ }
+}
+
+.hotel-page .details {
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-box-orient: vertical;
+ -webkit-box-direction: normal;
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
+ flex-direction: column;
+}
+
+.hotel-page .colors {
+ -webkit-box-flex: 1;
+ -webkit-flex-grow: 1;
+ -ms-flex-positive: 1;
+ flex-grow: 1;
+}
+
+.hotel-page .product-title, .hotel-page .price, .hotel-page .sizes, .colors {
+ text-transform: UPPERCASE;
+ font-weight: bold;
+}
+
+.hotel-page .checked, .price span {
+ color: #ff9f1a;
+}
+
+.hotel-page .product-title, .hotel-page .rating, .hotel-page .product-description, .hotel-page .price, .hotel-page .vote, .sizes {
+ margin-bottom: 15px;
+}
+
+.hotel-page .product-title {
+ margin-top: 0;
+}
+
+.hotel-page .size {
+ margin-right: 10px;
+}
+
+.hotel-page .size:first-of-type {
+ margin-left: 40px;
+}
+
+.hotel-page .color {
+ display: inline-block;
+ vertical-align: middle;
+ margin-right: 10px;
+ height: 2em;
+ width: 2em;
+ border-radius: 2px;
+}
+
+.hotel-page .color:first-of-type {
+ margin-left: 20px;
+}
+
+.hotel-page .add-to-cart, .hotel-page .like {
+ background: #ff9f1a;
+ padding: 1.2em 1.5em;
+ border: none;
+ text-transform: UPPERCASE;
+ font-weight: bold;
+ color: #fff;
+ -webkit-transition: background .3s ease;
+ transition: background .3s ease;
+}
+
+.hotel-page .add-to-cart:hover, .hotel-page .like:hover {
+ background: #b36800;
+ color: #fff;
+}
+
+.hotel-page .not-available {
+ text-align: center;
+ line-height: 2em;
+}
+
+.hotel-page .not-available:before {
+ font-family: fontawesome;
+ content: "\f00d";
+ color: #fff;
+}
+
+.hotel-page .orange {
+ background: #ff9f1a;
+}
+
+.hotel-page .green {
+ background: #85ad00;
+}
+
+.hotel-page .blue {
+ background: #0076ad;
+}
+
+.hotel-page .tooltip-inner {
+ padding: 1.3em;
+}
+
+@-webkit-keyframes opacity {
+ 0% {
+  opacity: 0;
+  -webkit-transform: scale(3);
+  transform: scale(3);
+ }
+ 100% {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+ }
+}
+
+@keyframes opacity {
+ 0% {
+  opacity: 0;
+  -webkit-transform: scale(3);
+  transform: scale(3);
+ }
+ 100% {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+ }
+}
+
+.hotel-page .control_prev {
+ margin-top: 50px;
+ cursor: pointer;
+}
+
+.hotel-page .control_next {
+ margin-top: 50px;
+ cursor: pointer;
+}
+.hotel-page .control_next:hover i, .hotel-page .control_prev:hover i {
+ color : #7db921;
+}
+
+/*# sourceMappingURL=style.css.map */
+
+/* end details hotel */
+
+
+
+
+
+.home-message {
+ background:  rgba(127, 178, 49, 0.5) !important;
+ position: absolute;
+ width: 50% !important;
+ z-index: 9999;
+ top: 50%;
+ left: 25%;
+}
+.alert .close, .info-box .close{
+ width:20px;
+ background-color: #98ce44;
+}
+.alert .close:hover, .info-box .close:hover{
+ width:20px;
+ background-color: #ECBD39;
+}
+
+
+
+/* 2.15. Listing Styles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.listing-style1.hotel .box-title:after, .listing-style1.cruise .box-title:after {
+
+ display: table;
+
+ content: "";
+
+ clear: both; }
+
+.listing-style1.hotel .feedback, .listing-style1.cruise .feedback {
+
+ margin: 5px 0;
+
+ border-top: 1px solid #f5f5f5;
+
+ padding-top: 5px;
+
+ border-bottom: 1px solid #f5f5f5; }
+
+.listing-style1.hotel .feedback .review, .listing-style1.cruise .feedback .review {
+
+ display: block;
+
+ float: right;
+
+ text-transform: uppercase;
+
+ font-size: 0.8333em;
+
+ color: #9e9e9e; }
+
+.listing-style1.hotel .five-stars-container, .listing-style1.cruise .five-stars-container {
+
+ color: #dbdbdb; }
+
+.listing-style1.hotel .action .button:last-child, .listing-style1.cruise .action .button:last-child {
+
+ float: right; }
+
+.listing-style1.hotel .action .button, .listing-style1.cruise .action .button {
+
+ width: 45%;
+
+ padding: 0;
+
+ text-align: center; }
+
+.listing-style1.hotel .action .button + .button, .listing-style1.cruise .action .button + .button {
+
+ width: 50%; }
+
+.listing-style1.flight .details, .listing-style1.car .details {
+
+ padding: 15px 0 0 !important;
+
+ text-transform: uppercase; }
+
+.listing-style1.flight .details .box-title, .listing-style1.car .details .box-title {
+
+ text-transform: none; }
+
+.listing-style1.flight .details .box-title:after, .listing-style1.car .details .box-title:after {
+
+ display: table;
+
+ content: "";
+
+ clear: both; }
+
+.listing-style1.flight .action .button, .listing-style1.car .action .button {
+
+ text-align: center; }
+
+.listing-style1.flight figure img {
+
+ max-width: 100%; }
+
+.listing-style1.flight .details .time {
+
+ margin: 10px 0;
+
+ border-top: 1px solid #f5f5f5;
+
+ border-bottom: 1px solid #f5f5f5;
+
+ letter-spacing: 0.04em; }
+
+.listing-style1.flight .details .time:after {
+
+ display: table;
+
+ content: "";
+
+ clear: both; }
+
+.listing-style1.flight .details .time > div {
+
+ width: 50%;
+
+ float: left;
+
+ padding: 7px 0; }
+
+.listing-style1.flight .details .time > div > .icon {
+
+ font-size: 16px;
+
+ float: left; }
+
+.listing-style1.flight .details .time > div > .icon + div {
+
+ padding-left: 24px; }
+
+.listing-style1.flight .details .time > div:first-child {
+
+ border-right: 1px solid #f5f5f5; }
+
+.listing-style1.flight .details .time > div + div {
+
+ padding-left: 20px; }
+
+.listing-style1.flight .details .duration {
+
+ font-size: 0.8333em;
+
+ text-align: center;
+
+ letter-spacing: 0.04em; }
+
+.listing-style1.car figure img {
+
+ max-width: 100%; }
+
+.listing-style1.car .details .mile {
+
+ font-size: 0.8333em;
+
+ text-align: center; }
+
+.listing-style1.car .details .amenities {
+
+ text-align: center;
+
+ border-top: 1px solid #f5f5f5;
+
+ border-bottom: 1px solid #f5f5f5;
+
+ margin: 10px 0;
+
+ padding: 10px 0 6px; }
+
+.listing-style1.cruise .time {
+
+ padding-top: 5px; }
+
+.listing-style1.cruise .time [class^="soap-icon"] {
+
+ float: left;
+
+ font-size: 20px; }
+
+.listing-style1.cruise .time > div {
+
+ margin-bottom: 10px !important; }
+
+.listing-style1.cruise .time > div:first-child {
+
+ border-right: 1px solid #f5f5f5; }
+
+.listing-style1.cruise .time > div > div {
+
+ padding-left: 20px; }
+
+.listing-style1.cruise .action a.button {
+
+ float: none !important; }
+
+.listing-style1.cruise .description {
+
+ text-align: center;
+
+ font-size: 0.8333em;
+
+ text-transform: uppercase; }
+
+
+
+.listing-style1.flight .box, .listing-style1.flight.box, .listing-style1.car .box, .listing-style1.car.box, .listing-style2.flight .box, .listing-style2.flight.box, .listing-style2.car .box, .listing-style2.car.box {
+
+ padding: 15px; }
+
+.listing-style1.flight figure, .listing-style1.car figure, .listing-style2.flight figure, .listing-style2.car figure {
+
+ background: #f5f5f5;
+
+ display: table;
+
+ /*height: 140px;*/
+
+ width: 100%;
+
+ table-layout: fixed; }
+
+.listing-style1.flight figure > a, .listing-style1.flight figure > span, .listing-style1.car figure > a, .listing-style1.car figure > span, .listing-style2.flight figure > a, .listing-style2.flight figure > span, .listing-style2.car figure > a, .listing-style2.car figure > span {
+
+ display: table-cell;
+
+ vertical-align: middle;
+
+ text-align: center; }
+
+.listing-style1.flight figure img, .listing-style1.car figure img, .listing-style2.flight figure img, .listing-style2.car figure img {
+
+ width: auto; }
+
+
+
+.listing-style1.flight .icon, .listing-style3.flight .icon {
+
+ font-size: 16px; }
+
+.listing-style1.flight .take-off > .icon, .listing-style3.flight .take-off > .icon {
+
+ -webkit-transform: rotate(-25deg);
+
+ -moz-transform: rotate(-25deg);
+
+ -ms-transform: rotate(-25deg);
+
+ -o-transform: rotate(-25deg);
+
+ transform: rotate(-25deg);
+
+ display: inline-block; }
+
+.listing-style1.flight .landing > .icon, .listing-style3.flight .landing > .icon {
+
+ -webkit-transform: rotate(25deg);
+
+ -moz-transform: rotate(25deg);
+
+ -ms-transform: rotate(25deg);
+
+ -o-transform: rotate(25deg);
+
+ transform: rotate(25deg);
+
+ display: inline-block; }
+
+.listing-style1.car .amenities ul, .listing-style3.car .amenities ul {
+
+ display: inline-block;
+
+ color: #9e9e9e; }
+
+.listing-style1.car .amenities ul li, .listing-style3.car .amenities ul li {
+
+ float: left;
+
+ text-align: center;
+
+ padding: 0 5px;
+
+ cursor: default;
+
+ font-size: 0.8333em; }
+
+.listing-style1.car .amenities ul li .glyphicon, .listing-style1.car .amenities ul li [class^="soap-icon"], .listing-style3.car .amenities ul li .glyphicon, .listing-style3.car .amenities ul li [class^="soap-icon"] {
+
+ display: block;
+
+ font-size: 16px;
+
+ color: #d9d9d9;
+
+ overflow: hidden; }
+
+.listing-style1.car .amenities ul li .glyphicon, .listing-style3.car .amenities ul li .glyphicon {
+
+ line-height: 25px; }
+
+.listing-style1.car .amenities ul li .glyphicon:before, .listing-style3.car .amenities ul li .glyphicon:before {
+
+ font-size: 12px; }
+
+.listing-style1.car .amenities ul li:hover, .listing-style1.car .amenities ul li:hover .glyphicon, .listing-style1.car .amenities ul li:hover [class^="soap-icon"], .listing-style3.car .amenities ul li:hover, .listing-style3.car .amenities ul li:hover .glyphicon, .listing-style3.car .amenities ul li:hover [class^="soap-icon"] {
+
+ color: #01b7f2; }
+
+.listing-style1.car .amenities ul li:hover [class^="soap-icon"]:before, .listing-style3.car .amenities ul li:hover [class^="soap-icon"]:before {
+
+ -webkit-animation: toTopFromBottom 0.35s forwards;
+
+ -moz-animation: toTopFromBottom 0.35s forwards;
+
+ animation: toTopFromBottom 0.35s forwards; }
+
+.listing-style1.car .amenities ul:after, .listing-style3.car .amenities ul:after {
+
+ display: table;
+
+ content: "";
+
+ clear: both; }
+
+
+
+.listing-style2 .box .box-title {
+
+ margin-bottom: 0; }
+
+.listing-style2 a.button {
+
+ margin-top: 6px; }
+
+.listing-style2.flight .details {
+
+ padding: 12px 2px 0; }
+
+.listing-style2.flight img {
+
+ width: auto;
+
+ max-width: 100%; }
+
+
+
+.listing-style3 .box, .listing-style3.box {
+
+ background: #fff;
+
+ margin-bottom: 30px; }
+
+.listing-style3 .box > *, .listing-style3.box > * {
+
+ padding: 0; }
+
+.listing-style3 .box:after, .listing-style3.box:after {
+
+ display: table;
+
+ clear: both;
+
+ content: ""; }
+
+.listing-style3 .review {
+
+ display: block;
+
+ text-transform: uppercase;
+
+ font-size: 0.8333em;
+
+ color: #9e9e9e; }
+
+.listing-style3 .five-stars-container, .listing-style3 .review {
+
+ line-height: 1em; }
+
+.listing-style3 .five-stars-container {
+
+ color: #dbdbdb; }
+
+.listing-style3 [class^="soap-icon"].circle {
+
+ color: #d9d9d9;
+
+ cursor: default;
+
+ font-size: 16px;
+
+ overflow: hidden; }
+
+.listing-style3 [class^="soap-icon"].circle:hover {
+
+ color: #01b7f2; }
+
+.listing-style3 [class^="soap-icon"].circle:hover:before {
+
+ -webkit-animation: toTopFromBottom 0.35s forwards;
+
+ -moz-animation: toTopFromBottom 0.35s forwards;
+
+ animation: toTopFromBottom 0.35s forwards; }
+
+.listing-style3 .price {
+ float: none;
+ color: #b21e8e;
+ font-size: 1.6667em;
+ text-transform: uppercase;
+  line-height: 1;
+ display: block;
+}
+
+.listing-style3.hotel figure img {
+
+ width: 100%;
+
+ height: auto; }
+
+.listing-style3.hotel .box-title {
+
+ margin: 0;
+
+ float: left; }
+
+.listing-style3.hotel .box-title i {
+
+ font-size: 15px; }
+
+.listing-style3.hotel .amenities {
+
+ float: right; }
+
+.listing-style3.hotel .details {
+
+ padding: 15px 0 15px 20px;
+
+ display: table; }
+
+.listing-style3.hotel .details [class^="soap-icon"].circle {
+
+ margin-right: 5px;
+
+ margin-top: 5px; }
+
+.listing-style3.hotel .details > * {
+
+ display: table-row; }
+
+.listing-style3.hotel .details > * > * {
+
+ display: table-cell;
+
+ padding: 10px 15px 0;
+
+ text-align: center;
+
+ vertical-align: middle; }
+
+.listing-style3.hotel .details > * > *:first-child {
+
+ border-right: 1px solid #f5f5f5;
+
+ padding-left: 0;
+
+ padding-right: 15px;
+
+ text-align: left; }
+
+.listing-style3.hotel .details > * > *:last-child {
+
+ width: 120px; }
+
+.listing-style3.hotel .details > *:first-child > * {
+
+ border-bottom: 1px solid #f5f5f5;
+
+ padding-top: 0;
+
+ padding-bottom: 10px; }
+
+.listing-style3.hotel .details .button {
+
+ margin-top: 8px; }
+
+.listing-style3.flight .box, .listing-style3.flight.box {
+
+ padding: 15px;
+
+ display: table;
+
+ width: 100%;
+
+ table-layout: fixed;
+ background-color: #f5f5f5;
+}
+
+.listing-style3.flight figure {
+
+ display: table-cell;
+
+ background: #f5f5f5;
+
+ vertical-align: middle;
+
+ float: none; }
+
+.listing-style3.flight figure span {
+
+ text-align: center;
+
+ display: block; }
+
+.listing-style3.flight figure span img {
+
+ max-width: 60px;
+
+ height: auto; }
+
+.listing-style3.flight .box-title {
+
+ float: left; }
+
+.listing-style3.flight .stop:hover {
+
+ background: #fdb714; }
+
+.listing-style3.flight .amenities {
+
+ margin-bottom: 10px;
+
+ float: right; }
+
+.listing-style3.flight .details {
+
+ display: table-cell;
+
+ padding-left: 15px;
+
+ float: none; }
+
+.listing-style3.flight .details .details-wrapper {
+
+ display: table;
+
+ width: 100%; }
+
+.listing-style3.flight .details .details-wrapper > * {
+
+ display: table-row; }
+
+.listing-style3.flight .details .details-wrapper > * > * {
+
+ display: table-cell;
+
+ padding: 15px 15px 0 15px; }
+
+.listing-style3.flight .details .details-wrapper > * > *:first-child {
+
+ border-right: 1px solid #f5f5f5;
+
+ padding-left: 0; }
+
+.listing-style3.flight .details .details-wrapper > * > *:last-child {
+
+ text-align: center;
+
+ padding-right: 0; }
+
+.listing-style3.flight .details .details-wrapper > *:first-child > * {
+
+ border-bottom: 1px solid #f5f5f5;
+
+ padding-top: 0; }
+
+.listing-style3.flight .details .details-wrapper .box-title {
+
+ margin: 0 10px 15px 0; }
+
+.listing-style3.flight .details .details-wrapper [class^="soap-icon"].circle {
+
+ margin-right: 5px; }
+
+.listing-style3.flight .details .details-wrapper [class^="col-"], .listing-style3.flight .details .details-wrapper [class*=" col-"] {
+
+ padding: 0; }
+
+.listing-style3.flight .details .details-wrapper .time > div {
+
+ border-right: 1px solid #f5f5f5;
+
+ padding-left: 15px; }
+
+.listing-style3.flight .details .details-wrapper .time > div:last-child {
+
+ border-right: none; }
+
+.listing-style3.flight .details .details-wrapper .time > div:first-child {
+
+ padding-left: 0; }
+
+.listing-style3.flight .details .details-wrapper .time > div > div {
+
+ padding-left: 25px; }
+
+.listing-style3.flight .details .details-wrapper .time .icon {
+
+ float: left;
+
+ padding: 0;
+
+ font-size: 16px; }
+
+.listing-style3.flight .details .details-wrapper .time {
+
+ letter-spacing: 0.04em; }
+
+.listing-style3.flight .details .details-wrapper .action {
+
+ vertical-align: top; }
+
+.listing-style3.car .box, .listing-style3.car.box {
+
+ display: table;
+
+ padding-top: 15px;
+
+ padding-bottom: 15px;
+
+ width: 100%;
+
+ table-layout: fixed;
+
+}
+
+.listing-style3.car figure {
+
+ display: table-cell;
+
+ vertical-align: middle;
+
+ float: none;
+
+ text-align: center;
+
+ border-right: 1px solid #f5f5f5; }
+
+.listing-style3.car figure img {
+
+ max-width: 80%;
+
+ height: auto; }
+
+.listing-style3.car .details {
+
+ display: table-cell;
+
+ float: none; }
+
+.listing-style3.car .details .box-title {
+
+ float: left; }
+
+.listing-style3.car .details .logo {
+
+ margin: 3px 0 0 8px;
+
+ float: left;
+
+ border-left: 1px solid #e1e1e1;
+
+ padding-left: 8px; }
+
+.listing-style3.car .details .logo img {
+
+ max-height: 20px;
+
+ width: auto; }
+
+.listing-style3.car .details .amenities {
+
+ margin-top: 20px; }
+
+.listing-style3.car .details .character {
+
+ text-align: right;
+
+ text-transform: uppercase;
+
+ font-size: 0.8333em;
+
+ border-right: 1px solid #f5f5f5; }
+
+.listing-style3.car .details .character dd {
+
+ margin-bottom: 5px; }
+
+.listing-style3.car .details .character dl {
+
+ margin-bottom: 0; }
+
+.listing-style3.car .details .action {
+
+ text-align: center;
+
+ text-transform: uppercase; }
+
+.listing-style3.car .details .action .button {
+
+ margin-top: 30px; }
+
+.listing-style3.cruise figure img {
+
+ width: 100%;
+
+ height: auto; }
+
+.listing-style3.cruise .details {
+
+ padding: 15px 20px;
+
+ text-transform: uppercase; }
+
+.listing-style3.cruise .details img {
+
+ max-width: 100%;
+
+ height: auto; }
+
+.listing-style3.cruise .details .box-title {
+
+ text-transform: none;
+
+ margin-bottom: 10px; }
+
+.listing-style3.cruise .details .character {
+
+ font-size: 0.8333em;
+
+ border-top: 1px solid #f5f5f5;
+
+ border-bottom: 1px solid #f5f5f5;
+
+ margin-bottom: 15px;
+
+ display: table;
+
+ width: 100%;
+
+ table-layout: fixed; }
+
+.listing-style3.cruise .details .character > div {
+
+ display: table-cell;
+
+ float: none;
+
+ vertical-align: middle;
+
+ margin: 0;
+
+ padding-top: 12px;
+
+ padding-bottom: 12px;
+
+ border-left: 1px solid #f5f5f5; }
+
+.listing-style3.cruise .details .character > div:first-child {
+
+ border: none;
+
+ padding-left: 0; }
+
+.listing-style3.cruise .details .character > div:last-child {
+
+ padding-right: 0; }
+
+.listing-style3.cruise .details .character [class^="soap-icon"] {
+
+ font-size: 18px;
+
+ float: left; }
+
+.listing-style3.cruise .details .character .cruise-logo {
+
+ padding: 0;
+
+ text-align: left; }
+
+.listing-style3.cruise .details .character .cruise-logo img {
+
+ max-width: 90%;
+
+ width: auto;
+
+ height: auto; }
+
+.listing-style3.cruise .details .character .date > div, .listing-style3.cruise .details .character .departure > div {
+
+ padding-left: 20px;
+
+ line-height: 1.1667em; }
+
+.listing-style3.cruise .details .review {
+
+ line-height: 1.6667em; }
+
+.listing-style3.cruise .details .review .five-stars-container {
+
+ float: left;
+
+ margin-right: 10px; }
+
+.listing-style3.cruise .details .review span {
+
+ display: block;
+
+ float: left; }
+
+
+.panel h1 {
+ margin: 0 0 15px;
+ font-weight: normal;
+ color: #2d3e52;
+}
+
+
+.form-check {
+ margin-top: 11px;
+}
+
+.csi-banner .csi-inner {
+ padding: 15rem 0;
+}
+.csi-inner {
+ padding: 6rem 0;
+}
+
+.csi-banner-content .csi-subtitle, .csi-banner-content .csi-title {
+ font-size: 8rem;
+ line-height: 16.5rem;
+ font-family: Oswald,sans-serif;
+}
+
+.csi-footer {
+ background: #212739;
+ color: #fff;
+}
+
+
+/** card bootstrap **/
+.card {
+ font-size: 1em;
+ overflow: hidden;
+ padding: 0;
+ border: none;
+ border-radius: .28571429rem;
+ box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+
+ padding: 15px;
+ margin: 0 15px 15px 0;
+}
+
+.card-block {
+ font-size: 1em;
+ position: relative;
+ margin: 0;
+ padding: 1em;
+ border: none;
+ border-top: 1px solid rgba(34, 36, 38, .1);
+ box-shadow: none;
+}
+
+.card-img-top {
+ display: block;
+ width: 100%;
+ height: auto;
+}
+
+.card-title {
+ font-size: 1.28571429em;
+ font-weight: 700;
+ line-height: 1.2857em;
+ color: #b21e8e;
+}
+
+.card-text {
+ clear: both;
+ margin-top: .5em;
+ color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+ font-size: 1em;
+ position: static;
+ top: 0;
+ left: 0;
+ max-width: 100%;
+ padding: .75em 1em;
+ color: rgba(0, 0, 0, .4);
+ border-top: 1px solid rgba(0, 0, 0, .05) !important;
+ background: #fff;
+}
+
+.card-inverse .btn {
+ border: 1px solid rgba(0, 0, 0, .05);
+}
+/* 3.1.7. Mini Menu */
+
+
+/* menu */
+.menu-conf-top .dropdown-menu {
+ width: 300px;
+}
+.menu-conf-top .dropdown-menu > li {
+ display: inline-block;
+ float:left;
+}
+
+.csi-header .langbar {
+ padding-top: 6.8rem;
+}
+.csi-header .menu-onscroll .langbar {
+ padding-top: 0.9rem;
+}
+
+hr {
+ margin-top: 20px;
+ margin-bottom: 20px;
+ border-color: #f5f5f5;
+}
+
+.slideCol p{
+ text-align: left;
+ overflow: hidden;
+ font-weight: 800 !important;
+ font-size: 15pt;
+ display: block;
+ text-transform: uppercase;
+ padding-left: 15px;
+ padding-top: 5px;
+}
+
+.slideCol img {
+ float: left;
+}
+.csi-header .csi-navbar .csi-nav {
+ float:left;
+}
+.csi-header .csi-navbar .csi-nav li a{
+ padding: 6.8rem 6px 2.6rem;
+}
+.csi-header .csi-navbar .csi-logo {
+ margin-top: 1rem;
+}
+.csi-header .csi-navbar .csi-logo a img {
+ /*width: 169px;*/
+ width: 122px;
+}
+.csi-header .menu-onscroll .csi-navbar .csi-logo {
+ margin-top: 0.9rem;
+}
+.csi-header .menu-onscroll .csi-navbar .csi-logo a img {
+ width: 122px;
+}
+.live-streaming{
+ float: right;
+}
+.live-streaming a {
+ position: absolute;
+ top: 0px;
+ margin-left: 70px;
+}
+
+.live-streaming a img {
+  width: 90px;
+}
+.csi-header .csi-navbar .csi-nav li a {
+ padding : 2.6rem 6px;
+}
+
+.csi-header .menu-onscroll .csi-navbar .csi-nav li a {
+ padding : 4.6rem 6px;
+}
+
+.csi-single-registration {
+ margin-right: 10px;
+}
+
+.csi-registration-area .recommended{
+ margin-left: 15%;
+}
+
+.csi-banner-content {
+ margin-top: 4rem;
+}
+
+.csi-banner{
+ background-position : bottom left;
+}
+
+.csi-header .csi-navbar .csi-nav li .csi-btn {
+ padding-left: 5px;
+ padding-right: 5px;
+}

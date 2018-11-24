@@ -1,0 +1,64 @@
+{% trans_default_domain 'front' %}
+<!--FOOTER-->
+<footer>
+    <div id="csi-footer" class="csi-footer">
+        <div class="csi-inner-bg">
+            <div class="csi-inner">
+                <div class="csi-footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="csi-footer-logo">
+                                    <a class="logo" href="#"><img src="{{ asset('uploads/events/' ~ event.logo) }}" alt="Logo"></a>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="csi-footer-single-area">
+                                    <div class="csi-footer-single">
+                                        <h3 class="footer-title">Lieu</h3>
+                                        <h4 class="date">
+                                            {{  event.dateDebut? event.dateDebut|date('d') : '' }}
+                                            -{{ event.dateFin? event.dateFin|date('d M Y') : '' }}
+                                        </h4>
+                                        <address>
+                                            {{ event.adresse }}
+                                        </address>
+                                        <a class="map-link" href="{{ path('contact_page') }}"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ 'Contact Us'|trans }}</a>
+                                    </div>
+                                    <div class="csi-footer-single">
+                                        <h3 class="footer-title">{{ 'Social Networks'|trans }}</h3>
+                                        {#<p class="text">#}
+                                            {#You should connect social area <br> for Any update#}
+                                        {#</p>#}
+                                        <ul class="list-inline csi-social">
+
+                                            {% if event.facebookLink is not empty %}
+                                            <li><a href="{{ event.facebookLink }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            {% endif %}
+                                            {% if event.GoogleLink is not empty %}
+                                                <li><a href="{{ event.GoogleLink }}"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                                            {% endif %}
+                                            {% if event.tweeterLink is not empty %}
+                                                <li><a href="{{ event.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            {% endif %}
+                                            {% if event.instagramLink is not empty %}
+                                                <li><a href="{{ event.instagramLink }}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="csi-copyright">
+                                    <p class="text">© 2018-2019 Tunisie Congrés </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //.CONTAINER -->
+                </div>
+            </div>
+        </div>
+        <!-- //.footer Middle -->
+    </div>
+</footer>
+<!--FOOTER END-->

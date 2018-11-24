@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Image Hotel{% endblock %}
+{% block subtitle %} Ajouter une Photo Hotel {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Image Hotel" ,
+            "class":"",
+            "value": {
+            "main": "form-control",
+            "designation": "form-control",
+            "picture": "form-control",
+            "enabled": "form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_hotel_image_new', {'hotel': hotel.id}), path('back_hotel_image_index', {'hotel': hotel.id}))}}
+
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,327 @@
+title: 'Flight Booking'
+language: Language
+english: English
+french: French
+danois: Danois
+login: Login
+home: Home
+flight: FLIGHT
+home_flights: 'Home Flights'
+list_view: 'List View'
+grid_view: 'Grid View'
+block_view: 'Block View'
+detailed: Detailed
+booking: Booking
+thankyou: 'Thank You'
+mailing_list: 'Mailing List'
+info_signup: 'Sign up for our mailing list to get latest updates and offers'
+subscribe: Subscribe
+mailing_subscribe: 'Mailing Subscribe'
+email: E-mail
+password: Password
+connect: Login
+remember_me: 'Remember me'
+first_name: 'First Name'
+last_name: 'Last Name'
+adress: Adress
+phone: Phone
+close: Close
+save_changes: 'Save Changes'
+info_prevacy: 'We respect your privacy'
+choose_flight_type: 'Choose Flight Type'
+one_way_ticket: 'One Way Ticket'
+round_trip: 'Round Trip'
+Where: Where
+leaving_from: 'Leaving From'
+going_to: 'Going To'
+when: When
+departure_date: 'Departure Date'
+return_date: 'Return Date'
+who: Who
+adults: Adults
+kids: Kids
+flight_type: 'Flight Type'
+infants: Infants
+search_now: 'Search Now'
+about: About
+flight_booking: 'Flight Booking'
+found: 'Result(s) Found'
+airlines: Airlines
+modify_search: 'Modify Search'
+sort_result_by: 'sort result by'
+name: Name
+price: Price
+duration: Duration
+depart: Depart
+person: Person
+take_off: 'Take Off'
+date: Date
+time: Time
+landing: Landing
+hours: Hours
+minutes: Minutes
+select_now: 'Select Now'
+select_depart_now: 'Select Depart Now'
+return: Return
+total_time: 'Total Time'
+select_return_now: 'Select Depart Now'
+confirm_selection: 'Confirm Selection'
+erreur_selection: 'Select Depart & Return flights first !!'
+depart_selected: 'Depart Selected'
+return_selected: 'Return Selected'
+flight_detailed: 'Détail du vol'
+photo: Photo
+flight_details: 'Flight Details'
+baggage: Baggage
+extra_baggage: Ekstra Bagage
+airline: Airline
+adults_price: 'Adults Price'
+kids_price: 'Kids Price'
+infants_price: 'Infants Price'
+total_price: 'Total Price'
+to: To
+from: From
+qte: QTE
+type: Type
+weight: weight
+amount: amount
+confirm_baggage: 'Confirm Baggage'
+baggage_type: 'Baggage Type'
+book_flight_now: 'Book Flight Now'
+need: Need
+help: Help
+notice_help: 'We would be more than happy to help you. Our team advisor are 24/7 at your service to help you'
+why_book: 'Why Book with us'
+why_book_2: '135,00+ Flights'
+why_book_3: 'Low Rates &amp; Savings'
+why_book_4: 'Excellent Support'
+adult: Adult
+passport: Passport
+expiration_year: 'Expiration Year'
+kid: Kid
+years: Years
+birth_day: 'Birth Day'
+expiration_month: 'Expiration Month'
+your_personal_information: 'Your Personal Information'
+email_adress: 'Email Address'
+email_confirmation: 'Email Confirmation'
+phone_code: 'Phone code'
+phone_number: 'Phone Number'
+mobile_code: 'Mobile code'
+mobile_number: 'Mobile Number'
+your_card_information: 'Your Card Information'
+your_payment_information: 'Payment Information'
+credit_card_type: 'Credit Card Type'
+card_holder_name: 'Card Holder Name'
+card_number: 'Card Number'
+billing_zip_code: 'Billing Zip Code'
+expiartion_date: 'Expiration Date'
+info_condition: 'By continuing, you agree to the'
+link_condition: 'Terms and Conditions'
+confirm_booking: 'Confirm Booking'
+alert_condition: 'You must accept condition before confirm'
+booking_details: 'Booking Details'
+edit: Edit
+arrival: Arrival
+other_details: 'Other Details'
+baggage_price: 'Baggage Price'
+baggage_qte: 'Baggage QTE'
+flight_confirmation: 'Flight Confirmation'
+booking_confirmation: 'Booking Confirmation'
+notice1_confirmation: 'Thank You. Your Booking Order is Confirmed Now'
+notice2_confirmation: 'A confirmation email has been sent to your provided email address'
+print_details: 'Print details'
+traveler_information: 'Traveler Information'
+booking_number: 'Booking number'
+street_address_and_number: 'Street address and number'
+adlut: Adult
+infant: Infant
+search_again: 'Search Again'
+title_ticket: 'E-Ticket Receipt & itinerary'
+print_ticket: 'Print Ticket'
+passanger_name: 'Passenger Name'
+booking_ref: 'Booking Reference'
+travel_information: 'Travel Information'
+flight_depart: 'Departure Flight'
+aeroport_depart: 'Departure Airport'
+date_depart: 'Departure Date'
+time_depart: 'Departure Time'
+aeroport_arrival: 'Arrival Airport'
+date_arrival: 'Arrival Date'
+time_arrival: 'Arrival Time'
+check_in: 'Check In'
+flight_return: 'Return Flight'
+fare_and_additional_information: 'Fare And Additional Information'
+don_on: 'Done On'
+delai: 'The price is proportional to the difference between the flights, which is for you'
+day: day(s)
+request: Request
+hi: Hi
+notice_email_booking: 'Your booking was successfully confirmed'
+notice_email_request: 'Your reservation has been successfully registered, expect the final confirmation very soon.'
+client: Client
+passangers: Passangers
+age: Age
+thanks: Thanks
+voucher: Voucher
+flight_search_results: 'Flight search result(s)'
+periode: Period
+logout: Logout
+thanku: Thank you for choosing
+paymentByCard: 'Payment by card'
+edinar: E-Dinar
+OnDelivery: Payment to the agency
+total: Total
+Man: Man
+Woman: Woman
+transfert: Transfer
+transfert_aeroportDepart: Airport Departure
+transfert_villeDestination: City of Destination
+transfert_hotel: Hotel
+transfert_nbAdultes: Number Adults
+transfert_nbEnfants: Number Children
+transfert_nbBebes: Number Babies
+transfert_type: Type
+transfert_confirm: Confirm Transfer
+transfert_type_taxi: Taxi
+transfert_type_minivan: Minivan
+transfert_type_bus: Bus
+transfert_error: No Transfer found for your destination
+ctn: CTN
+ctn_information: CTN Reseravtion
+ctn_trajet: Journey
+ctn_departure_date: Departure date
+ctn_return_date: Return date
+ctn_nbAdultes: Number of adults
+ctn_nbEnfants: Number of children
+ctn_nbBebes: Number of Babies
+ctn_vehicule: Vehicle
+ctn_marque: Brand
+ctn_model: Model
+ctn_immatriculation: Registration
+ctn_element_tracte: Tract
+ctn_element_tracte_longueur: Length
+ctn_element_tracte_hauteur: Height
+ctn_element_tracte_largeur: Width
+ctn_trajet_aller: Way to go
+ctn_trajet_aller_place: Place assise en salon fauteuil pont 7 avant
+ctn_trajet_aller_cabine: Cabine avec sanitaires privés - 4 Lits - Inférieure
+ctn_trajet_aller_cabine_sanitaire_hublot: Cabine avec sanitaire privés - 4 Lits - avec Hublot
+ctn_trajet_aller_suite_bureau: Suite bureau ou salon avec 1 grand lit à 2 + 2 Lits Séparés
+ctn_trajet_retour: Return trip
+ctn_trajet_retour_place: Place assise en salon fauteuil pont 7 avant
+ctn_trajet_retour_cabine_sanitaire: Cabine avec sanitaires privés - 4 Lits - Inférieure
+ctn_trajet_retour_cabine_sanitaire_hublot: Cabine avec sanitaire privés - 4 Lits - avec Hublot
+ctn_trajet_retour_suite_bureau: Suite bureau ou salon avec 1 grand lit à 2 + 2 Lits Séparés
+ctn_personal_information: Personal Information
+ctn_personal_information_email: Email
+ctn_personal_information_titre: Title
+ctn_personal_information_nom: Name
+ctn_personal_information_prenom: First Name
+ctn_personal_information_date_naissance: Date of birth
+ctn_personal_information_adresse: Address
+ctn_personal_information_code_postale: Postal Code
+ctn_personal_information_ville: City
+ctn_personal_information_pays_residence: Residence
+ctn_personal_information_telephone_mobile: Mobile
+ctn_personal_information_telephone_autre: Other
+ctn_personal_information_telephone_observation: Observation
+ctn_liste_passagers: Passengers list
+ctn_liste_passagers_section: Passenger
+ctn_liste_passagers_titre: Title
+ctn_liste_passagers_nom: Name
+ctn_liste_passagers_prénom: Firstname
+ctn_liste_passagers_nee_le: Born on
+ctn_liste_passagers_nationalite: Nationality
+ctn_liste_passagers_num_passport: Passport number
+ctn_assurance: Insurance
+ctn_assurance_non: No
+ctn_assurance_oui: Yes
+ctn_information_france: France
+ctn_information_tunisie: Tunisia
+ctn_information_italie: Italy
+number_days: Number of days
+choose_number_days: Choose number of days
+enter_number_days: Enter number of nights...
+list_of_packages: List of rooms
+choose: Choose
+number_of_persons: Number of persons
+quantity: Quantity
+submit: Submit
+description: Description
+services: Services
+minimum_price: Minimum Price
+number_of_packages: Number of packages
+category: Category
+number_of_days: Number of days
+list_of_hotels: List of hotels in
+group:
+  edit:
+    submit: 'Mettre à jour le groupe'
+  show:
+    name: 'Nom du groupe'
+  new:
+    submit: 'Créer le groupe'
+  flash:
+    updated: 'Le groupe a été mis à jour'
+    created: 'Le groupe a été créé'
+    deleted: 'Le groupe a été supprimé'
+security:
+  login:
+    username: 'Identifiant ou adresse email'
+    password: 'Mot de passe'
+    remember_me: 'Rester connecté'
+    submit: Connexion
+profile:
+  show:
+    username: 'Identifiant'
+    email: 'Adresse e-mail'
+  edit:
+    submit: 'Mettre à jour'
+  flash:
+    updated: 'Le profil a été mis à jour'
+change_password:
+  submit: 'Modifier le mot de passe'
+  flash:
+    success: 'Le mot de passe a été modifié'
+registration:
+  check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.'
+  confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
+  back: 'Retour à la page d''origine.'
+  submit: 'Créer un compte'
+  flash:
+    user_created: 'L''utilisateur a été créé avec succès'
+  email:
+    subject: 'Bienvenue %username% !'
+    message: "Bonjour %username% !\n\nPour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+resetting:
+  password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
+  check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.'
+  request:
+    invalid_username: 'L''identifiant ou l''adresse e-mail "%username%" n''existe pas.'
+    invalid_form: 'Veuillez saisir votre identifiant ou votre adresse email.'
+    username: 'Identifiant ou adresse e-mail'
+    submit: 'Réinitialiser le mot de passe'
+  reset:
+    submit: 'Modifier le mot de passe'
+  flash:
+    success: 'Le mot de passe a été réinitialisé avec succès'
+  email:
+    subject: 'Réinitialisation de votre mot de passe'
+    message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+layout:
+  logout: Déconnexion
+  login: Connexion
+  register: Inscription
+  logged_in_as: 'Connecté en tant que %username%'
+form:
+  group_name: 'Nom du groupe'
+  username: 'Identifiant'
+  email: 'Adresse e-mail'
+  current_password: 'Mot de passe actuel'
+  password: 'Mot de passe'
+  password_confirmation: 'Confirmation du mot de passe'
+  new_password: 'Nouveau mot de passe'
+  new_password_confirmation: 'Confirmation du nouveau mot de passe'
+#Message d'erreur identifiant / mot de passe incorrect
+Invalid credentials. : 'Veuillez vérifier votre identifiant ou mot de passe'

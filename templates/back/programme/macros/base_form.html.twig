@@ -1,0 +1,52 @@
+{% macro form(form, fieldsets=[], class=null ,action=null, back_to=null) %}
+
+    {% for fieldset in fieldsets %}
+        <div class="panel panel-default" {% if fieldset.class is defined %} {{ fieldset.class }} {% endif %}>
+            {{ form_start(form, {"attr": {"id": "my-id-here", "class": class, 'action': action, 'method': 'POST'}}) }}
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    {#<a href="" class="minimize">&minus;</a>#}
+                    {% if back_to is not null %}
+                        <a href="{{ back_to }}" class="btn btn-default">Retour à la liste</a>
+                    {% endif %}
+                </div>
+                <strong>{{ fieldset.libelle }}</strong>
+            </div>
+            <div class="panel-body panel-body-nopadding">
+                {% for field,class  in fieldset.value %}
+                    {% if field =='heureDebust' or field =='heurseFin' %}
+                        {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                        <div id="datetimepicker" class="input-append col-sm-11">
+                            {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                            <span class="add-on">
+                                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                            </span>
+                            {{ form_errors(attribute(form, field)) }}
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                            <div class="col-sm-11">
+                                {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                                {{ form_errors(attribute(form, field)) }}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {{ form_rest(form) }}
+
+
+            </div><!-- panel-body -->
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary">Valider</button>&nbsp;
+                    </div>
+                </div>
+            </div><!-- panel-footer -->
+            </form>
+        </div><!-- panel -->
+    {% endfor %}
+
+{% endmacro %}{# empty Twig template #}

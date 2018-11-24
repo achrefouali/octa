@@ -1,0 +1,43 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Photo Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel_image.id }}</td>
+            </tr>
+            <tr>
+                <th>Main</th>
+                <td>{{ hotel_image.main ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ hotel_image.designation }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><img width="150" src="{{ asset('uploads/hotels/' ~ hotel_image.picture) }}"/></td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ hotel_image.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ hotel_image.createdAt ? hotel_image.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ hotel_image.updatedAt ? hotel_image.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_hotel_image_index', {'hotel' : hotel_image.hotel.id}) }}">back to list</a>
+
+    <a href="{{ path('back_hotel_image_edit', {'id': hotel_image.id}) }}">edit</a>
+
+{% endblock %}

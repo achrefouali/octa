@@ -1,0 +1,32 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Page{% endblock %}
+{% block subtitle %} Ajouter une Page {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Pages" ,
+            "class":"",
+            "value": {
+            "menu":"form-control",
+            "title":"form-control",
+            "title_en":"form-control",
+            "summary":"form-control",
+            "summary_en":"form-control",
+            "content":"form-control ckeditor",
+            "content_en":"form-control ckeditor",
+            "enabled":"form-control",
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_page_new'), path('back_page_index'))}}
+
+
+
+
+
+{% endblock %}

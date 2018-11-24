@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Supplement{% endblock %}
+{% block subtitle %} Ajouter une Supplement {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Supplement" ,
+            "class":"",
+            "value": {
+            "designation":"form-control",
+            "lieu":"form-control",
+            "prix":"form-control",
+            "enabled":"form-control",
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_supplement_new', {event: event.id}), path('back_supplement_index', {event: event.id}))}}
+
+
+
+
+
+{% endblock %}
+

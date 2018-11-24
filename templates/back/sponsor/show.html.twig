@@ -1,0 +1,36 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Sponsor</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sponsor.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ sponsor.designation }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ sponsor.type }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><img width="150" src="{{ asset('uploads/sponsors/' ~ sponsor.logo) }}" /></td>
+            </tr>
+            <tr>
+                <th>Site Web</th>
+                <td>{{ sponsor.siteWeb }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_sponsor_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_sponsor_edit', {'id': sponsor.id}) }}">Modifier</a>
+
+
+{% endblock %}

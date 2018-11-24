@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion Médias {% endblock %}
+{% block subtitle %} Modifier un Document {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Document" ,
+            "class":"",
+            "value": {
+            "designation":"form-control",
+            "file":"form-control",
+            "enabled":"form-control"
+
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_document_edit', {id: document.id}), path('back_document_index'))}}
+
+
+
+
+
+{% endblock %}
+

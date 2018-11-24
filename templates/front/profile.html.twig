@@ -1,0 +1,295 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Profile | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'Page'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+
+
+    <!--NEWS-->
+    <section>
+        <div id="csi-news" class="csi-news csi-news-singlepage">
+            <div class="csi-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h4>Bienvenue
+                                <small>{{ app.user.firstname }} {{ app.user.lastname }}</small>
+                                ,
+                            </h4>
+                        </div>
+                        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image"
+                                                                                       class="img-circle img-responsive"
+                                                                                       src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#profile">{{ 'My Profile'|trans }}</a></li>
+                                <li><a data-toggle="tab" href="#reservation">{{ 'Invoice'|trans }}</a></li>
+                            </ul>
+
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="profile">
+                                    <hr>
+                                    <div style="margin-bottom: 20px">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="row mb-4">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            {{ form_start(form, {"attr": {"id": "my-id-here", "class": "form-horizontal form-bordered", 'action': path('front_profile') , 'method': 'POST'}}) }}
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.firstname, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.firstname, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.firstname) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.lastname, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.lastname, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.lastname) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.societe, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.societe, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.societe) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.poste, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.poste, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.poste) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.telephone, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.telephone, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.telephone) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.telephone2, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.telephone2, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.telephone2) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.biographie, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.biographie, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.biographie) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.tweeterLink, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.tweeterLink, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.tweeterLink) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.linkedinLink, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.linkedinLink, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.linkedinLink) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.nationalite, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.nationalite, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.nationalite) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.address, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.address, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.address) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.codePostal, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.codePostal, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.codePostal) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.country, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.country, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.country) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.pays, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.pays, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.pays) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-4">
+                                                                    <div class="">
+                                                                        <h3>{{ 'Connection information'|trans }}</h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.email, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.email, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.email) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.password.first, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.password.first, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.password.first) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        {{ form_label(form.password.second, null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                                                        <div class="col-sm-8">
+                                                                            {{ form_widget(form.password.second, {'attr': {'class': "form-control"}}) }}
+                                                                            {{ form_errors(form.password.second) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="panel-footer">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                                            <button id="submit-button"
+                                                                                    class="btn btn-primary">
+                                                                                {{ 'Send'|trans }}
+                                                                            </button>&nbsp;
+                                                                        </div>
+                                                                    </div>
+                                                                </div><!-- panel-footer -->
+                                                            </div>
+                                                            {{ form_rest(form) }}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="tab-pane" id="reservation">
+                                  {% include 'front/profile/event.reservation.sheet.html.twig' %}
+                                </div>
+
+                            </div><!--/tab-pane-->
+                        </div><!--/tab-content-->
+
+
+                    </div><!--/col-9-->
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section> <!--//.NEWS-->
+
+{% endblock %}

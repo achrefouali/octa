@@ -1,0 +1,66 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Réservation Suppléments {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_reservation_index') }}" class="btn btn-primary">Retour</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Total</th>
+                        <th>Méthode de paiement</th>
+                        <th>Actif</th>
+                        <th>Date Création</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation_supplement in reservation_supplements %}
+                        <tr>
+                            <td>
+                                Référence: {{ reservation_supplement.reservation.reservationRef }}
+                                <br />
+                                Pour  <span style="color: #0063dc">{{ reservation_supplement.reservation.participant.firstname }} {{ reservation_supplement.reservation.participant.lastname }}</span>
+                            </td>
+                            <td>{{ reservation_supplement.total }}</td>
+                            <td>{{  ("back.reservation.paymentMethod."~ reservation_supplement.paymentMethod)|trans({},'back', 'fr') }}</td>
+                            <td>{{ reservation_supplement.enabled ? 'Oui' : 'Non' }}</td>
+                            <td>{{ reservation_supplement.createdAt ? reservation_supplement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('back_reservation_supplements_show', {'id': reservation_supplement.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_reservation_supplements_edit', {'id': reservation_supplement.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

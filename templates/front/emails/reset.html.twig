@@ -1,0 +1,17 @@
+
+
+Bonjour {{ name }}!
+<br>
+Vous trouverez ci joint votre identifiant ainsi que votre mot de passe.
+<br>
+votre identifiant est : {{ name  }}
+<br>
+Votre mot de passe est : <strong>{{ password }}</strong>
+<br>
+Pour vous connectez, suivez ce lien: <a href="{{ url('front_login') }}">...</a>.
+
+Merci!
+
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('assets/front/img/logo.png')) }}">

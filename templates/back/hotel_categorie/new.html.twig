@@ -1,0 +1,27 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un Catégorie Hotel{% endblock %}
+{% block subtitle %} Ajouter un Catégorie Hotel {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Catégorie Hotel" ,
+            "class":"",
+            "value": {
+                "name": "form-control",
+                "description": "form-control ckeditor",
+                "enabled": "form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_hotel_categorie_new'), path('back_hotel_categorie_index'))}}
+
+
+
+
+
+{% endblock %}

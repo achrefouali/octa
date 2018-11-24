@@ -1,0 +1,83 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Page | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'Page'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+
+
+    <!--NEWS-->
+    <section>
+        <div id="csi-news" class="csi-news csi-news-singlepage">
+            <div class="csi-inner" style="padding: 4rem 0;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <article>
+                                <header>
+                                    <figure>
+                                        <img src="{{ asset('assets/front/img/slider3.jpg') }}" alt="New"/>
+                                    </figure>
+                                    <div class="text-area">
+                                        <h1 class="title">
+                                            {% if app.request.locale == 'en' %}
+                                                {{ page.titleEn }}
+                                            {% else %}
+                                                {{ page.title }}
+                                            {% endif %}
+                                            </h1>
+                                    </div>
+                                </header>
+                                <section>
+                                    {% if app.request.locale == 'en' %}
+                                        {{ page.contentEn | raw }}
+                                    {% else %}
+                                        {{ page.content| raw }}
+                                    {% endif %}
+                                </section>
+                                    <footer>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h4 class="title">{{ 'Share'|trans }}</h4>
+                                                <div class="csi-share">
+                                                    <ul class="list-inline csi-social">
+                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </footer>
+                            </article>
+                        </div>
+                    </div>
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section> <!--//.NEWS-->
+
+{% endblock %}

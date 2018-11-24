@@ -1,0 +1,41 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier une Journée{% endblock %}
+{% block subtitle %} Modifier une Journée {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Journee" ,
+            "class":"",
+            "value": {
+                "designation":"form-control",
+                "designation_en":"form-control",
+                "date":"form-control",
+                "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_journee_edit', {id: journee.id}), path('back_journee_index',{'event': journee.event.id}))}}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function(){
+            // CKEditor
+            jQuery('.ckeditor').ckeditor();
+            jQuery('.datetimepicker').datetimepicker();
+
+        });
+
+    </script>
+
+    <script src="{{ asset('assets/back/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/back/js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/back/js/ckeditor/adapters/jquery.js') }}"></script>
+{% endblock %}

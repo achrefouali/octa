@@ -1,0 +1,69 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Programme</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ programme.id }}</td>
+        </tr>
+        <tr>
+            <th>Designation</th>
+            <td>{{ programme.designation }}</td>
+        </tr>
+        <tr>
+            <th>Designation En</th>
+            <td>{{ programme.designationEn }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ programme.description }}</td>
+        </tr>
+        <tr>
+            <th>Description Anglais</th>
+            <td>{{ programme.descriptionEn }}</td>
+        </tr>
+        <tr>
+            <th>NbPlacesDisponibles</th>
+            <td>{{ programme.nbPlacesDisponibles }}</td>
+        </tr>
+        <tr>
+            <th>Emplacement</th>
+            <td>{{ programme.emplacement }}</td>
+        </tr>
+        <tr>
+            <th>InscriptionActive</th>
+            <td>{{ programme.inscriptionActive ? 'Oui' : 'Non' }}</td>
+        </tr>
+
+        <tr>
+            <th>Heure Début</th>
+            <td>{{ programme.heureDebut ? programme.heureDebut|date('H:i') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Heure Fin</th>
+            <td>{{ programme.heureFin ? programme.heureFin|date('H:i') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Liste Intervenants</th>
+            <td>
+                <ul>
+                    {% for intervenant in programme.intervenants %}
+                        <li>{{ intervenant.firstname ~ " " ~ intervenant.Lastname }}</li>
+                    {% else %}
+                        <li>Pas d'intervenants liées</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_programme_index', {journee: programme.journee.id}) }}">Retour à la liste</a>
+
+    <a href="{{ path('back_programme_edit', {id: programme.id}) }}">Modifier</a>
+
+
+{% endblock %}

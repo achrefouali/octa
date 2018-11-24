@@ -1,0 +1,70 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Evénnement {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_event_new') }}" class="btn btn-success">+ Ajouter</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Logo</th>
+                        <th>Logo Facture</th>
+                        <th>Designation</th>
+                        <th>Designation2</th>
+                        <th>Pays</th>
+                        <th>Ville</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.id }}</td>
+                            <td><img width="150" src="{{ asset('uploads/events/' ~ event.logo) }}" /></td>
+                            <td><img width="150" src="{{ asset('uploads/events/' ~ event.logoFacture) }}" /></td>
+                            <td>{{ event.designation }}</td>
+                            <td>{{ event.designation2 }}</td>
+                            <td>{{ event.pays }}</td>
+                            <td>{{ event.ville }}</td>
+                            <td>
+                                <select  class="form-control" onchange="location = this.value;">
+                                    <option value="">Gérer:</option>
+                                    <option value="{{path('back_journee_index',{'event':event.id})}}"> Journées </option>
+                                    <option value="{{path('back_supplement_index',{'event':event.id})}}"> Supplements </option>
+                                </select>
+                                <a href="{{ path('back_event_show', {'id': event.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_event_edit', {'id': event.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

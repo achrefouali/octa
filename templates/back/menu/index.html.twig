@@ -1,0 +1,65 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Menu {% endblock %}
+{% block content %}
+
+<a href="{{ path('back_menu_new') }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+{#<a href="{{ path('back_journee_index', {event: journee.event.id}) }}" class="btn btn-primary">Retour</a><br />#}
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>TitleEn</th>
+                    <th>Link</th>
+                    <th>Ordre</th>
+                    <th>Actif</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for menu in menus %}
+                    <tr>
+                        <td>{{ menu.id }}</td>
+                        <td>{{ menu.title }}</td>
+                        <td>{{ menu.titleEn }}</td>
+                        <td>{{ menu.link }}</td>
+                        <td>{{ menu.order }}</td>
+                        <td>{% if menu.enabled %}Oui{% else %}Non{% endif %}</td>
+                        <td>
+                            <a href="{{ path('back_menu_show', {'id': menu.id}) }}"><i class="fa fa-eye"></i></a>
+                            <a href="{{ path('back_menu_edit', {'id': menu.id}) }}"><i class="fa fa-edit"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+            {% block javascripts %}
+                {{ parent() }}
+
+                <script>
+                    jQuery(document).ready(function () {
+
+                        "use strict";
+
+                        jQuery('.table').dataTable();
+                    });
+
+
+                    // Select2
+                    jQuery('select').select2({
+                        minimumResultsForSearch: -1
+                    });
+
+                    jQuery('select').removeClass('form-control');
+                </script>
+            {% endblock %}

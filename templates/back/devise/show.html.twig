@@ -1,0 +1,42 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+
+
+<table class="table">
+    <h1>Devise</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devise.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ devise.name }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ devise.code }}</td>
+            </tr>
+            <tr>
+                <th>Symbol</th>
+                <td>{{ devise.symbol }}</td>
+            </tr>
+            <tr>
+                <th>Coeff</th>
+                <td>{{ devise.coeff }}</td>
+            </tr>
+            <tr>
+                <th>Main</th>
+                <td>{{ devise.main ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_devise_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_devise_edit', {'id': devise.id}) }}">Modifier</a>
+
+{% endblock %}

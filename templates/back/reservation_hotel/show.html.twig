@@ -1,0 +1,103 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Réservation hotel</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Référence</th>
+            <td>{{ reservation_hotel.reservation.reservationRef }}</td>
+        </tr>
+        <tr>
+            <th>Code</th>
+            <td>{{ reservation_hotel.code }}</td>
+        </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation_hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ reservation_hotel.total }}</td>
+            </tr>
+            <tr>
+                <th>Nb de Jours</th>
+                <td>{{ reservation_hotel.nbJours }}</td>
+            </tr>
+            <tr>
+                <th>Date Début</th>
+                <td>{{ reservation_hotel.dateDebut ? reservation_hotel.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date Fin</th>
+                <td>{{ reservation_hotel.dateFin ? reservation_hotel.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ reservation_hotel.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ reservation_hotel.createdAt ? reservation_hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ reservation_hotel.updatedAt ? reservation_hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <h1>Information Participant</h1>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom</th>
+            <td>{{ reservation_hotel.reservation.participant.firstname }} {{ reservation_hotel.reservation.participant.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Nationalité</th>
+            <td>{{ reservation_hotel.reservation.participant.nationalite }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ reservation_hotel.reservation.participant.type.label }}</td>
+        </tr>
+        <tr>
+            <th>Sociéte</th>
+            <td>{{ reservation_hotel.reservation.participant.societe }}</td>
+        </tr>
+        <tr>
+            <th>Poste</th>
+            <td>{{ reservation_hotel.reservation.participant.poste }}</td>
+        </tr>
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ reservation_hotel.reservation.participant.telephone }}</td>
+        </tr>
+        <tr>
+            <th>Vol - Date départ</th>
+            <td>{{ reservation_hotel.reservation.dateDepart ? reservation_hotel.reservation.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Vol - Date Arrivé</th>
+            <td>{{ reservation_hotel.reservation.dateArrive ? reservation_hotel.reservation.dateArrive|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Numéro Vol Arrivé</th>
+            <td>{{ reservation_hotel.reservation.numVolArrive }}</td>
+        </tr>
+        <tr>
+            <th>Numéro Vol Départ</th>
+            <td>{{ reservation_hotel.reservation.numVolDepart }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_reservation_hotel_index', {reservation: reservation_hotel.reservation.id}) }}">Retour à la liste</a>
+
+    <a href="{{ path('back_reservation_hotel_edit', {'id': reservation_hotel.id}) }}">Modifier</a>
+
+{% endblock %}

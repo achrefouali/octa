@@ -1,0 +1,116 @@
+{% trans_default_domain 'front' %}
+<div style="margin-bottom: 20px">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row mb-4">
+                                <div class="col-sm-6">
+                                    <h3>Devis</h3>
+                                    <span class="float-right"> <strong>{{ 'Status'|trans }}:</strong> {{ ('back.reservation.state.' ~ reservation.state)|trans }}</span>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    Date: <strong>{{ 'now'|date }}</strong><br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-3">{{ 'From'|trans }}:</h6>
+                                    <div>
+                                        <strong>{{ event.designation }}</strong>
+                                    </div>
+                                    <div>{{ event.adresse }}</div>
+                                    <div>{{ event.ville }}, {{ event.pays }}</div>
+                                    <br/>
+                                    <div>{{ 'E-mail'|trans }}: {{ configuration.emailDirection }}</div>
+                                    <div>{{ 'Phone'|trans }}: {{ configuration.telephone }}</div>
+                                    <div>{{ 'Fax'|trans }}: {{ configuration.fax }}</div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <h6 class="mb-3">{{ 'To'|trans }}:</h6>
+                                    <div>
+                                        <strong>{{ app.user.firstname }} {{ app.user.lastname }}</strong>
+                                    </div>
+                                    <div>{{ 'E-mail'|trans }}: {{ app.user.email }}</div>
+                                    <div>{{ 'Phone'|trans }}: {{ app.user.telephone }}</div>
+                                </div>
+                            </div>
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="center">#</th>
+                                        <th>{{ 'Item'|trans }}</th>
+                                        <th>{{ 'Description'|trans }}</th>
+
+                                        <th class="right">{{ 'Unit Cost'|trans }}</th>
+                                        <th class="center">{{ 'Qty'|trans }}</th>
+                                        <th class="right">{{ 'Total'|trans }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="center">1</td>
+                                        <td class="left">{{ event.designation }}</td>
+                                        <td class="left">{{ 'Price'|trans }} {{ 'Event Registration'|trans }}</td>
+
+                                        <td class="right"></td>
+                                        <td class="center">1</td>
+                                        <td class="right">{{ event.prix }} {{ getDevise(app.session.get('currency')) }}</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-5">
+                                </div>
+                                <div class="col-lg-4 col-sm-5 ml-auto">
+                                    <table class="table table-clear">
+                                        <tbody>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>{{ 'Event Registration'|trans }}</strong>
+                                            </td>
+                                            <td class="right">{{ event.prix }} {{ getDevise(app.session.get('currency')) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left">
+                                                <strong>{{ 'Total'|trans }}</strong>
+                                            </td>
+                                            <td class="right">
+
+                                                <strong>{{ event.prix }} {{ getDevise(app.session.get('currency')) }}</strong>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <input style="float: right;" class="btn btn-primary" type="submit" value="{{ 'Print'|trans }}"/>
+        </div>
+</div>
+

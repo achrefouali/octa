@@ -1,0 +1,56 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Live Streamaing | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'Live Streaming'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+<section>
+    <div class="container">
+        <h3>{{ 'Live Streaming'|trans }}</h3>
+
+    </div>
+
+        <div class="container">
+            ﻿<script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>
+
+            <div id="playerElement" style="width:896px; height:504px; padding:0;"></div>
+
+            <script type="text/javascript">
+                WowzaPlayer.create("playerElement",{
+                    "license":"PLAY1-eBebJ-RkdZy-N66R4-kKJan-UdUwW",
+                    "title":"",
+                    "description":"",
+                    "sourceURL":"http%3A%2F%2Fkarimsahebettaba.srfms.com%3A1935%2Fkarimsahebettaba%2Flivestream%2Fplaylist.m3u8",
+                    "autoPlay":false,
+                    "volume":"75",
+                    "mute":false,
+                    "loop":false,"audioOnly":false,"uiShowQuickRewind":true,"uiQuickRewindSeconds":"30"});</script>
+        </div>
+
+</section>
+{% endblock %}

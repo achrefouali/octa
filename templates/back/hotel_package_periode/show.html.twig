@@ -1,0 +1,46 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Période d'un Package Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel_package_periode.id }}</td>
+            </tr>
+            <tr>
+                <th>Prix d'achat</th>
+                <td>{{ hotel_package_periode.prixAchat }}</td>
+            </tr>
+            <tr>
+                <th>Commision</th>
+                <td>{{ hotel_package_periode.commision }}</td>
+            </tr>
+            <tr>
+                <th>Date Debut</th>
+                <td>{{ hotel_package_periode.dateDebut ? hotel_package_periode.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date Fin</th>
+                <td>{{ hotel_package_periode.dateFin ? hotel_package_periode.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ hotel_package_periode.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ hotel_package_periode.createdAt ? hotel_package_periode.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ hotel_package_periode.updatedAt ? hotel_package_periode.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_hotel_package_periode_index', {'package': hotel_package_periode.package.id}) }}">back to list</a>
+
+    <a href="{{ path('back_hotel_package_periode_edit', {'id': hotel_package_periode.id}) }}">edit</a>
+{% endblock %}

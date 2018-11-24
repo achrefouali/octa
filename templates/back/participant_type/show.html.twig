@@ -1,0 +1,39 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Type Participant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ participant_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ participant_type.label }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>Tarif "{{ participant_type.tarif.label }}" : {{ participant_type.tarif.prix }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ participant_type.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ participant_type.createdAt ? participant_type.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ participant_type.updatedAt ? participant_type.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_participant_type_index') }}">back to list</a>
+
+    <a href="{{ path('back_participant_type_edit', {'id': participant_type.id}) }}">edit</a>
+
+{% endblock %}

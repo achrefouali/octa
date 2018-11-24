@@ -1,0 +1,152 @@
+<section class="hotel-page">
+    <form action="{{ path('inscription_hotel_page') }}" method="POST">
+        <div class="row">
+            <div class="col-md-10">
+                <h4 class="title">{{ 'when'|trans({},'messages') }} <img id="hotel-spinner-dates"
+                                                                         src="{{ asset('assets/images/spinner.gif') }}"
+                                                                         style="display:none; width: 30px;"/></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>{{ 'departure_date'|trans({},'messages') }}</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-xs-6">
+                        <input value="{{ app.session.get('registration_bags')['hotelDateDebut'] }}" type="text" id="hotelDateDebut" name="hotelDateDebut"  class="form-control" placeholder="dd-mm-yy" required="required">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+               &nbsp;
+            </div>
+            <div class="col-md-2">
+                <input class="btn btn-primary" type="submit"
+                       value="{{ 'submit'|trans({},'messages') }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label id="labelReturn">{{ 'return_date'|trans({},'messages') }}</label>
+            </div>
+            <div class="col-md-6">
+                <div id="hotelDivReturn"  class="form-group row">
+
+                    <div class="col-xs-6">
+                        <input value="{{ app.session.get('registration_bags')['hotelDateFin'] }}" type="text" id="hotelDateFin" name="hotelDateFin" class="form-control" placeholder="dd-mm-yy" required="required">
+                        <div id="errorFlightMsg" class="alert-danger">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <strong>{{ 'Number of nights'|trans({},'front') }}: <span id="nb_nights">0</span></strong>
+            </div>
+        </div>
+
+
+    {% for hotel in hotels %}
+        {% set j = loop.index %}
+
+    {% if  hotelPrice(hotel) != 0 %}
+    <div class="accordion">
+        <article class="box">
+            <figure class="col-xs-3 col-sm-2">
+                {% if hotel.pictures|length !=0 %}
+                    {% for main_picture in hotel.pictures if main_picture.main and main_picture.enabled %}
+                    <img style="width:100%;" alt="{{ hotel.designation }}"
+                         src="{{ asset('uploads/hotels/' ~ main_picture.picture) }}">
+                    {% endfor %}
+                {% else %}
+                    <img style="width:100%;" alt="{{ hotel.designation }}"
+                         src="{{ asset('assets/front/img/no-image.png') }}">
+                {% endif %}
+            </figure>
+            <div class="details col-xs-9 col-sm-10">
+                <div class="details-wrapper">
+                    <div class="first-row">
+                        <div class="col-md-8">
+                            <h4 class="box-title">
+                                {{ hotel.designation }}
+                                {% if hotel.categorie == '3' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                {% elseif  hotel.categorie == '3+' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half checked"></span>
+                                    <span class="fa fa-star"></span>
+                                {% elseif  hotel.categorie == '4' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                {% elseif  hotel.categorie == '4+' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half checked"></span>
+                                {% elseif  hotel.categorie == '5' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                {% else %}
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                {% endif %}
+                                <small>{{ hotel.adresse }}</small>
+                                <small>{{ hotel.ville.name }}, {{ hotel.ville.pays.name }}</small>
+                            </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="margin-top:25px; color: #7db921;font-size: 1.6667em;text-transform: uppercase;float: right;text-align: right;display: block;"> <small style="display: block;color: #838383;font-size: 0.5em;">A partir de</small> <span id="hotelprice">{{ getPriceByDevise((hotelPrice(hotel)), app.session.get('currency')) |number_format(2, '.', ',') }}</span> {{ getDevise(app.session.get('currency')) }}
+                                                <small style="display: block;color: #838383;font-size: 0.5em;">{{ 'Per'|trans({},'front') }} {{ 'Room'|trans({},'front') }}/{{ 'night'|trans({},'front') }}</small>  </span>
+                        </div>
+                    </div>
+                    <div class="second-row">
+                        <div class="time col-md-8">
+                            <div class="take-off col-sm-4">
+
+                            </div>
+                            <div class="landing col-sm-4">
+
+                            </div>
+                            <div class="total-time col-sm-4">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="panel">
+       {% include 'front/registration/hotel.details.html.twig' with {hotel: hotel, index: j} %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    </form>
+</section>
+
+
+
+
+

@@ -1,0 +1,108 @@
+Home: 'Home'
+Go In: Go In
+Register: Register
+Registration: Registration
+Username: Username
+Password: Password
+Contact: Contact
+Page: Page
+Location: Location
+Speaker: Speaker
+Speakers: Speakers
+Share: Share
+Contact Us: Contact Us
+Social Networks: Social Networks
+About Us: About Us
+Calendar: Calendar
+Sponsor: Sponsor
+Sponsors: Sponsors
+Event: Conference
+Booking: Booking
+List Of participants: "Participants"
+Login: Login
+Logout: Logout
+Profile: Profile
+My Profile: My Profile
+Organism: Organism
+Firstname: Firstname
+Lastname: Lastname
+Position: Position
+E-mail: E-mail
+Event Registration: Conference Registration
+Connection information: Connection information
+Send: Send
+Status: Status
+from: from
+To: To
+Phone: Phone
+Fax: Fax
+Total: Total
+Print: Print
+Price: Price
+Unit Cost: Unit Cost
+Qty: Qty
+Item: Item
+Description: Description
+You mus be connected: You mus be connected
+Hotel: "Hotel"
+Hotel Reservation: Hotel Reservation
+Supplement: Supplement
+Supplements: Supplements
+Add Supplements: Add Supplements
+TND: TND
+Book now: "Register"
+Personal Informations: "Personal Informations"
+Confirmation: "Confirmation"
+Actual Position: "Actual Position"
+You must login: "You must login"
+Waiting: "Waiting"
+night: "night"
+Per: "Per"
+Person: "Person"
+Number of nights: "Number of nights"
+form:
+    firstname: "Firstname*"
+    lastname: "Lastname*"
+    email: "E-mail*"
+    email_confirmation: "Confirmation E-mail"
+    email.mismatch: "E-mail mismatch"
+    societe: "Choose Organism"
+    societe:
+        label: "Organism*"
+        placeholder:   "Choose Organism"
+    poste: "Actual position"
+    telephone: "Phone*"
+    telephone2: "Phone 2"
+    biographie: "Biography"
+    tweeterLink: "Tweeter Link"
+    linkedinLink: "LinkedIn Link"
+    password: "Password*"
+    password_confirmation: "Password confirmation"
+    send: "Submit"
+    dateDepart: "Departure date"
+    dateArrive: "Arrival date"
+    numVolArrive: "Arrival flight number"
+    numVolDepart: "Departure flight number"
+    nationalite: "Nationality"
+    address: "Address"
+    codePostal: "Postal code "
+    country: "City"
+    heureArrival: "Arrival Time"
+    heureDeparture: "Departure Time"
+    nbAccompanying: "Number of accompanying"
+    tarif: "Accompanying price"
+Live Streaming: 'Live Streaming'
+Where: "Where"
+When: "Date"
+Room: "Room"
+Place: "Conference place"
+paymentMethod:
+    0: "Offer"
+    1: "Payment upon arrival"
+    2: "Deposit"
+Agency: Agency
+Account ID: Account ID
+Swift: Swift
+IBAN: Swift
+Terms and conditions: Terms and conditions
+By continuing, you accept the: By continuing, you accept the

@@ -1,0 +1,42 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Notification</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>NotificationType</th>
+                <td>{{ notification.notificationType }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ notification.subject }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ notification.description }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ notification.id }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ notification.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ notification.createdAt ? notification.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ notification.updatedAt ? notification.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_notification_index') }}">back to list</a>
+
+    <a href="{{ path('back_notification_edit', {'id': notification.id}) }}">edit</a>
+{% endblock %}

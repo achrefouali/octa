@@ -1,0 +1,139 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Réservations {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_reservation_new') }}" class="btn btn-success">+ Ajouter</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Montant total</th>
+                        <th>Statut</th>
+                        <th>Date Création</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    {% for reservation in reservations %}
+                        {% set statecolor = "" %}
+                        {% if reservation.state is not empty %}
+                            {% if reservation.state == 0 %}
+                                {% set statecolor = "background-color : orange;" %}
+                            {% elseif reservation.state == 1 %}
+                                {% set statecolor = "background-color : #23bd23;" %}
+                            {% elseif reservation.state == 2 %}
+                                {% set statecolor = "background-color : #da3535;" %}
+                            {% elseif reservation.state == 3 %}
+                                {% set statecolor = "background-color : blue;" %}
+                            {% elseif reservation.state == 4 %}
+                                {% set statecolor = "background-color : blue;" %}
+                            {% elseif reservation.state == 5 %}
+                                {% set statecolor = "background-color : red;" %}
+                            {% elseif reservation.state == 6 %}
+                                {% set statecolor = "background-color : green;" %}
+                            {% elseif reservation.state == 7 %}
+                                {% set statecolor = "background-color : red;" %}
+                            {% elseif reservation.state == 8 %}
+                                {% set statecolor = "background-color : grey;" %}
+                            {% elseif reservation.state == 9 %}
+                                {% set statecolor = "background-color : grey;" %}
+                            {% endif %}
+                        {% endif %}
+                        <tr>
+                            <td>
+                                Référence: {{ reservation.reservationRef }}
+                                <br />
+                                Pour  <span style="color: #0063dc">{{ reservation.participant.firstname }} {{ reservation.participant.lastname }}</span>
+                            </td>
+                            <td>{{ reservation.totalPrice }} DT</td>
+                            <td style= "{{ statecolor }} color: #fff;"> {{  ("back.reservation.state."~ reservation.state)|trans({},'back', 'fr') }} </td>
+                            <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('back_reservation_show', {'id': reservation.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_reservation_edit', {'id': reservation.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('assets/back/js/DataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/css/buttons.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/css/buttons.dataTables.css') }}" rel="stylesheet">
+
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    {#<script src="{{ asset('assets/back/js/jquery.datatables.min.js') }}"></script>#}
+    {#<script src="{{ asset('assets/back/js/select2.min.js') }}"></script>#}
+    <script src="{{ asset('assets/back/js/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/js/buttons.bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/js/buttons.flash.js') }}"></script>
+    <script src="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/js/buttons.print.js') }}"></script>
+    <script src="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/js/buttons.html5.js') }}"></script>
+    <script src="{{ asset('assets/back/js/DataTables/Buttons-1.5.4/js/dataTables.buttons.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('.table').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                }
+            );
+        } );
+    </script>
+
+
+    {#<script src="https://code.jquery.com/jquery-3.3.1.js"></script>#}
+    {#<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>#}
+    {#<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>#}
+    {#<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>#}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>#}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>#}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>#}
+    {#<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>#}
+    {#<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>#}
+
+    {#<script>#}
+    {#jQuery(document).ready(function() {#}
+
+    {#"use strict";#}
+
+    {#jQuery('.table').dataTable(#}
+    {#{#}
+    {#dom: 'Bfrtip',#}
+    {#buttons: [#}
+    {#'copy', 'csv', 'excel', 'pdf', 'print'#}
+    {#]#}
+    {#}#}
+    {#);#}
+    {#});#}
+
+
+    {#// Select2#}
+    {#jQuery('select').select2({#}
+    {#minimumResultsForSearch: -1#}
+    {#});#}
+
+    {#jQuery('select').removeClass('form-control');#}
+    {#</script>#}
+{% endblock %}
+
+

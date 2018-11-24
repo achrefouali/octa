@@ -1,0 +1,28 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un Package Hotel{% endblock %}
+{% block subtitle %} Ajouter un Package Hotel {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Package Hotel" ,
+            "class":"",
+            "value": {
+            "designation": "form-control",
+            "nbPersonnes": "form-control",
+            "picture": "form-control",
+            "enabled": "form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_hotel_package_new',{'hotel': hotel.id}), path('back_hotel_package_index',{'hotel': hotel.id}))}}
+
+
+
+
+
+{% endblock %}

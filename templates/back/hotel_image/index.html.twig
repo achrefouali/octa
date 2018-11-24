@@ -1,0 +1,64 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Photos Hotel {% endblock %}
+{% block content %}
+
+<a href="{{ path('back_hotel_image_new', {'hotel': hotel.id}) }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+<a href="{{ path('back_hotel_index') }}" class="btn btn-primary">Retour</a><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Main</th>
+                <th>Désignation</th>
+                <th>Picture</th>
+                <th>Actif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel_image in hotel_images %}
+            <tr>
+                <td>{{ hotel_image.id }}</td>
+                <td>{{ hotel_image.main ? 'Oui' : 'Non' }}</td>
+                <td>{{ hotel_image.designation }}</td>
+                <td><img width="150" src="{{ asset('uploads/hotels/' ~ hotel_image.picture) }}" alt="" /></td>
+                <td>{{ hotel_image.enabled ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('back_hotel_image_show', {'id': hotel_image.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('back_hotel_image_edit', {'id': hotel_image.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

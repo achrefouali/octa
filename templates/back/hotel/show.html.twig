@@ -1,0 +1,63 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ hotel.designation }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ hotel.description }}</td>
+            </tr>
+            <tr>
+                <th>Services</th>
+                <td>{{ hotel.services }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ hotel.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ hotel.ville }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ hotel.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ hotel.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ hotel.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ hotel.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ hotel.createdAt ? hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_hotel_index') }}">back to list</a>
+
+    <a href="{{ path('back_hotel_edit', {'id': hotel.id}) }}">edit</a>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}List Participants | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'List of participants'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+<section>
+    <div class="container">
+        <h3>{{ 'List of participants'|trans }}</h3>
+
+    </div>
+
+        <div class="container">
+            <table id="list-participants" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                <tr>
+                    <th>{{ 'Pays'|trans }}</th>
+                    <th>{{ 'Organism'|trans }}</th>
+                    <th>{{ 'Firstname'|trans }}</th>
+                    <th>{{ 'Lastname'|trans }}</th>
+                    <th>{{ 'Position'|trans }}</th>
+                    <th>{{ 'E-mail'|trans }}</th>
+                    <th>{{ 'Tel'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if participants|length > 0 %}
+                {% for participant in participants %}
+                    <tr>
+                        <td>{{ participant.Pays }}</td>
+                        <td>{{ participant.Oragnisme }}</td>
+                        <td>{{ participant.Nom }}</td>
+                        <td>{{ participant.Prénom }}</td>
+                        <td>{{ participant.Poste }}</td>
+                        <td>{{ participant.Email }}</td>
+                        <td>{{ participant.Tel }}</td>
+                    </tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+</section>
+{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('assets/back/css/jquery.datatables.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/back/css/style.default.css') }}" rel="stylesheet">
+    {{ parent() }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/back/js/jquery.datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/back/js/select2.min.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('#list-participants').DataTable();
+        } );
+    </script>
+
+{% endblock %}

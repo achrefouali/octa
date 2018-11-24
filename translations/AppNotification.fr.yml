@@ -1,0 +1,42 @@
+# appnotification.fr.yml
+notification:
+    title:
+        section: "Gestion des notifications"
+        create: "Ajouter une notification"
+        edit: "Modifier la notification '%notification%'"
+        list: "Liste des notifications"
+        search: "Recherche"
+        bloc:
+            association: "Association Motif et Notification"
+    message:
+        flash:
+            success:
+                edit: "Modification de la notification '%notification%' avec succès"
+                association: "Modification '%notification%' et motifs réussi"
+                create: "Création réussi"
+                delete: "Suppréssion réussi"
+            fail:
+                edit: "Echec Modification de la notification '%notification%'"
+                association: "Association '%notification%' et motifs échoué"
+                create: "Création échoué"
+                delete: "Suppréssion échoué"
+        exception:
+            not_found_object: "Objet non trouvé"
+    button:
+        add: "Ajouter une notification"
+        edit: "Modifier une notification"
+        association: "Associer les motifs"
+    parameters:
+        notificationType: 
+            label: "Type de courriel"
+            placeholder: "Choisir un type de courriel"
+        subject: 
+            label: "Sujet"
+            placeholder: "Sujet"          
+        description: 
+            label : "Description"
+            placeholder: "Ecrire une description"          
+        pattern: 
+            label : "Motifs"
+            placeholder: "Selectionner un motifs de remplacements"
+                

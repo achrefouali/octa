@@ -1,0 +1,39 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Réservation Supplement</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Référence</th>
+            <td>{{ reservation_supplement.reservation.reservationRef }}</td>
+        </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation_supplement.id }}</td>
+            </tr>
+            <tr>
+                <th>Totale</th>
+                <td>{{ reservation_supplement.total }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ reservation_supplement.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ reservation_supplement.createdAt ? reservation_supplement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ reservation_supplement.updatedAt ? reservation_supplement.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_reservation_supplements_index', {reservation: reservation_supplement.reservation.id}) }}">Retour à la liste</a>
+
+    <a href="{{ path('back_reservation_supplements_edit', {'id': reservation_supplement.id}) }}">Modifier</a>
+
+{% endblock %}

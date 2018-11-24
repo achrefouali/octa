@@ -1,0 +1,224 @@
+<div class="row">
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+                        <div id="row">
+                            <div class="col-md-12 preview-pic tab-content">
+                                {% for picture in hotel.pictures %}
+                                    <div class="tab-pane {% if loop.index == 1 %}active{% endif %}"
+                                         id="pic-{{ loop.index }}"><img
+                                                src="{{ asset('uploads/hotels/' ~ picture.picture) }}"/></div>
+                                {% else %}
+                                    <div class="tab-pane active" id="pic-{{ loop.index }}"><img style="width:100%;"
+                                                                                                alt="{{ hotel.designation }}"
+                                                                                                src="{{ asset('assets/front/img/no-image.png') }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div id="slider row">
+                            <div class="col-md-1">
+                                <div class="control_prev">
+                                    <i class="fa fa-chevron-left" style="font-size:24px"></i>
+                                </div>
+
+                            </div>
+                            <div class="col-md-10">
+                                <ul id="slider-ul" class="preview-thumbnail nav nav-tabs">
+                                    {% for picture in hotel.pictures %}
+                                        <li class="{% if loop.index == 1 %}active{% endif %}"><a
+                                                    data-target="#pic-{{ loop.index }}" data-toggle="tab"><img
+                                                        src="{{ asset('uploads/hotels/' ~ picture.picture) }}"/></a>
+                                        </li>
+                                    {% else %}
+                                        <li class="active"><a data-target="#pic-{{ loop.index }}" data-toggle="tab"><img
+                                                        style="width:100%;" alt="{{ hotel.designation }}"
+                                                        src="{{ asset('assets/front/img/no-image.png') }}"></a></li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+                            <div class="col-md-1">
+                                <div class="control_next">
+                                    <i class="fa fa-chevron-right" style="font-size:24px"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{ hotel.designation }}</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                {% if hotel.categorie == '3' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                {% elseif  hotel.categorie == '3+' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half checked"></span>
+                                    <span class="fa fa-star"></span>
+                                {% elseif  hotel.categorie == '4' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                {% elseif  hotel.categorie == '4+' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star-half checked"></span>
+                                {% elseif  hotel.categorie == '5' %}
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                {% else %}
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                {% endif %}
+
+                            </div>
+                            <span class="review-no">{{ 'category'|trans({},'messages') }}
+                                : {{ hotel.categorie }}</span>
+                        </div>
+                        <p class="product-description"><h5>{{ 'description'|trans({},'messages') }}
+                            : </h5>{{ hotel.description | raw }}</p>
+                        <p class="product-description"><h5>{{ 'services'|trans({},'messages') }}
+                            : </h5>{{ hotel.services | raw }}</p>
+                        <h4 class="price">{{ 'minimum_price'|trans({},'messages') }}:
+                            <span>{{ getPriceByDevise((hotelPrice(hotel)), app.session.get('currency')) |number_format(2, '.', ',') }} {{ getDevise(app.session.get('currency')) }} {{ 'Per'|trans({},'front') }} {{ 'Room'|trans({},'front') }}/{{ 'night'|trans({},'front') }} </span></h4>
+                        <h5 class="sizes">{{ 'number_of_packages'|trans({},'messages') }}:
+                            <span class="size" data-toggle="tooltip"
+                                  title="small">{{ hotel.packages|length }}</span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+          {#<div class="row">#}
+              {#<h1>Google Map</h1>#}
+          {#</div>#}
+          {#<div class="row flight-list listing-style3 flight">#}
+              {#<div id="googleMap" style="width:100%;height:200px;"></div>#}
+        {#</div>#}
+    </div>
+    </div>
+
+<div class="row">
+    <div class="container">
+
+
+            <div class="row">
+                <h1>{{ 'list_of_packages'|trans({},'messages') }}</h1>
+            </div>
+            <div class="row flight-list listing-style3 flight">
+                {% for package in hotel.packages %}
+                    <article class="box">
+                        <figure class="col-xs-3 col-sm-2">
+                            <span> {% if package.picture is not empty %}
+                                    <img style="max-width:100%;" alt="{{ package.designation }}"
+                                         src="{{ asset('uploads/hotels/packages/' ~ package.picture) }}">
+                                    {% else %}
+                                    <img style="max-width:100%;" alt="{{ package.designation }}"
+                                         src="{{ asset('assets/front/img/no-image.png') }}">
+                                {% endif %}
+                            </span>
+                        </figure>
+                        <div class="details col-xs-9 col-sm-10">
+                            <div class="details-wrapper">
+                                <div class="first-row">
+                                    <div>
+                                        <h4 class="box-title">
+                                            {{ package.designation }}
+                                            <br/> {{ 'number_of_persons'|trans({},'messages') }}
+                                            :{{ package.nbPersonnes }}
+                                        </h4>
+                                    </div>
+                                    <div>
+                            <span class="price">{{ getPriceByDevise((packagePrice(package)), app.session.get('currency'))|number_format(2, '.', ',') }} {{ getDevise(app.session.get('currency')) }} </span>
+                                    </div>
+                                </div>
+                                <div class="second-row">
+                                    <div class="time">
+                                        <div class="take-off col-sm-4">
+
+                                        </div>
+                                        <div class="landing col-sm-4">
+
+                                        </div>
+                                        <div class="total-time col-sm-4">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-left: 15px;">
+                                        {{ 'quantity'|trans({},'messages') }}
+                                        <div class="selector full-width">
+                                            <select name="hotel[{{ index }}][packages][{{ loop.index }}][quantity]">
+                                                <option value="0" selected>0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+
+                                        <input type="hidden" name="hotel[{{ index }}][packages][{{ loop.index }}][id]"
+                                               value="{{ package.id }}"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+                <input type="hidden" name="hotel[{{ index }}][id]" value="{{ hotel.id }}"/>
+            </div>
+            <div class="row box">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-2">
+                    <input class="btn btn-primary" type="submit"
+                           value="{{ 'submit'|trans({},'messages') }}">
+                </div>
+<br/>
+            </div>
+
+            <input type="hidden" name="step" value="2">
+
+    </div>
+
+</div>
+
+{#<script>#}
+    {#function myMap() {#}
+        {#var mapProp = {#}
+            {#center: new google.maps.LatLng({{ hotel.latitude }},{{ hotel.longitude }}),#}
+            {#zoom  : 15,#}
+        {#};#}
+        {#var map     = new google.maps.Map(document.getElementById("googleMap"), mapProp);#}
+    {#}#}
+{#</script>#}
+
+
+
+
+

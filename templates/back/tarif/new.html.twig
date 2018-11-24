@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion Tarifs {% endblock %}
+{% block subtitle %} Ajouter un Tarif {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Tarif" ,
+            "class":"",
+            "value": {
+            "event":"form-control",
+            "label":"form-control",
+            "prix":"form-control",
+    "prixAccompagnant":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_tarif_new'), path('back_tarif_index'))}}
+
+
+
+
+
+{% endblock %}

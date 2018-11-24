@@ -1,0 +1,61 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Categories Hotel {% endblock %}
+{% block content %}
+
+<a href="{{ path('back_hotel_categorie_new') }}" class="btn btn-success">+ Ajouter</a><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Déscription</th>
+                <th>Actif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel_categorie in hotel_categories %}
+            <tr>
+                <td>{{ hotel_categorie.id }}</td>
+                <td>{{ hotel_categorie.name }}</td>
+                <td>{{ hotel_categorie.description }}</td>
+                <td>{{ hotel_categorie.enabled ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('back_hotel_categorie_show', {'id': hotel_categorie.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('back_hotel_categorie_edit', {'id': hotel_categorie.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

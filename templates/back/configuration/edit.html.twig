@@ -1,0 +1,37 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier une Configuration{% endblock %}
+{% block subtitle %} Modifier une Configuration{% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Configuration" ,
+            "class":"",
+            "value": {
+
+            "logo":"form-control",
+            "pays":"form-control",
+            "ville":"form-control",
+            "telephone":"form-control",
+            "fax":"form-control",
+            "adresse":"form-control",
+            "nomExpediteur":"form-control",
+            "emailExpediteur":"form-control",
+            "emailDirection":"form-control",
+            "emailDirection2":"form-control",
+            "emailAgence":"form-control",
+            "banque":"form-control",
+            "agence":"form-control",
+            "numCompteBancaire":"form-control",
+            "codeSwift":"form-control",
+            "codeIban":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(edit_form,fields,'form-horizontal form-bordered', path('back_configuration_edit', {id: configuration.id}), path('back_configuration_index'))}}
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier un participant{% endblock %}
+{% block subtitle %} Modifier un participant {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Utilisateur" ,
+            "class":"",
+            "value": {
+            "picture":"form-control",
+            "firstname":"form-control",
+            "lastname":"form-control",
+            "username":"form-control",
+            "password":"form-control",
+            "email":"form-control",
+            "type":"form-control",
+            "societe":"form-control",
+            "poste":"form-control",
+            "telephone":"form-control",
+            "telephone2":"form-control",
+            "biographie":"form-control ckeditor",
+            "tweeterLink":"form-control",
+            "linkedinLink":"form-control",
+            "dateDepart":"form-control datepicker",
+            "dateArrive":"form-control datepicker",
+            "numVolArrive":"form-control",
+            "numVolDepart":"form-control",
+            "nationalite":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_participant_edit', {id: participant.id}), path('back_participant_index'))}}
+
+
+
+
+
+{% endblock %}

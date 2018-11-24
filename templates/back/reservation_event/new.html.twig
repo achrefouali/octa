@@ -1,0 +1,25 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Réservation Conférence{% endblock %}
+{% block subtitle %} Ajouter une Réservation Conférence {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+    {% set fields ={  0:
+        {
+            "libelle": "Réservation Conférence" ,
+            "class":"",
+            "value": {
+
+                "reservation":"form-control",
+                "event":"form-control",
+                "total":"form-control",
+                "paymentMethod":"form-control",
+                "enabled":"form-control"
+            }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_reservation_event_new'), path('back_reservation_event_index'))}}
+
+{% endblock %}

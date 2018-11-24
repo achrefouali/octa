@@ -1,0 +1,98 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Réservations{% endblock %}
+{% block subtitle %} Liste Réservation Conférence {% endblock %}
+{% block content %}
+    <a href="{{ path('back_reservation_index') }}" class="btn btn-primary">Retour</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+    <table class="table table-primary mb30">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Code</th>
+                <th>Total</th>
+                <th>Statut</th>
+                <th>Méthode de paiement</th>
+                <th>Actif</th>
+                <th>Date Création</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation_event in reservation_events %}
+
+            {% set reservation = reservation_event.reservation %}
+            {% set statecolor = "" %}
+            {% if reservation.state is not empty %}
+                {% if reservation.state == 0 %}
+                    {% set statecolor = "background-color : orange;" %}
+                {% elseif reservation.state == 1 %}
+                    {% set statecolor = "background-color : #23bd23;" %}
+                {% elseif reservation.state == 2 %}
+                    {% set statecolor = "background-color : #da3535;" %}
+                {% elseif reservation.state == 3 %}
+                    {% set statecolor = "background-color : blue;" %}
+                {% elseif reservation.state == 4 %}
+                    {% set statecolor = "background-color : blue;" %}
+                {% elseif reservation.state == 5 %}
+                    {% set statecolor = "background-color : red;" %}
+                {% elseif reservation.state == 6 %}
+                    {% set statecolor = "background-color : green;" %}
+                {% elseif reservation.state == 7 %}
+                    {% set statecolor = "background-color : red;" %}
+                {% elseif reservation.state == 8 %}
+                    {% set statecolor = "background-color : grey;" %}
+                {% elseif reservation.state == 9 %}
+                    {% set statecolor = "background-color : grey;" %}
+                {% endif %}
+            {% endif %}
+            <tr>
+                <td>
+                    Référence: {{ reservation_event.reservation.reservationRef }}
+                    <br />
+                    Pour  <span style="color: #0063dc">{{ reservation_event.reservation.participant.firstname }} {{ reservation_event.reservation.participant.lastname }}</span>
+                </td>
+
+                <td>{{ reservation_event.code }}</td>
+                <td>{{ reservation_event.total }}</td>
+                <td style= "{{ statecolor }} color: #fff;"> {{  ("back.reservation.state."~ reservation.state)|trans({},'back', 'fr') }} </td>
+                <td>{{  ("back.reservation.paymentMethod."~ reservation_event.paymentMethod)|trans({},'back', 'fr') }}</td>
+                <td>{{ reservation_event.enabled ? 'Oui' : 'Non' }}</td>
+                <td>{{ reservation_event.createdAt ? reservation_event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('back_reservation_event_show', {'id': reservation_event.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('back_reservation_event_edit', {'id': reservation_event.id}) }}"><i class="fa fa-edit"></i></a>
+                    {% if reservation_event.devis is not null  %}
+                        <a target="_blank" href="{{ asset('uploads/pdf/'~reservation_event.devis) }}"><i class="fa   fa-download" title='{{ 'Télécharger devis' | trans }}' aria-hidden="true"></i> </a>
+                     {% endif  %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

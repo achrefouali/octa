@@ -1,0 +1,93 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}Réservation Conférence{% endblock %}
+{% block content %}
+    <h1>Réservation Conférence</h1>
+
+    <table class="table">
+        <tbody>
+
+        <tr>
+            <th>Code</th>
+            <td>{{ reservation_event.code }}</td>
+        </tr>
+        <tr>
+            <th>Référence</th>
+            <td>{{ reservation_event.reservation.reservationRef }}</td>
+        </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation_event.id }}</td>
+            </tr>
+
+            <tr>
+                <th>Totale</th>
+                <td>{{ reservation_event.total }}</td>
+            </tr>
+            <tr>
+                <th>Méthode de paiement</th>
+                <td>{{  ("back.reservation.paymentMethod."~ reservation_event.paymentMethod)|trans({},'back', 'fr') }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ reservation_event.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ reservation_event.createdAt ? reservation_event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifier le</th>
+                <td>{{ reservation_event.updatedAt ? reservation_event.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>Information Participant</h1>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom</th>
+            <td>{{ reservation_event.reservation.participant.firstname }} {{ reservation_event.reservation.participant.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Nationalité</th>
+            <td>{{ reservation_event.reservation.participant.nationalite }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ reservation_event.reservation.participant.type.label }}</td>
+        </tr>
+        <tr>
+            <th>Sociéte</th>
+            <td>{{ reservation_event.reservation.participant.societe }}</td>
+        </tr>
+        <tr>
+            <th>Poste</th>
+            <td>{{ reservation_event.reservation.participant.poste }}</td>
+        </tr>
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ reservation_event.reservation.participant.telephone }}</td>
+        </tr>
+        <tr>
+            <th>Vol - Date départ</th>
+            <td>{{ reservation_event.reservation.dateDepart ? reservation_event.reservation.participant.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Vol - Date Arrivé</th>
+            <td>{{ reservation_event.reservation.dateArrive ? reservation_event.reservation.participant.dateArrive|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Numéro Vol Arrivé</th>
+            <td>{{ reservation_event.reservation.numVolArrive }}</td>
+        </tr>
+        <tr>
+            <th>Numéro Vol Départ</th>
+            <td>{{ reservation_event.reservation.numVolDepart }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a href="{{ path('back_reservation_event_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_reservation_event_edit', {'id': reservation_event.id}) }}">Modifier</a>
+{% endblock %}

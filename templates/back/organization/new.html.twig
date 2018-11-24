@@ -1,0 +1,64 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un organisme{% endblock %}
+{% block subtitle %} Ajouter un organisme {% endblock %}
+{% block content %}
+
+    {% import 'back/organization/macros/base_form_macro.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+    {
+    "libelle": "Organisme" ,
+    "class":"",
+    "value": {
+    "society":"form-control",
+    "pays":"form-control",
+
+
+    }
+    }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_organizme_new'), path('back_organizme_index'))}}
+
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+
+        // add-collection-widget.js
+        jQuery(document).ready(function () {
+            jQuery('.add-another-collection-widget').click(function (e) {
+                var list = jQuery(jQuery(this).attr('data-list'));
+                // Try to find the counter of the list
+                var counter = list.data('widget-counter') | list.children().length;
+                // If the counter does not exist, use the length of the list
+                if (!counter) { counter = list.children().length; }
+
+                // grab the prototype template
+                var newWidget = list.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, counter);
+                // Increase the counter
+                counter++;
+                // And store it, the length cannot be used if deleting widgets is allowed
+                list.data(' widget-counter', counter);
+
+                // create a new list element and add it to the list
+                var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+                newElem.appendTo(list);
+            });
+        });
+    </script>
+
+
+{% endblock %}

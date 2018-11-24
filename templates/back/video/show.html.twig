@@ -1,0 +1,46 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+
+
+<table class="table">
+    <h1>Video</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ video.id }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ video.path }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ video.name }}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ video.size }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ video.enabled ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ video.createdAt ? video.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ video.updatedAt ? video.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_video_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_video_edit', {'id': video.id}) }}">Modifier</a>
+
+{% endblock %}

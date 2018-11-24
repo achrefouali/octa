@@ -1,0 +1,85 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Globule: Identification{% endblock %}
+{% block body_attr %}class="signin"{% endblock %}
+        {% block body %}
+        <section>
+
+            <div class="signinpanel">
+
+                <div class="row">
+
+                    <div class="col-md-7">
+
+                        <div class="signin-info">
+                            <div class="logopanel">
+                                <h1><span>[</span> Tableau de bord <span>]</span></h1>
+                            </div><!-- logopanel -->
+
+                            <div class="mb20"></div>
+
+                            <h5><strong>Bienvenue au Tableau de bord FANAF 2019</strong></h5>
+                            <ul>
+                                <li><i class="fa fa-arrow-circle-o-right mr5"></i> Interface Responsive</li>
+                                <li><i class="fa fa-arrow-circle-o-right mr5"></i> Gestion utilisateur</li>
+                                <li><i class="fa fa-arrow-circle-o-right mr5"></i> Gestion de contenu</li>
+                                <li><i class="fa fa-arrow-circle-o-right mr5"></i> et plus encore...</li>
+                            </ul>
+                            <div class="mb20"></div>
+
+                        </div><!-- signin0-info -->
+
+                    </div><!-- col-sm-7 -->
+
+                    <div class="col-md-5">
+
+                        <form action="{{ path('back_login') }}" method="post">
+                            <h4 class="nomargin">Connexion</h4>
+                            <p class="mt5 mb20">Identifiez vous.</p>
+                            {% if error %}
+                                <p class="mt5 mb20">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                            {% endif %}
+                            <input type="text" id="username" name="_username" value="{{ last_username }}"
+                                   class="form-control uname" placeholder="Identifiant"/>
+                            <input type="password" id="password" name="_password" class="form-control pword"
+                                   placeholder="Mot de passe"/>
+                            <button class="btn btn-success btn-block">Se connecter</button>
+
+                        </form>
+                    </div><!-- col-sm-5 -->
+
+                </div><!-- row -->
+
+                <div class="signup-footer">
+                    <div class="pull-left">
+                        &copy; 2019. Tous droits réservés, FANAF 2019
+                    </div>
+                </div>
+
+            </div><!-- signin -->
+
+        </section>
+
+
+        {% endblock %}
+
+ {% block javascripts %}
+
+{{ parent() }}
+     <script>
+         jQuery(document).ready(function () {
+
+             // Please do not use the code below
+             // This is for demo purposes only
+             var c = jQuery.cookie('change-skin');
+             if (c && c == 'greyjoy') {
+                 jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
+             } else if (c && c == 'dodgerblue') {
+                 jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
+             } else if (c && c == 'katniss') {
+                 jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
+             }
+         });
+     </script>
+
+ {% endblock %}

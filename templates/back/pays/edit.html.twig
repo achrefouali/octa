@@ -1,0 +1,20 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier un Pays{% endblock %}
+{% block subtitle %} Modifier un Pays {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Pays" ,
+            "class":"",
+            "value": {
+            "name":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_pays_edit', {id: pays.id}), path('back_pays_index'))}}
+{% endblock %}

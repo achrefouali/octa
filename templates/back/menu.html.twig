@@ -1,0 +1,74 @@
+<div class="leftpanel">
+
+    <div class="logopanel">
+        <h1>[</span> Tableau de bord <span>]</h1>
+    </div><!-- logopanel -->
+
+    <div class="leftpanelinner">
+
+        <!-- This is only visible to small devices -->
+        <div class="visible-xs hidden-sm hidden-md hidden-lg">
+            <div class="media userlogged">
+                <img alt="" src="{{ asset('assets/back/images/photos/loggeduser.png') }}" class="media-object">
+                <div class="media-body">
+                    <h4>{{ app.user.username }}</h4>
+                    <span>"Life is so..."</span>
+                </div>
+            </div>
+
+            <h5 class="sidebartitle actitle">Account</h5>
+            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
+                <li><a href="{{ path('back_participant_index', {id: app.user.id}) }}"><i class="fa fa-user"></i> <span>Mon Profile</span></a>
+                </li>
+                <li><a href="{{ path('logout') }}"><i class="fa fa-sign-out"></i> <span>Déconexion</span></a></li>
+            </ul>
+        </div>
+
+        <h5 class="sidebartitle">Navigation</h5>
+        <ul class="nav nav-pills nav-stacked nav-bracket">
+            <li class="active"><a href="{{ path('dashboard') }}"><i class="fa fa-home"></i> <span>Tableau de bord</span></a></li>
+            <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span>Paramétrages</span></a>
+                <ul class="children">
+                    <li><a href="{{ path('back_configuration_index') }}"><i class="fa fa-caret-right"></i> Configuration</a></li>
+                    <li><a href="{{ path('back_devise_index') }}"><i class="fa fa-caret-right"></i> Devises</a></li>
+                    <li><a href="{{ path('back_tarif_index') }}"><i class="fa fa-caret-right"></i> Tarifs Conférence</a></li>
+                    <li><a href="{{ path('back_participant_type_index') }}"><i class="fa fa-caret-right"></i> Type Participants</a></li>
+                    <li><a href="{{ path('back_sponsor_type_index') }}"><i class="fa fa-caret-right"></i> Type Sponsors</a></li>
+                    <li><a href="{{ path('back_pays_index') }}"><i class="fa fa-caret-right"></i> Pays</a></li>
+                    <li><a href="{{ path('back_notification_index') }}"><i class="fa fa-caret-right"></i> Notifications</a></li>
+                    <li><a href="{{ path('back_hotel_categorie_index') }}"><i class="fa fa-caret-right"></i> <span>Categories d'Hotels</span></a></li>
+                </ul>
+            </li>
+            <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span>Médias</span></a>
+                <ul class="children">
+                    <li><a href="{{ path('back_image_index') }}"><i class="fa fa-caret-right"></i> Images</a></li>
+                    <li><a href="{{ path('back_video_index') }}"><i class="fa fa-caret-right"></i> Vidéos</a></li>
+                    <li><a href="{{ path('back_document_index') }}"><i class="fa fa-caret-right"></i> Documents</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ path('back_menu_index') }}"><i class="fa fa-file-text"></i> <span>Menus</span></a></li>
+            <li><a href="{{ path('back_page_index') }}"><i class="fa fa-file-text"></i> <span>CMS Pages</span></a></li>
+            <li><a href="{{ path('back_event_index') }}"><i class="fa fa-edit"></i> <span>Gestion d'évènnement</span></a></li>
+            <li><a href="{{ path('back_sponsor_index') }}"><i class="fa fa-edit"></i> <span>Gestions Sponsors</span></a></li>
+            <li><a href="{{ path('back_hotel_index') }}"><i class="fa fa-edit"></i> <span>Gestions Hotels</span></a></li>
+            <li><a href="{{ path('back_participant_index') }}"><i class="fa fa-user"></i><span>Gestion Utilisateurs</span></a></li>
+            <li class="nav-parent"><a href="#"><i class="fa fa-edit"></i> <span>Gestion des Réservations</span></a>
+            <ul class="children">
+                    <li><a href="{{ path('back_reservation_index') }}"><i class="fa fa-caret-right"></i> Toutes les Réservations</a></li>
+                    <li><a href="{{ path('back_reservation_event_index') }}"><i class="fa fa-caret-right"></i> Réservations Conférences</a></li>
+                    <li><a href="{{ path('back_reservation_hotel_index') }}"><i class="fa fa-caret-right"></i> Réservations Logements</a></li>
+                    <li><a href="{{ path('back_reservation_supplements_index') }}"><i class="fa fa-caret-right"></i> Réservations Supplements</a></li>
+            </ul>
+            </li>
+
+            <li><a href="{{ path('back_mass_mailing') }}"><i class="fa fa-edit"></i><span>Envoi de mail en masse</span></a></li>
+            <li><a href="{{ path('back_organizme_index') }}"><i class="fa fa-edit"></i><span>Gestion des organismes </span></a></li>
+
+
+
+
+
+
+        </ul>
+    </div><!-- leftpanelinner -->
+</div><!-- leftpanel -->

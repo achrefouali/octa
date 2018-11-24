@@ -1,0 +1,45 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion Médias {% endblock %}
+{% block subtitle %} Ajouter une Image  {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Image" ,
+            "class":"",
+            "value": {
+            "name":"form-control",
+            "path":"form-control",
+            "size":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_image_new'), path('back_image_index'))}}
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function(){
+            // CKEditor
+            jQuery('.ckeditor').ckeditor();
+            jQuery('.datetimepicker').datetimepicker();
+
+        });
+
+    </script>
+
+    <script src="{{ asset('assets/back/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/back/js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/back/js/ckeditor/adapters/jquery.js') }}"></script>
+{% endblock %}

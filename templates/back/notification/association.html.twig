@@ -1,0 +1,35 @@
+
+{% extends "ApplicationNotificationBundle:Notification:index.html.twig" %}
+
+{% block body %}
+
+    {% import '::base_form_macro.html.twig' as  form_macro  %}
+
+    {% set message = '<p></p>'%}  
+    {% set fields ={  0: 
+                    {   
+                        "libelle":"notification.title.edit"|trans({'%notification%':object},'ApplicationNotificationBundle') ,
+                        "class":"show",
+                        "value": {
+                                "notificationType":"col-md-12",
+                                "subject":"col-md-12",                            
+ 
+                                
+                            } 
+                    },
+                1: {
+                    "libelle":"notification.title.bloc.association" ,
+                    "class":"show",
+                    "value":
+                        {   
+                            "pattern":"col-md-12"
+                        } 
+                    },
+                }   
+    %}  
+    {{ form_macro.form(form,fields,'application_notification_list','ApplicationNotificationBundle')}}
+
+{% endblock body %}
+{% block javascripts %}
+    {{parent()}}
+{% endblock javascripts %}

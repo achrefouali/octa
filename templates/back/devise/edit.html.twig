@@ -1,0 +1,30 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion Devises {% endblock %}
+{% block subtitle %} Modifier une Devise {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+    {% set fields ={  0:
+        {
+            "libelle": "Devise" ,
+            "class":"",
+            "value": {
+                "name":"form-control",
+                "code":"form-control",
+                "symbol":"form-control",
+                "coeff":"form-control",
+                "main":"form-control",
+                "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_devise_edit', {id: devise.id}), path('back_devise_index'))}}
+
+
+
+
+
+{% endblock %}
+

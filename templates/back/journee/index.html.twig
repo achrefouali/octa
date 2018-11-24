@@ -1,0 +1,68 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Journées {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_journee_new',{'event': event.id}) }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+    <a href="{{ path('back_event_index') }}" class="btn btn-primary">Retour</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Designation</th>
+                        <th>Designation_en</th>
+                        <th>Date</th>
+                        <th>Actif</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for journee in journees %}
+                        <tr>
+                            <td>{{ journee.id }}</td>
+                            <td>{{ journee.designation }}</td>
+                            <td>{{ journee.designationEn }}</td>
+                            <td>{{ journee.date ? journee.date|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ journee.enabled ? 'Oui' : 'Non' }}</td>
+                            <td>
+                                <select  class="form-control" onchange="location = this.value;">
+                                    <option value="">Gérer:</option>
+                                    <option value="{{path('back_programme_index',{'journee': journee.id})}}"> Programmes </option>
+                                </select>
+                                <a href="{{ path('back_journee_show', {'id': journee.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_journee_edit', {'id': journee.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

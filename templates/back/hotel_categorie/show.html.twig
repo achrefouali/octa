@@ -1,0 +1,39 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>HotelCategorie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel_categorie.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ hotel_categorie.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ hotel_categorie.description }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ hotel_categorie.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ hotel_categorie.createdAt ? hotel_categorie.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ hotel_categorie.updatedAt ? hotel_categorie.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_hotel_categorie_index') }}">back to list</a>
+
+    <a href="{{ path('back_hotel_categorie_edit', {'id': hotel_categorie.id}) }}">edit</a>
+
+{% endblock %}

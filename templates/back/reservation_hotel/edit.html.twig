@@ -1,0 +1,52 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Réservation hotel {% endblock %}
+{% block subtitle %} Modifier une Réservation hotel {% endblock %}
+{% block content %}
+
+    {% import 'back/reservation_hotel/macros/base_form_macro.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "" ,
+            "class":"",
+            "value": {
+
+    "firstname":"form-control",
+    "lastname":"form-control",
+    "societe":"form-control",
+    "poste":"form-control",
+    "telephone":"form-control",
+    "email":"form-control",
+    "nationalite":"form-control",
+    "address":"form-control",
+
+    "codePostal":"form-control",
+    "country":"form-control",
+    "pays":"form-control",
+    "dateArrive":"form-control",
+    "heureArrival":"form-control",
+    "numVolArrive":"form-control",
+    "dateDepart":"form-control",
+
+
+    "heureDeparture":"form-control",
+    "numVolDepart":"form-control",
+            "code":"form-control",
+            "hotel":"form-control",
+            "nbJours":"form-control",
+            "total":"form-control",
+            "paymentMethod":"form-control",
+            "dateDebut":"form-control",
+            "dateFin":"form-control",
+            "state":"form-control",
+
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(state,form,fields,'form-horizontal form-bordered', path('back_reservation_hotel_edit', {id: reservation_hotel.id}), path('back_reservation_hotel_index', {reservation: reservation_hotel.reservation.id}))}}
+
+{% endblock %}
+

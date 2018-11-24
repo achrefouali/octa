@@ -1,0 +1,27 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier une Photo Hotel{% endblock %}
+{% block subtitle %} Modifier une Photo Hotel {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Hotel Images" ,
+            "class":"",
+            "value": {
+            "main": "form-control",
+            "designation": "form-control",
+            "picture": "form-control",
+            "enabled": "form-control"
+
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_hotel_image_edit', {id: hotel_image.id}), path('back_hotel_image_index', {'hotel': hotel_image.hotel.id}))}}
+
+
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{# templates/emails/registration.html.twig #}
+<h3>Vous venez de vous inscrire pour FANAF 2019</h3>
+
+Bonjour {{ name }}! félicitation.
+
+Connecter vous avec votre adresse email.
+Votre mot de passe est : <strong>{{ password }}</strong>
+Pour vous connectez, suivez ce lien: <a href="{{ url('front_login') }}">...</a>.
+
+Merci!
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('assets/front/img/logo.png')) }}">

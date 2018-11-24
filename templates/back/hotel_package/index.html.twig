@@ -1,0 +1,68 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Packages Hotel {% endblock %}
+{% block content %}
+
+<a href="{{ path('back_hotel_package_new', {'hotel': hotel.id}) }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+    <a href="{{ path('back_hotel_index') }}" class="btn btn-primary">Retour</a><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picture</th>
+                <th>Désignation</th>
+                <th>NbPersonnes</th>
+                <th>Actif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel_package in hotel_packages %}
+            <tr>
+                <td>{{ hotel_package.id }}</td>
+                <td><img width="150" src="{{ asset('uploads/hotels/packages/' ~ hotel_package.picture) }}"/></td>
+                <td>{{ hotel_package.designation }}</td>
+                <td>{{ hotel_package.nbPersonnes }}</td>
+
+                <td>{{ hotel_package.enabled ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <select  class="form-control" onchange="location = this.value;">
+                        <option value="">Gérer:</option>
+                        <option value="{{path('back_hotel_package_periode_index',{'package': hotel_package.id})}}"> Périodes </option>
+                    </select>
+                    <a href="{{ path('back_hotel_package_show', {'id': hotel_package.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('back_hotel_package_edit', {'id': hotel_package.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

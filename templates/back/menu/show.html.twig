@@ -1,0 +1,39 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+
+
+<table class="table">
+    <h1>Menu</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ menu.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ menu.title }}</td>
+            </tr>
+            <tr>
+                <th>TitleEn</th>
+                <td>{{ menu.titleEn }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ menu.link }}</td>
+            </tr>
+            <tr>
+                <th>Ordre</th>
+                <td>{{ menu.order }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_menu_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_menu_edit', {'id': menu.id}) }}">Modifier</a>
+
+
+{% endblock %}

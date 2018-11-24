@@ -1,0 +1,83 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Configuration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ configuration.id }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><img width="150" src="{{ asset('uploads/configuration/' ~ configuration.logo) }}" /></td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ configuration.pays }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ configuration.ville }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ configuration.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Nom Expediteur</th>
+                <td>{{ configuration.nomExpediteur }}</td>
+            </tr>
+            <tr>
+                <th>Email Expediteur</th>
+                <td>{{ configuration.emailExpediteur }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ configuration.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ configuration.fax }}</td>
+            </tr>
+            <tr>
+                <th>Email Direction</th>
+                <td>{{ configuration.emailDirection }}</td>
+            </tr>
+            <tr>
+                <th>Email Direction 2</th>
+                <td>{{ configuration.emailDirection2 }}</td>
+            </tr>
+            <tr>
+                <th>Email Agence</th>
+                <td>{{ configuration.emailAgence }}</td>
+            </tr>
+
+            <tr>
+                <th>Banque</th>
+                <td>{{ configuration.banque }}</td>
+            </tr>
+            <tr>
+                <th>Agence</th>
+                <td>{{ configuration.agence }}</td>
+            </tr>
+            <tr>
+                <th>Numéro Compte Bancaire</th>
+                <td>{{ configuration.numCompteBancaire }}</td>
+            </tr>
+            <tr>
+                <th>Code Swift</th>
+                <td>{{ configuration.codeSwift }}</td>
+            </tr>
+            <tr>
+                <th>Code IBAN</th>
+                <td>{{ configuration.codeIban }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('back_configuration_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_configuration_edit', {'id': configuration.id}) }}">Modifier</a>
+
+{% endblock %}

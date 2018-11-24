@@ -1,0 +1,19 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}FANAF 2019: Tableau de bord{% endblock %}
+
+
+
+
+ {% block javascripts %}
+
+     {{ parent() }}
+
+     <script src="{{ asset('assets/back/js/jquery-ui-1.10.3.min.js') }}"></script>
+     <script src="{{ asset('assets/back/js/flot/jquery.flot.min.js') }}"></script>
+     <script src="{{ asset('assets/back/js/flot/jquery.flot.resize.min.js') }}"></script>
+     <script src="{{ asset('assets/back/js/flot/jquery.flot.spline.min.js') }}"></script>
+     <script src="{{ asset('assets/back/js/morris.min.js') }}"></script>
+     <script src="{{ asset('assets/back/js/raphael-2.1.0.min.js') }}"></script>
+
+ {% endblock %}

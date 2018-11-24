@@ -1,0 +1,64 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Notification{% endblock %}
+{% block subtitle %} Ajouter une Notification {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "notification.title.create"|trans({},'AppNotification') ,
+            "class":"",
+            "value": {
+            "notificationType":"form-control",
+            "subject":"form-control",
+            "description":"form-control ckeditor",
+            "pattern":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_notification_new'), path('back_notification_index'))}}
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+    <script>
+
+        $('#{{ form.pattern.vars.id }}').change(function () //this will apply to all anchor tags
+        {
+            var textAreaId = '{{ form.description.vars.id }}';
+            var textAreaContent = document.getElementById(textAreaId);
+            var pattern = ' %' + $('#{{ form.pattern.vars.id }} option:selected').text() + '% ';
+            addTextAtCaret(textAreaContent, pattern);
+        });
+
+        function addTextAtCaret(textAreaContent, text) {
+            var cursorPosition = textAreaContent.selectionStart;
+            addTextAtCursorPosition(textAreaContent, cursorPosition, text);
+            updateCursorPosition(cursorPosition, text, textAreaContent);
+        }
+        function addTextAtCursorPosition(textAreaContent, cursorPosition, text) {
+            var front = (textAreaContent.value).substring(0, cursorPosition);
+            var back = (textAreaContent.value).substring(cursorPosition, textAreaContent.value.length);
+            textAreaContent.value = front + text + back;
+        }
+        function updateCursorPosition(cursorPosition, text, textAreaContent) {
+            cursorPosition = cursorPosition + text.length;
+            textAreaContent.selectionStart = cursorPosition;
+            textAreaContent.selectionEnd = cursorPosition;
+            textAreaContent.focus();
+        }
+
+    </script>
+
+{% endblock %}

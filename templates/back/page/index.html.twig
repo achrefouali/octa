@@ -1,0 +1,59 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Pages {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_page_new') }}" class="btn btn-success">+ Ajouter</a><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>menu</th>
+                <th>Actif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td><a href="{{ path('back_page_show', { 'id': page.id }) }}">{{ page.id }}</a></td>
+                <td>{{ page.title }}</td>
+                <td>{% if page.menu is not empty %}{{ page.menu.title }}{% endif %}</td>
+                <td>{% if page.enabled %}Oui{% else %}Non{% endif %}</td>
+                <td>
+                    <a href="{{ path('back_page_show', { 'id': page.id }) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('back_page_edit', { 'id': page.id }) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

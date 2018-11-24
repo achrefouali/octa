@@ -1,0 +1,22 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier un Type de Sponsor{% endblock %}
+{% block subtitle %} Modifier un Type de sponsor {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Sponsor Type" ,
+            "class":"",
+            "value": {
+            "label":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_sponsor_type_edit', {id: sponsor_type.id}), path('back_sponsor_type_index'))}}
+
+{% endblock %}

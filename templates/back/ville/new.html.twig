@@ -1,0 +1,27 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Ville{% endblock %}
+{% block subtitle %} Ajouter une Ville {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Ville" ,
+            "class":"",
+            "value": {
+            "name":"form-control",
+            "pays":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_ville_new', {'pays': pays.id}), path('back_ville_index', {'pays': pays.id}))}}
+
+
+
+
+
+{% endblock %}

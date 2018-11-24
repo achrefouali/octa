@@ -1,0 +1,76 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Intervenant | {{ intervenant.firstname ~ ' ' ~ intervenant.lastname }} {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+{% block main %}
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'Speaker'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+    <!--NEWS-->
+    <section>
+        <div id="csi-news" class="csi-news csi-news-singlepage">
+            <div class="csi-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <article>
+                                <header>
+                                    <figure>
+                                        <a href="#"><img src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}" alt="{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}"/></a>
+                                    </figure>
+                                    <div class="text-area">
+                                        <h1 class="title">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</h1>
+                                        <h3 class="subtitle">{{ intervenant.poste }}</h3>
+                                        <ul class="list-inline csi-social">
+                                            <li><a href="{{ intervenant.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{ intervenant.linkedinLink }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </header>
+                                <section>
+                                    {{ intervenant.biographie }}
+                                </section>
+                                <footer>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4 class="title">{{ 'Share'|trans }}</h4>
+                                            <div class="csi-share">
+                                                <ul class="list-inline csi-social">
+                                                    <li><a href="{{ intervenant.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                    <li><a href="{{ intervenant.linkedinLink }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section> <!--//.NEWS-->
+
+
+{% endblock %}

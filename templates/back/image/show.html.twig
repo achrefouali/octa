@@ -1,0 +1,47 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+
+
+<table class="table">
+    <h1>Image</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ image.id }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ image.path }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ image.name }}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ image.size }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ image.enabled ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ image.createdAt ? image.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ image.updatedAt ? image.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_image_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_image_edit', {'id': image.id}) }}">Modifier</a>
+
+
+{% endblock %}

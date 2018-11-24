@@ -1,0 +1,89 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Participant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ participant.id }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>
+                    {% if participant.picture is not empty %}
+                        <img width="100"
+                             src="{{ asset('uploads/intervenants/' ~ participant.picture) }}">
+                    {% else %}
+                        <img width="100"
+                             src="{{ asset('assets/front/img/no-image.png') }}">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ participant.firstname }} {{ participant.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Identifiant</th>
+                <td>{{ participant.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ participant.email }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ participant.type }}</td>
+            </tr>
+            <tr>
+                <th>Sociète</th>
+                <td>{{ participant.societe }}</td>
+            </tr>
+            <tr>
+                <th>Poste</th>
+                <td>{{ participant.poste }}</td>
+            </tr>
+            <tr>
+                <th>Télèphone</th>
+                <td>{{ participant.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Telephone2</th>
+                <td>{{ participant.telephone2 }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ participant.biographie }}</td>
+            </tr>
+            <tr>
+                <th>Lien Twitter</th>
+                <td>{{ participant.tweeterLink }}</td>
+            </tr>
+            <tr>
+                <th>Lien LinkedIn</th>
+                <td>{{ participant.linkedinLink }}</td>
+            </tr>
+
+            <tr>
+                <th>Actif</th>
+                <td>{{ participant.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ participant.createdAt ? participant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ participant.updatedAt ? participant.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_participant_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_participant_edit', {'id': participant.id}) }}">Modifier</a>
+
+
+{% endblock %}

@@ -1,0 +1,204 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Reservation Référence: {{ reservation.reservationRef }}</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Référence</th>
+            <td>{{ reservation.reservationRef }}</td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ reservation.id }}</td>
+        </tr>
+        <tr>
+            <th>Statut</th>
+            <td>{{ reservation.state }}</td>
+        </tr>
+        <tr>
+            <th>Prix totale</th>
+            <td>{{ reservation.totalPrice }}</td>
+        </tr>
+        <tr>
+            <th>Actif</th>
+            <td>{{ reservation.enabled ? 'Oui' : 'Non' }}</td>
+        </tr>
+        <tr>
+            <th>Crée le</th>
+            <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Mis à jours le</th>
+            <td>{{ reservation.updatedAt ? reservation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Information Participant</h3>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom</th>
+            <td>{{ reservation.participant.firstname }} {{ reservation.participant.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Nationalité</th>
+            <td>{{ reservation.participant.nationalite }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ reservation.participant.type.label }}</td>
+        </tr>
+        <tr>
+            <th>Sociéte</th>
+            <td>{{ reservation.participant.societe }}</td>
+        </tr>
+        <tr>
+            <th>Poste</th>
+            <td>{{ reservation.participant.poste }}</td>
+        </tr>
+        <tr>
+            <th>Téléphone</th>
+            <td>{{ reservation.participant.telephone }}</td>
+        </tr>
+        <tr>
+            <th>Vol - Date départ</th>
+            <td>{{ reservation.participant.dateDepart ? reservation.participant.dateDepart|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Vol - Date Arrivé</th>
+            <td>{{ reservation.participant.dateArrive ? reservation.participant.dateArrive|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Numéro Vol Arrivé</th>
+            <td>{{ reservation.participant.numVolArrive }}</td>
+        </tr>
+        <tr>
+            <th>Numéro Vol Départ</th>
+            <td>{{ reservation.participant.numVolDepart }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <h2>Réservation Conférence</h2>
+    {% for reservation_event in reservation.reservationsEvents %}
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Référence</th>
+            <td>{{ reservation_event.reservation.reservationRef }}</td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ reservation_event.id }}</td>
+        </tr>
+
+        <tr>
+            <th>Totale</th>
+            <td>{{ reservation_event.total }}</td>
+        </tr>
+        <tr>
+            <th>Méthode de paiement</th>
+            <td>{{  ("back.reservation.paymentMethod."~ reservation_event.paymentMethod)|trans({},'back', 'fr') }}</td>
+        </tr>
+        <tr>
+            <th>Actif</th>
+            <td>{{ reservation_event.enabled ? 'Oui' : 'Non' }}</td>
+        </tr>
+        <tr>
+            <th>Crée le</th>
+            <td>{{ reservation_event.createdAt ? reservation_event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Modifier le</th>
+            <td>{{ reservation_event.updatedAt ? reservation_event.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {% else %}
+        <tr>
+            <td>Pas de réservation</td>
+        </tr>
+    {% endfor %}
+<h2>Réservations Hotél</h2>
+    <table class="table">
+        <tbody>
+        {% for reservation_hotel in reservation.reservationsHotels %}
+
+            <tr>
+                <th>Hotel</th>
+                <td>{{ reservation_hotel.hotel }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ reservation_hotel.total }}</td>
+            </tr>
+            <tr>
+                <th>Méthode de paiement</th>
+                <td>{{  ("back.reservation.paymentMethod."~ reservation_hotel.paymentMethod)|trans({},'back', 'fr') }}</td>
+            </tr>
+            <tr>
+                <th>nbJours</th>
+                <td>{{ reservation_hotel.nbJours }}</td>
+            </tr>
+            <tr>
+                <th>dateDebut</th>
+                <td>{{ reservation_hotel.dateDebut ? reservation_hotel.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>dateFin</th>
+                <td>{{ reservation_hotel.dateFin ? reservation_hotel.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Chambres</th>
+                <td>En cours ...
+                    {% for hotelReservationsPackage in reservation_hotel.hotelReservationsPackage.values %}
+
+                        {#{{ dump(hotelReservationsPackage) }}#}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% else %}
+        <tr>
+            <td>Pas de réservation</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h2>Réservations Supplements</h2>
+    <table class="table">
+        <tbody>
+        {% for reservation_supplements in reservation.reservationsSupplements %}
+            <tr>
+                <th>Total</th>
+                <td>{{ reservation_supplements.total }}</td>
+            </tr>
+            <tr>
+                <th>Méthode de paiement</th>
+                <td>{{  ("back.reservation.paymentMethod."~ reservation_supplements.paymentMethod)|trans({},'back', 'fr') }}</td>
+            </tr>
+            <tr>
+                <th>Supplements</th>
+                <td>
+                    {% for supplement in reservation_supplements.supplements %}
+                        <ul>
+                            <li>Designation : {{ supplement.designation }}</li>
+                            <li>Prix : {{ supplement.prix }}</li>
+                            <li>Lieu : {{ supplement.lieu }}</li>
+                        </ul>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>Pas de réservation</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('back_reservation_index') }}">back to list</a>
+
+    <a href="{{ path('back_reservation_edit', {'id': reservation.id}) }}">edit</a>
+
+{% endblock %}

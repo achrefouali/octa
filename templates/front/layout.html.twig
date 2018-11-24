@@ -1,0 +1,228 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}FANAF 2019 :: {% endblock %}
+{% block meta %}
+    <!-- SITE TITLE -->
+
+    <meta name="description" content="Event, Conference & Meetup HTML Template"/>
+    <meta name="keywords" content="Event, Conference, Meetup, HTML5"/>
+    <meta name="author" content="httpcoder.com"/>
+
+    <!-- twitter card starts from here, if you don't need remove this section -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@yourtwitterusername"/>
+    <meta name="twitter:creator" content="@yourtwitterusername"/>
+    <meta name="twitter:url" content="http://yourdomain.com/"/>
+    <meta name="twitter:title" content="Your home page title, max 140 char"/> <!-- maximum 140 char -->
+    <meta name="twitter:description" content="Your site description, maximum 140 char "/> <!-- maximum 140 char -->
+    <meta name="twitter:image"
+          content="assets/front/img/twittercardimg/twittercard-280-150.jpg"/>  <!-- when you post this page url in twitter , this image will be shown -->
+    <!-- twitter card ends from here -->
+
+    <!-- facebook open graph starts from here, if you don't need then delete open graph related  -->
+    <meta property="og:title" content="Your home page title"/>
+    <meta property="og:url" content="http://your domain here.com"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:site_name" content="Your site name here"/>
+    <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:image"
+          content="assets/front/img/opengraph/fbphoto.jpg"/> <!-- when you post this page url in facebook , this image will be shown -->
+    <!-- facebook open graph ends from here -->
+{% endblock %}
+{% block stylesheets %}
+
+    <!--  FAVICON AND TOUCH ICONS -->
+    <link rel="shortcut icon" type="image/x-icon"
+          href="assets/front/img/favicon.ico"/>  <!-- this icon shows in browser toolbar -->
+    <link rel="icon" type="image/x-icon"
+          href="assets/front/img/favicon.ico"/> <!-- this icon shows in browser toolbar -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/front/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/front/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/front/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/front/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/front/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/front/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/front/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/front/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/front/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/front/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/front/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/front/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/front/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/front/img/favicon/manifest.json">
+
+
+
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="{{ asset('assets/front/libs/fontawesome/css/font-awesome.min.css') }}" media="all"/>
+
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700%7cLato:300,400,700"/>
+
+    <!-- POPUP-->
+    <link rel="stylesheet" href="{{ asset('assets/front/libs/maginificpopup/magnific-popup.css') }}" media="all"/>
+
+
+    <!-- MASTER  STYLESHEET  -->
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/css/style-default.min.css') }}"
+          media="all"/>
+
+    <!-- MODERNIZER CSS  -->
+    <script src="{{ asset('assets/front/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="scss/font-monserrat.scss" type="text/scss" rel="stylesheet"> -->
+    <link href="{{ asset('build/css/app.css') }}" rel="stylesheet">
+
+
+
+{% endblock %}
+{% block body %}
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
+            href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="csi-container ">
+
+        {% block content %}
+            <!--HEADER-->
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-9" style="text-align: center;">
+                            <img src="{{ asset('assets/front/img/image_top.jpg') }}"/>
+                        </div>
+                        <div class="col-xs-3 langbar ">
+                            <ul class="list-inline csi-social">
+                                {% if event.facebookLink is not empty %}
+                                    <li><a href="{{ event.facebookLink }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                                {% if event.GoogleLink is not empty %}
+                                    <li><a href="{{ event.GoogleLink }}"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                                {% if event.tweeterLink is not empty %}
+                                    <li><a href="{{ event.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                                {% if event.instagramLink is not empty %}
+                                    <li><a href="{{ event.instagramLink }}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                {% endif %}
+
+                            </ul>
+                                <select class="selectpicker" data-width="fit"
+                                        onchange="if (this.value) window.location.href=this.value">
+                                    <option {% if app.request.locale == 'en' %}selected{% endif %}
+                                            value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"
+                                            data-content='<span class="flag-icon flag-icon-gb"></span>'>{{ 'english'|trans({},'messages') }}</option>
+                                    <option {% if app.request.locale == 'fr' %}selected{% endif %}
+                                            value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"
+                                            data-content='<span class="flag-icon flag-icon-fr"></span>'>{{ 'french'|trans({},'messages') }}</option>
+                                </select>
+
+
+
+                                {#<select class="selectpicker" data-width="fit"#}
+                                        {#onchange="if (this.value) window.location.href=this.value">#}
+                                    {#{% for devise in devises %}#}
+                                        {#<option {% if app.session.get('currency') == devise.code|lower %}selected{% endif %}#}
+                                                {#value="{{ path(('home'), app.request.get('_route_params')|merge({'_currency': devise.code|lower})) }}"#}
+                                                {#data-content='{{ devise.symbol ~ ' ' ~ devise.code|upper }}'>{{ devise.code|upper }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                            </div>
+
+                    </div>
+
+                </div>
+                {% block header %}
+                    <div id="csi-header" class="csi-header csi-banner-header">
+                        <div class="csi-header-bottom">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {% include 'front/menu.html.twig' %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% if app.request.get('_route') == 'home' %}
+                                        <div class="col-xs-2 live-streaming" style="    right: 7%  !important;">
+                                            <a href="{{ path('front_live_streaming') }}"><img alt="Streaming en direct"
+                                                                                              src="{{ asset('assets/front/img/live-streaming-now.png') }}"/>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <!--//.ROW-->
+                            </div>
+                            <!-- //.CONTAINER -->
+                        </div>
+                        <!-- //.INNER-->
+                    </div>
+                {% endblock %}
+            </header>
+            <!--HEADER END-->
+            {% block main %}{% endblock %}
+        {% endblock %}
+    </div>
+    {% include 'front/footer.html.twig' %}
+    {% if is_granted('ROLE_USER') == false %}
+        {{ render(controller('App\\Controller\\SecurityController::loginModal')) }}
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+
+    <!-- *** ADD YOUR SITE SCRIPT HERE *** -->
+    <script src="{{ asset('build/js/app.js') }}" type="text/javascript"></script>
+
+    <!-- SKILLS SCRIPT  -->
+    <script src="{{ asset('assets/front/libs/jquery.validate.js') }}"></script>
+
+    <!-- if load google maps then load this api, change api key as it may expire for limit cross as this is provided with any theme -->
+    {#<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzfNvH2kifJQ0PhBIyuuG-swdkW1NPQVE"></script>#}
+
+    <!-- CUSTOM GOOGLE MAP -->
+    {#<script type="text/javascript" src="{{ asset('assets/front/libs/gmap/jquery.googlemap.js') }}"></script>#}
+
+    <!-- Owl Carousel  -->
+
+
+    <!-- type js -->
+    <script src="{{ asset('assets/front/libs/typed/typed.min.js') }}"></script>
+
+
+    <!-- COUNTDOWN   -->
+    <script src="{{ asset('assets/front/libs/countdown.js') }}"></script>
+
+
+    <!-- SMOTH SCROLL -->
+    <script src="{{ asset('assets/front/libs/jquery.smooth-scroll.min.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/jquery.easing.min.js') }}"></script>
+
+
+    <!-- adding magnific popup js library -->
+    <script type="text/javascript"
+            src="{{ asset('assets/front/libs/maginificpopup/jquery.magnific-popup.min.js') }}"></script>
+
+    <!-- SMOTH SCROLL -->
+    <script src="{{ asset('assets/front/libs/jquery.smooth-scroll.min.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/jquery.easing.min.js') }}"></script>
+
+    {#<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>#}
+
+    <!-- CUSTOM SCRIPT  -->
+    <script src="{{ asset('assets/front/js/custom.script.js') }}"></script>
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            // CKEditor
+            jQuery('.datepicker').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+        });
+
+    </script>
+{% endblock %}

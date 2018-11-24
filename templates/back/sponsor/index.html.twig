@@ -1,0 +1,58 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Sponsors {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_sponsor_new') }}" class="btn btn-success">+ Ajouter</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Designation</th>                        <th>Logo</th>
+
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for sponsor in sponsors %}
+                        <tr>
+                            <td>{{ sponsor.id }}</td>
+                            <td>{{ sponsor.designation }}</td>
+                            <td><img width="150" src="{{ asset('uploads/sponsors/' ~ sponsor.logo) }}" /></td>
+                            <td>
+                                <a href="{{ path('back_sponsor_show', {'id': sponsor.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_sponsor_edit', {'id': sponsor.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

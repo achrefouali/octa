@@ -1,0 +1,102 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion des Reservation{% endblock %}
+{% block subtitle %} Liste Réservations hotel {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_reservation_index') }}" class="btn btn-primary">Retour</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Code</th>
+                        <th>Hotel</th>
+                        <th>Montant</th>
+                        <th>Status</th>
+                        <th>Mode de paiement</th>
+                        <th>Date Debut</th>
+                        <th>Date Fin</th>
+                        <th>Date Création</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation_hotel in reservation_hotels %}
+                   {% set reservation = reservation_hotel.reservation %}
+                        {% set statecolor = "" %}
+                        {% if reservation.state is not empty %}
+                            {% if reservation.state == 0 %}
+                                {% set statecolor = "background-color : orange;" %}
+                            {% elseif reservation.state == 1 %}
+                                {% set statecolor = "background-color : #23bd23;" %}
+                            {% elseif reservation.state == 2 %}
+                                {% set statecolor = "background-color : #da3535;" %}
+                            {% elseif reservation.state == 3 %}
+                                {% set statecolor = "background-color : blue;" %}
+                            {% elseif reservation.state == 4 %}
+                                {% set statecolor = "background-color : blue;" %}
+                            {% elseif reservation.state == 5 %}
+                                {% set statecolor = "background-color : red;" %}
+                            {% elseif reservation.state == 6 %}
+                                {% set statecolor = "background-color : green;" %}
+                            {% elseif reservation.state == 7 %}
+                                {% set statecolor = "background-color : red;" %}
+                            {% elseif reservation.state == 8 %}
+                                {% set statecolor = "background-color : grey;" %}
+                            {% elseif reservation.state == 9 %}
+                                {% set statecolor = "background-color : grey;" %}
+                            {% endif %}
+                        {% endif %}
+                        <tr>
+                            <td>
+                                Référence: {{ reservation_hotel.reservation.reservationRef }}
+                                <br />
+                                Pour  <span style="color: #0063dc">{{ reservation_hotel.reservation.participant.firstname }} {{ reservation_hotel.reservation.participant.lastname }}</span>
+                            </td>
+                            <td>{{ reservation_hotel.code }}</td>
+                            <td>{{ reservation_hotel.hotel.designation }}</td>
+                            <td>{{ reservation_hotel.total }}</td>
+                            <td style= "{{ statecolor }} color: #fff;"> {{  ("back.reservation.state."~ reservation_hotel.reservation.state)|trans({},'back', 'fr') }} </td>
+                            <td>{{  ("back.reservation.paymentMethod."~ reservation_hotel.paymentMethod)|trans({},'back', 'fr') }}</td>
+                            <td>{{ reservation_hotel.dateDebut ? reservation_hotel.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ reservation_hotel.dateFin ? reservation_hotel.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ reservation_hotel.createdAt ? reservation_hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('back_reservation_hotel_show', {'id': reservation_hotel.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_reservation_hotel_edit', {'id': reservation_hotel.id}) }}"><i class="fa fa-edit"></i></a>
+                                {% if reservation_hotel.devis is not null  %}
+                                    <a target="_blank" href="{{ asset('uploads/pdf/'~reservation_hotel.devis) }}"><i class="fa   fa-download" title='{{ 'Télécharger devis' | trans }}' aria-hidden="true"></i> </a>
+                                {% endif  %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

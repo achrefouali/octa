@@ -1,0 +1,57 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        participant_provider:
+            id: app.participant.provider
+    encoders:
+        App\Entity\Participant: bcrypt
+
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            pattern: ^/back
+            anonymous: ~
+            provider: participant_provider
+            form_login:
+                login_path: back_login
+                check_path: back_login
+                default_target_path: dashboard
+            logout_on_user_change: true
+            logout:
+                path: logout
+                target: home
+
+        front_area:
+            pattern: ^/
+            anonymous: ~
+            provider: participant_provider
+            form_login:
+                login_path: front_login
+                check_path: front_login
+                default_target_path: front_profile
+            logout_on_user_change: true
+            logout:
+                path: logout
+                target: home
+
+
+        api:
+            pattern: ^/api
+            security: false
+
+    access_control:
+    - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/back/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/back, roles: [ROLE_ADMIN] }
+    - { path: ^/fr/profile, roles: [IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED] }
+    - { path: ^/en/profile, roles: [IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED] }
+    - { path: ^/fr/inscription/hotel/confirmation, roles: [IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED] }
+    - { path: ^/en/inscription/hotel/confirmation, roles: [IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED] }

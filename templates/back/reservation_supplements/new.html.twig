@@ -1,0 +1,28 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Réservation Supplement{% endblock %}
+{% block subtitle %} Ajouter une Réservation Supplement {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Supplement" ,
+            "class":"",
+            "value": {
+            "supplements":"form-control",
+            "total":"form-control",
+            "paymentMethod":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_reservation_supplements_new', {reservation: reservation.id}), path('back_reservation_supplements_index', {reservation: reservation.id}))}}
+
+
+
+
+
+{% endblock %}

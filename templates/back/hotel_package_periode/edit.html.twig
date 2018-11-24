@@ -1,0 +1,26 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Modifier une Période d'un Package Hotel{% endblock %}
+{% block subtitle %} Modifier une Période d'un Package Hotel {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Période d'un Package Hotel" ,
+            "class":"",
+            "value": {
+                "prixAchat":"form-control",
+                "commision":"form-control",
+                "dateDebut":"form-control",
+                "dateFin":"form-control",
+                "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_hotel_package_periode_edit', {id: hotel_package_periode.id}), path('back_hotel_package_periode_index', {'package': hotel_package_periode.package.id}))}}
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un Sponsor{% endblock %}
+{% block subtitle %} Modifier un Sponsor {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Sponsor" ,
+            "class":"",
+            "value": {
+            "logo":"form-control",
+            "designation":"form-control",
+            "type":"form-control",
+            "siteWeb":"form-control",
+            "enabled":"form-control",
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_sponsor_edit', {id: sponsor.id}), path('back_sponsor_index'))}}
+
+
+
+
+
+{% endblock %}

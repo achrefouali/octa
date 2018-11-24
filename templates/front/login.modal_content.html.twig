@@ -1,0 +1,40 @@
+{% trans_default_domain 'front' %}
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error.messageKey }}
+    </div>
+{% endif %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="container">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="well">
+                            <form action="{{ path('front_login') }}" method="post">
+                                <fieldset>
+                                    <legend><i class="fa fa-lock" aria-hidden="true"></i> {{ 'Login'|trans }} <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></legend>
+                                    <div class="form-group">
+                                        <label for="username">{{ 'Username'|trans }}</label>
+                                        <input type="text" id="username" name="_username" value="" class="form-control"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">{{ 'Password'|trans }}</label>
+                                        <input type="password" id="password" name="_password" class="form-control" />
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'Login'|trans }}
+                                    </button>
+                                    <a href="{{ path('inscription_page') }}" class="btn btn-primary" > {{ 'Register'|trans }}</a>
+                                    <a href="{{ path('reset_password') }}" class="btn btn-primary pull-right" > {{ 'Mot de passe oublié '|trans }}</a>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

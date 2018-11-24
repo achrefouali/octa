@@ -1,0 +1,31 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un Programme{% endblock %}
+{% block subtitle %} Ajouter un Programme {% endblock %}
+{% block content %}
+
+    {% import 'back/programme/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Programme" ,
+            "class":"",
+            "value": {
+                "designation":"form-control",
+                "designationEn":"form-control",
+                "nbPlacesDisponibles":"form-control",
+                "emplacement":"form-control",
+                "description":"form-control ckeditor",
+                "descriptionEn":"form-control ckeditor",
+                "heureDebut":"form-control",
+                "heureFin":"form-control",
+                "inscriptionActive":"form-control",
+                "intervenants":"form-control",
+                "enabled":"form-control",
+            }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_programme_new', {journee: journee.id}), path('back_programme_index', {journee: journee.id}))}}
+{% endblock %}
+

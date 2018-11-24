@@ -1,0 +1,65 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Média{% endblock %}
+{% block subtitle %} Liste Documents {% endblock %}
+{% block content %}
+
+<a href="{{ path('back_document_new') }}" class="btn btn-success">+ Ajouter</a>&nbsp;
+{#<a href="{{ path('back_journee_index', {event: journee.event.id}) }}" class="btn btn-primary">Retour</a><br />#}
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-primary mb30">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Designation</th>
+                    <th>Lien</th>
+                    <th>Enabled</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for document in documents %}
+                    <tr>
+                        <td>{{ document.id }}</td>
+                        <td>{{ document.designation }}</td>
+                        <td>{{ document.file }}</td>
+                        <td>{{ document.enabled ? 'Yes' : 'No' }}</td>
+                        <td>{{ document.createdAt ? document.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ document.updatedAt ? document.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a href="{{ path('back_document_show', {'id': document.id}) }}"><i class="fa fa-eye"></i></a>
+                            <a href="{{ path('back_document_edit', {'id': document.id}) }}"><i class="fa fa-edit"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+            {% block javascripts %}
+                {{ parent() }}
+
+                <script>
+                    jQuery(document).ready(function () {
+
+                        "use strict";
+
+                        jQuery('.table').dataTable();
+                    });
+
+
+                    // Select2
+                    jQuery('select').select2({
+                        minimumResultsForSearch: -1
+                    });
+
+                    jQuery('select').removeClass('form-control');
+                </script>
+            {% endblock %}

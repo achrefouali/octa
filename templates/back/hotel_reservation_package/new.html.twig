@@ -1,0 +1,24 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un Hotel Réservation Package{% endblock %}
+{% block subtitle %} Ajouter un Hotel Réservation Package{% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "" ,
+            "class":"",
+            "value": {
+            "quantity":"form-control",
+            "reservation":"form-control",
+            "package":"form-control"
+        }
+        }
+    } %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_hotel_reservation_package_new'), path('back_hotel_reservation_package_index')) }}
+
+
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| {{ controller_name }}{% endblock %}
+{% block subtitle %} {{ controller_name }} {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": controller_name ,
+            "class":"",
+            "value": {
+            "notification":"form-control",
+            "participants":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_mass_mailing'))}}
+
+
+
+
+
+{% endblock %}

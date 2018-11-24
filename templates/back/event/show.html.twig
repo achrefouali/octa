@@ -1,0 +1,121 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>Conférénce</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><img width="150" src="{{ asset('uploads/events/' ~ event.logo) }}" /></td>
+            </tr>
+            <tr>
+                <th>Logo Facture</th>
+                <td><img width="150" src="{{ asset('uploads/events/' ~ event.logoFacture) }}" /></td>
+            </tr>
+            <tr>
+                <th>Désignation</th>
+                <td>{{ event.designation }}</td>
+            </tr>
+            <tr>
+                <th>Désignation 2</th>
+                <td>{{ event.designation2 }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ event.pays }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ event.ville }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ event.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ event.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ event.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event.description }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ event.keywords }}</td>
+            </tr>
+            <tr>
+                <th>Metadescription</th>
+                <td>{{ event.metadescription }}</td>
+            </tr>
+            <tr>
+                <th>Lien Facebook</th>
+                <td>{{ event.facebookLink }}</td>
+            </tr>
+            <tr>
+                <th>Lien Google</th>
+                <td>{{ event.googleLink }}</td>
+            </tr>
+            <tr>
+                <th>Lien Twitter</th>
+                <td>{{ event.tweeterLink }}</td>
+            </tr>
+            <tr>
+                <th>InstagramLink</th>
+                <td>{{ event.instagramLink }}</td>
+            </tr>
+
+            <tr>
+                <th>
+                     Programme
+                </th>
+                <td>
+                    {% if event.programFile is not null %}
+                    <a href="{{ asset('uploads/events/'~event.programFile) }}"><i class="fa fa-2x fa-download" title='{{ 'export' | trans }}' aria-hidden="true"></i> </a>
+{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                     Brochure
+                </th>
+                <td>
+                    {% if event.brochureFile is not null %}
+                    <a href="{{ asset('uploads/events/'~event.brochureFile) }}"><i class="fa fa-2x fa-download" title='{{ 'export' | trans }}' aria-hidden="true"></i> </a>
+{% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Documents</th>
+                <td>
+                    <ul>
+                        {% for documentField in event.documents %}
+                            <li>
+                                <a target="_blank"
+                                   href="{{ asset('uploads/medias/documents/' ~  documentField.file ) }}">{{ documentField.designation }}</a>
+
+                            </li>
+                            {% else %}
+                            <li>Pas de document ajouté</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_event_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('back_event_edit', {'id': event.id}) }}">Modifier</a>
+
+{% endblock %}

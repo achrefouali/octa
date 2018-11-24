@@ -1,0 +1,26 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter un Type de sponsors{% endblock %}
+{% block subtitle %} Ajouter un Type de sponsors {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Type de sponsors" ,
+            "class":"",
+            "value": {
+            "label":"form-control",
+            "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_sponsor_type_new'), path('back_sponsor_type_index'))}}
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste Configuration {% endblock %}
+{% block content %}
+
+    <a href="{{ path('back_configuration_new') }}" class="btn btn-success">+ Ajouter</a><br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Logo</th>
+                        <th>Pays</th>
+                        <th>Ville</th>
+                        <th>Telephone</th>
+                        <th>Fax</th>
+
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for configuration in configurations %}
+                        <tr>
+                            <td>{{ configuration.id }}</td>
+                            <td><img width="150" src="{{ asset('uploads/configuration/' ~ configuration.logo) }}" /></td>
+                            <td>{{ configuration.pays }}</td>
+                            <td>{{ configuration.ville }}</td>
+                            <td>{{ configuration.telephone }}</td>
+                            <td>{{ configuration.fax }}</td>
+                            <td>
+                                <a href="{{ path('back_configuration_show', {'id': configuration.id}) }}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('back_configuration_edit', {'id': configuration.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

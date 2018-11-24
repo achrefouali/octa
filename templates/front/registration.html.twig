@@ -1,0 +1,325 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Inscription | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+{% block main %}
+
+    <!--Banner-->
+    <section>
+        <div class="csi-banner csi-banner-inner">
+            <div class="csi-banner-style">
+                <div class="csi-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="csi-heading-area">
+                                    <ul class="breadcrumb">
+                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                        <li class="active">{{ 'Register'|trans }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--//.ROW-->
+                    </div>
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </div>
+    </section>
+    <!--Banner END-->
+    <section>
+        <br>
+        {#<div class="container">#}
+            {#<h3>{{ 'Registration'|trans }}</h3>#}
+        {#</div>#}
+        <div id="csi-about" class="csi-about">
+            <div class="">
+
+                <div class="container">
+
+                    <div class="stepwizard">
+                        <div class="stepwizard-row setup-panel">
+                            {% if bags['withHotel'] == false %}
+                            <div class="stepwizard-step step-information">
+                                <a href="#" type="button"
+                                   class="btn {% if step >=1 %}btn-primary{% else %}btn-default{% endif %} btn-circle"
+                                   {% if step <1 %}style="background-color: #eee;"disabled="disabled"{% endif %}>1</a>
+                                <p>{{ 'Personal Informations'|trans }}</p>
+                            </div>
+                            {% endif %}
+                            {% if bags['withHotel'] %}
+                            <div class="stepwizard-step step-hotel">
+                                <a href="#" type="button"
+                                   class="btn {% if step >=2 %}btn-primary{% else %}btn-default{% endif %} btn-circle"
+                                   {% if step <2 %}style="background-color: #eee;"disabled="disabled"{% endif %}>1</a>
+                                <p>{{ 'Hotel'|trans }}</p>
+                            </div>
+                            <div class="stepwizard-step step-supplement">
+                                <a href="#" type="button"
+                                   class="btn {% if step >=3 %}btn-primary{% else %}btn-default{% endif %} btn-circle"
+                                   {% if step <3 %}style="background-color: #eee;"disabled="disabled"{% endif %} >2</a>
+                                <p>{{ 'Informations'|trans }}</p>
+                            </div>
+                            {% endif %}
+                            <div class="stepwizard-step step-confirmation">
+                                <a href="#" type="button"
+                                   class="btn {% if step >=4 %}btn-primary{% else %}btn-default{% endif %} btn-circle"
+                                   {% if step <4 %}style="background-color: #eee;"disabled="disabled"{% endif %}>{% if bags['withHotel'] %}3{% else %} 2 {% endif %}</a>
+                                <p>{{ 'Confirmation'|trans }}</p>
+                            </div>
+                        </div>
+                    </div>
+<br />
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                   <br/>
+                    {% if step == 5 %}
+                        {% if success_hotel %}
+                            {% include 'front/registration/success.hotel.step.html.twig' %}
+                            {% else %}
+                                {% if password is not defined %}
+                                    {% set password = '' %}
+                                    {% endif %}
+                                {% include 'front/registration/success.step.html.twig' with {password: password} %}
+                                {% endif %}
+
+                    {% elseif step == 4 %}
+                        {% include 'front/registration/confirmation.step.html.twig' with {bags: bags} %}
+                    {% elseif step == 3 %}
+                        {% include 'front/registration/supplement.step.html.twig' %}
+                    {% elseif step == 2 %}
+                        {% include 'front/registration/hotel.step.html.twig'  %}
+                    {% else %}
+                        {% include 'front/registration/information.step.html.twig' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+    .bs-example{
+        margin: 20px;
+    }
+</style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+
+
+    {% if step == 2 %}
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+
+
+            //details hotel
+
+
+            jQuery('#checkbox').change(function () {
+                setInterval(function () {
+                    moveRight();
+                }, 3000);
+            });
+
+            var slideCount = jQuery('#slider-ul li').length;
+            var slideWidth = jQuery('#slider-ul li').width();
+            var slideHeight = jQuery('#slider-ul li').height();
+            var sliderUlWidth = slideCount * slideWidth;
+
+            //$('#slider').css({ width: slideWidth, height: slideHeight });
+
+            //$('#slider-ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+
+            jQuery('#slider-ul li:last-child').prependTo('#slider-ul');
+
+            function moveLeft() {
+                jQuery('#slider-ul').animate({
+                    left: +50
+                }, 200, function () {
+                    jQuery('#slider-ul li:last-child').prependTo('#slider-ul');
+                    jQuery('#slider-ul').css('left', '');
+                });
+            };
+
+            function moveRight() {
+                jQuery('#slider-ul').animate({
+                    left: -50
+                }, 200, function () {
+                    jQuery('#slider-ul li:first-child').appendTo('#slider-ul');
+                    jQuery('#slider-ul').css('left', '');
+                });
+            };
+
+            jQuery('div.control_prev').click(function () {
+                moveLeft();
+            });
+
+            jQuery('div.control_next').click(function () {
+                moveRight();
+            });
+
+            jQuery(".various").fancybox({
+                maxWidth: 800,
+                maxHeight: 600,
+                fitToView: false,
+                width: '70%',
+                height: '70%',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'none',
+                closeEffect: 'none'
+            });
+
+
+        </script>
+
+        {#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6EIxDI3edkQ8EbK19DQd9UMxPyYl5p8Q&callback=myMap"></script>#}
+
+
+
+
+    {% endif %}
+    <script type="text/javascript">
+
+        jQuery("#hotel-spinner-dates").show();
+
+        jQuery.post('{{ absolute_url(path("application_hotels_available_dates")) }}', {
+            event: '{{ event.id }}'
+        }, function (data) {
+
+
+
+            var availableStartDates = data;
+            console.log(data);
+             //console.log(availableStartDates);
+            jQuery('#hotel-spinner-dates').hide();
+
+            function availableStart(date) {
+                dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                console.log(dmy);
+                if (jQuery.inArray(dmy, availableStartDates) != -1) {
+                    return [true, "", "Available"];
+                } else {
+                    return [false, "", "unAvailable"];
+                }
+            }
+
+            jQuery('#hotelDateDebut').datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                todayHighlight: true,
+                language: "{{ app.request.locale }}",
+                startDate: availableStartDates[0],
+                endDate: availableStartDates[availableStartDates.length-1]
+
+            });
+            jQuery('#hotelDateFin').datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                todayHighlight: true,
+                language: "{{ app.request.locale }}",
+                startDate: availableStartDates[0],
+                endDate: availableStartDates[availableStartDates.length-1]
+
+            });
+            jQuery('#hotelDateDebut').datepicker('update');
+            jQuery('#hotelDateFin').datepicker('update');
+
+        });
+
+
+        var nb_jour_logement = 0;
+        function parseDate(str) {
+            var mdy = str.split('-');
+            return new Date(mdy[2], mdy[1], mdy[0]);
+        }
+
+        function datediff(first, second) {
+            // Take the difference between the dates and divide by milliseconds per day.
+            // Round to nearest whole number to deal with DST.
+            return Math.round((second-first)/(1000*60*60*24));
+        }
+        jQuery('#hotelDateDebut').on('change', function(){
+
+            var from = jQuery("#hotelDateDebut").val().split("-")
+            var f = new Date(from[2], from[1] - 1, from[0])
+//            var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
+            console.log(f);
+            var endDate = new Date();
+               endDate.setDate(f.getDate()+1);
+//            console.log(endDate)
+                var daya = endDate.getDate();
+
+                var month = f.getMonth()+1;
+            console.log(month)
+            if(month < 10 ){
+                month='0'+month;
+            }
+               var year = f.getFullYear();
+              var value= daya + '-' + month + '-' + year ;
+
+            jQuery('#hotelDateFin').val(value)
+
+            jQuery('#hotelDateFin').datepicker({
+                minDate: new Date(year, month, daya),
+                setDate: new Date(year, month, daya)
+            });
+            });
+
+
+
+
+        jQuery('#hotelDateFin').on('change', function(){
+             console.log(jQuery('#hotelDateDebut').val());
+             console.log(jQuery('#hotelDateFin').val());
+            nb_nights = datediff(parseDate(jQuery('#hotelDateDebut').val()), parseDate(jQuery('#hotelDateFin').val()));
+
+            jQuery('#nb_nights').html(nb_nights);
+
+                   // alert(nb_jour_logement);
+                  //  console.log("hotelprice * "+ nb_nights);
+
+
+        });
+
+    </script>
+
+    {% if step == 4 %}
+
+       <script type="text/javascript">
+           jQuery('#client_paymentMethod_1').on('click', function(){
+               jQuery(this).parent().find('a').trigger('click')
+           })
+
+           jQuery('#client_paymentMethod_2').on('click', function(){
+               jQuery(this).parent().find('a').trigger('click')
+           })
+       </script>
+
+    {% endif %}
+
+{% endblock %}

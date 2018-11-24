@@ -1,0 +1,91 @@
+{% macro form(state,form, fieldsets=[], class=null ,action=null, back_to=null,resultAcco=[]) %}
+
+    {% for fieldset in fieldsets %}
+        <div class="panel panel-default" {% if fieldset.class is defined %} {{ fieldset.class }} {% endif %}>
+            {{ form_start(form, {"attr": {"id": "my-id-here", "class": class, 'action': action, 'method': 'POST'}}) }}
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    {#<a href="" class="minimize">&minus;</a>#}
+                    {% if back_to is not null %}
+                        <a href="{{ back_to }}" class="btn btn-default">Retour à la liste</a>
+                    {% endif %}
+                </div>
+                <strong>{{ fieldset.libelle }}</strong>
+            </div>
+            <div class="panel-body panel-body-nopadding">
+                {% for field,class  in fieldset.value %}
+
+                    <div class="form-group">
+                        {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                        <div class="col-sm-11">
+                            {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                            {{ form_errors(attribute(form, field)) }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {{ form_rest(form) }}
+
+
+            </div>
+
+            <div class="panel-body panel-body-nopadding">
+                <strong>liste des accompagnants</strong>
+
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  if resultAcco|length >0 %}
+                    {% for result in resultAcco %}
+
+                        <tr>
+
+                            <td>{{ result.firstname }}</td>
+                            <td>{{ result.lastname }}</td>
+                            <td>{{ result.type }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    {% else %}
+                        <tr>Aucun accompagnants</tr>
+                    {% endif %}
+                    </tbody>
+                    </table>
+
+
+
+
+
+
+
+            </div>
+            <!-- panel-body -->
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary">Enregistrer</button>&nbsp;
+                        {% if state ==0 %}
+                        <button class="btn btn-primary" name="subsribeConfirmedWaiting">Confirmer enregistrement</button>&nbsp;
+                        <button class="btn btn-danger" name="rejected">Rejet</button>&nbsp;
+                            {% endif %}
+                        {% if state ==2 %}
+                            <button class="btn btn-primary" name="subsribeConfirmedPayed">Confirmer paiement</button>&nbsp;
+                            <button class="btn btn-primary" name="offred">Offre</button>&nbsp;
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div><!-- panel-footer -->
+            </form>
+        </div><!-- panel -->
+    {% endfor %}
+
+{% endmacro %}{# empty Twig template #}

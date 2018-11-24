@@ -1,0 +1,117 @@
+        {% import 'front/registration/macros/base_form.html.twig' as  form_macro  %}
+
+
+        {% set fields ={
+        0:
+            {
+                "libelle": "Inscription" ,
+                "class":"",
+                "value": {
+                "lastname":"form-control",
+                "firstname":"form-control",
+                "societe":"form-control",
+                "poste":"form-control",
+                "telephone":"form-control",
+                "email":"form-control",
+                "nationalite":"form-control",
+
+                "address":"form-control",
+                "codePostal":"form-control",
+                "country":"form-control",
+                "pays":"form-control",
+                "dateArrive":"form-control datepicker",
+                "heureArrival":"form-control",
+                "numVolArrive":"form-control",
+                "dateDepart":"form-control datepicker",
+                "heureDeparture":"form-control ",
+                "numVolDepart":"form-control ",
+                "tarif":"form-control",
+                "nbAccompanying":"form-control acco",
+
+
+
+
+            }
+            }
+        }
+        %}
+        {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('inscription_page'))}}
+        <script src="{{ asset('assets/front/js/vendor/jquery-1.12.4.min.js') }}">
+            (function($){})(jQuery);
+        </script>
+
+        <script type="text/javascript">
+
+
+            $(document).ready(function () {
+                var qeury =  "{{ query }}"
+                if(qeury){
+                    $('.panel-body').children().last().prev().remove();
+                    $('.panel-body').children().last().prev().remove();
+                }
+                $("#information_nbAccompanying").change(function(){
+                    $('.training-prices-container').remove()
+
+                    var number = $(this).val();
+                    var a = $('#information_nbAccompanying').parent().parent().parent();
+                    $('<div class="row training-prices-container">' +
+                            '</div>').insertAfter(a);
+
+                    for(var i =1; i<= number; i++){
+
+                        $('.training-prices-container').append
+                        ('<div class="col-md-12"> <div class="col-md-4"> <div class="form-group"> <label for="annual-amount-training['+ i +']">Nom</label> <br> <input type="text" name="accom['+ i +'][Nom]" id="Nom['+ i +']" class="prices form-control valid"  /> </div> </div> <div class="col-md-4"> <div class="form-group"> <label for="annual-amount-training['+ i +']">Prénom</label> <br> <input type="text" name="accom['+ i +'][Prenom]" id="Prenom['+ i +']" class="prices form-control valid"  /> </div> </div> <div class="col-md-4"> <div class="form-group"> <label for="annual-amount-training['+ i +']">Lien de parenté</label> <br> <select  name="accom['+ i +'][relation]" id="relation['+ i +']" class="prices form-control valid"  > <option value=0>Parent</option><option value=1>Epouse</option><option value=2>Enfant</option></select></div> </div> </div>');
+                    }
+                });
+            });
+
+
+        </script>
+
+
+
+
+
+            {#if(jQuery('#{{ form.withHotel.vars.id }}').is(':checked')){#}
+                {#jQuery('.step-hotel a').css("background-color", "transparent");#}
+            {#}#}
+
+            {#if(jQuery('#{{ form.withSupplement.vars.id }}').is(':checked')){#}
+                {#jQuery('.step-supplement a').css("background-color", "transparent");#}
+            {#}#}
+
+
+
+            {#jQuery('#{{ form.withHotel.vars.id }}').on('change', function(){#}
+                {#if(jQuery(this).is(':checked') || jQuery('#{{ form.withSupplement.vars.id }}').is(':checked')) {#}
+                    {#jQuery('#submit-button').text('Continuer');#}
+
+                {#}else {#}
+                    {#jQuery('#submit-button').text('Soumettre');#}
+
+                {#}#}
+
+
+                {#if(jQuery(this).is(':checked')){#}
+                    {#jQuery('.step-hotel a').css("background-color", "transparent");#}
+                {#}else {#}
+                    {#jQuery('.step-hotel a').css("background-color", "#eeeeee");#}
+                {#}#}
+            {#});#}
+
+            {#jQuery('#{{ form.withSupplement.vars.id }}').on('change', function(){#}
+                {#if(jQuery(this).is(':checked') || jQuery('#{{ form.withHotel.vars.id }}').is(':checked')) {#}
+                    {#jQuery('#submit-button').text('Continuer');#}
+
+                {#}else {#}
+                    {#jQuery('#submit-button').text('Soumettre');#}
+
+                {#}#}
+
+                {#if(jQuery(this).is(':checked')){#}
+                    {#jQuery('.step-supplement a').css("background-color", "transparent");#}
+                {#}else {#}
+                    {#jQuery('.step-supplement a').css("background-color", "#eeeeee");#}
+                {#}#}
+            {#});#}
+

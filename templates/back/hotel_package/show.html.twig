@@ -1,0 +1,42 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block content %}
+    <h1>un Package Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel_package.id }}</td>
+            </tr>
+            <tr>
+                <th>Désignation</th>
+                <td>{{ hotel_package.designation }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de personnes</th>
+                <td>{{ hotel_package.nbPersonnes }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><img width="150" src="{{ asset('uploads/hotels/packages/' ~ hotel_package.picture) }}"/></td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ hotel_package.enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ hotel_package.createdAt ? hotel_package.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jours le</th>
+                <td>{{ hotel_package.updatedAt ? hotel_package.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_hotel_package_index', {'hotel': hotel_package.hotel.id}) }}">back to list</a>
+
+    <a href="{{ path('back_hotel_package_edit', {'id': hotel_package.id}) }}">edit</a>
+{% endblock %}

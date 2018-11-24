@@ -1,0 +1,29 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Ajouter une Journée{% endblock %}
+{% block subtitle %} Ajouter une Journée {% endblock %}
+{% block content %}
+
+    {% import 'back/macros/base_form.html.twig' as  form_macro  %}
+
+
+    {% set fields ={  0:
+        {
+            "libelle": "Journée" ,
+            "class":"",
+            "value": {
+                "designation":"form-control",
+                "designation_en":"form-control",
+                "date":"form-control",
+                "enabled":"form-control"
+        }
+        }
+    }
+    %}
+    {{ form_macro.form(form,fields,'form-horizontal form-bordered', path('back_journee_new',{'event': event.id}), path('back_journee_index',{'event': event.id}))}}
+
+
+
+
+
+{% endblock %}
+
