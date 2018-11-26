@@ -773,7 +773,7 @@ class FrontController extends Controller
                 }
 
                 $em->persist($reservationEvent);
-
+                $bags['hotelPersist']=false ;
                 $total_price = (empty($reservation->getTotalPrice()))?0: $reservation->getTotalPrice();
                 $reservation->setTotalPrice(($total_price + $reservationEvent->getTotal()));
 
@@ -878,7 +878,7 @@ class FrontController extends Controller
 
 //                    if(empty($participant->getPassword()) || empty($participant->getSalt())){
                         //*envoi de mail ici */
-                        $password    = CodeGenerator::passwordGenerator(16);
+                        $password    = CodeGenerator::codeGeneratorForPassword();
                         $passwordtmp = $password;
                         $participant->setSalt(md5(uniqid()));
 
@@ -1033,7 +1033,9 @@ class FrontController extends Controller
                 $reservation->setTotalPrice(($total_price + $reservationHotel->getTotal()));
 
                 $em->persist($reservationHotel);
+                $bags['hotelPersist']=true ;
                 $reservation->addReservationsHotel($reservationHotel);
+
             }
 
             if (!empty($bags['supplements'])) {
@@ -1065,6 +1067,18 @@ class FrontController extends Controller
 
             $em->persist($reservation);
             $em->flush();
+
+            if($bags['withEvent']){
+                $bags['reservationId']= $reservationEvent->getId();
+            }
+            if($bags['withHotel']) {
+                $bags['reservationId']= $reservationHotel->getId();
+            }
+
+
+
+            $session->set('registration_bags', $bags);
+
 
             $html   = $this->renderView(
                 'front/registration/reservation.hotel.ticket.html.twig',
@@ -1128,6 +1142,18 @@ class FrontController extends Controller
 
             }
 }
+            if($bags['withEvent']){
+                $bags['reservationId']= $reservationEvent->getId();
+            }
+            if($bags['withHotel']) {
+                $bags['reservationId']= $reservationHotel->getId();
+            }
+
+
+
+            $session->set('registration_bags', $bags);
+
+
             return $this->redirect($this->generateUrl('inscription_success_page'));
         }
 
@@ -1174,9 +1200,15 @@ class FrontController extends Controller
         $session->set('registration_bags', $bags);
 
         $success_hotel = false;
+
         if (!empty($bags['hotels'])) {
             $success_hotel = true;
+
         }
+        
+        
+
+
 
 
         $event = $this->getDoctrine()
@@ -1195,6 +1227,7 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+
 
 
         return $this->render(

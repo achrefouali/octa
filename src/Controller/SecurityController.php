@@ -110,7 +110,8 @@ class SecurityController extends Controller
                     'devises'             => $devises
                 ));
             }
-            $passwordGen    = CodeGenerator::passwordGenerator(16);
+            $passwordGen    = CodeGenerator::codeGeneratorForPassword();
+
             $participant->setSalt(md5(uniqid()));
 
             // the 'security.password_encoder' service requires Symfony 2.6 or higher
