@@ -1520,8 +1520,8 @@ hr {
 }
 .header-navbar .navbar-brand img {
  width: 220px;
- height: auto;
- margin-left: 30%;
+ margin-left: 100%;
+ margin-bottom: 10%;
 }
 .header-navbar .navbar {
  margin-bottom: 0;
@@ -1531,6 +1531,9 @@ hr {
  border: none;
  padding: 0;
  margin-bottom: 1%;
+ width: 1700px;
+ max-width: 100%;
+ margin: 0 auto;
 }
 .header-navbar .navbar-default .navbar-nav>li>a {
  color: #333333;
@@ -1652,4 +1655,357 @@ hr {
  padding-left: 0px;
  padding-right: 10px;
  margin-bottom: 4px;
+}
+.info-top-bar{
+ margin-top: 2%;
+}
+.img-top-bar{
+ margin-right: 6%;
+ margin-top: 1%;
+ margin-bottom: -2%;
+}
+
+//04. Slider CSS
+
+.main-slider-area {
+ overflow: hidden;
+}
+
+/* Fade Effect start */
+.carousel-fade .carousel-inner .item {
+ height: 100vh;
+ opacity: 0.6;
+ -webkit-transition-property: opacity;
+ -moz-transition-property: opacity;
+ -o-transition-property: opacity;
+ transition-property: opacity;
+}
+.carousel-fade .carousel-inner .active {
+ opacity: 1;
+}
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+ left: 0;
+ opacity: 0;
+ z-index: 1;
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+ opacity: 1;
+}
+.carousel-fade .carousel-control {
+ z-index: 99;
+}
+.main-slider-area .carousel-control .glyphicon-chevron-right {
+ right: 20px;
+}
+.main-slider-area .carousel-control .glyphicon-chevron-left {
+ left: 10px;
+}
+.main-slider-area .carousel-control.right,
+.main-slider-area .carousel-control.left {
+ width: 0;
+}
+.glyphicon-chevron-right:before {
+ content: "\f105";
+ font-family: FontAwesome;
+ font-style: normal;
+ font-weight: normal;
+ background: #000000;
+ padding: 10px 15px;;
+}
+.glyphicon-chevron-left:before {
+ content: "\f104";
+ font-family: FontAwesome;
+ font-style: normal;
+ font-weight: normal;
+ background: #000000;
+ padding: 10px 15px;;
+}
+/* Full screen slider start */
+.carousel-caption {
+ position: absolute;
+ right: 0;
+ left: 0;
+ top: 50%;
+ text-align: inherit;
+ padding: 0 150px;
+ text-shadow: none;
+ -moz-transform: translateY(-25%);
+ -ms-transform: translateY(-25%);
+ -o-transform: translateY(-25%);
+ -webkit-transform: translateY(-25%);
+ transform: translateY(-25%);
+}
+.slide-1 {
+ background: url(../images/slider/1.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ position: relative;
+}
+.slide-2 {
+ background: url(../images/slider/2.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ position: relative;
+}
+.slide-3 {
+ background: url(../images/slider/3.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ position: relative;
+}
+//.slide-newone {
+// background: url(../images/slider/4.jpg);
+// background-repeat: no-repeat;
+// background-size: cover;
+// background-position: center;
+// position: relative;
+//}
+.slide-1:before, .slide-2:before, .slide-3:before, .slide-newone:before {
+ content: "";
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 0;
+ background: rgba(0, 0, 0, 0.5);
+}
+.carousel-indicators {
+ bottom: 0;
+}
+.carousel-control.right,
+.carousel-control.left {
+ background-image: none;
+}
+.carousel .item {
+ height: 75vh;
+ width:100%;
+}
+.carousel-caption p {
+ letter-spacing: 10px;
+ font-size: 16px;
+ text-transform: capitalize;
+}
+.carousel-caption h3 {
+ color: #ffffff;
+ font-size: 40px;
+ margin-top: 20px;
+ margin-bottom: 30px;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ text-transform: capitalize;
+}
+.carousel-caption h3 span {
+ color: #FFCD00;
+}
+.carousel-caption .btn {
+ font-size: 14px;
+ padding: 10px 30px;
+ border: 1px solid #ffffff;
+ color: #ffffff;
+ border-radius: 0;
+ background: transparent;
+ text-transform: uppercase;
+ -webkit-transition: all 0.3s ease-in-out;
+ -moz-transition: all 0.3s ease-in-out;
+ -o-transition: all 0.3s ease-in-out;
+ -ms-transition: all 0.3s ease-in-out;
+ transition: all 0.3s ease-in-out;
+}
+.carousel-caption .btn:hover {
+ background: #FFCD00;
+ border-color: #FFCD00;
+ -webkit-transition: all 0.3s ease-in-out;
+ -moz-transition: all 0.3s ease-in-out;
+ -o-transition: all 0.3s ease-in-out;
+ -ms-transition: all 0.3s ease-in-out;
+ transition: all 0.3s ease-in-out;
+}
+
+
+/* Animation delays */
+.carousel-caption h3:nth-child(2) {
+ animation-delay: 1s;
+}
+.carousel-caption a {
+ animation-delay: 2s;
+}
+.p {
+ padding-top: 125px;
+ text-align: center;
+}
+
+.p a {
+ text-decoration: underline;
+}
+.csi-title{
+ font-size: 8rem !important;
+ line-height: 16.5rem !important;
+ font-family: Oswald,sans-serif !important;
+ margin-top: -10%;
+}
+.csi-countdown-area .csi-countdown-area-inner{
+ text-align: center !important;
+}
+//#csi-countdown{
+// margin-bottom: 4%;
+//}
+.csi-about-content-area{
+ margin-top: 7%;
+}
+
+/*****-----*****-----*****-----*****
+    10. Team CSS
+*****-----*****-----*****-----*****/
+.team-area {
+ padding: 120px 0;
+}
+.our-team{
+ position:relative;
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team .team-pic > img{
+ width: 100%;
+ height: auto;
+ border: 1px solid #dddddd;
+ margin-bottom: -30px;
+ margin-right: 1px;
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team:hover img {
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team .team-profile{
+ text-align: center;
+ background: #FFCD00;
+ position: relative;
+ width: 100%;
+ padding: 20px 20px;
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team:hover .team-profile {
+ position: relative;
+ z-index: 99;
+ background: #40486D;
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team .team-profile:before{
+ content: "";
+ border-bottom: 28px solid #FFCD00;
+ border-right: 120px solid transparent;
+ position: absolute;
+ top: -25px;
+ left: 0;
+ z-index: 0;
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team:hover .team-profile:before {
+ border-bottom-color: #40486D;
+ -webkit-transition: all 0.4s ease;
+ -moz-transition: all 0.4s ease;
+ -o-transition: all 0.4s ease;
+ -ms-transition: all 0.4s ease;
+ transition: all 0.4s ease;
+}
+.our-team .team-title{
+ line-height: 22px;
+ display: inline-block;
+}
+/*.our-team .team-title:after{
+    content:"";
+    display: block;
+    width: 10%;
+    border-bottom:2px solid #fff;
+    padding-bottom:5px;
+}*/
+.our-team .team-title a{
+ font-size: 18px;
+ text-transform: capitalize;
+ color: #fff;
+ display: block;
+ -webkit-transition: all 0.4s ease-in-out;
+ -moz-transition: all 0.4s ease-in-out;
+ -o-transition: all 0.4s ease-in-out;
+ -ms-transition: all 0.4s ease-in-out;
+ transition: all 0.4s ease-in-out;
+}
+.our-team .team-title a:hover{
+ color:#FFCD00;
+ text-decoration: none;
+}
+.our-team .team-title > small{
+ font-size: 13px;
+ color:#fff
+}
+.our-team .team-social{
+ padding:0;
+}
+.our-team .team-social > li{
+ display: inline-block;
+ margin-right: 12px;
+}
+.our-team .team-social > li > a{
+ color:#fff;
+ font-size:18px;
+}
+.our-team .team-social > li > a:hover{
+ text-decoration: none;
+ color: #FFCD00;
+}
+
+.team-area .owl-theme .owl-nav {
+ margin-top: 0;
+}
+.team-area .owl-theme .owl-nav [class*=owl-] {
+ padding: 0px 25px;
+ border-radius: 0;
+ color: #3C4767;
+ font-size: 20px;
+}
+.team-area .owl-carousel .owl-nav .owl-next {
+ position: absolute;
+ right: -15px;
+ top: 35%;
+}
+.team-area .owl-carousel .owl-nav .owl-prev {
+ position: absolute;
+ left: -15px;
+ top: 35%;
+}
+
+/* Team Two CSS */
+.team-inner-area {
+ padding: 120px 0 90px;
+}
+.team-inner-area .our-team {
+ margin-bottom: 30px;
 }
