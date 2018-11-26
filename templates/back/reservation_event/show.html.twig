@@ -6,31 +6,64 @@
     <table class="table">
         <tbody>
 
-        <tr>
-            <th>Code</th>
-            <td>{{ reservation_event.code }}</td>
-        </tr>
-        <tr>
-            <th>Référence</th>
-            <td>{{ reservation_event.reservation.reservationRef }}</td>
-        </tr>
+
             <tr>
                 <th>Id</th>
                 <td>{{ reservation_event.id }}</td>
             </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ reservation_event.code }}</td>
+            </tr>
+            <tr>
+                <th>Référence</th>
+                <td>{{ reservation_event.reservation.reservationRef }}</td>
+            </tr>
+
 
             <tr>
                 <th>Totale</th>
                 <td>{{ reservation_event.total }}</td>
             </tr>
             <tr>
+                <th>Montant réçu</th>
+                <td>{{ reservation_event.receivedAmout }}</td>
+            </tr>
+            <tr>
                 <th>Méthode de paiement</th>
                 <td>{{  ("back.reservation.paymentMethod."~ reservation_event.paymentMethod)|trans({},'back', 'fr') }}</td>
+            </tr>
+            <tr>
+                <th>Hotel</th>
+                <td>{{reservation_event.hotel ? reservation_event.hotel.designation : ''  }}</td>
+            </tr>
+            <tr>
+                <th>Type de paiement</th>
+                <td>{{ reservation_event.formattedPaiementType }}</td>
+            </tr>
+
+            <tr>
+                <th>Devise</th>
+                <td>{{ reservation_event.formattedCurrency }}</td>
+            </tr>
+            <tr>
+                <th>Obs paiement</th>
+                <td>{{ reservation_event.obsPaiement }}</td>
+            </tr>
+            <tr>
+                <th>Date de  paiement</th>
+                <td>{{ reservation_event.datePaiement ? reservation_event.datePaiement|date('Y-m-d H:i:s') : ''  }}</td>
+            </tr>
+
+            <tr>
+                <th>Opérateur</th>
+                <td>{{ reservation_event.operator }}</td>
             </tr>
             <tr>
                 <th>Actif</th>
                 <td>{{ reservation_event.enabled ? 'Oui' : 'Non' }}</td>
             </tr>
+
             <tr>
                 <th>Crée le</th>
                 <td>{{ reservation_event.createdAt ? reservation_event.createdAt|date('Y-m-d H:i:s') : '' }}</td>

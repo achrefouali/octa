@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ReservationEvent;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -179,9 +180,19 @@ class ReservationEventType extends AbstractType
                     'readonly' => true],
                 
             ])
+            ->add('hotel', TextType::class, [
+                'attr' => [ 'diseabled' => true,
+                    'readonly' => true],
+
+            ])
        
             ->add('total')
-
+          
+            ->add('receivedAmout', TextType::class, [
+                'label' => 'form.receivedAmout',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
             ->add('paymentMethod', ChoiceType::class, [
                 'choices' => array_flip($options['paymentMethods']),
                 'choices_as_values' => true,
@@ -209,8 +220,42 @@ class ReservationEventType extends AbstractType
                 'data'=>$options['resevation']->getReservationRef(),
                 'mapped'=>false
             ])
-            
+            ->add('paiementType', ChoiceType::class, [
+                'choices' => array_flip($options['paymentType']),
+                'choices_as_values' => true,
+                'required'=>false,
+                'placeholder'=>'Choisir un type de paiement',
+                'label' => 'form.paiementType',
+                'translation_domain' => "front"
+            ])
 
+            ->add('datePaiement', DateType::class, [
+                'widget' => 'single_text',
+                'label' => 'form.datePaiement',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
+
+            ->add('obsPaiement', TextType::class, [
+                'label' => 'form.obsPaiement',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
+            ->add('operator', TextType::class, [
+                'label' => 'form.operator',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
+
+            ->add('currency', ChoiceType::class, [
+                'choices' => array_flip($options['currencyType']),
+                'choices_as_values' => true,
+                'required'=>false,
+                'placeholder'=>'Choisir une devise',
+                'label' => 'form.currency',
+                'translation_domain' => "front"
+            ])
+            
         ;
 
 
@@ -225,6 +270,8 @@ class ReservationEventType extends AbstractType
             'state' => null,
             'event'=>null,
             'resevation'=>null,
+            'paymentType'=>null,
+            'currencyType'=>null,
         ]);
     }
 }

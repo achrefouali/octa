@@ -92,7 +92,12 @@ form:
     nbAccompanying: "Nombre des accompagnants"
     tarif: "Tarif accompagnant"
     pays: "Pays*"
-
+    receivedAmout: "Montant Réçu"
+    paiementType: "Type de paiement"
+    datePaiement: "Date de paiement"
+    obsPaiement: "Obs paiement"
+    operator: "Opérateur"
+    currency: "Devise"
 
 Live Streaming: 'Diffusion en ligne'
 Back To Home: "Revenir à l'acceuil"
@@ -115,7 +120,7 @@ Payment method information: "Informations sur le mode paiement"
 paymentMethod:
     0: "Offre"
     1: "Paiement à l'arrivé"
-    2: "Versement"
+    2: "Virement"
 Agency: Agence
 Account ID: Numéro de compte
 Swift: Code Swift
