@@ -120,6 +120,31 @@ class ReservationEvent
      * @ORM\Column(name="devis", type="string", length=255, nullable=true)
      */
     private $devis;
+
+    /**
+     * @var \App\Entity\Hotel
+     *
+     * @ORM\ManyToOne(targetEntity="Hotel", cascade={"persist"} )
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="hotel_id", referencedColumnName="id", nullable=true)
+     * })
+     *
+     */
+    private $hotel;
+
+  public function getHotel()
+{
+    return $this->hotel;
+}
+
+    public function setHotel($hotel)
+{
+    $this->hotel = $hotel;
+
+    return $this;
+}
+
+
   public function getDevis()
 {
     return $this->devis;
