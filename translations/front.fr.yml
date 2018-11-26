@@ -115,7 +115,7 @@ Payment method information: "Informations sur le mode paiement"
 paymentMethod:
     0: "Offre"
     1: "Paiement à l'arrivé"
-    2: "Versement"
+    2: "Virement"
 Agency: Agence
 Account ID: Numéro de compte
 Swift: Code Swift

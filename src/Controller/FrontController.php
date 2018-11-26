@@ -304,7 +304,7 @@ class FrontController extends Controller
      */
     public function registration(Request $request)
     {
-        $query=$request->query->has('from');
+        $query=$request->query->has('from') || !$request->query->has('tarif')  ;
        
         $event = $this->getDoctrine()
                       ->getRepository(Event::class)
@@ -766,8 +766,19 @@ class FrontController extends Controller
             if($bags['withEvent']){
                 $reservationEvent = new ReservationEvent();
                 $reservationEvent->setEvent($event);
-                $reservationEvent->setTotal($bags['tarifEvent']);
+                $totalAc=0;
+                if(isset($bags['accom'])){
+                    if(!empty($bags['accom'])){
+                        $nbAccompagnat = sizeof($bags['accom']);
+                        $totalAc = $bags['tarifAcco']*$nbAccompagnat;
+                    }
+                }
+                $reservationEvent->setTotal($bags['tarifEvent']+$totalAc);
                 $reservationEvent->setPaymentMethod($payment_method);
+                if(isset($bags['informations']['hotel'])){
+                    $hotelObject = $this->getDoctrine()->getRepository(Hotel::class)->find($bags['informations']['hotel']);
+                    $reservationEvent->setHotel($hotelObject);
+                }
                 if(isset($bags['file'])){
                     $reservationEvent->setDevis($bags['file']);
                 }

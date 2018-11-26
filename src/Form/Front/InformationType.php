@@ -190,6 +190,20 @@ class InformationType extends AbstractType
                  'translation_domain' => "front"
              ]);
          }
+        $builder
+
+            ->add('hotel', EntityType::class, [
+                'class' => 'App\Entity\Hotel',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.designation', 'ASC');
+                },
+                'required'=>false,
+                'placeholder'=>'Choisir un hotel'
+
+//                'label'=>'form.pays'
+//                 'translation_domain' => "front"
+            ]);
 
        
     }

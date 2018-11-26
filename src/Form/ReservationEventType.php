@@ -179,6 +179,11 @@ class ReservationEventType extends AbstractType
                     'readonly' => true],
                 
             ])
+            ->add('hotel', TextType::class, [
+                'attr' => [ 'diseabled' => true,
+                    'readonly' => true],
+
+            ])
        
             ->add('total')
 
@@ -209,6 +214,7 @@ class ReservationEventType extends AbstractType
                 'data'=>$options['resevation']->getReservationRef(),
                 'mapped'=>false
             ])
+
             
 
         ;
