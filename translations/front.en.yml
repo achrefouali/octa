@@ -91,6 +91,11 @@ form:
     heureDeparture: "Departure Time"
     nbAccompanying: "Number of accompanying"
     tarif: "Accompanying price"
+    receivedAmout: "Received Amount"
+    paiementType: "Type de paiement"
+    datePaiement: "Date de paiement"
+    obsPaiement: "Obs paiement"
+    operator: "Opérateur"
 Live Streaming: 'Live Streaming'
 Where: "Where"
 When: "Date"

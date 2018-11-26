@@ -182,6 +182,11 @@ class ReservationHotelType extends AbstractType
 
             ])
             ->add('total')
+            ->add('receivedAmout', TextType::class, [
+                'label' => 'form.receivedAmout',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
             ->add('nbJours')
             ->add('paymentMethod', ChoiceType::class, [
                 'choices' => array_flip($options['paymentMethods']),
@@ -203,6 +208,34 @@ class ReservationHotelType extends AbstractType
                 'mapped'=>false,
 
             ])
+
+            ->add('paiementType', ChoiceType::class, [
+                'choices' => array_flip($options['paymentType']),
+                'choices_as_values' => true,
+                'required'=>false,
+                'attr'=>['placeholder'=>'choisir un type de paiement'],
+                'label' => 'form.paiementType',
+                'translation_domain' => "front"
+            ])
+
+            ->add('datePaiement', DateType::class, [
+                'widget' => 'single_text',
+                'label' => 'form.datePaiement',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
+
+            ->add('obsPaiement', TextType::class, [
+                'label' => 'form.obsPaiement',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
+            ->add('operator', TextType::class, [
+                'label' => 'form.operator',
+                'required'=>false,
+                'translation_domain' => "front"
+            ])
+
             
         ;
     }
@@ -215,6 +248,7 @@ class ReservationHotelType extends AbstractType
             'participant' => null,
             'reservation' => null,
             'state' => null,
+            'paymentType' => null,
         ]);
     }
 }

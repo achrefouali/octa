@@ -21,10 +21,15 @@
                 <th>Total</th>
                 <td>{{ reservation_hotel.total }}</td>
             </tr>
+        <tr>
+            <th>Montant réçu</th>
+            <td>{{ reservation_hotel.receivedAmout }}</td>
+        </tr>
             <tr>
                 <th>Nb de Jours</th>
                 <td>{{ reservation_hotel.nbJours }}</td>
             </tr>
+
             <tr>
                 <th>Date Début</th>
                 <td>{{ reservation_hotel.dateDebut ? reservation_hotel.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
@@ -37,6 +42,24 @@
                 <th>Actif</th>
                 <td>{{ reservation_hotel.enabled ? 'Oui' : 'Non' }}</td>
             </tr>
+
+        <tr>
+            <th>Type de paiement</th>
+            <td>{{ reservation_hotel.formattedPaiementType }}</td>
+        </tr>
+        <tr>
+            <th>Obs paiement</th>
+            <td>{{ reservation_hotel.obsPaiement }}</td>
+        </tr>
+        <tr>
+            <th>Date de  paiement</th>
+            <td>{{ reservation_hotel.datePaiement ? reservation_event.datePaiement|date('Y-m-d H:i:s') : ''  }}</td>
+        </tr>
+
+        <tr>
+            <th>Opérateur</th>
+            <td>{{ reservation_hotel.operator }}</td>
+        </tr>
             <tr>
                 <th>Crée le</th>
                 <td>{{ reservation_hotel.createdAt ? reservation_hotel.createdAt|date('Y-m-d H:i:s') : '' }}</td>

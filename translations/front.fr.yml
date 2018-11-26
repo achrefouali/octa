@@ -92,7 +92,11 @@ form:
     nbAccompanying: "Nombre des accompagnants"
     tarif: "Tarif accompagnant"
     pays: "Pays*"
-
+    receivedAmout: "Montant Réçu"
+    paiementType: "Type de paiement"
+    datePaiement: "Date de paiement"
+    obsPaiement: "Obs paiement"
+    operator: "Opérateur"
 
 Live Streaming: 'Diffusion en ligne'
 Back To Home: "Revenir à l'acceuil"

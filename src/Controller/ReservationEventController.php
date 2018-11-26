@@ -76,6 +76,7 @@ class ReservationEventController extends Controller
     public function edit(Request $request, ReservationEvent $reservationEvent ,\Swift_Mailer $mailer): Response
     {
         $paymentMethods = $this->getParameter('paymentMethod');
+        $paymentType = $this->getParameter('paymentType');
         $participant = $reservationEvent->getReservation()->getParticipant();
         $stateFormatted = $reservationEvent->getReservation()->getFormattedState();
         $event=    $reservationEvent->getEvent();
@@ -99,6 +100,7 @@ class ReservationEventController extends Controller
             'state'=>$stateFormatted,
             'event'=>$event,
             'resevation'=>$resevation,
+            'paymentType'=>$paymentType,
         ]);
 
         $form->handleRequest($request);

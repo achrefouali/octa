@@ -422,8 +422,4 @@ public function setDateArrive( $dateArrive)
 }
 
 
-
-
-
-
 }
