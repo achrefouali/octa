@@ -16,7 +16,7 @@ parameters:
     paymentMethod:
         0: "Offre"
         1: "Paiement à l'arrivé"
-        2: "Versement"
+        2: "Virement"
     notificationType:
         1: "Courriel informatif d'inscription administrateur"
         2: "Courriel de bienvenue lors de l'inscription"
@@ -25,3 +25,9 @@ parameters:
         5: "Courriel informant le nouveau email et mot de passe"
         6: "Courriel informant le nouveau email"
         7: "Divers"
+    paymentType:
+        0: "Carte Bancaire"
+        1: "Virement"
+        2: "Chéque bancaire"
+        3: "Bon de commande"
+        4: "Liquide"
