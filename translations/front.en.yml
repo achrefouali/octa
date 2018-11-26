@@ -96,6 +96,7 @@ form:
     datePaiement: "Date de paiement"
     obsPaiement: "Obs paiement"
     operator: "Opérateur"
+    currency: "Devise"
 Live Streaming: 'Live Streaming'
 Where: "Where"
 When: "Date"

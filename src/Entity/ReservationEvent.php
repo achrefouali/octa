@@ -192,8 +192,23 @@ public function setReceivedAmout($receivedAmout){
     $this->receivedAmout = $receivedAmout;
     return $this;
 }
+/**
+ * @var integer
+ *
+ * @ORM\Column(name="currency",type="integer", nullable=true)
+ */
+    private $currency;
+   public function getCurrency()
+{
+    return $this->currency;
+}
 
+    public function setCurrency( $currency)
+{
+    $this->currency = $currency;
 
+    return $this;
+}
 /**
  * @var integer
  *
@@ -232,7 +247,7 @@ public function setReceivedAmout($receivedAmout){
     $this->paiementType = $paiementType;
 
     return $this;
-}
+} 
 
     public function getObsPaiement()
 {
@@ -279,6 +294,16 @@ public function getFormattedPaiementType(){
         case 2: return ('Chéque bancaire');
         case 3: return ('Bon de commande');
         case 4: return ('Liquide');
+
+    }
+}
+
+public function getFormattedCurrency(){
+    switch($this->currency){
+        case 0: return ('Dinars');
+        case 1: return ('Euros');
+        case 2: return ('Dollars');
+       
 
     }
 }

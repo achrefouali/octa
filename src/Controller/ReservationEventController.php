@@ -77,6 +77,7 @@ class ReservationEventController extends Controller
     {
         $paymentMethods = $this->getParameter('paymentMethod');
         $paymentType = $this->getParameter('paymentType');
+        $currencyType = $this->getParameter('currencyType');
         $participant = $reservationEvent->getReservation()->getParticipant();
         $stateFormatted = $reservationEvent->getReservation()->getFormattedState();
         $event=    $reservationEvent->getEvent();
@@ -101,6 +102,7 @@ class ReservationEventController extends Controller
             'event'=>$event,
             'resevation'=>$resevation,
             'paymentType'=>$paymentType,
+            'currencyType'=>$currencyType,
         ]);
 
         $form->handleRequest($request);

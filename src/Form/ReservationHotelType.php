@@ -236,6 +236,15 @@ class ReservationHotelType extends AbstractType
                 'translation_domain' => "front"
             ])
 
+            ->add('currency', ChoiceType::class, [
+                'choices' => array_flip($options['currencyType']),
+                'choices_as_values' => true,
+                'required'=>false,
+                'placeholder'=>'Choisir une devise',
+                'label' => 'form.currency',
+                'translation_domain' => "front"
+            ])
+
             
         ;
     }
@@ -249,6 +258,7 @@ class ReservationHotelType extends AbstractType
             'reservation' => null,
             'state' => null,
             'paymentType' => null,
+            'currencyType' => null,
         ]);
     }
 }

@@ -97,6 +97,7 @@ form:
     datePaiement: "Date de paiement"
     obsPaiement: "Obs paiement"
     operator: "Opérateur"
+    currency: "Devise"
 
 Live Streaming: 'Diffusion en ligne'
 Back To Home: "Revenir à l'acceuil"

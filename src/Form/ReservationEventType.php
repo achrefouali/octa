@@ -246,6 +246,15 @@ class ReservationEventType extends AbstractType
                 'required'=>false,
                 'translation_domain' => "front"
             ])
+
+            ->add('currency', ChoiceType::class, [
+                'choices' => array_flip($options['currencyType']),
+                'choices_as_values' => true,
+                'required'=>false,
+                'placeholder'=>'Choisir une devise',
+                'label' => 'form.currency',
+                'translation_domain' => "front"
+            ])
             
         ;
 
@@ -262,6 +271,7 @@ class ReservationEventType extends AbstractType
             'event'=>null,
             'resevation'=>null,
             'paymentType'=>null,
+            'currencyType'=>null,
         ]);
     }
 }
