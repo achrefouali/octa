@@ -54,7 +54,7 @@
                 {% if is_granted('ROLE_USER') == false %}
                     {#<li class="dropdown"><a class="csi-scroll csi-btn" href="#">{{ 'Registration'|trans }}</a>#}
                         {#<ul class="dropdown-menu">#}
-                            <li><a class="csi-scroll " href="{{ current_path }}#csi-registration">{{ 'Registration'|trans }}</a></li>
+                            <li><a class="csi-scroll " href="{{ path('application_event_inscription_option') }}">{{ 'Registration'|trans }}</a></li>
                             <li><a class="csi-scroll"   href="{{ path('inscription_hotel_page') }}">{{ 'Booking'|trans }}</a></li>
 
                         {#</ul>#}

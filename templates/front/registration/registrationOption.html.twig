@@ -1,0 +1,213 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Enregistrement | {{ parent() }}{% endblock %}
+{% block body_attr %}class="page page-template" style="background:#f9f9f9;"{% endblock %}
+
+    {% block main %}
+        <!--Banner-->
+        <!--REGISTRATION-->
+
+
+<section>
+    <div class="csi-banner csi-banner-inner">
+        <div class="csi-banner-style">
+            <div class="csi-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="csi-heading-area">
+                                <ul class="breadcrumb">
+                                    <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                    <li class="active">{{ 'Enregistrement'|trans }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!--//.ROW-->
+                </div>
+            </div>
+            <!-- //.INNER -->
+        </div>
+    </div>
+</section>
+<!--Banner END-->
+
+
+        <section>
+        <div id="csi-registration" class="csi-registration">
+        <div class="csi-inner">
+        <div class="container" >
+        <div class="row">
+        <div class="col-xs-12">
+        <div class="csi-registration-area">
+
+        {% for tarif in event.tarifs %}
+        <div class="csi-single-registration {% if loop.index == 1 %}recommended{% endif %}">
+        <div class="csi-single-registration ">
+        <div class="csi-single-registration-inner">
+        <div class="single-top">
+        <h3 class="title">{{ 'Registration'|trans }} {{ tarif.label }}</h3>
+        <h3 class="title"> {{ tarif.label }}</h3>
+        <h4 class="price">{{ getPriceByDevise(tarif.prix, app.session.get('currency')) }}
+        <i>{{ getDevise(app.session.get('currency')) }}</i><span></span>
+        </h4>
+        </div>
+        <div class="single-bottom">
+        <ul class="list-unstyled list">
+        {% for participantType in tarif.participantTypes %}
+        <li>{{ participantType.label }}</li>
+        {% endfor %}
+        </ul>
+        <a class="csi-btn"
+        href="{{ path('inscription_page', {tarif: tarif.id}) }}"><span>{{ 'Book now'|trans }}</span></a>
+        </div>
+        </div>
+        </div>
+        {% endfor %}
+
+        </div>
+        </div>
+        </div>
+        </div><!-- //.CONTAINER -->
+        </div><!-- //.INNER -->
+        </div>
+        </div>
+        </section>
+
+
+        {#<section class="pricing-area">#}
+            {#<div class="container">#}
+                {#<div class="row">#}
+                    {#<div class="col-md-4 col-sm-6 col-xs-6 fw600">#}
+                        {#<div class="pricingTable">#}
+                            {#<div class="price-value">#}
+                                {#<h2>$10</h2>#}
+                                {#<span class="month">monthly</span>#}
+                            {#</div>#}
+                            {#<div class="pricing-content">#}
+                                {#<h3 class="title">Standard</h3>#}
+                                {#<ul>#}
+                                    {#<li>50 GB Disk Space</li>#}
+                                    {#<li>50 Email Accounts</li>#}
+                                    {#<li>50 GB Monthly Bandwidth</li>#}
+                                    {#<li>10 Subdomains</li>#}
+                                    {#<li>15 Domains</li>#}
+                                {#</ul>#}
+                                {#<a href="#" class="simple-btn">Sign Up</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col-md-4 col-sm-6 col-xs-6 fw600">#}
+                        {#<div class="pricingTable">#}
+                            {#<div class="price-value">#}
+                                {#<h2>$20</h2>#}
+                                {#<span class="month">monthly</span>#}
+                            {#</div>#}
+                            {#<div class="pricing-content">#}
+                                {#<h3 class="title">Business</h3>#}
+                                {#<ul>#}
+                                    {#<li>50 GB Disk Space</li>#}
+                                    {#<li>50 Email Accounts</li>#}
+                                    {#<li>50 GB Monthly Bandwidth</li>#}
+                                    {#<li>10 Subdomains</li>#}
+                                    {#<li>15 Domains</li>#}
+                                {#</ul>#}
+                                {#<a href="#" class="simple-btn">Sign Up</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col-md-4 col-sm-6 col-xs-6 fw600">#}
+                        {#<div class="pricingTable">#}
+                            {#<div class="price-value">#}
+                                {#<h2>$30</h2>#}
+                                {#<span class="month">monthly</span>#}
+                            {#</div>#}
+                            {#<div class="pricing-content">#}
+                                {#<h3 class="title">Premium</h3>#}
+                                {#<ul>#}
+                                    {#<li>50 GB Disk Space</li>#}
+                                    {#<li>50 Email Accounts</li>#}
+                                    {#<li>50 GB Monthly Bandwidth</li>#}
+                                    {#<li>10 Subdomains</li>#}
+                                    {#<li>15 Domains</li>#}
+                                {#</ul>#}
+                                {#<a href="#" class="simple-btn">Sign Up</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col-md-4 col-sm-6 col-xs-6 fw600">#}
+                        {#<div class="pricingTable">#}
+                            {#<div class="price-value">#}
+                                {#<h2>$10</h2>#}
+                                {#<span class="month">monthly</span>#}
+                            {#</div>#}
+                            {#<div class="pricing-content">#}
+                                {#<h3 class="title">Standard</h3>#}
+                                {#<ul>#}
+                                    {#<li>50 GB Disk Space</li>#}
+                                    {#<li>50 Email Accounts</li>#}
+                                    {#<li>50 GB Monthly Bandwidth</li>#}
+                                    {#<li>10 Subdomains</li>#}
+                                    {#<li>15 Domains</li>#}
+                                {#</ul>#}
+                                {#<a href="#" class="simple-btn">Sign Up</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col-md-4 col-sm-6 col-xs-6 fw600">#}
+                        {#<div class="pricingTable">#}
+                            {#<div class="price-value">#}
+                                {#<h2>$20</h2>#}
+                                {#<span class="month">monthly</span>#}
+                            {#</div>#}
+                            {#<div class="pricing-content">#}
+                                {#<h3 class="title">Business</h3>#}
+                                {#<ul>#}
+                                    {#<li>50 GB Disk Space</li>#}
+                                    {#<li>50 Email Accounts</li>#}
+                                    {#<li>50 GB Monthly Bandwidth</li>#}
+                                    {#<li>10 Subdomains</li>#}
+                                    {#<li>15 Domains</li>#}
+                                {#</ul>#}
+                                {#<a href="#" class="simple-btn">Sign Up</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col-md-4 col-sm-6 col-xs-6 fw600">#}
+                        {#<div class="pricingTable">#}
+                            {#<div class="price-value">#}
+                                {#<h2>$30</h2>#}
+                                {#<span class="month">monthly</span>#}
+                            {#</div>#}
+                            {#<div class="pricing-content">#}
+                                {#<h3 class="title">Premium</h3>#}
+                                {#<ul>#}
+                                    {#<li>50 GB Disk Space</li>#}
+                                    {#<li>50 Email Accounts</li>#}
+                                    {#<li>50 GB Monthly Bandwidth</li>#}
+                                    {#<li>10 Subdomains</li>#}
+                                    {#<li>15 Domains</li>#}
+                                {#</ul>#}
+                                {#<a href="#" class="simple-btn">Sign Up</a>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col-md-12 col-sm-12 col-xs-12 text-center">#}
+                        {#<ul class="pagination">#}
+                            {#<li class="disabled"><a href="#">«</a></li>#}
+                            {#<li class="active"><a href="#">1</a></li>#}
+                            {#<li><a href="#">2</a></li>#}
+                            {#<li><a href="#">3</a></li>#}
+                            {#<li><a href="#">4</a></li>#}
+                            {#<li><a href="#">5</a></li>#}
+                            {#<li><a href="#">»</a></li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</section>#}
+        <!--REGISTRATION END-->
+    {% endblock %}
+
+
+
+
