@@ -57,25 +57,15 @@
                         <div class="item active slide-1">
                             <div class="carousel-caption" style="text-align: center !important;">
                                 <p data-animation="animated fadeInUp">
-                                    <h2 class="csi-title " style="line-height:1em ;text-transform: none!important;">
+                                <h2 class="csi-title " style="line-height:1em ;text-transform: none!important;">
                                     {{ event.designation2 }}
-                                    </h2>
-                                    {#Test#}
+                                </h2>
+                                {#Test#}
                                 </p>
-                                <p class="date" style="opacity: 0.8 !important; font-weight: bold !important; font-size: 6rem!important; line-height: 16.5rem; font-family: Oswald,sans-serif;">
-                                {{ event.dateDebut? event.dateDebut|date('d') : '' }} - {{ event.dateFin? event.dateFin|date('d M Y') : '' }},
-                                <span>{{ event.ville ~ ' - ' ~ event.pays }}</span></p>
-                                <div class="csi-countdown-area">
-                                    <div class="csi-countdown-area-inner">
-                                        <div id="csi-countdown"
-                                             data-date="{{ event.dateDebut? event.dateDebut|date('Y-m-d H:i:s') : '' }}"></div>
-                                    </div>
-                                </div>
-                            {#</div>#}
-                                {#<h3 data-animation="animated fadeInUp">#}
-                                    {#Welcome to our <span>Vobon</span>#}
-                                {#</h3>#}
-                                {#<a href="contact.html" class="btn btn-primary btn-lg" data-animation="animated zoomIn">Contact Us</a>#}
+                                <p class="date date-slider">
+                                    {{ event.dateDebut? event.dateDebut|date('d') : '' }}
+                                    - {{ event.dateFin? event.dateFin|date('d M Y') : '' }},
+                                    <span>{{ event.ville ~ ' - ' ~ event.pays }}</span></p>
                             </div>
                         </div>
                         <!-- /.item -->
@@ -89,14 +79,10 @@
                                 </h2>
                                 {#Test#}
                                 </p>
-                                <p class="date" style="opacity: 0.8 !important; font-weight: bold !important; font-size: 6rem!important; line-height: 16.5rem; font-family: Oswald,sans-serif;">
-                                    {{ event.dateDebut? event.dateDebut|date('d') : '' }} - {{ event.dateFin? event.dateFin|date('d M Y') : '' }},
+                                <p class="date date-slider">
+                                    {{ event.dateDebut? event.dateDebut|date('d') : '' }}
+                                    - {{ event.dateFin? event.dateFin|date('d M Y') : '' }},
                                     <span>{{ event.ville ~ ' - ' ~ event.pays }}</span></p>
-                                {#</div>#}
-                                {#<h3 data-animation="animated fadeInUp">#}
-                                {#Welcome to our <span>Vobon</span>#}
-                                {#</h3>#}
-                                {#<a href="contact.html" class="btn btn-primary btn-lg" data-animation="animated zoomIn">Contact Us</a>#}
                             </div>
                         </div>
                         <!-- /.item -->
@@ -110,14 +96,10 @@
                                 </h2>
                                 {#Test#}
                                 </p>
-                                <p class="date" style="opacity: 0.8 !important; font-weight: bold !important; font-size: 6rem!important; line-height: 16.5rem; font-family: Oswald,sans-serif;">
-                                    {{ event.dateDebut? event.dateDebut|date('d') : '' }} - {{ event.dateFin? event.dateFin|date('d M Y') : '' }},
+                                <p class="date date-slider">
+                                    {{ event.dateDebut? event.dateDebut|date('d') : '' }}
+                                    - {{ event.dateFin? event.dateFin|date('d M Y') : '' }},
                                     <span>{{ event.ville ~ ' - ' ~ event.pays }}</span></p>
-                                {#</div>#}
-                                {#<h3 data-animation="animated fadeInUp">#}
-                                {#Welcome to our <span>Vobon</span>#}
-                                {#</h3>#}
-                                {#<a href="contact.html" class="btn btn-primary btn-lg" data-animation="animated zoomIn">Contact Us</a>#}
                             </div>
                         </div>
                         <!-- /.item -->
@@ -138,55 +120,298 @@
                 <!-- /.carousel -->
             </div>
         </section>
-
+        <div class="csi-countdown-area">
+            <div class="csi-countdown-area-inner">
+                <div id="csi-countdown"
+                     data-date="{{ event.dateDebut? event.dateDebut|date('Y-m-d H:i:s') : '' }}"></div>
+            </div>
+        </div>
         <!--ABOUT-->
-        <section>
-            <div id="csi-about" class="csi-about">
-                <div class="csi-inner">
-                    <div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-3">
+        {#<section>#}
+        {#<div id="csi-about" class="csi-about">#}
+        {#<div class="csi-inner">#}
+        {#<div>#}
+        {#<div class="row">#}
+        {#<div class="col-sm-12 col-md-3">#}
+            {#<div class="csi-about-img">#}
+                {#<img src="{{ asset('assets/front/img/about.png') }}" alt="about">#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-sm-12 col-md-6">#}
+            {#<div class="csi-about-content-area">#}
+                {#<div class="csi-heading">#}
+                    {#<h2 class="heading">{{ event.designation }}</h2>#}
+                    {#<h3 class="subheading">{{ event.dateDebut? event.dateDebut|date('d') : '' }}#}
+                        {#-{{ event.dateFin? event.dateFin|date('d M Y') : '' }},#}
+                        {#<span>{{ event.ville ~ ' - ' ~ event.pays }}</h3>#}
+                {#</div>#}
+                {#<div class="csi-about-content">#}
+                    {#<p class="text">#}
+                        {#{% if app.request.locale == 'en' %}#}
+                            {#{{ event.descriptionEn | raw }}#}
+                        {#{% else %}#}
+                            {#{{ event.description| raw }}#}
+                        {#{% endif %}#}
+                    {#</p>#}
+                    {#<div class="btn-area">#}
+                        {#{% if event.brochureFile is not null %}#}
+                            {#<a target="_blank" class="csi-btn"#}
+                               {#href="{{ asset('uploads/events/'~event.brochureFile) }}">#}
+                                {#<span> {% if app.request.locale == 'fr' %}Télécharger Brochure  {% else %} Download Brochure {% endif %} </span>#}
+                            {#</a>#}
+                        {#{% endif %}#}
+
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+             {#<div class="col-md-3">#}
+                 {#{% if sponsorsByType is not null %}#}
+               {#<!--SPONSORED-->#}
+                {#<section>#}
+                {#<div id="csi-sponsors" class="csi-sponsors">#}
+                {#<div class="csi-inner-bg">#}
+                {#<div class="csi-inner">#}
+                {#<div class="container " >#}
+
+
+
+
+
+
+                {#{% for typeSponsor in sponsorsByType %}#}
+
+                    {#<div class="row">#}
+                        {#<div id="myCarouse_{{ typeSponsor.id }}" class="carousel slide" data-ride="carousel">#}
+
+                            {#{% if typeSponsor.sponsors is not empty %}#}
+                                {#<!--//main row-->#}
+
+                                {#<h2 class="">#}
+                                    {#style="background: #9a1f80;#}
+                                    {#color: #fdfdfd!important;#}
+                                    {#text-align: center;#}
+                                    {#font-size: 16px!important;#}
+                                    {#padding: 10px;#}
+                                    {#width: 61%;#}
+                                    {#float: right;#}
+                                    {#margin-bottom: 0px;#}
+                                    {#font-family: 'Oswald', sans-serif;#}
+                                    {#margin-top: 0px;#}
+
+                                    {#opacity: 0.7;#}
+                                    {#">#}
+                                    {#{{ typeSponsor.label }}</h2>#}
+
+                                {#<ol class="carousel-indicators">#}
+                                    {#{% set i =0 %}#}
+                                    {#{% for sponsor in typeSponsor.sponsors if sponsor.enabled %}#}
+                                        {#<li style="display: none !important;"#}
+                                            {#data-target="#myCarouse_{{ typeSponsor.id }}"#}
+                                            {#data-slide-to="{{ i }}" {% if i==0 %}class="active"{% endif %}></li>#}
+                                        {#{% set i =i+1 %}#}
+                                    {#{% endfor %}#}
+                                {#</ol>#}
+
+                                {#<div class=" sponsors-area carousel-inner">#}
+                                    {#{% set j = 0 %}#}
+                                    {#{% for sponsor in typeSponsor.sponsors if sponsor.enabled %}#}
+                                        {#<div class="  item {% if j==0 %}active {% endif %}"#}
+                                        {#>#}
+
+                                            {#<img#}
+                                                    {#src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"#}
+                                                    {#alt=""/>#}
+
+
+                                        {#</div>#}
+                                        {#{% set j = j+1 %}#}
+                                    {#{% endfor %}#}
+                                {#</div>#}
+                                {#{% if typeSponsor.sponsors|length >1 %}#}
+
+                                    {#<!--//col-->#}
+                                    {#<a class="left carousel-control" href="#myCarouse_{{ typeSponsor.id }}"#}
+                                       {#data-slide="prev">#}
+                                        {#<span class="glyphicon glyphicon-chevron-left">  </span>#}
+
+                                        {#<span class="sr-only">Previous</span>#}
+                                    {#</a>#}
+                                    {#<a class="right carousel-control" href="#myCarouse_{{ typeSponsor.id }}"#}
+                                       {#data-slide="next">#}
+                                        {#<span class="glyphicon glyphicon-chevron-right">    </span>#}
+
+                                        {#<span class="sr-only">Next</span>#}
+                                    {#</a>#}
+                                {#{% endif %}#}
+                            {#{% endif %}#}
+                            {#<!-- Indicators -->#}
+
+                        {#</div>#}
+                    {#</div>#}
+
+
+
+                    {#<!--//row-->#}
+                {#{% endfor %}#}
+            {#</section>#}
+            {#</div>#}
+            {#</div>#}
+            {#<!--//container-->#}
+            {#</div>#}
+            {#</div>#}
+            {#<!--//csi-inner-->#}
+            {#</div>#}
+            {#</section>#}
+            {#<!--SPONSORED END-->#}
+                {#{% endif %}#}
+        {#</div>#}
+        {#</section>#}
+        <!--ABOUT END-->
+
+
+
+    <section class="about-area" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="about-col">
+                                {#<div class="experience-box wow bounceIn" data-wow-duration="1s" data-wow-delay="0s">#}
+                                    {#<h1>20</h1>#}
+                                    {#<h4>Years Experience</h4>#}
+                                {#</div>#}
                                 <div class="csi-about-img">
                                     <img src="{{ asset('assets/front/img/about.png') }}" alt="about">
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="csi-about-content-area">
-                                    <div class="csi-heading">
-                                        <h2 class="heading">{{ event.designation }}</h2>
-                                        <h3 class="subheading">{{ event.dateDebut? event.dateDebut|date('d') : '' }}
-                                            -{{ event.dateFin? event.dateFin|date('d M Y') : '' }},
-                                            <span>{{ event.ville ~ ' - ' ~ event.pays }}</h3>
-                                    </div>
-                                    <div class="csi-about-content">
-                                        <p class="text">
-                                            {% if app.request.locale == 'en' %}
-                                                {{ event.descriptionEn | raw }}
-                                            {% else %}
-                                                {{ event.description| raw }}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-col welcome-text">
+                                <h3 class="welcome-about">WELCOME!</h3>
+                                <h2 class="heading">{{ event.designation }}</h2>
+                                {#<h4>construction company</h4>#}
+                                <h3 class="subheading">{{ event.dateDebut? event.dateDebut|date('d') : '' }}
+                                    -{{ event.dateFin? event.dateFin|date('d M Y') : '' }},
+                                    <span>{{ event.ville ~ ' - ' ~ event.pays }}</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="about-col">
+                                <p class="text">
+                                    {% if app.request.locale == 'en' %}
+                                        {{ event.descriptionEn | raw }}
+                                    {% else %}
+                                        {{ event.description| raw }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="btn-area">
+                                {#{% if event.brochureFile is not null %}#}
+                                    <a target="_blank" class="csi-btn"
+                                       href="{{ asset('uploads/events/'~event.brochureFile) }}">
+                                        <span> {% if app.request.locale == 'fr' %}Télécharger Brochure  {% else %} Download Brochure {% endif %} </span>
+                                    </a>
+                                {#{% endif %}#}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="about-col">
+                        <div class="about-image">
+                            {#<img src="images/about/1.png" alt="">#}
+                            {% if sponsorsByType is not null %}
+                            <!--SPONSORED-->
+                            <section>
+                                {#<div id="csi-sponsors" class="csi-sponsors">#}
+                                {#<div class="csi-inner-bg">#}
+                                {#<div class="csi-inner">#}
+                                {#<div class="container " >#}
+
+
+
+
+
+
+                                {% for typeSponsor in sponsorsByType %}
+
+                                    <div class="row">
+                                        <div id="myCarouse_{{ typeSponsor.id }}" class="carousel slide sponsorh2" data-ride="carousel">
+
+                                            {% if typeSponsor.sponsors is not empty %}
+                                                <!--//main row-->
+
+                                                <h2>
+                                                    {{ typeSponsor.label }}</h2>
+
+                                                <ol class="carousel-indicators">
+                                                    {% set i =0 %}
+                                                    {% for sponsor in typeSponsor.sponsors if sponsor.enabled %}
+                                                        <li style="display: none !important;"
+                                                            data-target="#myCarouse_{{ typeSponsor.id }}"
+                                                            data-slide-to="{{ i }}" {% if i==0 %}class="active"{% endif %}></li>
+                                                        {% set i =i+1 %}
+                                                    {% endfor %}
+                                                </ol>
+
+                                                <div class=" sponsors-area carousel-inner">
+                                                    {% set j = 0 %}
+                                                    {% for sponsor in typeSponsor.sponsors if sponsor.enabled %}
+                                                        <div class="  item {% if j==0 %}active {% endif %}"
+                                                        >
+
+                                                            <img
+                                                                    src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"
+                                                                    alt=""/>
+
+
+                                                        </div>
+                                                        {% set j = j+1 %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% if typeSponsor.sponsors|length >1 %}
+
+                                                    <!--//col-->
+                                                    <a class="left carousel-control" href="#myCarouse_{{ typeSponsor.id }}"
+                                                       data-slide="prev">
+                                                        <span class="glyphicon glyphicon-chevron-left carrousel-cheveron-left">  </span>
+
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                    <a class="right carousel-control" href="#myCarouse_{{ typeSponsor.id }}"
+                                                       data-slide="next">
+                                                        <span class="glyphicon glyphicon-chevron-right carrousel-cheveron-right">    </span>
+
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                {% endif %}
                                             {% endif %}
-                                        </p>
-                                        <div class="btn-area">
-                                            {% if event.brochureFile is not null %}
-                                                <a target="_blank" class="csi-btn"
-                                                   href="{{ asset('uploads/events/'~event.brochureFile) }}">
-                                                    <span> {% if app.request.locale == 'fr' %}Télécharger Brochure  {% else %} Download Brochure {% endif %} </span>
-                                                </a>
-                                            {% endif %}
+                                            <!-- Indicators -->
 
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">Sponsor</div>
+
+
+
+                                    <!--//row-->
+                                {% endfor %}
+                            </section>
+                            {% endif %}
                         </div>
-                    </div><!-- //.CONTAINER -->
-                </div><!-- //.INNER -->
+                    </div>
+                </div>
             </div>
-        </section>
-        <!--ABOUT END-->
+        </div>
+    </section>
     {% endif %}
-    <div class="col-md-12">
+
+
+    <div class="" id="intervenant">
 
 
         <!--SERVICE-->
@@ -256,169 +481,219 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="defult-title text-center">
-                                <h1>Meet Our <span>experts</span></h1>
-                                <h5>consectetur adipisicing elit alias</h5>
+                                <h1>Nos <span>conférenciers</span></h1>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="team-carousel">
-                                <div class="our-team">
-                                    <div class="team-pic">
-                                        <img src="images/team/1.jpg" alt="">
+                                {% for intervenant in intervenantsByType.participants if intervenant.enabled %}
+
+                                    <div class="our-team">
+                                        <div class="team-pic">
+                                            <img src="{{ asset('uploads/intervenants/2.jpg' ) }}" alt="">
+                                            {#<img src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}" alt="">#}
+                                        </div>
+                                        <div class="team-profile">
+                                            <h3 class="team-title">
+                                                <a href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>
+                                                <small>{{ intervenant.poste }}</small>
+                                            </h3>
+                                            <ul class="team-social">
+
+                                                <li><a href="{{ intervenant.tweeterLink }}" class="fa fa-twitter"></a></li>
+                                                <li><a href="{{ intervenant.linkedinLink }}" class="fa fa-linkedin"></a></li>
+
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="team-profile">
-                                        <h3 class="team-title">
-                                            <a href="team-details.html">Lan Cooper</a>
-                                            <small>Manager</small>
-                                        </h3>
-                                        <ul class="team-social">
-                                            <li><a href="#" class="fa fa-facebook"></a></li>
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="our-team">
-                                    <div class="team-pic">
-                                        <img src="images/team/2.jpg" alt="">
-                                    </div>
-                                    <div class="team-profile">
-                                        <h3 class="team-title">
-                                            <a href="team-details.html">Ezra Oliva</a>
-                                            <small>Engineer</small>
-                                        </h3>
-                                        <ul class="team-social">
-                                            <li><a href="#" class="fa fa-facebook"></a></li>
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="our-team">
-                                    <div class="team-pic">
-                                        <img src="images/team/3.jpg" alt="">
-                                    </div>
-                                    <div class="team-profile">
-                                        <h3 class="team-title">
-                                            <a href="team-details.html">Jose Easton</a>
-                                            <small>Engineer</small>
-                                        </h3>
-                                        <ul class="team-social">
-                                            <li><a href="#" class="fa fa-facebook"></a></li>
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="our-team">
-                                    <div class="team-pic">
-                                        <img src="images/team/4.jpg" alt="">
-                                    </div>
-                                    <div class="team-profile">
-                                        <h3 class="team-title">
-                                            <a href="team-details.html">Brandon Tyler</a>
-                                            <small>CEO</small>
-                                        </h3>
-                                        <ul class="team-social">
-                                            <li><a href="#" class="fa fa-facebook"></a></li>
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="our-team">
-                                    <div class="team-pic">
-                                        <img src="images/team/5.jpg" alt="">
-                                    </div>
-                                    <div class="team-profile">
-                                        <h3 class="team-title">
-                                            <a href="team-details.html">Xavier Leo</a>
-                                            <small>Engineer</small>
-                                        </h3>
-                                        <ul class="team-social">
-                                            <li><a href="#" class="fa fa-facebook"></a></li>
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="our-team">
-                                    <div class="team-pic">
-                                        <img src="images/team/6.jpg" alt="">
-                                    </div>
-                                    <div class="team-profile">
-                                        <h3 class="team-title">
-                                            <a href="team-details.html">Jason Carson</a>
-                                            <small>CEO</small>
-                                        </h3>
-                                        <ul class="team-social">
-                                            <li><a href="#" class="fa fa-facebook"></a></li>
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+
+
+                                {#<div class="col-md-3">#}
+                                {#<div class="csi-single-speaker">#}
+                                {#<figure>#}
+                                {#<a class="profile-img"#}
+                                {#href="{{ path('intervenant_page', {slug : intervenant.slug}) }}"><img#}
+                                {#src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}"#}
+                                {#alt="{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}"/></a>#}
+                                {#<figcaption>#}
+                                {#<div class="social-group">#}
+                                {#<a class="sp-tw" href="{{ intervenant.tweeterLink }}"><i#}
+                                {#class="fa fa-twitter"></i></a>#}
+                                {#<a class="sp-fb" href="{{ intervenant.linkedinLink }}"><i#}
+                                {#class="fa fa-linkedin"></i></a>#}
+                                {#</div>#}
+                                {#<div class="speaker-info">#}
+                                {#<h3 class="title"><a#}
+                                {#href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>#}
+                                {#</h3>#}
+                                {#<h4 class="subtitle">{{ intervenant.poste }}</h4>#}
+                                {#</div>#}
+                                {#</figcaption>#}
+                                {#</figure>#}
+                                {#</div>#}
+                                {#</div>#}
+                                {% endfor %}
+
+
+
+
+                                {#<div class="our-team">#}
+                                    {#<div class="team-pic">#}
+                                        {#<img src="images/team/1.jpg" alt="">#}
+                                    {#</div>#}
+                                    {#<div class="team-profile">#}
+                                        {#<h3 class="team-title">#}
+                                            {#<a href="team-details.html">Lan Cooper</a>#}
+                                            {#<small>Manager</small>#}
+                                        {#</h3>#}
+                                        {#<ul class="team-social">#}
+                                            {#<li><a href="#" class="fa fa-facebook"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-twitter"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-google-plus"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-instagram"></a></li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="our-team">#}
+                                    {#<div class="team-pic">#}
+                                        {#<img src="images/team/2.jpg" alt="">#}
+                                    {#</div>#}
+                                    {#<div class="team-profile">#}
+                                        {#<h3 class="team-title">#}
+                                            {#<a href="team-details.html">Ezra Oliva</a>#}
+                                            {#<small>Engineer</small>#}
+                                        {#</h3>#}
+                                        {#<ul class="team-social">#}
+                                            {#<li><a href="#" class="fa fa-facebook"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-twitter"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-google-plus"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-instagram"></a></li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="our-team">#}
+                                    {#<div class="team-pic">#}
+                                        {#<img src="images/team/3.jpg" alt="">#}
+                                    {#</div>#}
+                                    {#<div class="team-profile">#}
+                                        {#<h3 class="team-title">#}
+                                            {#<a href="team-details.html">Jose Easton</a>#}
+                                            {#<small>Engineer</small>#}
+                                        {#</h3>#}
+                                        {#<ul class="team-social">#}
+                                            {#<li><a href="#" class="fa fa-facebook"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-twitter"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-google-plus"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-instagram"></a></li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="our-team">#}
+                                    {#<div class="team-pic">#}
+                                        {#<img src="images/team/4.jpg" alt="">#}
+                                    {#</div>#}
+                                    {#<div class="team-profile">#}
+                                        {#<h3 class="team-title">#}
+                                            {#<a href="team-details.html">Brandon Tyler</a>#}
+                                            {#<small>CEO</small>#}
+                                        {#</h3>#}
+                                        {#<ul class="team-social">#}
+                                            {#<li><a href="#" class="fa fa-facebook"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-twitter"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-google-plus"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-instagram"></a></li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="our-team">#}
+                                    {#<div class="team-pic">#}
+                                        {#<img src="images/team/5.jpg" alt="">#}
+                                    {#</div>#}
+                                    {#<div class="team-profile">#}
+                                        {#<h3 class="team-title">#}
+                                            {#<a href="team-details.html">Xavier Leo</a>#}
+                                            {#<small>Engineer</small>#}
+                                        {#</h3>#}
+                                        {#<ul class="team-social">#}
+                                            {#<li><a href="#" class="fa fa-facebook"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-twitter"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-google-plus"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-instagram"></a></li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="our-team">#}
+                                    {#<div class="team-pic">#}
+                                        {#<img src="images/team/6.jpg" alt="">#}
+                                    {#</div>#}
+                                    {#<div class="team-profile">#}
+                                        {#<h3 class="team-title">#}
+                                            {#<a href="team-details.html">Jason Carson</a>#}
+                                            {#<small>CEO</small>#}
+                                        {#</h3>#}
+                                        {#<ul class="team-social">#}
+                                            {#<li><a href="#" class="fa fa-facebook"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-twitter"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-google-plus"></a></li>#}
+                                            {#<li><a href="#" class="fa fa-instagram"></a></li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             {#<section>#}
-                {#<div id="csi-speakers" class="csi-speakers">#}
-                    {#<div class="csi-inner">#}
-                        {#<div class="container">#}
-                            {#<div class="row">#}
-                                {#<div class="col-xs-12">#}
-                                    {#<div class="csi-heading">#}
-                                        {#<h2 class="heading">{{ 'Speakers'|trans }}</h2>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<!--//.ROW-->#}
-                            {#<div class="row">#}
-                                {#{% for intervenant in intervenantsByType.participants if intervenant.enabled %}#}
+            {#<div id="csi-speakers" class="csi-speakers">#}
+            {#<div class="csi-inner">#}
+            {#<div class="container">#}
+            {#<div class="row">#}
+            {#<div class="col-xs-12">#}
+            {#<div class="csi-heading">#}
+            {#<h2 class="heading">{{ 'Speakers'|trans }}</h2>#}
+            {#</div>#}
+            {#</div>#}
+            {#</div>#}
+            {#<!--//.ROW-->#}
+            {#<div class="row">#}
+            {#{% for intervenant in intervenantsByType.participants if intervenant.enabled %}#}
 
-                                    {#<div class="col-md-3">#}
-                                        {#<div class="csi-single-speaker">#}
-                                            {#<figure>#}
-                                                {#<a class="profile-img"#}
-                                                   {#href="{{ path('intervenant_page', {slug : intervenant.slug}) }}"><img#}
-                                                            {#src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}"#}
-                                                            {#alt="{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}"/></a>#}
-                                                {#<figcaption>#}
-                                                    {#<div class="social-group">#}
-                                                        {#<a class="sp-tw" href="{{ intervenant.tweeterLink }}"><i#}
-                                                                    {#class="fa fa-twitter"></i></a>#}
-                                                        {#<a class="sp-fb" href="{{ intervenant.linkedinLink }}"><i#}
-                                                                    {#class="fa fa-linkedin"></i></a>#}
-                                                    {#</div>#}
-                                                    {#<div class="speaker-info">#}
-                                                        {#<h3 class="title"><a#}
-                                                                    {#href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>#}
-                                                        {#</h3>#}
-                                                        {#<h4 class="subtitle">{{ intervenant.poste }}</h4>#}
-                                                    {#</div>#}
-                                                {#</figcaption>#}
-                                            {#</figure>#}
-                                        {#</div>#}
-                                    {#</div>#}
-                                {#{% endfor %}#}
+            {#<div class="col-md-3">#}
+            {#<div class="csi-single-speaker">#}
+            {#<figure>#}
+            {#<a class="profile-img"#}
+            {#href="{{ path('intervenant_page', {slug : intervenant.slug}) }}"><img#}
+            {#src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}"#}
+            {#alt="{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}"/></a>#}
+            {#<figcaption>#}
+            {#<div class="social-group">#}
+            {#<a class="sp-tw" href="{{ intervenant.tweeterLink }}"><i#}
+            {#class="fa fa-twitter"></i></a>#}
+            {#<a class="sp-fb" href="{{ intervenant.linkedinLink }}"><i#}
+            {#class="fa fa-linkedin"></i></a>#}
+            {#</div>#}
+            {#<div class="speaker-info">#}
+            {#<h3 class="title"><a#}
+            {#href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>#}
+            {#</h3>#}
+            {#<h4 class="subtitle">{{ intervenant.poste }}</h4>#}
+            {#</div>#}
+            {#</figcaption>#}
+            {#</figure>#}
+            {#</div>#}
+            {#</div>#}
+            {#{% endfor %}#}
 
-                            {#</div>#}
-                            {#<!--//.ROW-->#}
-                        {#</div>#}
-                        {#<!-- //.CONTAINER -->#}
-                    {#</div>#}
-                    {#<!-- //.INNER -->#}
-                {#</div>#}
+            {#</div>#}
+            {#<!--//.ROW-->#}
+            {#</div>#}
+            {#<!-- //.CONTAINER -->#}
+            {#</div>#}
+            {#<!-- //.INNER -->#}
+            {#</div>#}
             {#</section>#}
             <!--SPEAKERS END-->
 
@@ -604,111 +879,6 @@
         {#{% for sponsor in typeSponsor.sponsors if sponsor.enabled %}#}
         {#<div class="  item {% if j==0 %}active {% endif %}"#}
         {#style="margin-left: 39%;!important;">#}
-
-        {#<img#}
-        {#src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"#}
-        {#alt=""/>#}
-        {#<img#}
-        {#src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"#}
-        {#alt=""/>#}
-        {#<img src="chicago.jpg" alt="Chicago">#}
-        {#</div>#}
-        {#{% set j = j+1 %}#}
-        {#{% endfor %}#}
-        {#</div>#}
-        {#{% if typeSponsor.sponsors|length >1 %}#}
-
-        {#<!--//col-->#}
-        {#<a class="left carousel-control" style="    width: 0%!important;" href="#myCarouse_{{ typeSponsor.id  }}" data-slide="prev">#}
-        {#<span class="glyphicon glyphicon-chevron-left"> <i class="fa fa-chevron-left" style="color: black!important;"></i> </span>#}
-
-        {#<span class="sr-only">Previous</span>#}
-        {#</a>#}
-        {#<a class="right carousel-control"  style="    width: 0%!important;"  href="#myCarouse_{{  typeSponsor.id  }}" data-slide="next">#}
-        {#<span class="glyphicon glyphicon-chevron-right">     <i class="fa fa-chevron-right" style="color: black!important;"></i></span>#}
-
-        {#<span class="sr-only">Next</span>#}
-        {#</a>#}
-        {#{% endif %}#}
-        {#{% endif %}#}
-        {#<!-- Indicators -->#}
-
-        {#</div>#}
-        {#</div>#}
-
-
-
-        {#<!--//row-->#}
-        {#{% endfor %}#}
-        {#</div>#}
-        {#</div>#}
-        {#<!--//container-->#}
-        {#</div>#}
-        {#</div>#}
-        {#<!--//csi-inner-->#}
-        {#</div>#}
-        {#</div>#}
-        {#</section>#}
-        {#<!--SPONSORED END-->#}
-        {#{% endif %}#}
-
-        {#{% if sponsorsByType is not null %}#}
-        {#<!--SPONSORED-->#}
-        {#<section>#}
-        {#<div id="csi-sponsors" class="csi-sponsors">#}
-        {#<div class="csi-inner-bg">#}
-        {#<div class="csi-inner">#}
-        {#<div class="container " style="   width: 16% !important;#}
-        {#/* height: 56px; */#}
-        {#position: fixed;#}
-        {#z-index: 99;#}
-        {#top: 8%;#}
-        {#opacity: 1;#}
-        {#right: 0px;#}
-        {#height: 100% !important;#}
-        {#">#}
-
-
-
-
-
-
-        {#{% for typeSponsor in sponsorsByType %}#}
-
-        {#<div class="row">#}
-        {#<div id="myCarouse_{{ typeSponsor.id }}" class="carousel slide" data-ride="carousel">#}
-
-        {#{% if typeSponsor.sponsors is not empty %}#}
-        {#<!--//main row-->#}
-
-        {#<h2 class=""style="background: #9a1f80;#}
-        {#color: #fdfdfd!important;#}
-        {#text-align: center;#}
-        {#font-size: 16px!important;#}
-        {#padding: 10px;#}
-        {#width: 61%;#}
-        {#float: right;#}
-        {#margin-bottom: 0px;#}
-        {#font-family: 'Oswald', sans-serif;#}
-        {#margin-top: 0px;#}
-
-        {#opacity: 0.7;#}
-        {#">{{ typeSponsor.label }}</h2>#}
-
-        {#<ol class="carousel-indicators">#}
-        {#{% set i =0 %}#}
-        {#{% for sponsor in typeSponsor.sponsors if sponsor.enabled %}#}
-        {#<li   style="display: none !important;"data-target="#myCarouse_{{ typeSponsor.id }}"#}
-        {#data-slide-to="{{ i }}" {% if i==0 %}class="active"{% endif %}></li>#}
-        {#{% set i =i+1 %}#}
-        {#{% endfor %}#}
-        {#</ol>#}
-
-        {#<div class=" sponsors-area carousel-inner">#}
-        {#{% set j = 0 %}#}
-        {#{% for sponsor in typeSponsor.sponsors if sponsor.enabled %}#}
-        {#<div class="  item {% if j==0 %}active {% endif %}"#}
-        {#style="margin-left: 39%;!important;     margin-bottom: 2px;">#}
 
         {#<img#}
         {#src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"#}

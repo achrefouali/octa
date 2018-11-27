@@ -23,7 +23,7 @@ $flag-icon-css-path: '~flag-icon-css/flags';
 
 .btn-primary {
  color: #fff;
- background-color: #b21e8e;
+ background-color: #9a1f80;
  border-color: #b21c9f;
 }
 
@@ -753,7 +753,7 @@ $flag-icon-css-path: '~flag-icon-css/flags';
 
 .listing-style3 .price {
  float: none;
- color: #b21e8e;
+ color: #9a1f80;
  font-size: 1.6667em;
  text-transform: uppercase;
   line-height: 1;
@@ -1230,7 +1230,7 @@ $flag-icon-css-path: '~flag-icon-css/flags';
  font-size: 1.28571429em;
  font-weight: 700;
  line-height: 1.2857em;
- color: #b21e8e;
+ color: #9a1f80;
 }
 
 .card-text {
@@ -1397,7 +1397,7 @@ hr {
  padding-top: 1%;
 }
 .herader-topbar-col.tobar-leftside span {
- color: #555555;
+ color: #333333;
  margin-right: 20px;
 }
 .herader-topbar-col i {
@@ -1519,9 +1519,10 @@ hr {
  height: auto;
 }
 .header-navbar .navbar-brand img {
- width: 220px;
- margin-left: 100%;
- margin-bottom: 10%;
+ width: 60%;
+ margin-left: 112%;
+ margin-top: 3%;
+ max-width: 100%;
 }
 .header-navbar .navbar {
  margin-bottom: 0;
@@ -1559,7 +1560,7 @@ hr {
  right: auto;
 }
 .navbar-nav.navbar-right{
- padding-top: 3%;
+ padding-top: 2%;
  font-family: Lato,sans-serif;
  font-size: medium;
 }
@@ -1649,7 +1650,6 @@ hr {
 .list-inline-top{
  padding-left: 0;
  list-style: none;
- margin-left: -31px;
 }
 .bootstrap-select > .dropdown-toggle{
  padding-left: 0px;
@@ -1660,9 +1660,11 @@ hr {
  margin-top: 2%;
 }
 .img-top-bar{
- margin-right: 6%;
+ margin-right: 18%;
  margin-top: 1%;
  margin-bottom: -2%;
+ width: 40%;
+ max-width: 100%;
 }
 
 //04. Slider CSS
@@ -1783,7 +1785,7 @@ hr {
  background-image: none;
 }
 .carousel .item {
- height: 75vh;
+
  width:100%;
 }
 .carousel-caption p {
@@ -1801,7 +1803,7 @@ hr {
  text-transform: capitalize;
 }
 .carousel-caption h3 span {
- color: #FFCD00;
+ color: #9a1f80;
 }
 .carousel-caption .btn {
  font-size: 14px;
@@ -1818,8 +1820,8 @@ hr {
  transition: all 0.3s ease-in-out;
 }
 .carousel-caption .btn:hover {
- background: #FFCD00;
- border-color: #FFCD00;
+ background: #9a1f80;
+ border-color: #9a1f80;
  -webkit-transition: all 0.3s ease-in-out;
  -moz-transition: all 0.3s ease-in-out;
  -o-transition: all 0.3s ease-in-out;
@@ -1847,10 +1849,11 @@ hr {
  font-size: 8rem !important;
  line-height: 16.5rem !important;
  font-family: Oswald,sans-serif !important;
- margin-top: -10%;
+ margin-top: -15%;
 }
 .csi-countdown-area .csi-countdown-area-inner{
  text-align: center !important;
+ //margin-bottom: 11%;
 }
 //#csi-countdown{
 // margin-bottom: 4%;
@@ -1894,7 +1897,7 @@ hr {
 }
 .our-team .team-profile{
  text-align: center;
- background: #FFCD00;
+ background: #9a1f80;
  position: relative;
  width: 100%;
  padding: 20px 20px;
@@ -1916,7 +1919,7 @@ hr {
 }
 .our-team .team-profile:before{
  content: "";
- border-bottom: 28px solid #FFCD00;
+ border-bottom: 28px solid #9a1f80;
  border-right: 120px solid transparent;
  position: absolute;
  top: -25px;
@@ -1959,7 +1962,7 @@ hr {
  transition: all 0.4s ease-in-out;
 }
 .our-team .team-title a:hover{
- color:#FFCD00;
+ color:#999999;
  text-decoration: none;
 }
 .our-team .team-title > small{
@@ -1979,7 +1982,7 @@ hr {
 }
 .our-team .team-social > li > a:hover{
  text-decoration: none;
- color: #FFCD00;
+ color: #9a1f80;
 }
 
 .team-area .owl-theme .owl-nav {
@@ -2008,4 +2011,606 @@ hr {
 }
 .team-inner-area .our-team {
  margin-bottom: 30px;
+}
+.date-slider{
+ opacity: 0.8 !important;
+ font-weight: bold !important;
+ font-size: 6rem!important;
+ line-height: 16.5rem;
+ font-family: Oswald,sans-serif;
+ color: #ffffff !important;
+}
+#carousel-example-generic{
+ max-height: 800px;
+ height: auto;
+}
+#intervenant{
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+}
+/* Defult Section title */
+.defult-title {
+ position: relative;
+ width: 100%;
+ display: inline-block;
+ margin-bottom: 4%;
+}
+.defult-title span {
+ color: #9a1f80;
+ font-weight: normal !important;
+}
+.defult-title h1 {
+ font-size: 36px;
+ line-height: 28px;
+ padding-bottom: 0px;
+ padding: 0;
+ margin: 0 50px;
+ text-transform: uppercase;
+ position: relative;
+ display: inline-block;
+ margin-bottom: 10px;
+ color: #999999;
+ font-weight: bold;
+}
+.defult-title h1:after,
+.defult-title h1:before {
+ position: absolute;
+ width: 50px;
+ height: 2px;
+ background: #9a1f80;
+ transform: translate(0, -50%);
+ top: 50%;
+ content: '';
+}
+.defult-title h1:after {
+ left: -60px;
+}
+.defult-title.bl-none h1 {
+ margin-left: 0;
+ padding-left: 0;
+}
+.defult-title.bl-none h1:after {
+ width: 0;
+ height: 0;
+ background: none;
+}
+.defult-title h1:before {
+ right: -60px;
+}
+.defult-title h5 {
+ line-height: 20px;
+ padding-bottom: 60px;
+ margin-bottom: 0;
+ font-weight: 600;
+ letter-spacing: 5px;
+}
+/*****-----*****-----*****-----*****
+    06. About CSS
+*****-----*****-----*****-----*****/
+.about-area {
+ overflow-x: hidden;
+ padding: 120px 0 90px;
+}
+.about-col {
+ margin-bottom: 30px;
+}
+.experience-box h1 {
+ font-size: 80px;
+ line-height: 62px;
+ margin-bottom: 20px;
+ color: #ffffff;
+}
+.experience-box h4 {
+ color: #ffffff;
+ margin-bottom: 0;
+}
+.about-col h2 {
+ display: inline-block;
+}
+.welcome-text {
+ h2{
+  color: #9a1f80;
+  font-size: 36px;
+  font-family: Lato,sans-serif;
+  font-weight: bold;
+  margin-bottom: 0px;
+ }
+ .welcome-about{
+  font-size: 28px !important;
+  margin-top: 35% !important;
+ }
+ h3{
+  color: #999999;
+  font-size: 18px;
+  font-family: Lato,sans-serif;
+  font-weight: bold;
+ }
+ p {
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  color: #999999;
+ }
+}
+.about-image {
+ position: relative;
+ padding: 20px 20px 0 20px;
+}
+.sponsors-area.carousel-inner{
+ img{
+  margin: 0 auto !important;
+  margin-bottom: 2% !important;
+  border: 1px solid #9a1f80;
+  width: 37%;
+ }
+}
+.carousel.slide{
+ text-align: center !important;
+}
+.carousel.slide.sponsorh2{
+ h2{
+  background: #9a1f80 !important;
+  color: #fdfdfd!important;
+  text-align: center;
+  font-size: 24px!important;
+  padding: 10px !important;
+  width: 37% !important;
+
+  margin-bottom: 0px !important;
+  font-family: 'Oswald', sans-serif;
+  margin-top: 0px !important;
+ }
+}
+.carrousel-cheveron-left{
+ left: 162% !important;
+}
+.carrousel-cheveron-left:before{
+ font-size: 15px;
+ border-radius: 50%;
+}
+.carrousel-cheveron-right{
+ right: 172% !important;
+}
+.carrousel-cheveron-right:before{
+ font-size: 15px;
+ border-radius: 50%;
+}
+.csi-about-img{
+ padding: 0 !important;
+}
+#about{
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+}
+.csi-footer-single address{
+ max-width: 315px;
+}
+.csi-social li a{
+ width: 40px !important;
+ height: 40px !important;
+}
+.csi-social li a i{
+ font-size: 18px !important;
+}
+.csi-countdown-area{
+ top: 80%;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:1199px) {
+ .center1199 {
+  text-align: center;
+  float: none;
+ }
+ .header-topbar:before {
+  height: 900px;
+ }
+ .serviceBox .title {
+  font-size: 16px;
+ }
+ .appointment-area {
+  padding: 60px 0 0;
+ }
+ .appointment-area .defult-title.bl-none h1 {
+  margin: 0 20px 0 0;
+ }
+ .appointment-area .defult-title h5 {
+  padding-bottom: 25px;
+ }
+ .fixed-hight280 {
+  height: 280px !important;
+ }
+ .hero-area:before {
+  margin-left: -6%;
+ }
+
+}
+
+
+@media only screen and (max-width:1024px) {
+ .team-area .owl-carousel .owl-nav .owl-next {
+  right: 10px;
+ }
+ .team-area .owl-carousel .owl-nav .owl-prev {
+  left: 10px;
+ }
+ .team-area .owl-theme .owl-nav [class*=owl-] {
+  padding: 0 15px;
+ }
+}
+
+@media only screen and (max-width:991px) {
+ .center991 {
+  text-align: center !important;
+ }
+ .header-topbar {
+  padding: 10px 0 10px;
+ }
+ .header-navbar .navbar-default .navbar-nav>li>a {
+  margin-left: 20px;
+  font-size: 15px;
+ }
+ .mega-menu li a {
+  font-size: 15px;
+ }
+ .navbar-header {
+  margin: 0 auto;
+  text-align: center;
+  width: 180px;
+ }
+ .header-topbar:before {
+  display: none;
+ }
+ .herader-topbar-col.tobar-rightside {
+  text-align: center;
+ }
+ .herader-topbar-col.tobar-leftside span {
+  margin-right: -5px;
+ }
+ .separator-area:before {
+  width: 100%;
+  height: 100%;
+  margin-right: 0;
+  -ms-transform: skewX(0deg);
+  -webkit-transform: skewX(0deg);
+  transform: skewX(0deg);
+ }
+ .separator-col {
+  text-align: center;
+ }
+ .carousel-caption {
+  padding: 0 80px;
+ }
+ .services-area .service-img {
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+ }
+ .appointment-area {
+  padding: 120px 0;
+ }
+ .appointment-col {
+  margin-bottom: 0;
+ }
+ .appointment-area img {
+  display: none;
+ }
+ .appointment-area .input-group .form-control {
+  margin-bottom: 30px;
+ }
+ .appointment-area .input-group-addon {
+  display: none;
+ }
+ .appointment-area .input-group {
+  width: 100%;
+ }
+ .fixed-hight210 {
+  height: 210px !important;
+ }
+ .separator-area:before {
+  margin-left: 0;
+ }
+ .appointment-area .defult-title h5 {
+  padding-bottom: 60px;
+ }
+ .main-footer:before {
+  display: none;
+ }
+ .services-area .service-img {
+  margin-top: 30px;
+ }
+ .project-info-box {
+  margin-top: 30px;
+ }
+ .hero-area {
+  padding: 150px 0;
+ }
+ .hero-area:before {
+  width: 70%;
+  height: 100%;
+  margin-left: -7%;
+ }
+ .hero-col h2 {
+  font-size: 32px;
+ }
+ .copyright-col p {
+  line-height: 22px;
+  margin-top: 10px;
+ }
+
+}
+
+
+@media only screen and (max-width:840px) {
+ .header-navbar .dropdown-menu {
+  min-width: 190px;
+ }
+}
+
+@media only screen and (max-width:767px) {
+ .center767 {
+  float: none;
+  text-align: center;
+ }
+ .header-topbar .topbar-arrow {
+  display: none;
+ }
+ .header-navbar .navbar-brand {
+  padding: 0 15px;
+  margin-top: 5px;
+ }
+ .header-navbar .navbar-toggle {
+  border-radius: 0;
+  margin: 20px 15px;
+ }
+ .header-navbar .navbar-default .navbar-nav>li>a {
+  margin-left: 0;
+  padding: 12px 0;
+ }
+ .navbar-nav .open .dropdown-menu {
+  max-width: 50%;
+ }
+ .nav > li.dropdown.open .mega-menu {
+  padding: 0;
+ }
+ .navbar-nav {
+  max-height: 350px;
+ }
+ .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: transparent;
+ }
+ .main-nav.top-nav-collapse .icon-bar {
+  background: #333333;
+ }
+ .navbar-collapse {
+  margin-top: 20px;
+ }
+ .container>.navbar-collapse {
+  margin-left: 0;
+  margin-right: 0;
+ }
+ .main-nav .navbar-right {
+  background: #f1f1f1;
+  margin: 0 -15px;
+  padding: 10px 0;
+ }
+ .main-nav .navbar-nav>li {
+  width: 100%;
+  text-align: center;
+ }
+ .main-nav .navbar-nav>li>a {
+  margin-top: 0;
+  margin-left: 0;
+  color: #666666;
+ }
+ .navbar-header {
+  float: left;
+  width: 100% !important;
+ }
+ .header-navbar .navbar-nav {
+  text-align: left;
+ }
+ .team-area .owl-carousel .owl-nav .owl-next {
+  right: 10px;
+ }
+ .team-area .owl-carousel .owl-nav .owl-prev {
+  left: 10px;
+ }
+ .main-slider-area .carousel-control .glyphicon-chevron-right {
+  right: 10px;
+ }
+ .fixed-hight210 {
+  width: 100%;
+  height: auto !important;
+ }
+ .titlebar-col h2 {
+  line-height: 40px;
+ }
+ .hero-area {
+  text-align: center;
+  padding: 120px 0;
+ }
+ .hero-area:before {
+  width: 100%;
+  height: 100%;
+  margin-left: 0;
+  -ms-transform: skewX(0deg);
+  -webkit-transform: skewX(0deg);
+  transform: skewX(0deg);
+ }
+
+
+}
+
+
+@media only screen and (max-width:640px) {
+ .serviceBox .title {
+  font-size: 15px;
+ }
+}
+
+@media only screen and (max-width:600px) {
+ .fw600 {
+  width: 100%;
+ }
+ .text-center600 {
+  float: none;
+  text-align: center;
+ }
+ .main-nav .navbar-brand {
+  width: 180px;
+  height: auto;
+ }
+ .navbar-nav .open .dropdown-menu {
+  max-width: 80%;
+ }
+ .serviceBox .title {
+  font-size: 20px;
+ }
+ .defult-title h1 {
+  font-size: 24px;
+ }
+ .defult-title h1:after, .defult-title h1:before {
+  width: 30px;
+ }
+ .defult-title h1:before {
+  right: -40px;
+ }
+ .defult-title h1:after {
+  left: -40px;
+ }
+ .defult-title h1 {
+  margin-left: 0;
+  margin-right: 0;
+ }
+ .carousel-caption {
+  padding: 0 50px;
+  text-align: center;
+ }
+ .carousel-caption h3 {
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+ }
+ .carousel-caption p {
+  letter-spacing: 1px;
+  font-size: 14px;
+ }
+ .titlebar-col {
+  text-align: center;
+ }
+ .titlebar-col p {
+  text-align: center;
+  margin-top: 10px;
+ }
+ .filtr-item {
+  width: 50%;
+ }
+ .project-three-area .filtr-item {
+  width: 50%;
+ }
+ .header-navbar .navbar-brand {
+  margin-top: 15px;
+ }
+ .header-navbar .navbar-brand img {
+  width: 170px;
+ }
+ .carousel-caption {
+  top: 53%;
+ }
+
+
+}
+
+@media only screen and (max-width:480px) {
+ .herader-topbar-col.tobar-rightside p {
+  display: none;
+ }
+ .counter-item {
+  font-size: 24px;
+ }
+ .counter-item:before {
+  left: -30px;
+  width: 20px;
+ }
+ .counter-item:after {
+  right: -30px;
+  width: 20px;
+ }
+ .counter-title h4 {
+  font-size: 14px;
+ }
+
+}
+
+
+@media only screen and (max-width:420px) {
+ .header-navbar .navbar-brand {
+  margin-top: 15px;
+ }
+ .header-navbar .navbar-brand img {
+  width: 170px;
+ }
+ .navbar-toggle {
+  margin-bottom: 0;
+ }
+ .testimonial .pic {
+  left: 20px;
+  top: 20px;
+ }
+ .testimonial .description {
+  padding: 120px 20px 20px 20px;
+ }
+ .defult-title h1:after, .defult-title h1:before {
+  display: none;
+ }
+ .defult-title h5 {
+  letter-spacing: 0;
+ }
+ .testimonial .description {
+  margin-left: 0;
+ }
+ .testimonial .testimonial-content {
+  margin-left: 20px;
+ }
+ .titlebar-col h2 {
+  font-size: 26px;
+ }
+ .filtr-item {
+  width: 100%;
+ }
+ .project-three-area .filtr-item {
+  width: 100%;
+ }
+
+}
+
+@media only screen and (max-width:375px) {
+
+
+}
+
+@media only screen and (max-width:350px) {
+ .header-navbar .navbar-brand img {
+  width: 155px;
+ }
+ .tab .nav-tabs li a {
+  font-size: 14px;
+  padding: 0 5px 0;
+ }
+ .separator-col h4 {
+  font-size: 14px;
+ }
+}
+
+@media only screen and (max-width:320px) {
+
 }
