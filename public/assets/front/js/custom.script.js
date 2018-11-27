@@ -22,17 +22,17 @@
         /*=========================================================================
          ===  MENU SCROLL FIXED
          ========================================================================== */
-        var s = $(".csi-header-bottom");
-        var pos = s.position();
-
-        $(window).on('scroll', function () {
-            var windowpos = $(window).scrollTop();
-            if (windowpos >= pos.top) {
-                s.addClass("menu-onscroll");
-            } else {
-                s.removeClass("menu-onscroll");
-            }
-        });
+        // var s = $(".csi-header-bottom");
+        // var pos = s.position();
+        //
+        // $(window).on('scroll', function () {
+        //     var windowpos = $(window).scrollTop();
+        //     if (windowpos >= pos.top) {
+        //         s.addClass("menu-onscroll");
+        //     } else {
+        //         s.removeClass("menu-onscroll");
+        //     }
+        // });
 
         /*=========================================================================
          ===  MENU SCROLL FIXED END
