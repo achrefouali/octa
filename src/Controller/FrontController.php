@@ -1722,12 +1722,19 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+
         return $this->render(
             'front/registration/registrationOption.html.twig',
             [
                 'configuration'      => $configuration,
                 'event'              => $event,
                 'menus'              => $menus,
+                'sponsorsByType'     => $sponsorsByType,
                 'hotels'             => $hotels,
                 'devises'             => $devises
 
