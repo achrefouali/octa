@@ -119,13 +119,14 @@
                 </div>
                 <!-- /.carousel -->
             </div>
-        </section>
-        <div class="csi-countdown-area">
-            <div class="csi-countdown-area-inner">
-                <div id="csi-countdown"
-                     data-date="{{ event.dateDebut? event.dateDebut|date('Y-m-d H:i:s') : '' }}"></div>
+            <div class="csi-countdown-area">
+                <div class="csi-countdown-area-inner">
+                    <div id="csi-countdown"
+                         data-date="{{ event.dateDebut? event.dateDebut|date('Y-m-d H:i:s') : '' }}"></div>
+                </div>
             </div>
-        </div>
+        </section>
+
         <!--ABOUT-->
         {#<section>#}
         {#<div id="csi-about" class="csi-about">#}
@@ -274,9 +275,9 @@
     <section class="about-area" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6 ">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 about-left">
                             <div class="about-col">
                                 {#<div class="experience-box wow bounceIn" data-wow-duration="1s" data-wow-delay="0s">#}
                                     {#<h1>20</h1>#}
