@@ -52,6 +52,7 @@ class Tarif
 
     public function __construct()
     {
+        $this->visible=true ;
         $this->participantTypes = new ArrayCollection();
     }
 
@@ -138,4 +139,27 @@ class Tarif
 
         return $this;
     }
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+
+    private $visible ;
+
+ public function getVisible(){
+    return $this->visible ;
+}
+public function setVisible($visible){
+    $this->visible = $visible;
+    return $this ;
+}
+
+public function getFormattedVisible(){
+    switch ($this->visible){
+        case 0: return ('Non');
+        case 1: return ('Oui');
+        default : return ('Non');
+    }
+}
+
 }

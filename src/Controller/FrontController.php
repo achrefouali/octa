@@ -1671,5 +1671,68 @@ class FrontController extends Controller
     function generateRandomString($length = 10) {
         return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     }
+    /**
+     * 
+     * @Route("/inscrption/option", name="application_event_inscription_option")
+     */
+    public function registrationOption(Request $request){
+        $session = $request->getSession();
+
+        $currency = $request->get('_currency');
+
+        $devise_criterias = ['main' => true];
+
+        if(!empty($currency)){
+            $devise_criterias = ['code' => $currency];
+        }
+        $devise = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findOneBy($devise_criterias)
+        ;
+
+        $session->set('currency', strtolower($devise->getCode()));
+        if(empty($devise)){
+            throw new \Exception('You have to define at least one main "Devise"');
+        }
+
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+      
+
+        $menus = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll()
+        ;
+
+        $hotels = $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $devises = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findBy(['enabled' => true])
+        ;
+        return $this->render(
+            'front/registration/registrationOption.html.twig',
+            [
+                'configuration'      => $configuration,
+                'event'              => $event,
+                'menus'              => $menus,
+                'hotels'             => $hotels,
+                'devises'             => $devises
+
+            ]
+        );
+    }
 
 }
