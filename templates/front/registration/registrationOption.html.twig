@@ -37,11 +37,10 @@
         <div class="csi-inner">
         <div class="container" >
         <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-6">
         <div class="csi-registration-area">
 
         {% for tarif in event.tarifs %}
-        <div class="csi-single-registration {% if loop.index == 1 %}recommended{% endif %}">
         <div class="csi-single-registration ">
         <div class="csi-single-registration-inner">
         <div class="single-top">
@@ -67,11 +66,17 @@
 
         </div>
         </div>
+           <div class="col-md-6">
+               <div class="about-col">
+                   <div class="about-image">
+               {% include 'front/sponsorsList.html.twig' %}
+                       </div></div>
+           </div>
         </div>
         </div><!-- //.CONTAINER -->
         </div><!-- //.INNER -->
         </div>
-        </div>
+
         </section>
 
 
