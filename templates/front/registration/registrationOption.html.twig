@@ -45,10 +45,11 @@
         <div class="csi-single-registration ">
         <div class="csi-single-registration-inner">
         <div class="single-top">
-        <h3 class="title">{{ 'Registration'|trans }} {{ tarif.label }}</h3>
         <h3 class="title"> {{ tarif.label }}</h3>
+            {% if tarif.visible %}
         <h4 class="price">{{ getPriceByDevise(tarif.prix, app.session.get('currency')) }}
         <i>{{ getDevise(app.session.get('currency')) }}</i><span></span>
+            {% endif %}
         </h4>
         </div>
         <div class="single-bottom">
