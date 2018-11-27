@@ -49,7 +49,7 @@ jQuery(function(){
 
 function fixedMenu() {
     var window_top = jQuery(window).scrollTop();
-    if (window_top > 50) {
+    if (window_top > 180) {
         jQuery('.header-navbar.fixed-header').addClass('scroll-to-fixed-fixed');
 
     } else {
