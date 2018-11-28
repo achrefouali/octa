@@ -94,11 +94,15 @@
                 {% for tarif in event.tarifs %}
                     <div class="col-md-6 col-sm-6 col-xs-6 fw600">
                         <div class="pricingTable">
-                            {% if tarif.visible %}
+
                             <div class="price-value">
+                                {% if tarif.visible %}
                                 <h2>{{ getPriceByDevise(tarif.prix, app.session.get('currency')) }}<i class="devise-currency">{{ getDevise(app.session.get('currency')) }}</i> </h2>
+                                {% else %}
+                                <h2>-<i class="devise-currency">{{ getDevise(app.session.get('currency')) }}</i> </h2>
+                                {% endif %}
                             </div>
-                            {% endif %}
+
                             <div class="pricing-content">
                                 <h3 class="title">{{ tarif.label }}</h3>
                                 <ul>
