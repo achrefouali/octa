@@ -7,64 +7,102 @@
 
 {% block main %}
     <!--Banner-->
-    <section>
-        <div class="csi-banner csi-banner-inner">
-            <div class="csi-banner-style">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="csi-heading-area">
-                                    <ul class="breadcrumb">
-                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                        <li class="active">{{ 'List of participants'|trans }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--//.ROW-->
+    {#<section>#}
+        {#<div class="csi-banner csi-banner-inner">#}
+            {#<div class="csi-banner-style">#}
+                {#<div class="csi-inner">#}
+                    {#<div class="container">#}
+                        {#<div class="row">#}
+                            {#<div class="col-xs-12">#}
+                                {#<div class="csi-heading-area">#}
+                                    {#<ul class="breadcrumb">#}
+                                        {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+                                        {#<li class="active">{{ 'List of participants'|trans }}</li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div><!--//.ROW-->#}
+                    {#</div>#}
+                {#</div>#}
+                {#<!-- //.INNER -->#}
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>{{ 'List of participants'|trans }}</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> {{ 'List of participants'|trans }}</li>
+                        </ul>
+
                     </div>
                 </div>
-                <!-- //.INNER -->
             </div>
         </div>
     </section>
     <!--Banner END-->
 <section>
-    <div class="container">
-        <h3>{{ 'List of participants'|trans }}</h3>
+    <div id="csi-news" class="csi-news csi-news-singlepage">
 
+        <div class="csi-inner" style="padding: 4rem 0;">
+            <div class="container-about">
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="container">
+                            <table id="list-participants" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>{{ 'Pays'|trans }}</th>
+                                    <th>{{ 'Organism'|trans }}</th>
+                                    <th>{{ 'Firstname'|trans }}</th>
+                                    <th>{{ 'Lastname'|trans }}</th>
+                                    <th>{{ 'Position'|trans }}</th>
+                                    <th>{{ 'E-mail'|trans }}</th>
+                                    <th>{{ 'Tel'|trans }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if participants|length > 0 %}
+                                    {% for participant in participants %}
+                                        <tr>
+                                            <td>{{ participant.Pays }}</td>
+                                            <td>{{ participant.Oragnisme }}</td>
+                                            <td>{{ participant.Nom }}</td>
+                                            <td>{{ participant.Prénom }}</td>
+                                            <td>{{ participant.Poste }}</td>
+                                            <td>{{ participant.Email }}</td>
+                                            <td>{{ participant.Tel }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="about-col">
+                            <div class="about-image">
+                                {% include 'front/sponsorsList.html.twig' %}
+                            </div></div>
+                    </div>
+
+                </div>
+            </div><!-- //.CONTAINER -->
+        </div><!-- //.INNER -->
     </div>
 
-        <div class="container">
-            <table id="list-participants" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                <tr>
-                    <th>{{ 'Pays'|trans }}</th>
-                    <th>{{ 'Organism'|trans }}</th>
-                    <th>{{ 'Firstname'|trans }}</th>
-                    <th>{{ 'Lastname'|trans }}</th>
-                    <th>{{ 'Position'|trans }}</th>
-                    <th>{{ 'E-mail'|trans }}</th>
-                    <th>{{ 'Tel'|trans }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% if participants|length > 0 %}
-                {% for participant in participants %}
-                    <tr>
-                        <td>{{ participant.Pays }}</td>
-                        <td>{{ participant.Oragnisme }}</td>
-                        <td>{{ participant.Nom }}</td>
-                        <td>{{ participant.Prénom }}</td>
-                        <td>{{ participant.Poste }}</td>
-                        <td>{{ participant.Email }}</td>
-                        <td>{{ participant.Tel }}</td>
-                    </tr>
-                {% endfor %}
-                {% endif %}
-                </tbody>
-            </table>
-        </div>
+
 
 </section>
 {% endblock %}

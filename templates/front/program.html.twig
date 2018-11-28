@@ -1,0 +1,205 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Page | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+    <!--Banner-->
+    {#<section>#}
+    {#<div class="csi-banner csi-banner-inner">#}
+    {#<div class="csi-banner-style">#}
+    {#<div class="csi-inner">#}
+    {#<div class="container">#}
+    {#<div class="row">#}
+    {#<div class="col-xs-12">#}
+    {#<div class="csi-heading-area">#}
+    {#<ul class="breadcrumb">#}
+    {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+    {#<li class="active">{{ 'Page'|trans }}</li>#}
+    {#</ul>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div><!--//.ROW-->#}
+    {#</div>#}
+    {#</div>#}
+    {#<!-- //.INNER -->#}
+    {#</div>#}
+    {#</div>#}
+    {#</section>#}
+    <!--Banner END-->
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Programme</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> {{ 'Programme'|trans }}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--NEWS-->
+    <section>
+        <div id="csi-news" class="csi-news csi-news-singlepage">
+
+            <div class="csi-inner" style="padding: 4rem 0;">
+                <div class="container-about">
+                    <div class="row ">
+                        <div class="col-md-8">
+
+                            {% if event.journees is not empty %}
+                                <!--SCHEDULE-->
+                                <section>
+                                    <div id="csi-schedule" class="csi-schedule">
+                                        <div class="csi-inner">
+                                            <div class="">
+
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="csi-tab">
+                                                            <ul class="nav nav-pills csi-nav">
+                                                                {% for journee in event.journees %}
+
+
+                                                                    <li {% if loop.index == 1 %}class="active"{% endif %}><a data-toggle="pill"
+                                                                                                                             href="#menu{{ loop.index }}">
+                                                                            <h3>{% if app.request.locale == 'fr' %} {{ journee.designation }} {% else %}{{ journee.designationen }}{% endif %} </h3>
+                                                                            <p>
+                                                                                <span>{{ journee.date? journee.date|date('d') : '' }} </span>{{ journee.date? journee.date|date('M, Y') : '' }}
+                                                                            </p></a></li>
+
+                                                                {% endfor %}
+                                                            </ul>
+                                                            <div class="tab-content csi-tab-content">
+
+
+                                                                {% for journee in event.journees %}
+
+                                                                    {% set i =  loop.index %}
+                                                                    <div id="menu{{ i }}"
+                                                                         class="tab-pane fade {% if loop.index == 1 %}active in{% endif %}">
+
+                                                                        <div class="panel-group" id="accordion2" role="tablist"
+                                                                             aria-multiselectable="true">
+
+                                                                            {% for programme in journee.programmes %}
+                                                                                {% set j =  loop.index %}
+                                                                                <div class="panel panel-default csi-panel">
+                                                                                    <div class="panel-heading" role="tab" id="headingOne2">
+                                                                                        <div class="panel-title">
+                                                                                            <a class="collapsed" role="button"
+                                                                                               data-toggle="collapse" data-parent="#accordion2"
+                                                                                               href="#collapseOne{{ i ~ '-' ~ j }}"
+                                                                                               aria-expanded="true"
+                                                                                               aria-controls="collapseOne2">
+                                                                                                <div class="csi-single-schedule">
+                                                                                                    <div class="author author-multi">
+                                                                                                        {% for intervenant in programme.intervenants %}
+                                                                                                            <img src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}"
+                                                                                                                 alt="{{ intervenant.firstname ~' '~ intervenant.lastname }}"/>
+                                                                                                        {% endfor %}
+                                                                                                    </div>
+                                                                                                    <div class="schedule-info">
+                                                                                                        <h4 class="time">
+                                                                                                            <span>{{ programme.heureDebut? programme.heureDebut|date('H:i') : '' }} </span>
+                                                                                                            -
+                                                                                                            <span>{{ programme.heureFin? programme.heureFin|date('H:i') : '' }}</span>
+                                                                                                        </h4>
+                                                                                                        <h3 class="title">
+                                                                                                            {% if app.request.locale == 'en' %}
+                                                                                                                {{ programme.designationEn | raw }}
+                                                                                                            {% else %}
+                                                                                                                {{ programme.designation| raw }}
+                                                                                                            {% endif %}
+                                                                                                        </h3>
+                                                                                                        <h4 class="author-info">
+                                                                                                            {% for intervenant in programme.intervenants %}
+                                                                                                                {% if loop.index == 1 %}
+                                                                                                                    Par
+                                                                                                                {% endif %}
+                                                                                                                <span>{{ intervenant.firstname ~' '~ intervenant.lastname }}
+                                                                                                                    &nbsp;&nbsp;</span>
+                                                                                                            {% endfor %}
+                                                                                                        </h4>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div id="collapseOne{{ i ~ '-' ~ j }}"
+                                                                                         class="panel-collapse collapse"
+                                                                                         role="tabpanel" aria-labelledby="headingOne">
+                                                                                        <div class="panel-body">
+                                                                                            <p class="text">
+                                                                                                {% if app.request.locale == 'en' %}
+                                                                                                    {{ programme.descriptionEn | raw }}
+                                                                                                {% else %}
+                                                                                                    {{ programme.description| raw }}
+                                                                                                {% endif %}
+                                                                                            </p>
+                                                                                            <h4 class="location"><strong>{{ 'Location'|trans }}
+                                                                                                    :</strong>
+                                                                                                {{ programme.emplacement }}
+                                                                                            </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endfor %}
+
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                {% endfor %}
+
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    {% if event.programFile is not null  %}
+                                                        <a  target="_blank" class="csi-btn" href="{{ asset('uploads/events/'~event.programFile) }}">
+                                                            <span> {% if app.request.locale == 'fr' %}Télécharger Programme {% else  %} Download Program {% endif %} </span>
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                                <!--//.ROW-->
+                                            </div>
+                                            <!-- //.CONTAINER -->
+                                        </div>
+                                        <!-- //.INNER -->
+                                    </div>
+                                </section>
+                                <!--SCHEDULE END-->
+                            {% endif %}
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="about-col">
+                                <div class="about-image">
+                                    {% include 'front/sponsorsList.html.twig' %}
+                                </div></div>
+                        </div>
+
+                    </div>
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section> <!--//.NEWS-->
+
+{% endblock %}
