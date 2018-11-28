@@ -5,24 +5,45 @@
 {% block main %}
 
     <!--Banner-->
-    <section>
-        <div class="csi-banner csi-banner-inner">
-            <div class="csi-banner-style">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="csi-heading-area">
-                                    <ul class="breadcrumb">
-                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                        <li class="active">{{ 'Register'|trans }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--//.ROW-->
+    {#<section>#}
+        {#<div class="csi-banner csi-banner-inner">#}
+            {#<div class="csi-banner-style">#}
+                {#<div class="csi-inner">#}
+                    {#<div class="container">#}
+                        {#<div class="row">#}
+                            {#<div class="col-xs-12">#}
+                                {#<div class="csi-heading-area">#}
+                                    {#<ul class="breadcrumb">#}
+                                        {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+                                        {#<li class="active">{{ 'Register'|trans }}</li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div><!--//.ROW-->#}
+                    {#</div>#}
+                {#</div>#}
+                {#<!-- //.INNER -->#}
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Reservation</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> {{ 'Reservation'|trans }}</li>
+                        </ul>
+
                     </div>
                 </div>
-                <!-- //.INNER -->
             </div>
         </div>
     </section>
