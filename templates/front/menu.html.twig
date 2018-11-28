@@ -33,8 +33,13 @@
                         <li class="dropdown ">
                         <a  class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ menu_title }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                     {% else %}
+                        {% if menu.titleEn == "Program" %}
+                            <li>
+                            <a  href="{{ path('application_event_program')}}">{{ menu_title }}</a>
+                        {% else %}
                         <li>
-                        <a class=" {% if menu.link in routeCurrent %}csi-btn {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>
+                        <a class=" {% if menu.link in routeCurrent %} {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>
+                    {% endif %}
                     {% endif %}
 
                     {% if menu.pages|length > 0 %}
