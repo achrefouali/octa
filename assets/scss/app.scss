@@ -1185,11 +1185,11 @@ $flag-icon-css-path: '~flag-icon-css/flags';
  padding: 6rem 0;
 }
 
-.csi-banner-content .csi-subtitle, .csi-banner-content .csi-title {
- font-size: 8rem;
- line-height: 16.5rem;
- font-family: Oswald,sans-serif;
-}
+//.csi-banner-content .csi-subtitle, .csi-banner-content .csi-title {
+// font-size: 8rem;
+// line-height: 16.5rem;
+// font-family: Oswald,sans-serif;
+//}
 
 .csi-footer {
  background: #212739;
@@ -1849,8 +1849,8 @@ hr {
  text-decoration: underline;
 }
 .csi-title{
- font-size: 4vw !important;
- line-height: 16.5rem !important;
+ font-size: 4vw;
+ line-height: 16.5rem;
  font-family: Oswald,sans-serif !important;
  margin-top: -15%;
 }
@@ -2136,7 +2136,7 @@ hr {
 }
 .about-image {
  position: relative;
- padding: 20px 20px 0 20px;
+ //padding: 20px 20px 0 20px;
 }
 .sponsors-area.carousel-inner{
  img{
@@ -2210,6 +2210,203 @@ hr {
 }
 
 
+
+/*****-----*****-----*****-----*****
+    17. Pricing CSS
+*****-----*****-----*****-----*****/
+#csi-registration{
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+}
+.pricing-area {
+ padding: 120px 0 90px;
+}
+.pricingTable{
+ padding: 5px 20px;
+ margin-bottom: 30px;
+ border: 1px solid #9a1f80;
+ text-align: center;
+ width: 100%;
+ max-width: 100%;
+ min-height: 150px;
+ height: auto;
+}
+.pricingTable .price-value {
+ margin-bottom: 30px;
+}
+.pricingTable .price-value h2{
+ font-size: 60px;
+ font-weight: bold;
+ color: #2F344E;
+ letter-spacing: 3px;
+ margin-bottom: 5%;
+ font-family: Lato, sans-serif;
+ margin-top: 15%;
+}
+.devise-currency{
+ vertical-align: middle;
+ font-size: 24px !important;
+}
+.pricingTable .title{
+ display: inline-block;
+ padding: 15px 10px;
+ margin: 0 0 30px 0;
+ background: #eee;
+ font-size: 18px;
+ color: #9a1f80;
+ text-transform: capitalize;
+ letter-spacing: 1px;
+ position: relative;
+ transition: all 0.3s ease 0s;
+ font-family: Lato, sans-serif;
+ margin-top: 5%;
+}
+.pricingTable:hover .title{
+ background: #9a1f80;
+ color: #fff;
+}
+.pricingTable .title:before,
+.pricingTable .title:after{
+ content: "";
+ border-right: 26px solid #eee;
+ border-top: 25px solid transparent;
+ border-bottom: 26px solid transparent;
+ position: absolute;
+ top: 0;
+ left: -26px;
+ transition: all 0.3s ease 0s;
+}
+.pricingTable .title:after{
+ border-right: none;
+ border-left: 26px solid #eee;
+ left: auto;
+ right: -26px;
+}
+.pricingTable:hover .title:before{ border-right-color: #9a1f80; }
+.pricingTable:hover .title:after{ border-left-color: #9a1f80; }
+.pricingTable .pricing-content{
+ padding: 0;
+ margin: 0 0 25px 0;
+ list-style: none;
+}
+.pricingTable .pricing-content li{
+ font-size: 17px;
+ color: #0d3b66;
+ line-height: 40px;
+ font-family: Lato, sans-serif;
+}
+.pricing-content ul {
+ margin-bottom: 30px;
+ min-height: 120px;
+ list-style: none;
+ text-align: center;
+ padding-left: 0px;
+}
+
+/* Btn CSS */
+.simple-btn {
+ border-color: #9a1f80;
+ border-radius: 0;
+ color: #ffffff;
+ background: #9a1f80;
+ padding: 12px 30px;
+ text-transform: uppercase;
+ position: relative;
+ overflow: hidden;
+ -webkit-transition: all 0.3s ease-in-out;
+ -moz-transition: all 0.3s ease-in-out;
+ -ms-transition: all 0.3s ease-in-out;
+ -o-transition: all 0.3s ease-in-out;
+ transition: all 0.3s ease-in-out;
+}
+.simple-btn:before {
+ content: '';
+ width: 20px;
+ height: 41px;
+ background: #ffffff;
+ position: absolute;
+ left: -50px;
+ top: 0px;
+ z-index: 0;
+ opacity: 0.3;
+ -ms-transform: rotate(20deg); /* IE 9 */
+ -webkit-transform: rotate(20deg); /* Safari */
+ transform: rotate(20deg);
+ -webkit-transition: all 0.4s ease-in-out;
+ -moz-transition: all 0.4s ease-in-out;
+ -ms-transition: all 0.4s ease-in-out;
+ -o-transition: all 0.4s ease-in-out;
+ transition: all 0.4s ease-in-out;
+}
+.simple-btn:hover:before {
+ left: 300px;
+ z-index: -1;
+ -webkit-transition: all 0.8s ease-in-out;
+ -moz-transition: all 0.8s ease-in-out;
+ -ms-transition: all 0.8s ease-in-out;
+ -o-transition: all 0.8s ease-in-out;
+ transition: all 0.8s ease-in-out;
+}
+.simple-btn:hover {
+ color: #ffffff;
+ background: #9a1f80;
+ z-index: 1;
+ border-color: #9a1f80;
+ -webkit-transition: all 0.3s ease-in-out;
+ -moz-transition: all 0.3s ease-in-out;
+ -ms-transition: all 0.3s ease-in-out;
+ -o-transition: all 0.3s ease-in-out;
+ transition: all 0.3s ease-in-out;
+}
+/*****-----*****-----*****-----*****
+    16. Inner page title bar CSS
+*****-----*****-----*****-----*****/
+.innerpage-titlebar {
+ padding: 150px 0 0;
+ margin-bottom: 30px;
+ position: relative;
+ background: url(https://www.reparatuvehiculo.com/wp-content/uploads/2016/08/repara-tu-vehiculo-horarios-verano.jpg) top center no-repeat;
+ background-position: center;
+ background-size: cover;
+ background-repeat: no-repeat;
+}
+.titlebar-box {
+ padding: 25px 25px;
+ background: #f5f5f5;
+ margin-bottom: -50px;
+ position: relative;
+ height: 88px;
+}
+.titlebar-col h2 {
+ font-size: 36px;
+ line-height: 28px;
+ margin-bottom: 0;
+ font-family: Lato, sans-serif;
+ font-weight: bold;
+ margin-top: 0;
+ text-align: left !important;
+ padding: 0;
+ text-transform: capitalize;
+ letter-spacing: 0.5px;
+}
+.titlebar-col {
+ text-align: right;
+ vertical-align: middle;
+}
+.titlebar-col li a{
+ text-transform: capitalize !important;
+ color: #333333 !important;
+ font-size: 20px !important;
+ font-family: Lato, sans-serif;
+}
+.titlebar-col li.active {
+ color: #9a1f80 !important;
+ font-size: 20px !important;
+ font-family: Lato, sans-serif;
+}
+.titlebar-col li.active:before {
+ color: #333333 !important;
+ content: "|" !important;
+}
 // media query
 
 @media (max-width: 1199px){
@@ -2244,7 +2441,7 @@ hr {
   margin: 0 auto;
  }
  .csi-title{
-  line-height: 8.5rem !important;
+  line-height: 8.5rem;
   margin-top: -28%;
  }
  .date-slider{
@@ -2258,9 +2455,17 @@ hr {
  }
  .btn-area{
   padding-top: 3%;
-  padding-bottom: 5%;
+ }
+ .sponsorh2{
+  margin-top: 5%;
  }
 }
+
+
+
+
+
+
 @media (max-width: 767px){
  .csi-title{
   margin-top: -35% !important;
