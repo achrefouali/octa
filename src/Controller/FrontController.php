@@ -248,12 +248,18 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
         return $this->render(
             'front/page.html.twig',
             [
 
                 'event' => $event,
                 'menus' => $menus,
+                'sponsorsByType'=>$sponsorsByType,
                 'page'  => $page,
                 'devises'             => $devises
             ]

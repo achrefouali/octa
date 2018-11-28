@@ -19,7 +19,11 @@ $flag-icon-css-path: '~flag-icon-css/flags';
  @import "~flag-icon-css/sass/flag-icon";
  @import "~datatables.net-bs/css/dataTables.bootstrap.min.css";
 
-
+.about-col p:nth-child(2){
+ font-size: 20px !important;
+ line-height: 1.5 !important;
+ text-align: justify !important;
+}
 
 .btn-primary {
  color: #fff;
@@ -1543,6 +1547,7 @@ hr {
  padding-right: 0;
  margin-left: 25px;
  padding: 30px 0;
+ font-weight: bold;
 }
 .header-navbar .navbar-default .navbar-nav>.active>a,
 .header-navbar .navbar-default .navbar-nav>li>a:hover {
@@ -1662,11 +1667,12 @@ hr {
  //margin-left: -18%;
 }
 .img-top-bar{
- margin-right: 18%;
  margin-top: 1%;
- //margin-bottom: -2%;
  width: 40%;
  max-width: 100%;
+ min-height: 106px;
+ height: auto;
+ margin-bottom: -2%;
 }
 
 //04. Slider CSS
@@ -1954,7 +1960,7 @@ hr {
     padding-bottom:5px;
 }*/
 .our-team .team-title a{
- font-size: 18px;
+ font-size: 24px;
  text-transform: capitalize;
  color: #fff;
  display: block;
@@ -1969,7 +1975,7 @@ hr {
  text-decoration: none;
 }
 .our-team .team-title > small{
- font-size: 13px;
+ font-size: 18px;
  color:#fff
 }
 .our-team .team-social{
@@ -2024,7 +2030,7 @@ hr {
  color: #ffffff !important;
 }
 #carousel-example-generic{
- max-height: 800px;
+ max-height: 600px;
  height: auto;
 }
 #intervenant{
@@ -2089,6 +2095,10 @@ hr {
 /*****-----*****-----*****-----*****
     06. About CSS
 *****-----*****-----*****-----*****/
+.container-about{
+ width: 1600px;
+ margin: 0 auto;
+}
 .about-area {
  overflow-x: hidden;
  padding: 120px 0 90px;
@@ -2112,7 +2122,7 @@ hr {
 .welcome-text {
  h2{
   color: #9a1f80;
-  font-size: 36px;
+  font-size: 76px;
   font-family: Lato,sans-serif;
   font-weight: bold;
   margin-bottom: 0px;
@@ -2123,7 +2133,7 @@ hr {
  }
  h3{
   color: #999999;
-  font-size: 18px;
+  font-size: 31px;
   font-family: Lato,sans-serif;
   font-weight: bold;
  }
@@ -2143,7 +2153,7 @@ hr {
   margin: 0 auto !important;
   margin-bottom: 2% !important;
   border: 1px solid #9a1f80;
-  width: 37%;
+  width: 50%;
  }
 }
 .carousel.slide{
@@ -2156,8 +2166,8 @@ hr {
   text-align: center;
   font-size: 24px!important;
   padding: 10px !important;
-  width: 37% !important;
-
+  width: 50% !important;
+  max-width: 100%;
   margin-bottom: 0px !important;
   font-family: 'Oswald', sans-serif;
   margin-top: 0px !important;
@@ -2201,12 +2211,13 @@ hr {
  bottom: 26% !important;
 }
 .top-sidebar-right{
- display: flex;
+ display: block;
  padding-left: 0px;
  white-space: nowrap;
+ text-align: right;
 }
 .img-top-bar-container{
- text-align: right;
+ text-align: center;
 }
 
 
@@ -2259,6 +2270,7 @@ hr {
  transition: all 0.3s ease 0s;
  font-family: Lato, sans-serif;
  margin-top: 5%;
+ font-weight: bold;
 }
 .pricingTable:hover .title{
  background: #9a1f80;
@@ -2406,6 +2418,12 @@ hr {
 .titlebar-col li.active:before {
  color: #333333 !important;
  content: "|" !important;
+}
+
+.pvisa p {
+ font-size: 20px !important;
+ line-height: 1.5 !important;
+ text-align: justify !important;
 }
 // media query
 
