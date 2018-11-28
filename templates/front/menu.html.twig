@@ -19,7 +19,7 @@
         {% if(app.request.attributes.get('_route') != 'home') %}
             {% set current_path = path('home') %}
         {% endif %}
-        <div class="collapse navbar-collapse in" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations="fadeInUp" aria-expanded="true">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations="fadeInUp" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav navbar-right">
 
                 {% for menu in menus %}
@@ -31,10 +31,10 @@
                     {% endif %}
                     {% if menu.pages|length > 0 %}
                         <li class="dropdown ">
-                        <a  class="dropdown-toggle active {% if routeCurrent == 'cms_page' %}csi-btn{% endif %} " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ menu_title }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <a  class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ menu_title }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                     {% else %}
                         <li>
-                        <a class="csi-scroll  {% if menu.link in routeCurrent %}csi-btn {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>
+                        <a class=" {% if menu.link in routeCurrent %}csi-btn {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>
                     {% endif %}
 
                     {% if menu.pages|length > 0 %}
