@@ -2425,6 +2425,148 @@ hr {
  line-height: 1.5 !important;
  text-align: justify !important;
 }
+
+/*****-----*****-----*****-----*****
+    18. Account CSS
+*****-----*****-----*****-----*****/
+.account-area {
+ padding: 120px 0;
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+}
+.tab{
+ padding: 70px 50px 25px;
+ margin-top: 40px;
+ background: #2F344E;
+ position: relative;
+}
+.tab:before{
+ content: "\f007";
+ font-family: fontawesome;
+ width: 100px;
+ height: 100px;
+ line-height: 100px;
+ border-radius: 50%;
+ border: 5px solid #fff;
+ background: #9a1f80;
+ font-size: 40px;
+ line-height: 100px;
+ color: #fff;
+ text-align: center;
+ margin: 0 auto;
+ position: absolute;
+ top: -50px;
+ left: 0;
+ right: 0;
+}
+.tab .nav-tabs{
+ padding: 0 20px 15px;
+ position: relative;
+}
+.tab .nav-tabs li a{
+ padding: 0 20px 0;
+ margin: 0;
+ background: none;
+ font-size: 18px;
+ color: #fff;
+ text-transform: uppercase;
+ border: none;
+ border-radius: 0;
+ opacity: 0.5;
+ position: relative;
+ transition: all 0.5s ease 0s;
+}
+.tab .nav-tabs li a:hover{ border: none; }
+.tab .nav-tabs li a:before{
+ content: "";
+ width: 0;
+ height: 3px;
+ background: #fff;
+ position: absolute;
+ bottom: -16px;
+ left: 0;
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li.active a:focus,
+.tab .nav-tabs li.active a:hover{
+ border: none;
+ background: none;
+ opacity: 1;
+ color: #fff;
+}
+.tab .nav-tabs li.active a:before,
+.tab .nav-tabs li.active a:hover:before{ width: 100%; }
+.tab .tab-content{
+ padding: 20px 0 0 0;
+ margin-top: 15px;
+ background: none;
+ position: relative;
+}
+.form-horizontal .form-group{
+ position: relative;
+ margin-bottom: 0;
+}
+.form-horizontal .form-control{
+ height: 45px;
+ background: rgba(255,255,255,0.2);
+ border: none;
+ border-radius: 0;
+ box-shadow: none;
+ padding: 0 10px;
+ font-size: 14px;
+ font-weight: bold;
+ color: #fff;
+ transition: all 0.3s ease 0s;
+ margin-bottom: 30px;
+}
+.form-horizontal .form-control:focus{
+ box-shadow: none;
+ outline: 0 none;
+}
+.form-horizontal .form-group label{
+ color: #999999;
+ text-transform: capitalize;
+ margin-bottom: 5px;
+ font-size: 18px;
+ font-family: Lato, sans-serif;
+ letter-spacing: 0.8px;
+
+}
+.form-horizontal .btn{
+ display: inline-block;
+ width: 50%;
+ background: #9a1f80;
+ padding: 10px 20px;
+ margin: 20px auto 0;
+ border: none;
+ font-size: 14px;
+ font-weight: bold;
+ color: #fff;
+ border-radius: 0;
+ text-transform: uppercase;
+}
+.form-horizontal .btn:focus{
+ background: #9a1f80;
+ color: #fff;
+ outline: none;
+ box-shadow: none;
+}
+.form-horizontal .forgot-pass{
+ margin: 0;
+ text-align: center;
+ margin-top: 2%;
+}
+.form-horizontal .forgot-pass a{
+ display: inline-block;
+ padding: 10px 20px;
+ margin: 10px 0 0 0;
+ border-bottom: 1px solid #615f6c;
+ font-size: 14px;
+ font-weight: bold;
+ color: #999999;
+ text-transform: capitalize;
+ transition: all 0.3s ease 0s;
+}
+.form-horizontal .forgot-pass a:hover{ color: #9a1f80; }
 // media query
 
 @media (max-width: 1199px){
