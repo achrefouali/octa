@@ -7,69 +7,133 @@
 
 {% block main %}
     <!--Banner-->
-    <section>
-        <div class="csi-banner csi-banner-inner">
-            <div class="csi-banner-style">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="csi-heading-area">
-                                    <ul class="breadcrumb">
-                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                        <li class="active">{{ 'Registration'|trans }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--//.ROW-->
+    {#<section>#}
+        {#<div class="csi-banner csi-banner-inner">#}
+            {#<div class="csi-banner-style">#}
+                {#<div class="csi-inner">#}
+                    {#<div class="container">#}
+                        {#<div class="row">#}
+                            {#<div class="col-xs-12">#}
+                                {#<div class="csi-heading-area">#}
+                                    {#<ul class="breadcrumb">#}
+                                        {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+                                        {#<li class="active">{{ 'Registration'|trans }}</li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div><!--//.ROW-->#}
+                    {#</div>#}
+                {#</div>#}
+                {#<!-- //.INNER -->#}
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Mot de passe oublié</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> Mot de passe oublié</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- //.INNER -->
             </div>
         </div>
     </section>
     <!--Banner END-->
-    <section>
+    {#<section>#}
+
+
+        {#<div class="container">#}
+            {#<div class="well">#}
+
+                {#{% if error !="" %}#}
+
+                    {#<div class="alert alert-danger">#}
+                        {#{{ error }}#}
+                    {#</div>#}
+                {#{% endif %}#}
+                {#{% if valid !="" %}#}
+
+                    {#<div class=" alert alert-success">#}
+                        {#{{ valid }}#}
+                    {#</div>#}
+                {#{% endif %}#}
+                {#<p>#}
+                    {#Veuillez saisir votre adresse e-mail pour rechercher votre compte.</p>#}
+                {#<form action="{{ path('reset_password') }}" method="post">#}
+
+
+                        {#<div class="form-group">#}
+                            {#<label for="email">{{ 'Email'|trans }}</label>#}
+                            {#<input type="email" id="email" name="_email" value="" class="form-control"/>#}
+                        {#</div>#}
+
+                        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
+                        {#<button type="submit" class="btn btn-primary">#}
+                            {#<i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'reset'|trans }}#}
+                        {#</button>#}
+                        {#<a href="{{ path('inscription_page') }}" > {{ 'Register'|trans }}</a>#}
+
+                {#</form>#}
+            {#</div>#}
+        {#</div>#}
+
+    {#</section>#}
+
+
+    <section class="account-area">
         <div class="container">
-            <h3>Mot de passe oublié </h3>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
 
-        </div>
+                    <div class="tab">
+                        <!-- Nav tabs -->
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs">
+                            <div class="tab-pane fade in active" id="Section1">
 
-        <div class="container">
-            <div class="well">
+                                {% if error !="" %}
 
-                {% if error !="" %}
+                                    <div class="alert alert-danger">
+                                        {{ error }}
+                                    </div>
+                                {% endif %}
+                                {% if valid !="" %}
 
-                    <div class="alert alert-danger">
-                        {{ error }}
-                    </div>
-                {% endif %}
-                {% if valid !="" %}
+                                    <div class=" alert alert-success">
+                                        {{ valid }}
+                                    </div>
+                                {% endif %}
+                                <p style="color: white !important;">
+                                    Veuillez saisir votre adresse e-mail pour rechercher votre compte.</p>
+                                <form  class="form-horizontal" action="{{ path('reset_password') }}" method="post">
+                                    <div class="form-group">
+                                        <label for="email">{{ 'Email'|trans }}</label>
+                                        <input type="email" id="email" name="_email" value="" class="form-control"/>
+                                    </div>
 
-                    <div class=" alert alert-success">
-                        {{ valid }}
-                    </div>
-                {% endif %}
-                <p>
-                    Veuillez saisir votre adresse e-mail pour rechercher votre compte.</p>
-                <form action="{{ path('reset_password') }}" method="post">
 
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="email">{{ 'Email'|trans }}</label>
-                            <input type="email" id="email" name="_email" value="" class="form-control"/>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-default">{{ 'reset'|trans }}</button>
+
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'reset'|trans }}
-                        </button>
-                        <a href="{{ path('inscription_page') }}" > {{ 'Register'|trans }}</a>
-                    </fieldset>
-                </form>
+                    </div>
+                </div>
             </div>
         </div>
-
     </section>
 {% endblock %}
 {% block stylesheets %}
