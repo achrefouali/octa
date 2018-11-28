@@ -118,6 +118,7 @@ class SecurityController extends Controller
                 return $this->render('security/reset.front.html.twig', array(
                     'error'=> $error,
                     'event'         => $event,
+                    'configuration'         => $configuration,
                     'menus'         => $menus,
                     'valid' => $valid,
                     'devises'             => $devises
