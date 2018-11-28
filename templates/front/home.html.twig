@@ -123,6 +123,7 @@
                 <div class="csi-countdown-area-inner">
                     <div id="csi-countdown"
                          data-date="{{ event.dateDebut? event.dateDebut|date('Y-m-d H:i:s') : '' }}"></div>
+
                 </div>
             </div>
         </section>
@@ -273,9 +274,9 @@
 
 
     <section class="about-area" id="about">
-        <div class="container">
+        <div class="container-about">
             <div class="row">
-                <div class="row col-lg-7 col-md-7 about-left">
+                <div class="row col-lg-8 col-md-8 about-left">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="about-col">
@@ -290,7 +291,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="about-col welcome-text">
-                                <h3 class="welcome-about">WELCOME!</h3>
+                                {#<h3 class="welcome-about">WELCOME!</h3>#}
                                 <h2 class="heading">{{ event.designation }}</h2>
                                 {#<h4>construction company</h4>#}
                                 <h3 class="subheading">{{ event.dateDebut? event.dateDebut|date('d') : '' }}
@@ -321,7 +322,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-5">
+                <div class="col-lg-4 col-md-4">
                     <div class="about-col">
                         <div class="about-image">
                             {% include 'front/sponsorsList.html.twig' %}
