@@ -275,9 +275,9 @@
     <section class="about-area" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 ">
+                <div class="row col-lg-7 col-md-7 about-left">
                     <div class="row">
-                        <div class="col-md-6 about-left">
+                        <div class="col-md-6">
                             <div class="about-col">
                                 {#<div class="experience-box wow bounceIn" data-wow-duration="1s" data-wow-delay="0s">#}
                                     {#<h1>20</h1>#}
@@ -311,98 +311,20 @@
                         </div>
                         <div class="col-md-12">
                             <div class="btn-area">
-                                {#{% if event.brochureFile is not null %}#}
+                                {% if event.brochureFile is not null %}
                                     <a target="_blank" class="csi-btn"
                                        href="{{ asset('uploads/events/'~event.brochureFile) }}">
                                         <span> {% if app.request.locale == 'fr' %}Télécharger Brochure  {% else %} Download Brochure {% endif %} </span>
                                     </a>
-                                {#{% endif %}#}
-
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-5 col-md-5">
                     <div class="about-col">
                         <div class="about-image">
-                            {#<img src="images/about/1.png" alt="">#}
-                            {% if sponsorsByType is not null %}
-                            <!--SPONSORED-->
-                            <section>
-                                {#<div id="csi-sponsors" class="csi-sponsors">#}
-                                {#<div class="csi-inner-bg">#}
-                                {#<div class="csi-inner">#}
-                                {#<div class="container " >#}
-
-
-
-
-
-
-                                {% for typeSponsor in sponsorsByType %}
-
-                                    <div class="row">
-                                        <div id="myCarouse_{{ typeSponsor.id }}" class="carousel slide sponsorh2" data-ride="carousel">
-
-                                            {% if typeSponsor.sponsors is not empty %}
-                                                <!--//main row-->
-
-                                                <h2>
-                                                    {{ typeSponsor.label }}</h2>
-
-                                                <ol class="carousel-indicators">
-                                                    {% set i =0 %}
-                                                    {% for sponsor in typeSponsor.sponsors if sponsor.enabled %}
-                                                        <li style="display: none !important;"
-                                                            data-target="#myCarouse_{{ typeSponsor.id }}"
-                                                            data-slide-to="{{ i }}" {% if i==0 %}class="active"{% endif %}></li>
-                                                        {% set i =i+1 %}
-                                                    {% endfor %}
-                                                </ol>
-
-                                                <div class=" sponsors-area carousel-inner">
-                                                    {% set j = 0 %}
-                                                    {% for sponsor in typeSponsor.sponsors if sponsor.enabled %}
-                                                        <div class="  item {% if j==0 %}active {% endif %}"
-                                                        >
-
-                                                            <img
-                                                                    src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"
-                                                                    alt=""/>
-
-
-                                                        </div>
-                                                        {% set j = j+1 %}
-                                                    {% endfor %}
-                                                </div>
-                                                {% if typeSponsor.sponsors|length >1 %}
-
-                                                    <!--//col-->
-                                                    <a class="left carousel-control" href="#myCarouse_{{ typeSponsor.id }}"
-                                                       data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left carrousel-cheveron-left">  </span>
-
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#myCarouse_{{ typeSponsor.id }}"
-                                                       data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right carrousel-cheveron-right">    </span>
-
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                {% endif %}
-                                            {% endif %}
-                                            <!-- Indicators -->
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <!--//row-->
-                                {% endfor %}
-                            </section>
-                            {% endif %}
+                            {% include 'front/sponsorsList.html.twig' %}
                         </div>
                     </div>
                 </div>
