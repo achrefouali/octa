@@ -110,14 +110,19 @@
                             <div class="col-md-5 col-sm-12 col-xs-12">
                                 <div class="herader-topbar-col tobar-leftside">
                                     <div class="info-top-bar">
-                                        <i class="fa fa-phone" aria-hidden="true"></i>
-                                        <span class="after-bdr">+0123 1205 1010</span>
-                                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                        <span>yourmail@gmail.com</span>
+                                        <div class="top-bar-phone">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            <span class="after-bdr">+0123 1205 1010</span>
+                                        </div>
+                                        <div class="top-bar-email">
+                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                            <span>yourmail@gmail.com</span>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-7 col-sm-12 col-xs-12" style="display: inline-flex">
+                            <div class="col-md-7 col-sm-12 col-xs-12 top-sidebar-right">
                                 <ul class="list-inline-top csi-social">
                                 {% if event.facebookLink is not empty %}
                                 <li><a href="{{ event.facebookLink }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -158,7 +163,7 @@
 
                 {#<div class="container">#}
                     <div class="row">
-                      <div class="col-md-12 col-xs-12" style="text-align: right;">
+                      <div class="col-md-12 col-xs-12 img-top-bar-container">
                           <img class="img-top-bar" src="{{ asset('assets/front/img/image_top.jpg') }}"/>
                       </div>
                     </div>
