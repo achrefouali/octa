@@ -1488,6 +1488,11 @@ class FrontController extends Controller
             ->getRepository(Menu::class)
             ->findAll()
         ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
         $result=[];
         if(!empty($event)){
             $participants = $this->getDoctrine()
@@ -1525,6 +1530,7 @@ class FrontController extends Controller
             [
                 'event'        => $event,
                 'configuration'        => $configuration,
+                'sponsorsByType'        => $sponsorsByType,
                 'menus'        => $menus,
                 'participants' => $result,
                 'devises'             => $devises
