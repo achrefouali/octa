@@ -253,6 +253,11 @@ class FrontController extends Controller
             ->getRepository(SponsorType::class)
             ->findBy(['enabled' => true])
         ;
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/page.html.twig',
             [
@@ -261,6 +266,7 @@ class FrontController extends Controller
                 'menus' => $menus,
                 'sponsorsByType'=>$sponsorsByType,
                 'page'  => $page,
+                'configuration'  => $configuration,
                 'devises'             => $devises
             ]
         );
@@ -292,11 +298,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/speaker.details.html.twig',
             [
 
                 'event'       => $event,
+                'configuration'       => $configuration,
                 'menus'       => $menus,
                 'intervenant' => $intervenant,
                 'devises'             => $devises
@@ -414,12 +425,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/registration.html.twig',
             [
                 "form"  => $form->createView(),
                 'event' => $event,
+                'configuration' => $configuration,
                 'menus' => $menus,
                 'bags'              => $bags,
                 'step'  => $bags['step'],
@@ -451,7 +466,10 @@ class FrontController extends Controller
                        ->getRepository(Hotel::class)
                        ->findBy(['enabled' => true])
         ;
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         $session = $request->getSession();
 
         $bags = $session->get('registration_bags');
@@ -555,6 +573,7 @@ class FrontController extends Controller
             [
                 "hotels" => $hotels,
                 'event'  => $event,
+                'configuration'  => $configuration,
                 'menus'  => $menus,
                 'bags'              => $bags,
                 'step'   => $bags['step'],
@@ -603,10 +622,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/registration.html.twig',
             [
                 'event'       => $event,
+                'configuration'       => $configuration,
                 'menus'       => $menus,
                 'bags'              => $bags,
                 'step'        => $bags['step'],
@@ -1245,12 +1270,16 @@ class FrontController extends Controller
             ->findBy(['enabled' => true])
         ;
 
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
 
         return $this->render(
             'front/registration.html.twig',
             [
                 'event'         => $event,
+                'configuration'         => $configuration,
                 'menus'         => $menus,
                 'bags'          => $bags,
                 'step'          => $bags['step'],
@@ -1283,11 +1312,18 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
         return $this->render(
             'front/registration/hotel.details.html.twig',
             [
 
+
                 'event'    => $event,
+                'configuration'    => $configuration,
                 'menus'    => $menus,
                 'hotel'    => $hotel,
                 'packages' => $packages,
@@ -1480,11 +1516,15 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/participants.list.html.twig',
             [
                 'event'        => $event,
+                'configuration'        => $configuration,
                 'menus'        => $menus,
                 'participants' => $result,
                 'devises'             => $devises
@@ -1509,16 +1549,21 @@ class FrontController extends Controller
             ->findAll()
         ;
 
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
 
         $devises = $this->getDoctrine()
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        
         return $this->render(
             'front/streaming.live.html.twig',
             [
                 'event'        => $event,
+                'configuration'        => $configuration,
                 'menus'        => $menus,
                 'devises'             => $devises
             ]

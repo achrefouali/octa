@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Configuration;
 use App\Entity\Event;
 use App\Entity\Menu;
 use App\Entity\Devise;
@@ -26,13 +27,17 @@ class SecurityController extends Controller
         $authUtils = $this->get('security.authentication_utils');
         // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
+            'configuration'         => $configuration,
         ));
     }
 
@@ -60,10 +65,15 @@ class SecurityController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
 
         return $this->render('security/login.front.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
+            'configuration'         => $configuration,
             'event'         => $event,
             'menus'         => $menus,
             'devises'             => $devises
@@ -75,7 +85,10 @@ class SecurityController extends Controller
      */
     public function resetPasswordFront(Request $request,\Swift_Mailer $mailer)
     {
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
 
         $event = $this->getDoctrine()
             ->getRepository(Event::class)
@@ -144,6 +157,7 @@ class SecurityController extends Controller
                 'valid' => $valid,
                 'event'         => $event,
                 'menus'         => $menus,
+                'configuration'         => $configuration,
                 'devises'             => $devises
             ));
         }
@@ -151,6 +165,7 @@ class SecurityController extends Controller
         return $this->render('security/reset.front.html.twig', array(
             'error' => $error,
             'event'         => $event,
+            'configuration'         => $configuration,
             'valid' => $valid,
             'menus'         => $menus,
             'devises'             => $devises
