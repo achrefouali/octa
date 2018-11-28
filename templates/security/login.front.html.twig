@@ -7,62 +7,115 @@
 
 {% block main %}
     <!--Banner-->
-    <section>
-        <div class="csi-banner csi-banner-inner">
-            <div class="csi-banner-style">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="csi-heading-area">
-                                    <ul class="breadcrumb">
-                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                        <li class="active">{{ 'Registration'|trans }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--//.ROW-->
+    {#<section>#}
+        {#<div class="csi-banner csi-banner-inner">#}
+            {#<div class="csi-banner-style">#}
+                {#<div class="csi-inner">#}
+                    {#<div class="container">#}
+                        {#<div class="row">#}
+                            {#<div class="col-xs-12">#}
+                                {#<div class="csi-heading-area">#}
+                                    {#<ul class="breadcrumb">#}
+                                        {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+                                        {#<li class="active">{{ 'Registration'|trans }}</li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div><!--//.ROW-->#}
+                    {#</div>#}
+                {#</div>#}
+                {#<!-- //.INNER -->#}
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Connexion</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> Connexion</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- //.INNER -->
             </div>
         </div>
     </section>
     <!--Banner END-->
-<section>
-    <div class="container">
-        <h3>Connexion</h3>
+{#<section>#}
+    {#<div class="container">#}
+        {#<h3>Connexion</h3>#}
 
-    </div>
+    {#</div>#}
 
+        {#<div class="container">#}
+        {#<div class="well">#}
+
+
+                {#<form action="{{ path('front_login') }}" method="post">#}
+                    {#{% if error %}#}
+                        {#<p class="mt5 mb20">{{ error.messageKey|trans(error.messageData, 'security') }}</p>#}
+                    {#{% endif %}#}
+                    {#<fieldset>#}
+                        {#<div class="form-group">#}
+                            {#<label for="username">{{ 'Username'|trans }}</label>#}
+                            {#<input type="text" id="username" name="_username" value="" class="form-control"/>#}
+                        {#</div>#}
+                        {#<div class="form-group">#}
+                            {#<label for="password">{{ 'Password'|trans }}</label>#}
+                            {#<input type="password" id="password" name="_password" class="form-control" />#}
+                        {#</div>#}
+                        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
+                        {#<button type="submit" class="btn btn-primary">#}
+                            {#<i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'Go In'|trans }}#}
+                        {#</button>#}
+                        {#<a href="{{ path('inscription_page') }}" > {{ 'Register'|trans }}</a>#}
+                    {#</fieldset>#}
+                {#</form>#}
+            {#</div>#}
+        {#</div>#}
+
+{#</section>#}
+
+    <section class="account-area">
         <div class="container">
-        <div class="well">
-
-
-                <form action="{{ path('front_login') }}" method="post">
-                    {% if error %}
-                        <p class="mt5 mb20">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
-                    {% endif %}
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="username">{{ 'Username'|trans }}</label>
-                            <input type="text" id="username" name="_username" value="" class="form-control"/>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="tab">
+                        <!-- Nav tabs -->
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs">
+                            <div class="tab-pane fade in active" id="Section1">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="username">{{ 'Username'|trans }}</label>
+                                        <input type="text" id="username" name="_username" value="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ 'Password'|trans }}</label>
+                                        <input type="password" id="password" name="_password" class="form-control" />
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-default">{{ 'Go In'|trans }}</button>
+                                    </div>
+                                    <div class="form-group forgot-pass">
+                                        <a href="#">Mot de passe oublié ?</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">{{ 'Password'|trans }}</label>
-                            <input type="password" id="password" name="_password" class="form-control" />
-                        </div>
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'Go In'|trans }}
-                        </button>
-                        <a href="{{ path('inscription_page') }}" > {{ 'Register'|trans }}</a>
-                    </fieldset>
-                </form>
+                    </div>
+                </div>
             </div>
         </div>
-
-</section>
+    </section>
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
