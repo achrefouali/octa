@@ -12,7 +12,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
  * Reservation
  *
  * @ORM\Table(name="reservations")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Reservation

@@ -1,0 +1,212 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Réglement par type de paiement  {% endblock %}
+{% block content %}
+
+   <h3> Carte Bancaire</h3>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Pays</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Compagnie</th>
+                        <th>Montant à payer </th>
+                        <th>Montant payé</th>
+                        <th>Devise</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for resultItem in result.carte %}
+                        <tr>
+                            <td>{{ resultItem.code }}</td>
+                            <td>{{ resultItem.pays }}</td>
+                            <td>{{ resultItem.firstname }}</td>
+                            <td>{{ resultItem.lastname }}</td>
+                            <td>{{ resultItem.compagnie }}</td>
+                            <td>{{ resultItem.apaye }}</td>
+                            <td>{{ resultItem.paye }}</td>
+                            <td>{{ resultItem.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h3> Virement</h3>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Pays</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Compagnie</th>
+                        <th>Montant à payer </th>
+                        <th>Montant payé</th>
+                        <th>Devise</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for resultItem in result.virement %}
+                        <tr>
+                            <td>{{ resultItem.code }}</td>
+                            <td>{{ resultItem.pays }}</td>
+                            <td>{{ resultItem.firstname }}</td>
+                            <td>{{ resultItem.lastname }}</td>
+                            <td>{{ resultItem.compagnie }}</td>
+                            <td>{{ resultItem.apaye }}</td>
+                            <td>{{ resultItem.paye }}</td>
+                            <td>{{ resultItem.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h3> Chéque Bancaire</h3>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Pays</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Compagnie</th>
+                        <th>Montant à payer </th>
+                        <th>Montant payé</th>
+                        <th>Devise</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for resultItem in result.cheque %}
+                        <tr>
+                            <td>{{ resultItem.code }}</td>
+                            <td>{{ resultItem.pays }}</td>
+                            <td>{{ resultItem.firstname }}</td>
+                            <td>{{ resultItem.lastname }}</td>
+                            <td>{{ resultItem.compagnie }}</td>
+                            <td>{{ resultItem.apaye }}</td>
+                            <td>{{ resultItem.paye }}</td>
+                            <td>{{ resultItem.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h3> Bon de commande</h3>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Pays</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Compagnie</th>
+                        <th>Montant à payer </th>
+                        <th>Montant payé</th>
+                        <th>Devise</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for resultItem in result.bon %}
+                        <tr>
+                            <td>{{ resultItem.code }}</td>
+                            <td>{{ resultItem.pays }}</td>
+                            <td>{{ resultItem.firstname }}</td>
+                            <td>{{ resultItem.lastname }}</td>
+                            <td>{{ resultItem.compagnie }}</td>
+                            <td>{{ resultItem.apaye }}</td>
+                            <td>{{ resultItem.paye }}</td>
+                            <td>{{ resultItem.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h3> Liquide</h3>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Pays</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Compagnie</th>
+                        <th>Montant à payer </th>
+                        <th>Montant payé</th>
+                        <th>Devise</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for resultItem in result.liquide %}
+                        <tr>
+                            <td>{{ resultItem.code }}</td>
+                            <td>{{ resultItem.pays }}</td>
+                            <td>{{ resultItem.firstname }}</td>
+                            <td>{{ resultItem.lastname }}</td>
+                            <td>{{ resultItem.compagnie }}</td>
+                            <td>{{ resultItem.apaye }}</td>
+                            <td>{{ resultItem.paye }}</td>
+                            <td>{{ resultItem.currency }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}
