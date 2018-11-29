@@ -2584,6 +2584,78 @@ hr {
  }
 }
 .form-horizontal .forgot-pass a:hover{ color: #9a1f80; }
+
+// page profile
+
+.profile-form{
+ .form-horizontal .form-group{
+  position: relative;
+  margin-bottom: 0;
+ }
+ .form-horizontal .form-control{
+  height: 45px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 30px;
+ }
+ .form-horizontal .form-control:focus{
+  box-shadow: none;
+  outline: 0 none;
+ }
+ .form-horizontal .form-group label{
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+  letter-spacing: 0.8px;
+ }
+ .form-horizontal .btn{
+  display: inline-block;
+  width: 50%;
+  background: #9a1f80;
+  padding: 10px 20px;
+  margin: 20px auto 0;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 0;
+  text-transform: uppercase;
+ }
+ .form-horizontal .btn:focus{
+  background: #9a1f80;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+ }
+ .informations{
+  font-family: Lato, sans-serif;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin-bottom: 10% !important;
+  margin-left: 33%;
+ }
+ label[for=profile_password_second]{
+  margin-left: -10%;
+ }
+ label[for=profile_password_first]{
+  margin-left: -12%;
+ }
+ label[for=profile_email]{
+  margin-left: -5%;
+ }
+ #profile_password_second{
+  margin-left: 12%;
+ }
+}
+
 #csi-schedule{
  background: #ffffff !important;
 }
