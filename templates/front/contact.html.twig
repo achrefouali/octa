@@ -5,24 +5,44 @@
 
     {% block main %}
         <!--Banner-->
-        <section>
-            <div class="csi-banner csi-banner-inner">
-                <div class="csi-banner-style">
-                    <div class="csi-inner">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="csi-heading-area">
-                                        <ul class="breadcrumb">
-                                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                            <li class="active">{{ 'Contact'|trans }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--//.ROW-->
+        {#<section>#}
+            {#<div class="csi-banner csi-banner-inner">#}
+                {#<div class="csi-banner-style">#}
+                    {#<div class="csi-inner">#}
+                        {#<div class="container">#}
+                            {#<div class="row">#}
+                                {#<div class="col-xs-12">#}
+                                    {#<div class="csi-heading-area">#}
+                                        {#<ul class="breadcrumb">#}
+                                            {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+                                            {#<li class="active">{{ 'Contact'|trans }}</li>#}
+                                        {#</ul>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div><!--//.ROW-->#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<!-- //.INNER -->#}
+                {#</div>#}
+            {#</div>#}
+        {#</section>#}
+        <section class="innerpage-titlebar">
+            <div class="container">
+                <div class="titlebar-box">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                            <div class="titlebar-col">
+                                <h2>Programme</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                            <ul class="breadcrumb titlebar-col">
+                                <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                                <li class="active">{{ 'Contact'|trans }}</li>
+                            </ul>
+
                         </div>
                     </div>
-                    <!-- //.INNER -->
                 </div>
             </div>
         </section>
@@ -30,102 +50,179 @@
 
         <section>
             <!--Google map-->
-
-
             <div class="row">
                 <div class="col-md-12">
-
                     <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12775.582911217276!2d10.1983541!3d36.8210185!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2stn!4v1538325558597" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
-        <section>
-            <div id="csi-contact" class="csi-contact">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
 
-                            <div class="col-sm-12">
-                                <div class="csi-about-service">
-                                    <div class="csi-single-service csi-single-service-white">
-                                        <span class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                                        <div class="text-area">
-                                            <h2 class="title"><a href="#">{{ 'Place'|trans }}</a></h2>
-                                            <p>
-                                                <strong>{{ event.adresse }}, {{ event.ville }}</strong><br/>
-                                                <i class="fa fa-mail-forward"
-                                                   aria-hidden="true"></i> {{ configuration.emailDirection }}<br/>
-                                                <i class="fa fa-phone" aria-hidden="true"></i> {{ configuration.telephone }}
-                                                <br/>
-                                                <i class="fa fa-fax" aria-hidden="true"></i> {{ configuration.fax }}<br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="csi-single-service csi-single-service-white">
-                                        <span class="icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                                        <div class="text-area">
-                                            <h2 class="title"><a href="#">{{ 'When'|trans }}</a></h2>
-                                            <p class="date">{{ event.dateDebut? event.dateDebut|date('d') : '' }}
-                                                -{{ event.dateFin? event.dateFin|date('d M Y') : '' }},
-                                                <span>{{ event.ville ~ ' - ' ~ event.pays }}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+        {#<section>#}
+            {#<div id="csi-contact" class="csi-contact">#}
+                {#<div class="csi-inner">#}
+                    {#<div class="container">#}
+                        {#<div class="row">#}
+                            {#<div class="col-sm-12">#}
+                                {#<div class="csi-about-service">#}
+                                    {#<div class="csi-single-service csi-single-service-white">#}
+                                        {#<span class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>#}
+                                        {#<div class="text-area">#}
+                                            {#<h2 class="title"><a href="#">{{ 'Place'|trans }}</a></h2>#}
+                                            {#<p>#}
+                                                {#<strong>{{ event.adresse }}, {{ event.ville }}</strong><br/>#}
+                                                {#<i class="fa fa-mail-forward"#}
+                                                   {#aria-hidden="true"></i> {{ configuration.emailDirection }}<br/>#}
+                                                {#<i class="fa fa-phone" aria-hidden="true"></i> {{ configuration.telephone }}#}
+                                                {#<br/>#}
+                                                {#<i class="fa fa-fax" aria-hidden="true"></i> {{ configuration.fax }}<br/>#}
+                                            {#</p>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                    {#<div class="csi-single-service csi-single-service-white">#}
+                                        {#<span class="icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>#}
+                                        {#<div class="text-area">#}
+                                            {#<h2 class="title"><a href="#">{{ 'When'|trans }}</a></h2>#}
+                                            {#<p class="date">{{ event.dateDebut? event.dateDebut|date('d') : '' }}#}
+                                                {#-{{ event.dateFin? event.dateFin|date('d M Y') : '' }},#}
+                                                {#<span>{{ event.ville ~ ' - ' ~ event.pays }}</span></p>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="row" style="margin-top: 5px">#}
+                            {#<div class="col-md-12">#}
+                                {#{% for label, messages in app.flashes %}#}
+                                    {#{% for message in messages %}#}
+                                        {#<div class="alert alert-{{ label }}">#}
+                                            {#{{ message }}#}
+                                        {#</div>#}
+                                    {#{% endfor %}#}
+                                {#{% endfor %}#}
+                            {#</div>#}
+                            {#<div class="row">#}
+
+                            {#<div class="col-sm-offset-2 col-sm-8">#}
+                                {#{{ form_start(form) }}#}
+                                    {#<div class="form-group">#}
+                                        {#{{ form_errors(form.name) }}#}
+                                        {#{{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Votre Nom (obligatoire)'} }) }}#}
+                                    {#</div>#}
+                                    {#<div class="form-group">#}
+                                        {#{{ form_errors(form.from) }}#}
+                                        {#{{ form_widget(form.from, { 'attr': {'class': 'form-control', 'placeholder': 'xxx@yyy.zzz'} }) }}#}
+                                    {#</div>#}
+                                    {#<div class="form-group">#}
+                                        {#{{ form_errors(form.subject) }}#}
+                                        {#{{ form_widget(form.subject, { 'attr': {'class': 'form-control', 'placeholder': 'Sujet'} }) }}#}
+                                    {#</div>#}
+                                    {#<div class="form-group">#}
+                                        {#{{ form_errors(form.message) }}#}
+                                        {#{{ form_widget(form.message, { 'attr': {'class': 'form-control'} }) }}#}
+                                    {#</div>#}
+                                    {#<button type="submit" name="submit" value="contact-form" class="csi-btn hvr-glow hvr-radial-out csisend csi-send">Soumettre</button>#}
+                                {#{{ form_end(form) }}#}
+                                {#<!-- MODAL SECTION -->#}
+                                {#<div id="csi-form-modal" class="modal fade csi-form-modal" tabindex="-1" role="dialog" aria-hidden="true">#}
+                                    {#<div class="modal-dialog modal-lg">#}
+                                        {#<div class="modal-content csi-modal-content">#}
+                                            {#<div class="modal-header csi-modal-header">#}
+                                                {#<button type="button" class="close brand-color-hover" data-dismiss="modal" aria-label="Close">#}
+                                                    {#<i class="fa fa-power-off"></i>#}
+                                                {#</button>#}
+                                            {#</div>#}
+                                            {#<div class="modal-body">#}
+                                                {#<div class="alert csi-form-msg" role="alert"></div>#}
+                                            {#</div> <!--//MODAL BODY-->#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div> <!-- //MODAL -->#}
+                            {#</div> <!--//.COL-->#}
+                        {#</div>#}
+                    {#</div><!-- //.CONTAINER -->#}
+                {#</div><!-- //.INNER -->#}
+            {#</div>#}
+            {#</div>#}
+        {#</section>#}
+
+
+        <section class="contact-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contact-box col-default">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <p>{{ 'Place'|trans }}</p>
+                            <p style="font-family: Lato,sans-serif; font-size: 18px;">
+                                <strong>{{ event.adresse }}, {{ event.ville }}</strong><br/>
+                                <i class="fa fa-mail-forward sub-icon"
+                                   aria-hidden="true"></i> {{ configuration.emailDirection }}<br/>
+                                <i class="fa fa-phone sub-icon" aria-hidden="true"></i> {{ configuration.telephone }}
+                                <br/>
+                                <i class="fa fa-fax sub-icon" aria-hidden="true"></i> {{ configuration.fax }}<br/>
+                            </p>
                         </div>
-                        <div class="row" style="margin-top: 5px">
-                            <div class="col-md-12">
-                                {% for label, messages in app.flashes %}
-                                    {% for message in messages %}
-                                        <div class="alert alert-{{ label }}">
-                                            {{ message }}
-                                        </div>
-                                    {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-box col-default">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <p>{{ 'When'|trans }}</p>
+                            <p class="date">{{ event.dateDebut? event.dateDebut|date('d') : '' }}
+                                -{{ event.dateFin? event.dateFin|date('d M Y') : '' }},
+                                <span>{{ event.ville ~ ' - ' ~ event.pays }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-12">
+                            {% for label, messages in app.flashes %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ label }}">
+                                        {{ message }}
+                                    </div>
                                 {% endfor %}
-                            </div>
-                            <div class="row">
-
-                            <div class="col-sm-offset-2 col-sm-8">
-                                {{ form_start(form) }}
-                                    <div class="form-group">
-                                        {{ form_errors(form.name) }}
-                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Votre Nom (obligatoire)'} }) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_errors(form.from) }}
-                                        {{ form_widget(form.from, { 'attr': {'class': 'form-control', 'placeholder': 'xxx@yyy.zzz'} }) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_errors(form.subject) }}
-                                        {{ form_widget(form.subject, { 'attr': {'class': 'form-control', 'placeholder': 'Sujet'} }) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_errors(form.message) }}
-                                        {{ form_widget(form.message, { 'attr': {'class': 'form-control'} }) }}
-                                    </div>
-                                    <button type="submit" name="submit" value="contact-form" class="csi-btn hvr-glow hvr-radial-out csisend csi-send">Soumettre</button>
-                                {{ form_end(form) }}
-                                <!-- MODAL SECTION -->
-                                <div id="csi-form-modal" class="modal fade csi-form-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content csi-modal-content">
-                                            <div class="modal-header csi-modal-header">
-                                                <button type="button" class="close brand-color-hover" data-dismiss="modal" aria-label="Close">
-                                                    <i class="fa fa-power-off"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="alert csi-form-msg" role="alert"></div>
-                                            </div> <!--//MODAL BODY-->
-                                        </div>
-                                    </div>
-                                </div> <!-- //MODAL -->
-                            </div> <!--//.COL-->
+                            {% endfor %}
                         </div>
-                    </div><!-- //.CONTAINER -->
-                </div><!-- //.INNER -->
+                        <div class="col-md-12">
+                            <div class="contact-form col-default text-center">
+                                {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Votre Nom (obligatoire)'} }) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_errors(form.from) }}
+                                    {{ form_widget(form.from, { 'attr': {'class': 'form-control', 'placeholder': 'xxx@yyy.zzz'} }) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_errors(form.subject) }}
+                                    {{ form_widget(form.subject, { 'attr': {'class': 'form-control', 'placeholder': 'Sujet'} }) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_errors(form.message) }}
+                                    {{ form_widget(form.message, { 'attr': {'class': 'form-control'} }) }}
+                                </div>
+                                <button type="submit" name="submit" value="contact-form" class="btn btn-default simple-btn">Soumettre</button>
+                                {{ form_end(form) }}
+                                {#<div id="form-messages"></div>#}
+                                {#<form id="ajax-contact" method="post" action="php/contact.php">#}
+                                    {#<input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>#}
+                                    {#<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>#}
+                                    {#<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>#}
+                                    {#<textarea class="form-control textarea-hight-full" id="message" name="message" rows="5" placeholder="Message" required></textarea>#}
+                                    {#<button class="btn btn-default simple-btn" type="submit">Sent Message</button>#}
+                                {#</form>#}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+
+
     {% endblock %}
 
 
