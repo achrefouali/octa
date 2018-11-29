@@ -85,9 +85,13 @@ class FrontController extends Controller
         ;
 
         $intervenantsByType = $this->getDoctrine()
-                                   ->getRepository(Participant::class)
+                                   ->getRepository(ParticipantType::class)
                                    ->findOneBy(['label' => 'Intervenant'])
         ;
+
+        dump($intervenantsByType);
+        dump($intervenantsByType->getParticipants()->getValues());
+
 
 
         $menus = $this->getDoctrine()
@@ -1934,7 +1938,7 @@ class FrontController extends Controller
             ->findBy(['enabled' => true])
         ;
         $intervenantsByType = $this->getDoctrine()
-            ->getRepository(Participant::class)
+            ->getRepository(ParticipantType::class)
             ->findOneBy(['label' => 'Intervenant'])
         ;
         return $this->render(
