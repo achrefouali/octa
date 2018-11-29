@@ -7,24 +7,47 @@
 
 {% block main %}
     <!--Banner-->
-    <section>
-        <div class="csi-banner csi-banner-inner">
-            <div class="csi-banner-style">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="csi-heading-area">
-                                    <ul class="breadcrumb">
-                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                        <li class="active">{{ 'Page'|trans }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--//.ROW-->
+    {#<section>#}
+        {#<div class="csi-banner csi-banner-inner">#}
+            {#<div class="csi-banner-style">#}
+                {#<div class="csi-inner">#}
+                    {#<div class="container">#}
+                        {#<div class="row">#}
+                            {#<div class="col-xs-12">#}
+                                {#<div class="csi-heading-area">#}
+                                    {#<ul class="breadcrumb">#}
+                                        {#<li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>#}
+                                        {#<li class="active">{{ 'Page'|trans }}</li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div><!--//.ROW-->#}
+                    {#</div>#}
+                {#</div>#}
+                {#<!-- //.INNER -->#}
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+
+    <section class="innerpage-titlebar" style="margin-bottom: 0px !important;">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Profil</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active">{{ 'Page'|trans }}</li>
+                        </ul>
+                        {#<div class="titlebar-col">#}
+                        {#<p><a href="index.html">Home</a> | <a href="#"><span>Pricing</span></a></p>#}
+                        {#</div>#}
                     </div>
                 </div>
-                <!-- //.INNER -->
             </div>
         </div>
     </section>
@@ -35,7 +58,7 @@
     <section>
         <div id="csi-news" class="csi-news csi-news-singlepage">
             <div class="csi-inner">
-                <div class="container">
+                <div class="container-about">
                     <div class="row">
                         <div class="col-sm-10">
                             <h4>Bienvenue
@@ -52,8 +75,8 @@
 
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#profile">{{ 'My Profile'|trans }}</a></li>
-                                <li><a data-toggle="tab" href="#reservation">{{ 'Invoice'|trans }}</a></li>
+                                <li class="active" style="font-size: 16px !important;"><a data-toggle="tab" href="#profile">{{ 'My Profile'|trans }}</a></li>
+                                <li style="font-size: 16px !important;"><a data-toggle="tab" href="#reservation">{{ 'Invoice'|trans }}</a></li>
                             </ul>
 
 
@@ -61,16 +84,16 @@
                                 <div class="tab-pane active" id="profile">
                                     <hr>
                                     <div style="margin-bottom: 20px">
-                                        <div class="container">
+                                        <div class="container-about">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="card">
+                                                    <div class="card" style="border: 1px solid #9a1f80 !important;">
                                                         <div class="card-header">
                                                             <div class="row mb-4">
 
                                                             </div>
                                                         </div>
-                                                        <div class="card-body">
+                                                        <div class="card-body profile-form" style="margin-top: 2%;">
                                                             {{ form_start(form, {"attr": {"id": "my-id-here", "class": "form-horizontal form-bordered", 'action': path('front_profile') , 'method': 'POST'}}) }}
                                                             <div class="row mb-4">
                                                                 <div class="col-md-6">
@@ -220,7 +243,7 @@
 
                                                             <div class="row mb-4">
                                                                 <div class="col-md-4">
-                                                                    <div class="">
+                                                                    <div class="informations">
                                                                         <h3>{{ 'Connection information'|trans }}</h3>
                                                                     </div>
                                                                 </div>
@@ -256,7 +279,7 @@
 
                                                             </div>
                                                             <div class="row">
-                                                                <div class="panel-footer">
+                                                                <div class="panel-footer" style="text-align: center; background-color: transparent !important;">
                                                                     <div class="row">
                                                                         <div class="col-sm-6 col-sm-offset-3">
                                                                             <button id="submit-button"

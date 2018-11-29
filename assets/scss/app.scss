@@ -19,6 +19,15 @@ $flag-icon-css-path: '~flag-icon-css/flags';
  @import "~flag-icon-css/sass/flag-icon";
  @import "~datatables.net-bs/css/dataTables.bootstrap.min.css";
 
+html{
+ height: 100%;
+ overflow-x: hidden;
+}
+body{
+ overflow-x: hidden;
+}
+
+
 .about-col p:nth-child(2){
  font-size: 20px !important;
  line-height: 1.5 !important;
@@ -2229,6 +2238,7 @@ hr {
 *****-----*****-----*****-----*****/
 #csi-registration{
  background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+ background-color: #ffffff !important;
 }
 .pricing-area {
  padding: 120px 0 90px;
@@ -2247,7 +2257,7 @@ hr {
  margin-bottom: 30px;
 }
 .pricingTable .price-value h2{
- font-size: 60px;
+ font-size: 3vw;
  font-weight: bold;
  color: #2F344E;
  letter-spacing: 3px;
@@ -2260,9 +2270,9 @@ hr {
  font-size: 24px !important;
 }
 .pricingTable .title{
- display: inline-block;
+ display: block;
  padding: 15px 10px;
- margin: 0 0 30px 0;
+ margin: 0 auto;
  background: #eee;
  font-size: 18px;
  color: #9a1f80;
@@ -2273,6 +2283,9 @@ hr {
  font-family: Lato, sans-serif;
  margin-top: 5%;
  font-weight: bold;
+ width: 140px;
+ margin-bottom: 50px;
+ max-width: 100%;
 }
 .pricingTable:hover .title{
  background: #9a1f80;
@@ -2571,6 +2584,78 @@ hr {
  }
 }
 .form-horizontal .forgot-pass a:hover{ color: #9a1f80; }
+
+// page profile
+
+.profile-form{
+ .form-horizontal .form-group{
+  position: relative;
+  margin-bottom: 0;
+ }
+ .form-horizontal .form-control{
+  height: 45px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 30px;
+ }
+ .form-horizontal .form-control:focus{
+  box-shadow: none;
+  outline: 0 none;
+ }
+ .form-horizontal .form-group label{
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+  letter-spacing: 0.8px;
+ }
+ .form-horizontal .btn{
+  display: inline-block;
+  width: 50%;
+  background: #9a1f80;
+  padding: 10px 20px;
+  margin: 20px auto 0;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 0;
+  text-transform: uppercase;
+ }
+ .form-horizontal .btn:focus{
+  background: #9a1f80;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+ }
+ .informations{
+  font-family: Lato, sans-serif;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin-bottom: 10% !important;
+  margin-left: 33%;
+ }
+ label[for=profile_password_second]{
+  margin-left: -10%;
+ }
+ label[for=profile_password_first]{
+  margin-left: -12%;
+ }
+ label[for=profile_email]{
+  margin-left: -5%;
+ }
+ #profile_password_second{
+  margin-left: 12%;
+ }
+}
+
 #csi-schedule{
  background: #ffffff !important;
 }
@@ -2705,22 +2790,31 @@ form[name=contact] {
 }
 
 // media query
-
+@media (max-width: 1610px){
+ .header-navbar .navbar-brand img{
+  margin-left: 0;
+ }
+ .navbar-nav.navbar-right{
+  float: left !important;
+  margin-right: 0 !important;
+ }
+}
 @media (max-width: 1199px){
  .info-top-bar{
   display: block;
  }
 }
-@media (max-width: 1110px) {
- .top-sidebar-right{
-  margin-left: -6%;
- }
-}
+//@media (max-width: 1110px) {
+// .top-sidebar-right{
+//  margin-left: -6%;
+// }
+//}
 @media (max-width: 991px){
  .top-sidebar-right{
   margin-left: 0px;
   display: block;
-  padding-left: 15px;
+  padding-left: 0px;
+  text-align: center;
  }
  .info-top-bar{
   display: inline-flex;
@@ -2755,6 +2849,14 @@ form[name=contact] {
  }
  .sponsorh2{
   margin-top: 5%;
+ }
+ .header-navbar .navbar-brand img{
+  margin-left: 0;
+  margin-top: -3%;
+ }
+ .navbar-nav.navbar-right{
+  padding-top: 0;
+  margin-top: -1%;
  }
 }
 
