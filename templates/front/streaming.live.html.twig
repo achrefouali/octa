@@ -7,50 +7,89 @@
 
 {% block main %}
     <!--Banner-->
-    <section>
-        <div class="csi-banner csi-banner-inner">
-            <div class="csi-banner-style">
-                <div class="csi-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="csi-heading-area">
-                                    <ul class="breadcrumb">
-                                        <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
-                                        <li class="active">{{ 'Live Streaming'|trans }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div><!--//.ROW-->
+
+
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>{{ 'Live Streaming'|trans }}</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active">{{ 'Live Streaming'|trans }}</li>
+                        </ul>
+
                     </div>
                 </div>
-                <!-- //.INNER -->
             </div>
         </div>
     </section>
     <!--Banner END-->
+{#<section>#}
+
+
+        {#<div class="container">#}
+            {#﻿<script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>#}
+
+            {#<div id="playerElement" style="width:896px; height:504px; padding:0;"></div>#}
+
+            {#<script type="text/javascript">#}
+                {#WowzaPlayer.create("playerElement",{#}
+                    {#"license":"PLAY1-eBebJ-RkdZy-N66R4-kKJan-UdUwW",#}
+                    {#"title":"",#}
+                    {#"description":"",#}
+                    {#"sourceURL":"http%3A%2F%2Fkarimsahebettaba.srfms.com%3A1935%2Fkarimsahebettaba%2Flivestream%2Fplaylist.m3u8",#}
+                    {#"autoPlay":false,#}
+                    {#"volume":"75",#}
+                    {#"mute":false,#}
+                    {#"loop":false,"audioOnly":false,"uiShowQuickRewind":true,"uiQuickRewindSeconds":"30"});</script>#}
+        {#</div>#}
+
+{#</section>#}
+
+
 <section>
-    <div class="container">
-        <h3>{{ 'Live Streaming'|trans }}</h3>
+    <div id="csi-news" class="csi-news csi-news-singlepage">
 
+        <div class="csi-inner" style="padding: 4rem 0;">
+            <div class="container-about">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div class="row col-md-8">
+                            <div class="container">
+                                ﻿<script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>
+
+                                <div id="playerElement" style="width:896px; height:504px; padding:0;     max-width: 100% !important;"></div>
+
+                                <script type="text/javascript">
+                                    WowzaPlayer.create("playerElement",{
+                                        "license":"PLAY1-eBebJ-RkdZy-N66R4-kKJan-UdUwW",
+                                        "title":"",
+                                        "description":"",
+                                        "sourceURL":"http%3A%2F%2Fkarimsahebettaba.srfms.com%3A1935%2Fkarimsahebettaba%2Flivestream%2Fplaylist.m3u8",
+                                        "autoPlay":false,
+                                        "volume":"75",
+                                        "mute":false,
+                                        "loop":false,"audioOnly":false,"uiShowQuickRewind":true,"uiQuickRewindSeconds":"30"});</script>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="about-col">
+                                <div class="about-image">
+                                    {% include 'front/sponsorsList.html.twig' %}
+                                </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- //.CONTAINER -->
+        </div><!-- //.INNER -->
     </div>
-
-        <div class="container">
-            ﻿<script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>
-
-            <div id="playerElement" style="width:896px; height:504px; padding:0;"></div>
-
-            <script type="text/javascript">
-                WowzaPlayer.create("playerElement",{
-                    "license":"PLAY1-eBebJ-RkdZy-N66R4-kKJan-UdUwW",
-                    "title":"",
-                    "description":"",
-                    "sourceURL":"http%3A%2F%2Fkarimsahebettaba.srfms.com%3A1935%2Fkarimsahebettaba%2Flivestream%2Fplaylist.m3u8",
-                    "autoPlay":false,
-                    "volume":"75",
-                    "mute":false,
-                    "loop":false,"audioOnly":false,"uiShowQuickRewind":true,"uiQuickRewindSeconds":"30"});</script>
-        </div>
-
-</section>
+</section> <!--
 {% endblock %}

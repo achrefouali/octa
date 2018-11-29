@@ -1951,14 +1951,16 @@ hr {
 .our-team .team-title{
  line-height: 22px;
  display: inline-block;
+ min-height: 110px;
+ height: auto;
 }
-/*.our-team .team-title:after{
-    content:"";
-    display: block;
-    width: 10%;
-    border-bottom:2px solid #fff;
-    padding-bottom:5px;
-}*/
+//.our-team .team-title:after{
+//    content:"";
+//    display: block;
+//    width: 10%;
+//    border-bottom:2px solid #fff;
+//    padding-bottom:5px;
+//}
 .our-team .team-title a{
  font-size: 24px;
  text-transform: capitalize;
@@ -2098,6 +2100,7 @@ hr {
 .container-about{
  width: 1600px;
  margin: 0 auto;
+ max-width: 100%;
 }
 .about-area {
  overflow-x: hidden;
@@ -2501,72 +2504,207 @@ hr {
  background: none;
  position: relative;
 }
-.form-horizontal .form-group{
- position: relative;
- margin-bottom: 0;
-}
-.form-horizontal .form-control{
- height: 45px;
- background: rgba(255,255,255,0.2);
- border: none;
- border-radius: 0;
- box-shadow: none;
- padding: 0 10px;
- font-size: 14px;
- font-weight: bold;
- color: #fff;
- transition: all 0.3s ease 0s;
- margin-bottom: 30px;
-}
-.form-horizontal .form-control:focus{
- box-shadow: none;
- outline: 0 none;
-}
-.form-horizontal .form-group label{
- color: #999999;
- text-transform: capitalize;
- margin-bottom: 5px;
- font-size: 18px;
- font-family: Lato, sans-serif;
- letter-spacing: 0.8px;
+#Section1{
+ .form-horizontal .form-group{
+  position: relative;
+  margin-bottom: 0;
+ }
+ .form-horizontal .form-control{
+  height: 45px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 30px;
+ }
+ .form-horizontal .form-control:focus{
+  box-shadow: none;
+  outline: 0 none;
+ }
+ .form-horizontal .form-group label{
+  color: #999999;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+  letter-spacing: 0.8px;
 
-}
-.form-horizontal .btn{
- display: inline-block;
- width: 50%;
- background: #9a1f80;
- padding: 10px 20px;
- margin: 20px auto 0;
- border: none;
- font-size: 14px;
- font-weight: bold;
- color: #fff;
- border-radius: 0;
- text-transform: uppercase;
-}
-.form-horizontal .btn:focus{
- background: #9a1f80;
- color: #fff;
- outline: none;
- box-shadow: none;
-}
-.form-horizontal .forgot-pass{
- margin: 0;
- text-align: center;
- margin-top: 2%;
-}
-.form-horizontal .forgot-pass a{
- display: inline-block;
- padding: 10px 20px;
- margin: 10px 0 0 0;
- border-bottom: 1px solid #615f6c;
- font-size: 14px;
- font-weight: bold;
- color: #999999;
- text-transform: capitalize;
- transition: all 0.3s ease 0s;
+ }
+ .form-horizontal .btn{
+  display: inline-block;
+  width: 50%;
+  background: #9a1f80;
+  padding: 10px 20px;
+  margin: 20px auto 0;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 0;
+  text-transform: uppercase;
+ }
+ .form-horizontal .btn:focus{
+  background: #9a1f80;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+ }
+ .form-horizontal .forgot-pass{
+  margin: 0;
+  text-align: center;
+  margin-top: 2%;
+ }
+ .form-horizontal .forgot-pass a{
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0 0 0;
+  border-bottom: 1px solid #615f6c;
+  font-size: 14px;
+  font-weight: bold;
+  color: #999999;
+  text-transform: capitalize;
+  transition: all 0.3s ease 0s;
+ }
 }
 .form-horizontal .forgot-pass a:hover{ color: #9a1f80; }
+#csi-schedule{
+ background: #ffffff !important;
+}
+#csi-news{
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png) !important;
+}
+#list-participants th{
+ background-color: #9a1f80;
+ color: white;
+ font-family: Lato, sans-serif;
+ font-size: 20px;
+ font-weight: bold;
+}
+#list-participants td{
+ color: #333;
+ font-family: Lato, sans-serif;
+ font-size: 16px;
+}
+.dataTables_paginate a.current{
+ background-color: #9a1f80 !important;
+ border-color: #9a1f80 !important;
+}
+#csi-about{
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+}
+.contact-area{
+ background-color: #ffffff !important;
+ background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+}
+/*****-----*****-----*****-----*****
+    21. Contact CSS
+*****-----*****-----*****-----*****/
+.contact-area {
+ background-color: #ffffff !important;
+ overflow: hidden;
+ padding: 120px 0 90px;
+}
+.contact-section {
+ overflow: hidden;
+ padding: 100px 0 70px;
+}
+.contact-title h2 {
+ font-size: 36px;
+ margin-bottom: 20px;
+ text-transform: uppercase;
+ margin-bottom: 60px;
+}
+.contact-title h2 span {
+ color: #9a1f80;
+}
+.contact-title p {
+ margin-bottom: 30px;
+}
+.contact-box {
+ background: transparent;
+ padding: 20px 20px;
+ margin-bottom: 50px;
+ position: relative;
+ text-align: center;
+ border: 1px solid #9a1f80;
+ min-height: 380px;
+ height: auto;
+}
+.contact-box i {
+ font-size: 30px;
+ color: #ffffff;
+ background: #9a1f80;
+ width: 80px;
+ height: 80px;
+ text-align: center;
+ line-height: 80px;
+ margin-bottom: 10px;
+ -webkit-border-radius: 50%;
+ -moz-border-radius: 50%;
+ -ms-border-radius: 50%;
+ -o-border-radius: 50%;
+ border-radius: 50%;
+}
+.sub-icon{
+ width: 30px !important;
+ height: 30px !important;
+ line-height: 23px !important;
+}
+.sub-icon:before{
+ font-size: 16px !important;
+}
+.contact-box address {
+ margin-bottom: 0;
+ padding-bottom: 5px;
+}
+.contact-section .contact-form {
+ margin-top: 50px;
+}
+.contact-section form .form-control {
+ height: 45px;
+ border: none;
+ border-radius: 0;
+ background: transparent;
+ border-bottom: 1px solid #cccccc;
+ color: #676767;
+ padding-left: 0;
+}
+.contact-area form .textarea-hight-full {
+ height: 100%;
+}
+.contact-area .simple-btn {
+ margin-bottom: 30px;
+}
+
+form[name=contact] {
+ .form-control {
+  height: 45px !important;
+  margin-bottom: 30px !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+ }
+ textarea{
+  height: 150px !important;
+  .form-control{
+   box-shadow: none !important;
+   -webkit-box-shadow: none !important;
+   -moz-box-shadow: none !important;
+   border-radius: 0px !important;
+   -moz-border-radius: 0px !important;
+   -webkit-border-radius: 0px !important;
+  }
+ }
+}
+
 // media query
 
 @media (max-width: 1199px){

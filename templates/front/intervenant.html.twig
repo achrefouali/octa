@@ -35,45 +35,46 @@
             <div class="csi-inner" style="padding: 4rem 0;">
                 <div class="container-about">
                     <div class="row ">
-                        <div class="row col-md-8">
+                        <div class="col-md-12">
+                            <div class="row col-md-8">
 
-                            {% if intervenantsByType is not null %}
+                                {% if intervenantsByType is not null %}
 
-                                                    {% for intervenant in intervenantsByType.participants if intervenant.enabled %}
-                                                       <div class="col-md-3 col-sm-6 col-xs-6 fw600" style="margin-top: 3%;!important;">
-                                                        <div class="our-team">
-                                                            <div class="team-pic">
-                                                                {#<img src="{{ asset('uploads/intervenants/2.jpg' ) }}" alt="">#}
-                                                                <img src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}" alt="">
-                                                            </div>
-                                                            <div class="team-profile">
-                                                                <h3 class="team-title">
-                                                                    <a  style="font-size: 20px;!important;"href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>
-                                                                    <small>{{ intervenant.poste }}</small>
-                                                                </h3>
-                                                                <ul class="team-social">
+                                    {% for intervenant in intervenantsByType.participants if intervenant.enabled %}
+                                        <div class="col-md-3 col-sm-6 col-xs-6 fw600" style="margin-top: 3%;!important;">
+                                            <div class="our-team">
+                                                <div class="team-pic">
+                                                    {#<img src="{{ asset('uploads/intervenants/2.jpg' ) }}" alt="">#}
+                                                    <img src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}" alt="">
+                                                </div>
+                                                <div class="team-profile">
+                                                    <h3 class="team-title">
+                                                        <a  style="font-size: 20px;!important;"href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>
+                                                        <small>{{ intervenant.poste }}</small>
+                                                    </h3>
+                                                    <ul class="team-social">
 
-                                                                    <li><a href="{{ intervenant.tweeterLink }}" class="fa fa-twitter"></a></li>
-                                                                    <li><a href="{{ intervenant.linkedinLink }}" class="fa fa-linkedin"></a></li>
+                                                        <li><a href="{{ intervenant.tweeterLink }}" class="fa fa-twitter"></a></li>
+                                                        <li><a href="{{ intervenant.linkedinLink }}" class="fa fa-linkedin"></a></li>
 
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    </ul>
+                                                </div>
+                                            </div>
 
 
-                                                       </div>
-                                                    {% endfor %}
+                                        </div>
+                                    {% endfor %}
 
-                                                    {% endif %}
+                                {% endif %}
 
+                            </div>
+                            <div class="col-md-4">
+                                <div class="about-col">
+                                    <div class="about-image">
+                                        {% include 'front/sponsorsList.html.twig' %}
+                                    </div></div>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="about-col">
-                                <div class="about-image">
-                                    {% include 'front/sponsorsList.html.twig' %}
-                                </div></div>
-                        </div>
-
                     </div>
                 </div><!-- //.CONTAINER -->
             </div><!-- //.INNER -->
