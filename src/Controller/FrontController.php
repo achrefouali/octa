@@ -89,11 +89,6 @@ class FrontController extends Controller
                                    ->findOneBy(['label' => 'Intervenant'])
         ;
 
-        dump($intervenantsByType);
-        dump($intervenantsByType->getParticipants()->getValues());
-
-
-
         $menus = $this->getDoctrine()
             ->getRepository(Menu::class)
             ->findAll()
