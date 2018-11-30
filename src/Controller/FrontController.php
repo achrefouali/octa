@@ -727,9 +727,9 @@ class FrontController extends Controller
 
                // Instantiate Dompdf with our options
                $dompdf = new Dompdf($pdfOptions);
-               $file = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+               $logo1 = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
                $normalizer = new DataUriNormalizer();
-               $avatar = $normalizer->normalize(new \SplFileObject($file));
+               $avatar = $normalizer->normalize(new \SplFileObject($logo1));
                
                // Retrieve the HTML generated in our twig file
                $html = $this->renderView('front/registration/pdf/pdf.html.twig',
@@ -750,23 +750,50 @@ class FrontController extends Controller
 
                // Load HTML to Dompdf
                $dompdf->loadHtml($html);
-
                // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
                $dompdf->setPaper('A4', 'portrait');
-
                // Render the HTML as PDF
                $dompdf->render();
-
                // Store PDF Binary Data
                $output = $dompdf->output();
-
                $file = $this->generateRandomString().'.pdf';
                $pdfFilepath =  $this->container->getParameter('pdf_directory') .$file;
-
                // Write file to the desired path
                file_put_contents($pdfFilepath, $output);
-
                $bags['file']=$file;
+             if($bags['withEvent']){
+                 $dompdf2 = new Dompdf($pdfOptions);
+
+                 $html2 = $this->renderView('front/registration/pdf/pdfAcco.html.twig',
+                     [
+
+                         'event'             => $event,
+                         'configuration'     => $configuration,
+                         'avatar'     => $avatar,
+                         'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
+                         'menus'             => $menus,
+                         'bags'              => $bags,
+                         'array_packages'    => $array_packages,
+                         'array_supplements' => $array_supplements,
+                         'step'              => $bags['step'],
+                         'devises'             => $devises,
+                         'nbNights' => $nbNights
+                     ]);
+
+                 // Load HTML to Dompdf
+                 $dompdf2->loadHtml($html2);
+                 // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+                 $dompdf2->setPaper('A4', 'portrait');
+                 // Render the HTML as PDF
+                 $dompdf2->render();
+                 // Store PDF Binary Data
+                 $output2 = $dompdf2->output();
+                 $file2 = $this->generateRandomString().'.pdf';
+                 $pdfFilepath2 =  $this->container->getParameter('pdf_directory') .$file2;
+                 // Write file to the desired path
+                 file_put_contents($pdfFilepath2, $output2);
+                 $bags['file2']=$file2;
+             }
            }
             
             
@@ -839,6 +866,9 @@ class FrontController extends Controller
                 }
                 if(isset($bags['file'])){
                     $reservationEvent->setDevis($bags['file']);
+                }
+                if(isset($bags['file2'])){
+                    $reservationEvent->setDevisAcco($bags['file2']);
                 }
 
                 $em->persist($reservationEvent);
@@ -1004,9 +1034,9 @@ class FrontController extends Controller
                     $em->persist($reservation);
                     $em->flush();
 
-                        $file = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+                        $logo = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
                         $normalizer = new DataUriNormalizer();
-                        $avatar = $normalizer->normalize(new \SplFileObject($file));
+                        $avatar = $normalizer->normalize(new \SplFileObject($logo));
                     $html   = $this->renderView(
                         'front/registration/reservation.ticket.html.twig',
                         [

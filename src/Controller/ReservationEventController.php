@@ -141,7 +141,13 @@ class ReservationEventController extends Controller
             if($request->request->has('subsribeConfirmedPayed')){
                 $reservationEvent->getReservation()->setState(1);
                 $eventId=$reservationEvent->getEvent()->getId();
-                $tarif=$reservationEvent->getTotal();
+                $tarif=0;
+                if(!is_null($reservationEvent->getTarifId())){
+                    $tarifObject = $this->getDoctrine()->getRepository(Tarif::class)->find($reservationEvent->getTarifId());
+                    $tarif=$tarifObject->getPrix();
+                }
+
+
                 $nbAcco = 0 ;
 
                 $tarifAccPrice=0 ;
@@ -161,6 +167,30 @@ class ReservationEventController extends Controller
                 $logo = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
                 $normalizer = new DataUriNormalizer();
                 $avatar = $normalizer->normalize(new \SplFileObject($logo));
+                $pdfOptions = new Options();
+                $pdfOptions->set('defaultFont', 'Arial');
+                $html3   = $this->renderView(
+                    'back/reservation_event/pdf/pdf2.html.twig',
+                    [
+                        'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
+                        'event'=>$reservationEvent->getEvent(),
+                        'avatar'=>$avatar,
+                        'tarif'         => $tarif,
+                        'tarifAcco' => $tarifAccPrice,
+                        'nbAcco'          => $nbAcco,
+
+                    ]
+                );
+                $dompdf2 = new Dompdf($pdfOptions);
+                $dompdf2->loadHtml($html3);
+                $dompdf2->setPaper('A4', 'portrait');
+                $dompdf2->render();
+                $output2 = $dompdf2->output();
+                $content_pdf2 = new \Swift_Attachment(
+                    $output2,
+                    'Recu_paiment_accompagnats.pdf',
+                    'application/pdf'
+                );
                 $html2   = $this->renderView(
                     'back/reservation_event/pdf/pdf.html.twig',
                     [
@@ -173,32 +203,33 @@ class ReservationEventController extends Controller
 
                     ]
                 );
-
-
-                    $pdfOptions = new Options();
-                    $pdfOptions->set('defaultFont', 'Arial');
-
                     // Instantiate Dompdf with our options
                     $dompdf = new Dompdf($pdfOptions);
+
 
                     // Retrieve the HTML generated in our twig file
 
                     // Load HTML to Dompdf
                     $dompdf->loadHtml($html2);
 
+
                     // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
                     $dompdf->setPaper('A4', 'portrait');
+
 
                     // Render the HTML as PDF
                     $dompdf->render();
 
 
+
                     $output = $dompdf->output();
+
                 $content_pdf = new \Swift_Attachment(
                     $output,
-                    'recu.pdf',
+                    'Recu_paiement.pdf',
                     'application/pdf'
                 );
+
 
 
                 $message = (new \Swift_Message("Récu paiement"))
@@ -215,6 +246,7 @@ class ReservationEventController extends Controller
                         'text/html'
                     )
                     ->attach($content_pdf)
+                    ->attach($content_pdf2)
                 ;
 
                 $mailer->send($message);

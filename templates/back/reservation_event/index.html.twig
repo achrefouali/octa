@@ -64,8 +64,11 @@
                     <a href="{{ path('back_reservation_event_show', {'id': reservation_event.id}) }}"><i class="fa fa-eye"></i></a>
                     <a href="{{ path('back_reservation_event_edit', {'id': reservation_event.id}) }}"><i class="fa fa-edit"></i></a>
                     {% if reservation_event.devis is not null  %}
-                        <a target="_blank" href="{{ asset('uploads/pdf/'~reservation_event.devis) }}"><i class="fa   fa-download" title='{{ 'Télécharger devis' | trans }}' aria-hidden="true"></i> </a>
+                        <a target="_blank" href="{{ asset('uploads/pdf/'~reservation_event.devis) }}"><i class="fa   fa-download" title='{{ 'Télécharger Facture Proforma' | trans }}' aria-hidden="true"></i> </a>
                      {% endif  %}
+                    {% if reservation_event.devisAcco is not null  %}
+                        <a target="_blank" href="{{ asset('uploads/pdf/'~reservation_event.devisAcco) }}"><i class="fa   fa-download" title='{{ 'Télécharger Facture Accompagnant' | trans }}' aria-hidden="true"></i> </a>
+                    {% endif  %}
                 </td>
             </tr>
         {% endfor %}
