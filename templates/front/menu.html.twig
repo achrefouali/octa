@@ -38,8 +38,13 @@
                             <a  href="{{ path('application_event_program')}}">{{ menu_title }}</a>
 
                             {% elseif menu.titleEn == "Speakers" %}
+
                                 <li>
                                 <a  href="{{ path('application_event_intervenant')}}">{{ menu_title }}</a>
+                            {% elseif menu.titleEn == "Sponsors" %}
+                            <li>
+                            <a  href="{{ path('application_event_sponsors')}}">{{ menu_title }}</a>
+
                         {% else %}
                         <li>
                         <a class=" {% if menu.link in routeCurrent %} {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>

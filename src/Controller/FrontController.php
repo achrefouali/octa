@@ -2007,6 +2007,80 @@ class FrontController extends Controller
             ]
         );
     }
+    /**
+     *
+     * @Route("/event/sponsors", name="application_event_sponsors")
+     */
+    public function getListSponsors(Request $request){
+        $session = $request->getSession();
+
+        $currency = $request->get('_currency');
+
+        $devise_criterias = ['main' => true];
+
+        if(!empty($currency)){
+            $devise_criterias = ['code' => $currency];
+        }
+        $devise = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findOneBy($devise_criterias)
+        ;
+
+        $session->set('currency', strtolower($devise->getCode()));
+        if(empty($devise)){
+            throw new \Exception('You have to define at least one main "Devise"');
+        }
+
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+
+
+        $menus = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll()
+        ;
+
+        $hotels = $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $devises = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+        $intervenantsByType = $this->getDoctrine()
+            ->getRepository(ParticipantType::class)
+            ->findOneBy(['label' => 'Intervenant'])
+        ;
+        return $this->render(
+            'front/sponsorspage.html.twig',
+            [
+                'configuration'      => $configuration,
+                'intervenantsByType'      => $intervenantsByType,
+                'event'              => $event,
+                'menus'              => $menus,
+                'sponsorsByType'     => $sponsorsByType,
+                'hotels'             => $hotels,
+                'devises'             => $devises
+
+            ]
+        );
+    }
 
 
 
