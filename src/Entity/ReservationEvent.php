@@ -33,8 +33,20 @@ class ReservationEvent
      */
     private $total;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tarif_id", type="integer", nullable=true)
+     */
+    private $tarifId;
 
-
+    public function getTarifId(){
+        return $this->tarifId;
+    }
+    public function setTarifId($tarifId){
+        $this->tarifId= $tarifId;
+        return $this;
+    }
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
