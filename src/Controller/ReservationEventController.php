@@ -8,10 +8,13 @@ use App\Entity\ReservationEvent;
 use App\Entity\Tarif;
 use App\Form\ReservationEventType;
 use App\Repository\ReservationEventRepository;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\DataUriNormalizer;
 
 /**
  * @Route("/back/reservation/event")
@@ -146,34 +149,58 @@ class ReservationEventController extends Controller
                 if(!is_null($participantEffectif)){
                     $nbAcco = $participantEffectif ;
                 }
-                $tarifAcco=$this->getDoctrine()->getRepository(Tarif::class)->findOneBy(['event'=>$eventId,'prix'=>$tarif]);
-                if(!empty($tarifAcco)){
-                    $tarifAccPrice = $tarifAcco->getPrixAccompagnant();
+                if(!is_null($reservationEvent->getTarifId())){
+                    $tarifAcco=$this->getDoctrine()->getRepository(Tarif::class)->find($reservationEvent->getTarifId());
+                    if(!empty($tarifAcco)){
+                        $tarifAccPrice = $tarifAcco->getPrixAccompagnant();
+                    }
                 }
 
 
 
+                $logo = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+                $normalizer = new DataUriNormalizer();
+                $avatar = $normalizer->normalize(new \SplFileObject($logo));
                 $html2   = $this->renderView(
-                            'back/reservation_event/pdf/pdf.html.twig',
-                            [
-                                'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
-                                'event'=>$reservationEvent->getEvent(),
-                                'tarif'         => $tarif,
-                                'tarifAcco' => $tarifAccPrice,
-                                'nbAcco'          => $nbAcco,
+                    'back/reservation_event/pdf/pdf.html.twig',
+                    [
+                        'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
+                        'event'=>$reservationEvent->getEvent(),
+                        'avatar'=>$avatar,
+                        'tarif'         => $tarif,
+                        'tarifAcco' => $tarifAccPrice,
+                        'nbAcco'          => $nbAcco,
 
-                            ]
-                        );
+                    ]
+                );
 
-                $params = ['lowquality' => false, 'encoding'   => 'utf-8' ];
 
-                $pdf = $this->get('knp_snappy.pdf')->getOutputFromHtml($html2, $params);
-                
+                    $pdfOptions = new Options();
+                    $pdfOptions->set('defaultFont', 'Arial');
+
+                    // Instantiate Dompdf with our options
+                    $dompdf = new Dompdf($pdfOptions);
+
+                    // Retrieve the HTML generated in our twig file
+
+                    // Load HTML to Dompdf
+                    $dompdf->loadHtml($html2);
+
+                    // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+                    $dompdf->setPaper('A4', 'portrait');
+
+                    // Render the HTML as PDF
+                    $dompdf->render();
+
+
+                    $output = $dompdf->output();
                 $content_pdf = new \Swift_Attachment(
-                    $pdf,
+                    $output,
                     'recu.pdf',
                     'application/pdf'
                 );
+
+
                 $message = (new \Swift_Message("Récu paiement"))
                     ->setFrom('no-reply@fanaf2019.org')
                     ->setTo($participant->getEmail())

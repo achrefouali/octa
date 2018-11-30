@@ -31,3 +31,7 @@ parameters:
         2: "Chéque bancaire"
         3: "Bon de commande"
         4: "Liquide"
+    currencyType:
+        0: "Dinars"
+        1: "Euros"
+        2: "Dollars"
