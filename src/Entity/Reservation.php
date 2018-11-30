@@ -52,6 +52,8 @@ class Reservation
      */
     private $devis;
 
+
+
     /**
      * @var string
      *

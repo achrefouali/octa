@@ -135,6 +135,13 @@ class ReservationEvent
      */
     private $devis;
 
+/**
+ * @var string
+ *
+ * @ORM\Column(name="devisAcco", type="string", length=255, nullable=true)
+ */
+    private $devisAcco;
+
     /**
      * @var \App\Entity\Hotel
      *
@@ -167,6 +174,18 @@ class ReservationEvent
     public function setDevis($devis)
 {
     $this->devis = $devis;
+
+    return $this;
+}
+
+  public function getDevisAcco()
+{
+    return $this->devisAcco;
+}
+
+    public function setDevisAcco($devisAcco)
+{
+    $this->devisAcco = $devisAcco;
 
     return $this;
 }
