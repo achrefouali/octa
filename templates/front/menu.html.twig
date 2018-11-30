@@ -70,9 +70,9 @@
                     {#</li>#}
                     {#<li><a class="csi-scroll" data-toggle="modal" data-target="#connexion" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'Login'|trans }}</a></li>#}
 
-                    {#{% else %}#}
-                        {#<li  ><a class="csi-scroll {% if routeCurrent == 'front_profile' %}csi-btn{% endif %}" href="{{ path('front_profile') }}"><i class="fa fa-user" aria-hidden="true"></i> {{ 'My Profile'|trans }}</a></li>#}
-                        {#<li ><a  class="csi-scroll {% if routeCurrent == 'logout' %}csi-btn{% endif %} " href="{{ path('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'Logout'|trans }}</a></li>#}
+                    {% else %}
+                        <li  ><a class="csi-scroll " href="{{ path('front_profile') }}"><i class="fa fa-user" aria-hidden="true"></i> {{ 'My Profile'|trans }}</a></li>
+                        <li ><a  class="csi-scroll  " href="{{ path('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'Logout'|trans }}</a></li>
                 {% endif %}
             </ul>
             <!--/.nav-collapse -->
