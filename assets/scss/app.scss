@@ -1532,7 +1532,7 @@ hr {
 }
 .header-navbar .navbar-brand img {
  width: 80%;
- margin-left: 87%;
+ margin-left: 60%;
  margin-top: 3%;
  max-width: 100%;
 }
@@ -2644,6 +2644,7 @@ hr {
  }
  label[for=profile_password_second]{
   margin-left: -10%;
+  word-break: break-all;
  }
  label[for=profile_password_first]{
   margin-left: -12%;
@@ -2656,30 +2657,193 @@ hr {
  }
 }
 
+// form registration
+
+form[name=information]{
+ .panel-footer{
+  background-color: transparent;
+  border-top: 1px solid #9a1f80;
+  .row{
+   .col-sm-6{
+    text-align: center;
+   }
+  }
+ }
+  border: 1px solid #9a1f80;
+ .form-group{
+  position: relative;
+  margin-bottom: 0;
+ }
+ .form-control{
+  height: 45px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 30px;
+ }
+ .form-control:focus{
+  box-shadow: none;
+  outline: 0 none;
+ }
+ .form-group label{
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+  letter-spacing: 0.8px;
+ }
+ .btn{
+  display: inline-block;
+  width: 50%;
+  background: #9a1f80;
+  padding: 10px 20px;
+  margin: 20px auto 0;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 0;
+  text-transform: uppercase;
+ }
+ .btn:focus{
+  background: #9a1f80;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+ }
+ select{
+  height: 29px;
+  overflow: hidden;
+  width: 45%;
+  margin-top: 6px;
+  outline: none;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+ }
+ #information_heureDeparture{
+  border: none !important;
+ }
+ #information_heureArrival{
+  border: none !important;
+ }
+}
+
+
+//card profile
+#cardPdf{
+ .card-body{
+  h6{
+   font-size: 18px;
+   font-family: Lato, sans-serif;
+  }
+  img{
+   margin-top: 2%;
+   margin-bottom: 10%;
+  }
+ }
+ border: 1px solid #9a1f80;
+ font-size: 18px;
+ font-family: Lato, sans-serif;
+}
+.mode-de-paiement{
+ .panel-body p{
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+ }
+ .panel-heading{
+  background-color: transparent !important;
+  border: 1px solid #9a1f80 !important;
+ }
+}
+.card-information{
+ .panel-body{
+  background-color: transparent !important;
+  border: 1px solid #9a1f80 !important;
+  p{
+   font-size: 18px;
+   font-family: Lato, sans-serif;
+  }
+ }
+ .panel-heading{
+  background-color: transparent !important;
+  border: 1px solid #9a1f80 !important;
+ }
+}
+
+//facture
+#reservation{
+ border: 1px solid #9a1f80;
+ font-size: 18px;
+ font-family: Lato, sans-serif;
+ p {
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+ }
+}
+.jumbotrondddd{
+ border: 1px solid #9a1f80;
+ position: relative;
+ z-index: 1;
+ padding: 30px;
+ font-family: Lato, sans-serif;
+ font-size: 18px;
+ margin-bottom: 10%;
+ margin-top: 3%;
+ p{
+  font-size: 18px;
+  line-height: 2;
+ }
+}
+.dataTables_paginate a.paginate_button, .dataTables_paginate a.paginate_active{
+ z-index: 1;
+}
 #csi-schedule{
  background: #ffffff !important;
 }
 #csi-news{
  background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png) !important;
 }
-#list-participants th{
- background-color: #9a1f80;
- color: white;
- font-family: Lato, sans-serif;
- font-size: 20px;
- font-weight: bold;
+#list-participants_filter input{
+ position: relative;
+ z-index:  1;
 }
-#list-participants td{
- color: #333;
- font-family: Lato, sans-serif;
- font-size: 16px;
+#list-participants_paginate{
+ position: relative;
 }
-.dataTables_paginate a.current{
+.dataTables_paginate a.current, .dataTables_paginate a.current:hover{
  background-color: #9a1f80 !important;
  border-color: #9a1f80 !important;
 }
+#list-participants{
+ position: relative;
+ th{
+  background-color: #9a1f80;
+  color: white;
+  font-family: Lato, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+ }
+ #list-participants td{
+  color: #333;
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+ }
+}
+
 #csi-about{
  background: url(http://promohoteltunisie.com/octa/public/assets/front/img/body.png);
+ position: relative;
 }
 .contact-area{
  background-color: #ffffff !important;
@@ -2857,6 +3021,19 @@ form[name=contact] {
  .navbar-nav.navbar-right{
   padding-top: 0;
   margin-top: -1%;
+ }
+ label[for=profile_password_second]{
+  margin-left: 0 !important;
+  word-break: break-all;
+ }
+ label[for=profile_password_first]{
+  margin-left: 0 !important;
+ }
+ label[for=profile_email]{
+  margin-left: -5%;
+ }
+ #profile_password_second{
+  margin-left: 0 !important;
  }
 }
 

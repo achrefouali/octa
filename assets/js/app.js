@@ -57,8 +57,13 @@ function fixedMenu() {
     }
 }
 
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);
+
 jQuery(document).ready(function () {
     jQuery(window).scroll(fixedMenu);
     fixedMenu();
+
 });
 
