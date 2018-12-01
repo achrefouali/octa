@@ -3036,7 +3036,16 @@ form[name=contact] {
   margin-left: 0 !important;
  }
 }
-
+@media (max-width: 1366px){
+ .navbar-nav.navbar-right{
+  font-size: 13px;
+  width: 84%;
+  margin-left: -8%;
+ }
+ .header-navbar .navbar-brand img{
+  width: 60%;
+ }
+}
 
 /*Page Sponsoring*/
 .pageSponsoring{
