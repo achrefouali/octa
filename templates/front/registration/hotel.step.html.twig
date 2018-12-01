@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label>{{ 'departure_date'|trans({},'messages') }}</label>
+                <label>{{ 'departure_date'|trans({},'messages') }} *</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group row">
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label id="labelReturn">{{ 'return_date'|trans({},'messages') }}</label>
+                <label id="labelReturn">{{ 'return_date'|trans({},'messages') }} *</label>
             </div>
             <div class="col-md-6">
                 <div id="hotelDivReturn"  class="form-group row">
@@ -49,7 +49,7 @@
                 <strong>{{ 'Number of nights'|trans({},'front') }}: <span id="nb_nights">0</span></strong>
             </div>
         </div>
-
+        <i  style="    font-size: 14px !important;" class='required-field-info'> (*) Champs obligatoire </i>
 
     {% for hotel in hotels %}
         {% set j = loop.index %}

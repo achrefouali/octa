@@ -54,7 +54,7 @@ class InformationType extends AbstractType
             ->add('poste', TextType::class, [
                 'label' => 'form.poste',
                 'attr' => ['placeholder' => 'form.poste'],
-                'required' => false,
+                'required' => true,
                 'translation_domain' => "front"
             ])
             ->add('telephone', TextType::class, [
