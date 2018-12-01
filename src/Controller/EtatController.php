@@ -81,19 +81,22 @@ class EtatController extends Controller
         $result=[];
         foreach($event as $event_item){
             $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findOneBy(['id' => $event_item->getId()]);
-            $object = ['code' => (is_null($reservation->getCode())) ? '' : $reservation->getCode(),
-                'pays' => $reservation->getReservation()->getParticipant()->getPays()->getName(),
-                'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
-                'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
-                'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
-                'heure'=>(!is_null($reservation->getReservation()->getHeureArrival())? $reservation->getReservation()->getHeureArrival()->format('H:m:i'):'')
-              ];
-            $date=$event_item->getDateArrive();
-            if(is_null($date)){
-                $result[0][]=$object;
-            }else{
-                $result[$date->format('Y-m-d')][]=$object;
+            if(!is_null($reservation)){
+                $object = ['code' => (is_null($reservation->getCode())) ? '' : $reservation->getCode(),
+                    'pays' => $reservation->getReservation()->getParticipant()->getPays()->getName(),
+                    'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
+                    'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
+                    'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
+                    'heure'=>(!is_null($reservation->getReservation()->getHeureArrival())? $reservation->getReservation()->getHeureArrival()->format('H:m:i'):'')
+                ];
+                $date=$event_item->getDateArrive();
+                if(is_null($date)){
+                    $result[0][]=$object;
+                }else{
+                    $result[$date->format('Y-m-d')][]=$object;
+                }
             }
+
         }
 
         
@@ -112,19 +115,22 @@ class EtatController extends Controller
         $result=[];
         foreach($event as $event_item){
             $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findOneBy(['id' => $event_item->getId()]);
-            $object = ['code' => (is_null($reservation->getCode())) ? '' : $reservation->getCode(),
-                'pays' => $reservation->getReservation()->getParticipant()->getPays()->getName(),
-                'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
-                'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
-                'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
-                'heure'=>(!is_null($reservation->getReservation()->getHeureDeparture())? $reservation->getReservation()->getHeureDeparture()->format('H:m:i'):'')
-            ];
-            $date=$event_item->getDateDepart();
-            if(is_null($date)){
-                $result[0][]=$object;
-            }else{
-                $result[$date->format('Y-m-d')][]=$object;
+            if(!is_null($reservation)){
+                $object = ['code' => (is_null($reservation->getCode())) ? '' : $reservation->getCode(),
+                    'pays' => $reservation->getReservation()->getParticipant()->getPays()->getName(),
+                    'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
+                    'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
+                    'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
+                    'heure'=>(!is_null($reservation->getReservation()->getHeureDeparture())? $reservation->getReservation()->getHeureDeparture()->format('H:m:i'):'')
+                ];
+                $date=$event_item->getDateDepart();
+                if(is_null($date)){
+                    $result[0][]=$object;
+                }else{
+                    $result[$date->format('Y-m-d')][]=$object;
+                }
             }
+
         }
 
        
