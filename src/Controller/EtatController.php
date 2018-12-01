@@ -24,12 +24,14 @@ class EtatController extends Controller
      */
     public function listEtatPaiementType(Request $request){
         $event = $this->getDoctrine()->getRepository(Reservation::class)->findBy(['state' => [1,2]]);
+        dump($event);
         $id = [];
         foreach ($event as $item) {
             $id[] = $item->getId();
         }
-
+        dump($id);
         $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findBy(['id' => $id]);
+        dump($reservation);
         $resultCarte = [];
         $resultVirement = [];
         $resultCheque = [];
