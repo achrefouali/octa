@@ -67,52 +67,7 @@
 </head>
 <body>
 
-{#<div class="container">#}
-    {#<div class="card">#}
-        {#<div class="card-header">#}
-            {#<h3>Recu de paiement </h3>#}
-            {#<strong>{{ 'now'|date }}</strong>#}
-            {#<span class="float-right"> <strong>{{ 'Status'|trans({}, 'front') }}:</strong> {{ 'Waiting'|trans({}, 'front') }}</span>#}
 
-        {#</div>#}
-        {#<div class="card-body">#}
-
-
-            {#<div class="table-responsive-sm">#}
-                {#<table class="table table-striped">#}
-                    {#<thead>#}
-                    {#<tr>#}
-
-                        {#<th>Prix d'inscription</th>#}
-                        {#<th>Prix d'accompagnat </th>#}
-                        {#<th>Nombre d'accompagnats  </th>#}
-
-                        {#<th class="right">Total</th>#}
-
-                    {#</tr>#}
-                    {#</thead>#}
-                    {#<tbody>#}
-                    {#{% if bags['withEvent']  %}#}
-                        {#<tr>#}
-                            {#<td>{{ tarif }}</td>#}
-
-                            {#<td >{{ nbAcco }}</td>#}
-                            {#<td >{{ tarifAcco }}</td>#}
-                            {#<td >{{ tarif+(tarifAcco*nbAcco) }}</td>#}
-
-
-                        {#</tr>#}
-                    {#{% endif %}#}
-                    {#</tbody>#}
-                {#</table>#}
-            {#</div>#}
-
-
-        {#</div>#}
-    {#</div>#}
-
-
-{#</div>#}
 
 {% set prixSupplementTotal = 0 %}
 
