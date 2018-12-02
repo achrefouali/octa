@@ -2958,14 +2958,18 @@ form[name=contact] {
  .header-navbar .navbar-brand img{
   margin-left: 0;
  }
+ .info-top-bar{
+  display: block;
+  margin-left: 5%;
+ }
  .navbar-nav.navbar-right{
   float: left !important;
   margin-right: 0 !important;
  }
-}
-@media (max-width: 1199px){
- .info-top-bar{
-  display: block;
+ .header-topbar:before{
+  left: -9%;
+  margin-left: 0;
+  max-width: 100%;
  }
 }
 //@media (max-width: 1110px) {
@@ -2982,6 +2986,7 @@ form[name=contact] {
  }
  .info-top-bar{
   display: inline-flex;
+  margin-left: 0;
  }
  .herader-topbar-col i{
   color: #ffffff;
