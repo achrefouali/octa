@@ -24,7 +24,7 @@ class EtatController extends Controller
      */
     public function listEtatPaiementType(Request $request){
         $event = $this->getDoctrine()->getRepository(Reservation::class)->findBy(['state' => [1,2]]);
-        
+
         $id = [];
         foreach ($event as $item) {
             $id[] = $item->getId();
@@ -37,7 +37,7 @@ class EtatController extends Controller
         $resultCheque = [];
         $resultBon = [];
         $resultLiquide = [];
-        foreach ($id as $id_item) {
+        foreach ($reservation as $item_reservation) {
             $object = ['code' => (is_null($item_reservation->getCode())) ? '' : $item_reservation->getCode(),
                 'pays' => $item_reservation->getReservation()->getParticipant()->getPays()->getName(),
                 'firstname' => $item_reservation->getReservation()->getParticipant()->getFirstname(),
