@@ -24,20 +24,20 @@ class EtatController extends Controller
      */
     public function listEtatPaiementType(Request $request){
         $event = $this->getDoctrine()->getRepository(Reservation::class)->findBy(['state' => [1,2]]);
-        dump($event);
+        
         $id = [];
         foreach ($event as $item) {
             $id[] = $item->getId();
         }
-        dump($id);
-        $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findBy(['id' => $id]);
-        dump($reservation);
+
+        $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findBy(['reservation' => $id]);
+
         $resultCarte = [];
         $resultVirement = [];
         $resultCheque = [];
         $resultBon = [];
         $resultLiquide = [];
-        foreach ($reservation as $item_reservation) {
+        foreach ($id as $id_item) {
             $object = ['code' => (is_null($item_reservation->getCode())) ? '' : $item_reservation->getCode(),
                 'pays' => $item_reservation->getReservation()->getParticipant()->getPays()->getName(),
                 'firstname' => $item_reservation->getReservation()->getParticipant()->getFirstname(),
@@ -82,7 +82,7 @@ class EtatController extends Controller
 
         $result=[];
         foreach($event as $event_item){
-            $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findOneBy(['id' => $event_item->getId()]);
+            $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findOneBy(['reservation' => $event_item->getId()]);
             if(!is_null($reservation)){
                 $object = ['code' => (is_null($reservation->getCode())) ? '' : $reservation->getCode(),
                     'pays' => $reservation->getReservation()->getParticipant()->getPays()->getName(),
@@ -116,7 +116,7 @@ class EtatController extends Controller
 
         $result=[];
         foreach($event as $event_item){
-            $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findOneBy(['id' => $event_item->getId()]);
+            $reservation = $this->getDoctrine()->getRepository(ReservationEvent::class)->findOneBy(['reservation' => $event_item->getId()]);
             if(!is_null($reservation)){
                 $object = ['code' => (is_null($reservation->getCode())) ? '' : $reservation->getCode(),
                     'pays' => $reservation->getReservation()->getParticipant()->getPays()->getName(),
