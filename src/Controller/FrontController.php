@@ -877,6 +877,22 @@ class FrontController extends Controller
                 $reservation->setTotalPrice(($total_price + $reservationEvent->getTotal()));
 
                 $reservation->addReservationsEvent($reservationEvent);
+
+
+                   if(isset($bags['accom'])){
+
+                            foreach($bags['accom'] as $item){
+                                $accompagnant= new Accompanying();
+                                $accompagnant->setLastname($item['Nom']);
+                                $accompagnant->setFirtname($item['Prenom']);
+                                $accompagnant->setType($item['relation']);
+                                $accompagnant->setReservationEvent($reservationEvent);
+                                $reservationEvent->addAccompanying($accompagnant);
+                                $em->persist($accompagnant);
+
+                            }
+                            $em->flush();
+                        }
             }
 
                     if (!empty($bags['informations'])) {
@@ -960,20 +976,7 @@ class FrontController extends Controller
                     }
 
 
-                        if(isset($bags['accom'])){
-
-                            foreach($bags['accom'] as $item){
-                                $accompagnant= new Accompanying();
-                                $accompagnant->setLastname($item['Nom']);
-                                $accompagnant->setFirtname($item['Prenom']);
-                                $accompagnant->setType($item['relation']);
-                                $accompagnant->setReservation($reservation);
-                                $reservation->addAccompanying($accompagnant);
-                                $em->persist($accompagnant);
-
-                            }
-                            $em->flush();
-                        }
+                     
 
 //                    if(empty($participant->getPassword()) || empty($participant->getSalt())){
                         //*envoi de mail ici */

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * ReservationEvent
  *
@@ -338,6 +339,50 @@ public function getFormattedCurrency(){
 
     }
 }
+
+
+/**
+ * @ORM\OneToMany(targetEntity="App\Entity\Accompanying", mappedBy="reservationEvent", cascade={"remove","persist"})
+ */
+    private $accompanying;
+
+
+
+    /**
+     * @return Collection|Accompanying[]
+     */
+    public function getAccompanying()
+{
+    return $this->accompanying;
+}
+
+    public function addAccompanying(Accompanying $accompanying)
+{
+    if (!$this->accompanying->contains($accompanying)) {
+        $this->accompanying[] = $accompanying;
+        $accompanying->setReservationEvent($this);
+    }
+
+    return $this;
+}
+
+    public function removeAccompanying(Accompanying $accompanying): self
+{
+    if ($this->accompanying->contains($accompanying)) {
+        $this->accompanying->removeElement($accompanying);
+        // set the owning side to null (unless already changed)
+        if ($accompanying->getReservationEvent() === $this) {
+            $accompanying->setReservationEvent($this);
+        }
+    }
+
+    return $this;
+}
+
+public function __construct(){
+     $this->accompanying = new ArrayCollection();
+}
+
 }
 
 

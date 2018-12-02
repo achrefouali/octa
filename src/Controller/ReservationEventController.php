@@ -86,7 +86,7 @@ class ReservationEventController extends Controller
         $event=    $reservationEvent->getEvent();
         $resevation=    $reservationEvent->getReservation();
         $state = $reservationEvent->getReservation()->getState();
-        $acco=$this->getDoctrine()->getRepository(Accompanying::class)->findBy(['reservation'=>$reservationEvent->getReservation()->getId()]);
+        $acco=$this->getDoctrine()->getRepository(Accompanying::class)->findBy(['reservationEvent'=>$reservationEvent->getId()]);
         $resultAcco=[];
 
         if(!empty($acco)){
