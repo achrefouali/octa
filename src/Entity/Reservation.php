@@ -202,7 +202,7 @@ public function setDateArrive( $dateArrive)
         $this->reservationsEvents = new ArrayCollection();
         $this->reservationsHotels = new ArrayCollection();
         $this->reservationsSupplements = new ArrayCollection();
-        $this->accompanying = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -385,43 +385,6 @@ public function setDateArrive( $dateArrive)
     }
 }
 
-/**
- * @ORM\OneToMany(targetEntity="App\Entity\Accompanying", mappedBy="reservation", cascade={"remove","persist"})
- */
-    private $accompanying;
-
-
-
-    /**
-     * @return Collection|Accompanying[]
-     */
-    public function getAccompanying()
-{
-    return $this->accompanying;
-}
-//
-    public function addAccompanying(Accompanying $accompanying)
-{
-    if (!$this->accompanying->contains($accompanying)) {
-        $this->accompanying[] = $accompanying;
-        $accompanying->setReservation($this);
-    }
-
-    return $this;
-}
-
-    public function removeAccompanying(Accompanying $accompanying): self
-{
-    if ($this->accompanying->contains($accompanying)) {
-        $this->accompanying->removeElement($accompanying);
-        // set the owning side to null (unless already changed)
-        if ($accompanying->getReservation() === $this) {
-            $accompanying->setReservation($this);
-        }
-    }
-
-    return $this;
-}
 
 
 }
