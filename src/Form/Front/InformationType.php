@@ -139,7 +139,9 @@ class InformationType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
                 },
-                'placeholder'=>'Choisir un pays'
+                'label' => 'form.pays',
+                'placeholder'=>'Choisir un pays',
+                'translation_domain' => "front"
                
 //                'label'=>'form.pays'
 //                 'translation_domain' => "front"
