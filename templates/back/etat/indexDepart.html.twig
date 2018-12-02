@@ -19,6 +19,7 @@
                             <th>Prénom</th>
                             <th>Compagnie</th>
                             <th>Heure de depart</th>
+                             <th> Numéro de vol </th>
 
                         </tr>
                         </thead>
@@ -32,6 +33,7 @@
                                 <td>{{ resultItem_item.compagnie }}</td>
 
                                 <td>{{ resultItem_item.heure }}</td>
+                                    <td> {{ resultItem_item.numVol }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

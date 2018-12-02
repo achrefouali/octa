@@ -92,7 +92,8 @@ class EtatController extends Controller
                     'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
                     'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
                     'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
-                    'heure'=>(!is_null($reservation->getReservation()->getHeureArrival())? $reservation->getReservation()->getHeureArrival()->format('H:m:i'):'')
+                    'heure'=>(!is_null($reservation->getReservation()->getHeureArrival())? $reservation->getReservation()->getHeureArrival()->format('H:m:i'):''),
+                    'numVol'=> $reservation->getReservation()->getNumVolArrive(),
                 ];
                 $date=$event_item->getDateArrive();
                 if(is_null($date)){
@@ -128,7 +129,8 @@ class EtatController extends Controller
                     'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
                     'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
                     'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
-                    'heure'=>(!is_null($reservation->getReservation()->getHeureDeparture())? $reservation->getReservation()->getHeureDeparture()->format('H:m:i'):'')
+                    'heure'=>(!is_null($reservation->getReservation()->getHeureDeparture())? $reservation->getReservation()->getHeureDeparture()->format('H:m:i'):''),
+                    'numVol'=> $reservation->getReservation()->getNumVolDepart(),
                 ];
                 $date=$event_item->getDateDepart();
                 if(is_null($date)){
@@ -261,7 +263,8 @@ class EtatController extends Controller
                     'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
                     'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
                     'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
-                    'heure'=>(!is_null($reservation->getReservation()->getHeureArrival())? $reservation->getReservation()->getHeureArrival()->format('H:m:i'):'')
+                    'heure'=>(!is_null($reservation->getReservation()->getHeureArrival())? $reservation->getReservation()->getHeureArrival()->format('H:m:i'):''),
+                    'numVol'=> $reservation->getReservation()->getNumVolArrive(),
                 ];
                 $date=$event_item->getDateArrive();
                 if(is_null($date)){
@@ -331,7 +334,8 @@ class EtatController extends Controller
                     'firstname' => $reservation->getReservation()->getParticipant()->getFirstname(),
                     'lastname' => $reservation->getReservation()->getParticipant()->getLastname(),
                     'compagnie' => $reservation->getReservation()->getParticipant()->getSociete(),
-                    'heure'=>(!is_null($reservation->getReservation()->getHeureDeparture())? $reservation->getReservation()->getHeureDeparture()->format('H:m:i'):'')
+                    'heure'=>(!is_null($reservation->getReservation()->getHeureDeparture())? $reservation->getReservation()->getHeureDeparture()->format('H:m:i'):''),
+                    'numVol'=> $reservation->getReservation()->getNumVolDepart(),
                 ];
                 $date=$event_item->getDateDepart();
                 if(is_null($date)){
