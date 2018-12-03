@@ -99,7 +99,7 @@
                                 {% if tarif.visible %}
                                 <h2>{{ getPriceByDevise(tarif.prix, app.session.get('currency')) }}<i class="devise-currency">{{ getDevise(app.session.get('currency')) }}</i> </h2>
                                 {% else %}
-                                <h2>-<i class="devise-currency">{{ getDevise(app.session.get('currency')) }}</i> </h2>
+                                <h2>-</h2>
                                 {% endif %}
                             </div>
 

@@ -172,9 +172,22 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
+
+
                                                     {% if event.programFile is not null  %}
                                                         <a  target="_blank" class="csi-btn" href="{{ asset('uploads/events/'~event.programFile) }}">
                                                             <span> {% if app.request.locale == 'fr' %}Télécharger Programme {% else  %} Download Program {% endif %} </span>
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+
+
+                                                <div class="row">
+
+                                                    
+                                                    {% if event.excursion is not null  %}
+                                                        <a  target="_blank" class="csi-btn" href="{{ asset('uploads/events/'~event.excursion) }}">
+                                                            <span> {% if app.request.locale == 'fr' %}Télécharger Excursion {% else  %} Download Program {% endif %} </span>
                                                         </a>
                                                     {% endif %}
                                                 </div>

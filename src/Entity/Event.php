@@ -6,6 +6,7 @@ use App\Traits\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -147,35 +148,75 @@ class Event
      */
     protected $dateFin;
 
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the event logo as an Image file.")
-     * @Assert\Image()
-     */
-    private $logo;
+  
 
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the facture logo as an Image file.")
-     * @Assert\Image()
-     */
-    private $logoFacture;
+   
 
-
-    /**
+    
+   
+/*****Excusion */////// 
+     /**
      * @ORM\Column(type="string",nullable=true)
      *
      */
-    private $programFile;
-    
+    private $excursion;
+    private $fileExcusion ;
+    private $tempFilenameExcursion;
+
+
+    public function getExcursion(){
+        return $this->excursion ;
+    }
+    public function setExcursion($excursion){
+        $this->excursion = $excursion ;
+        return $this ; 
+    }
+
+    public function setFileExcursion(UploadedFile $fileExcusion = null)
+    {
+        $this->fileExcusion = $fileExcusion;
+        if (null !== $this->excursion && $fileExcusion !== null ) {
+            $this->tempFilenameExcursion = $this->excursion;
+            $this->excursion = null;
+        }
+    }
+
+
+    /*** @return mixed
+     */
+    public function getFileExcursion()
+    {
+        return $this->fileExcusion;
+    }
     /**
+     * @return mixed
+     */
+    public function getTempFilenameExcursion()
+    {
+        return $this->tempFilenameExcursion;
+    }
+
+    /**
+     * @param mixed $tempFilenameExcursion
+     */
+    public function setTempFilenameExcursion($tempFilenameExcursion)
+    {
+        $this->tempFilenameExcursion = $tempFilenameExcursion;
+    }
+
+ 
+
+
+/*****Brochure */////// 
+
+ /**
      * @ORM\Column(type="string",nullable=true)
      *
      */
     private $brochureFile;
-    
+
+     private $fileBrochure ;
+    private $tempFilenameBrochure;
     public function getBrochureFile(){
         
         return $this->brochureFile;
@@ -187,6 +228,57 @@ class Event
 
         return $this;
     }
+
+
+
+
+ public function setFileBrochure(UploadedFile $fileBrochure = null)
+    {
+        $this->fileBrochure = $fileBrochure;
+        if (null !== $this->brochureFile && $fileBrochure !== null ) {
+            $this->tempFilenameBrochure = $this->brochureFile;
+            $this->brochureFile = null;
+        }
+    }
+
+
+    /*** @return mixed
+     */
+    public function getFileBrochure()
+    {
+        return $this->fileBrochure;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTempFilenameBrochure()
+    {
+        return $this->tempFilenameBrochure;
+    }
+
+    /**
+     * @param mixed $tempFilenameBrochure
+     */
+    public function setTempFilenameBrochure($tempFilenameBrochure)
+    {
+        $this->tempFilenameBrochure = $tempFilenameBrochure;
+    }
+
+
+
+
+
+   /**Programe File */ 
+
+
+/**
+     * @ORM\Column(type="string",nullable=true)
+     *
+     */
+    private $programFile;
+     private $fileProgram ;
+    private $tempFilenameProgram;
+
     public function getProgramFile()
     {
         return $this->programFile;
@@ -198,6 +290,157 @@ class Event
 
         return $this;
     }
+
+
+public function setFileProgram(UploadedFile $fileProgram = null)
+    {
+        $this->fileProgram = $fileProgram;
+        if (null !== $this->programFile && $fileProgram !== null ) {
+            $this->tempFilenameProgram = $this->programFile;
+            $this->programFile = null;
+        }
+    }
+
+
+    /*** @return mixed
+     */
+    public function getFileProgram()
+    {
+        return $this->fileProgram;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTempFilenameProgram()
+    {
+        return $this->tempFilenameProgram;
+    }
+
+    /**
+     * @param mixed $tempFilenameProgram
+     */
+    public function setTempFilenameProgram($tempFilenameProgram)
+    {
+        $this->tempFilenameProgram = $tempFilenameProgram;
+    }
+
+
+
+/***Logo Facture*///
+ /**
+     * @ORM\Column(type="string")
+     *
+     */
+    private $logoFacture;
+private $fileLogoFacture ;
+    private $tempFilenameLogoFacture;
+
+
+ public function getLogoFacture()
+    {
+        return $this->logoFacture;
+    }
+
+    public function setLogoFacture($logoFacture)
+    {
+        $this->logoFacture = $logoFacture;
+
+        return $this;
+    }
+
+
+
+    public function setFileLogoFacture(UploadedFile $fileLogoFacture = null)
+    {
+        $this->fileLogoFacture = $fileLogoFacture;
+        if (null !== $this->logoFacture && $fileLogoFacture !== null ) {
+            $this->tempFilenameLogoFacture = $this->logoFacture;
+            $this->logoFacture = null;
+        }
+    }
+
+
+    /*** @return mixed
+     */
+    public function getFileLogoFacture()
+    {
+        return $this->fileLogoFacture;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTempFilenameLogoFacture()
+    {
+        return $this->tempFilenameLogoFacture;
+    }
+
+    /**
+     * @param mixed $tempFilenameLogoFacture
+     */
+    public function setTempFilenameLogoFacture($tempFilenameLogoFacture)
+    {
+        $this->tempFilenameLogoFacture = $tempFilenameLogoFacture;
+    }
+
+
+
+
+  /**
+     * @ORM\Column(type="string" )
+     *
+     */
+    private $logo;
+private $fileLogo;
+    private $tempFilenameLogo;
+
+public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+
+
+    public function setFileLogo(UploadedFile $fileLogo = null)
+    {
+        $this->fileLogo = $fileLogo;
+        if (null !== $this->logo && $fileLogo !== null ) {
+            $this->tempFilenameLogo = $this->logo;
+            $this->logo = null;
+        }
+    }
+
+
+    /*** @return mixed
+     */
+    public function getFileLogo()
+    {
+        return $this->fileLogo;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTempFilenameLogo()
+    {
+        return $this->tempFilenameLogo;
+    }
+
+    /**
+     * @param mixed $tempFilenameLogo
+     */
+    public function setTempFilenameLogo($tempFilenameLogo)
+    {
+        $this->tempFilenameLogo = $tempFilenameLogo;
+    }
+
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tarif", mappedBy="event", cascade={"remove","persist"})
@@ -432,17 +675,7 @@ class Event
         return $this;
     }
 
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
+    
 
     public function getPays(): ?Pays
     {
@@ -561,17 +794,7 @@ class Event
         return $this;
     }
 
-    public function getLogoFacture()
-    {
-        return $this->logoFacture;
-    }
-
-    public function setLogoFacture($logoFacture)
-    {
-        $this->logoFacture = $logoFacture;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection|Tarif[]
@@ -603,6 +826,105 @@ class Event
 
         return $this;
     }
+
+
+
+    public function upload($fieldName = '')
+    {
+
+        // Si jamais il n'y a pas de fichier (champ facultatif)
+        if ($fieldName == '') {
+
+            return;
+        }
+        if ($fieldName == 'logo'){
+
+            
+            // Si on avait un ancien fichier, on le supprime
+            if (null !== $this->tempFilenameLogo) {
+                $oldFile = $this->getUploadRootDir() . '/' .  $this->tempFilenameLogo;
+            
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+
+            // On déplace le fichier envoyé dans le répertoire de notre choix
+            $this->fileLogo->move(
+                $this->getUploadRootDir(), // Le répertoire de destination
+                $this->tempFilenameLogo  // Le nom du fichier à créer, ici « id.extension »
+            );
+            $this->logo = $this->tempFilenameLogo;
+            $this->fileLogo = null;
+        }elseif($fieldName == 'logoFacture'){
+
+              if (null !== $this->tempFilenameLogoFacture) {
+              $oldFile = $this->getUploadRootDir() . '/' .  $this->tempFilenameLogoFacture;
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+
+                 // On déplace le fichier envoyé dans le répertoire de notre choix
+            $this->fileLogoFacture->move(
+                $this->getUploadRootDir(), // Le répertoire de destination
+                $this->tempFilenameLogoFacture  // Le nom du fichier à créer, ici « id.extension »
+            );
+            $this->logoFacture = $this->tempFilenameLogoFacture;
+            $this->fileLogoFacture = null;
+            }elseif($fieldName == 'programFile'){
+             if (null !== $this->tempFilenameProgram) {
+            $oldFile = $this->getUploadRootDir() . '/' .  $this->tempFilenameProgram;
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+                 // On déplace le fichier envoyé dans le répertoire de notre choix
+            $this->fileProgram->move(
+                $this->getUploadRootDir(), // Le répertoire de destination
+                $this->tempFilenameProgram  // Le nom du fichier à créer, ici « id.extension »
+            );
+            $this->programFile = $this->tempFilenameProgram;
+            $this->fileProgram = null;
+            }elseif($fieldName == 'brochureFile'){
+            if (null !== $this->tempFilenameBrochure) {
+            $oldFile = $this->getUploadRootDir() . '/' .  $this->tempFilenameBrochure;
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+                // On déplace le fichier envoyé dans le répertoire de notre choix
+            $this->fileBrochure->move(
+                $this->getUploadRootDir(), // Le répertoire de destination
+                $this->tempFilenameBrochure  // Le nom du fichier à créer, ici « id.extension »
+            );
+            $this->brochureFile = $this->tempFilenameBrochure;
+            $this->fileBrochure = null;
+            }elseif($fieldName == 'excursion'){
+             if (null !== $this->tempFilenameExcursion) {
+            $oldFile = $this->getUploadRootDir() . '/' .  $this->tempFilenameExcursion;
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+                 // On déplace le fichier envoyé dans le répertoire de notre choix
+            $this->fileExcusion->move(
+                $this->getUploadRootDir(), // Le répertoire de destination
+                $this->tempFilenameExcursion  // Le nom du fichier à créer, ici « id.extension »
+            );
+            $this->excursion = $this->tempFilenameExcursion;
+            $this->fileExcusion = null;
+            }
+    }
+
+
+
+     public function getUploadRootDir()
+    {
+        return __DIR__ . '/../public/uploads/events';
+    }
+
+
 
 
 
