@@ -16,13 +16,20 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
+        $required=true ; 
+        if(!is_null($options['data']->getId())){
+            $required = false ; 
+        }
+
         $builder
-            ->add('logo', FileType::class, ['required' => false])
-            ->add('logoFacture', FileType::class, ['required' => false])
-            ->add('programFile', FileType::class, ['required' => false,
-            'label'=>'Programme'])
-            ->add('brochureFile', FileType::class, ['required' => false,
-                'label'=>'Brochure'])
+            ->add('logo', FileType::class, ['required' => $required,'mapped' => false])
+
+            ->add('logoFacture', FileType::class, ['required' => $required,'mapped' => false])
+            ->add('programFile', FileType::class, ['required' => false,'label'=>'Programme','mapped' => false])
+              ->add('excursion', FileType::class, ['required' => false,'label'=>'Excursion','mapped' => false])
+            ->add('brochureFile', FileType::class, ['required' => false,'label'=>'Brochure','mapped' => false])
             ->add('designation')
             ->add('designationEn')
             ->add('designation2')
@@ -32,8 +39,10 @@ class EventType extends AbstractType
             ->add('adresse')
             ->add('longitude')
             ->add('latitude')
-            ->add('description', TextareaType::class, [])
-            ->add('descriptionEn', TextareaType::class, [])
+            ->add('description', TextareaType::class, [
+                'required'=>true ])
+            ->add('descriptionEn', TextareaType::class, [
+                'required'=>true])
             ->add('keywords')
             ->add('metadescription')
             ->add('facebookLink')

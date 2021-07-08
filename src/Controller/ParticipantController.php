@@ -97,6 +97,7 @@ class ParticipantController extends Controller
         //end upload file
 
         $form = $this->createForm(ParticipantType::class, $participant);
+      
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

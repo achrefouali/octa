@@ -74,24 +74,24 @@ class Accompanying
     }
 
     /**
-     * @var \App\Entity\Reservation
+     * @var \App\Entity\ReservationEvent
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ReservationEvent")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Reservation_id", referencedColumnName="id", nullable=false)
+     *   @ORM\JoinColumn(name="Reservation_event_id", referencedColumnName="id", nullable=false)
      * })
      *
      */
-    private $reservation;
+    private $reservationEvent;
 
-   public function getReservation()
+   public function getReservationEvent()
     {
-        return $this->reservation;
+        return $this->reservationEvent;
     }
 
-    public function setReservation(Reservation $reservation): self
+    public function setReservationEvent(ReservationEvent $reservationEvent): self
     {
-        $this->reservation = $reservation;
+        $this->reservationEvent = $reservationEvent;
 
         return $this;
     }
@@ -103,6 +103,9 @@ class Accompanying
             case 2 : return('Enfant');
         }
     }
+
+
+
 
  
 }

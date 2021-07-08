@@ -1,15 +1,14 @@
 {% trans_default_domain 'front' %}
-<nav class="col-xs-12 navbar navbar-default csi-navbar menu-conf-top">
-    <div class="csicontainer">
+<nav class="navbar navbar-default">
+    <div class="">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="csi-logo">
+            <div class="navbar-brand">
                 <a href="{{ path('home') }}">
                     <img src="{{ asset('uploads/events/' ~ event.logo) }}" alt="Logo"/>
                 </a>
@@ -20,8 +19,8 @@
         {% if(app.request.attributes.get('_route') != 'home') %}
             {% set current_path = path('home') %}
         {% endif %}
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav csi-nav">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations="fadeInUp" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav navbar-right">
 
                 {% for menu in menus %}
 
@@ -31,11 +30,25 @@
                         {% set menu_title = menu.title %}
                     {% endif %}
                     {% if menu.pages|length > 0 %}
-                        <li class="dropdown">
-                        <a  class="dropdown-toggle active {% if routeCurrent == 'cms_page' %}csi-btn{% endif %} " data-toggle="dropdown">{{ menu_title }}<span class="caret"></span></a>
+                        <li class="dropdown ">
+                        <a  class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ menu_title }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                     {% else %}
+                        {% if menu.titleEn == "Program" %}
+                            <li>
+                            <a  href="{{ path('application_event_program')}}">{{ menu_title }}</a>
+
+                            {% elseif menu.titleEn == "Speakers" %}
+
+                                <li>
+                                <a  href="{{ path('application_event_intervenant')}}">{{ menu_title }}</a>
+                            {% elseif menu.titleEn == "Sponsors" %}
+                            <li>
+                            <a  href="{{ path('application_event_sponsors')}}">{{ menu_title }}</a>
+
+                        {% else %}
                         <li>
-                        <a class="csi-scroll  {% if menu.link in routeCurrent %}csi-btn {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>
+                        <a class=" {% if menu.link in routeCurrent %} {% endif %}" href="{{ current_path ~ menu.link }}">{{ menu_title }}</a>
+                    {% endif %}
                     {% endif %}
 
                     {% if menu.pages|length > 0 %}
@@ -55,16 +68,16 @@
                 {% if is_granted('ROLE_USER') == false %}
                     {#<li class="dropdown"><a class="csi-scroll csi-btn" href="#">{{ 'Registration'|trans }}</a>#}
                         {#<ul class="dropdown-menu">#}
-                            <li><a class="csi-scroll " href="{{ current_path }}#csi-registration">{{ 'Registration'|trans }}</a></li>
-                            <li><a class="csi-scroll {% if routeCurrent == 'inscription_hotel_page' %}csi-btn{% endif %}"  href="{{ path('inscription_hotel_page') }}">{{ 'Booking'|trans }}</a></li>
+                            <li><a class="csi-scroll " href="{{ path('application_event_inscription_option') }}">{{ 'Registration'|trans }}</a></li>
+                            <li><a class="csi-scroll"   href="{{ path('inscription_hotel_page') }}">{{ 'Booking'|trans }}</a></li>
 
                         {#</ul>#}
                     {#</li>#}
-                    <li><a class="csi-scroll" data-toggle="modal" data-target="#connexion" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'Login'|trans }}</a></li>
+                    {#<li><a class="csi-scroll" data-toggle="modal" data-target="#connexion" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'Login'|trans }}</a></li>#}
 
                     {% else %}
-                        <li  ><a class="csi-scroll {% if routeCurrent == 'front_profile' %}csi-btn{% endif %}" href="{{ path('front_profile') }}"><i class="fa fa-user" aria-hidden="true"></i> {{ 'My Profile'|trans }}</a></li>
-                        <li ><a  class="csi-scroll {% if routeCurrent == 'logout' %}csi-btn{% endif %} " href="{{ path('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'Logout'|trans }}</a></li>
+                        <li  ><a class="csi-scroll " href="{{ path('front_profile') }}"><i class="fa fa-user" aria-hidden="true"></i> {{ 'My Profile'|trans }}</a></li>
+                        <li ><a  class="csi-scroll  " href="{{ path('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'Logout'|trans }}</a></li>
                 {% endif %}
             </ul>
             <!--/.nav-collapse -->

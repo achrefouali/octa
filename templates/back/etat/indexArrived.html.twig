@@ -1,0 +1,68 @@
+{% extends 'back/layout.html.twig' %}
+{% block title %}{{ parent() }}| Gestion de Contenu{% endblock %}
+{% block subtitle %} Liste des arrivées par jour  {% endblock %}
+{% block content %}
+
+
+<a  class="btn btn-primary pull-right" href="{{path('back_etat_pdf_arrived')}}" > Export en pdf </a>
+  {% for indice,resultItem in result %}
+    <h3>Date d'arrivée : {% if indice == 0 %} Non renseignée {% else %}{{ indice }}{% endif %}</h3>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-primary mb30">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Pays</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Compagnie</th>
+                        <th>Heure d'arrivée</th>
+                         <th> Numéro de vol </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for resultItem_item in resultItem %}
+                        <tr>
+                            <td>{{ resultItem_item.code }}</td>
+                            <td>{{ resultItem_item.pays }}</td>
+                            <td>{{ resultItem_item.firstname }}</td>
+                            <td>{{ resultItem_item.lastname }}</td>
+                            <td>{{ resultItem_item.compagnie }}</td>
+
+                            <td>{{ resultItem_item.heure }}</td>
+                              <td> {{ resultItem_item.numVol }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            jQuery('.table').dataTable();
+        });
+
+
+        // Select2
+        jQuery('select').select2({
+            minimumResultsForSearch: -1
+        });
+
+        jQuery('select').removeClass('form-control');
+    </script>
+{% endblock %}

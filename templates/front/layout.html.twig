@@ -65,11 +65,26 @@
 
     <!-- POPUP-->
     <link rel="stylesheet" href="{{ asset('assets/front/libs/maginificpopup/magnific-popup.css') }}" media="all"/>
-
+    <link id="csi-master-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.css" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" media="all"/>
 
     <!-- MASTER  STYLESHEET  -->
-    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/css/style-default.min.css') }}"
-          media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/bootstrap.min.css') }}" media="all"/>
+
+
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/responsive.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/font-awesome.min.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/font-awesome-animation.min.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/flaticon.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/bootstrap-dropdownhover.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/owl.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/animate.min.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/animated-text.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/vobon/css/lightbox.min.css') }}" media="all"/>
+    <link id="csi-master-style" rel="stylesheet" href="{{ asset('assets/front/css/style-default.min.css') }}" media="all"/>
+
+
+
 
     <!-- MODERNIZER CSS  -->
     <script src="{{ asset('assets/front/js/vendor/modernizr-2.8.3.min.js') }}"></script>
@@ -77,6 +92,7 @@
     <!-- Custom styles for this template -->
     <!-- <link href="scss/font-monserrat.scss" type="text/scss" rel="stylesheet"> -->
     <link href="{{ asset('build/css/app.css') }}" rel="stylesheet">
+
 
 
 
@@ -89,38 +105,192 @@
     <div class="csi-container ">
 
         {% block content %}
-            <!--HEADER-->
-            <header>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-9" style="text-align: center;">
-                            <img src="{{ asset('assets/front/img/image_top.jpg') }}"/>
-                        </div>
-                        <div class="col-xs-3 langbar ">
-                            <ul class="list-inline csi-social">
+
+            <!-- Main Header start -->
+            <header class="main-herader">
+                <!-- Header topbar start -->
+                <div class="header-topbar center991">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12 col-xs-12" style="padding-left: 0px !important;">
+                                <div class="herader-topbar-col tobar-leftside">
+                                    <div class="info-top-bar">
+                                        <div class="top-bar-phone">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            <span class="after-bdr">{{ configuration.telephone }}</span>
+                                        </div>
+                                        <div class="top-bar-email">
+                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                            <span>{{ configuration.emailDirection }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-12 col-xs-12 top-sidebar-right">
+                                <ul class="list-inline-top csi-social">
                                 {% if event.facebookLink is not empty %}
-                                    <li><a href="{{ event.facebookLink }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ event.facebookLink }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 {% endif %}
                                 {% if event.GoogleLink is not empty %}
-                                    <li><a href="{{ event.GoogleLink }}"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ event.GoogleLink }}"><i class="fa fa-google" aria-hidden="true"></i></a></li>
                                 {% endif %}
                                 {% if event.tweeterLink is not empty %}
-                                    <li><a href="{{ event.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ event.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                 {% endif %}
                                 {% if event.instagramLink is not empty %}
-                                    <li><a href="{{ event.instagramLink }}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="{{ event.instagramLink }}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                 {% endif %}
+                                </ul>
+                                <div class="herader-topbar-col tobar-rightside center991">
+                                    <span class="after-bdr ml0-991 testbtnstream"><a href="{{ path('front_login') }}">Login</a></span>
+                                    {#<span class="after-bdr ml0-991"><a href="account.html">Register</a></span>#}
 
-                            </ul>
-                                <select class="selectpicker" data-width="fit"
-                                        onchange="if (this.value) window.location.href=this.value">
+                                    {#<a href="{{ path('front_live_streaming') }}"><img alt="Streaming en direct"#}
+                                    {#src="{{ asset('assets/front/img/live-streaming-now.png') }}"/>#}
+                                    <p><a href="{{ path('front_live_streaming') }}" id="scroll"><span>Streaming en direct</span></a></p>
+
+                                    <select class="selectpicker" data-width="fit"
+                                    onchange="if (this.value) window.location.href=this.value">
                                     <option {% if app.request.locale == 'en' %}selected{% endif %}
-                                            value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"
-                                            data-content='<span class="flag-icon flag-icon-gb"></span>'>{{ 'english'|trans({},'messages') }}</option>
+                                    value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"
+                                    data-content='<span class="flag-icon flag-icon-gb"></span>'>{{ 'english'|trans({},'messages') }}</option>
                                     <option {% if app.request.locale == 'fr' %}selected{% endif %}
-                                            value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"
-                                            data-content='<span class="flag-icon flag-icon-fr"></span>'>{{ 'french'|trans({},'messages') }}</option>
-                                </select>
+                                    value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"
+                                    data-content='<span class="flag-icon flag-icon-fr"></span>'>{{ 'french'|trans({},'messages') }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {#<div class="container">#}
+                    <div class="row">
+                      <div class="col-md-12 col-xs-12 img-top-bar-container">
+                          <img class="img-top-bar" src="{{ asset('assets/front/img/image_top.jpg') }}"/>
+                      </div>
+                    </div>
+                {#</div>#}
+                <!-- Header navbar start -->
+                <div class="header-navbar fixed-header" style="z-index: 1000;">
+                    <div class="">
+                        <div class="row">
+                        <div class="col-xs-12">
+                        {% include 'front/menu.html.twig' %}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- Main Slider Start -->
+            {#<section class="main-slider-area">#}
+                {#<div class="main-container">#}
+                    {#<div id="carousel-example-generic" class="carousel slide carousel-fade">#}
+                        {#<!-- Indicators -->#}
+                        {#<ol class="carousel-indicators">#}
+                            {#<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>#}
+                            {#<li data-target="#carousel-example-generic" data-slide-to="1"></li>#}
+                            {#<li data-target="#carousel-example-generic" data-slide-to="2"></li>#}
+                        {#</ol>#}
+
+                        {#<!-- Wrapper for slides -->#}
+                        {#<div class="carousel-inner" role="listbox">#}
+
+                            {#<!-- First slide -->#}
+                            {#<div class="item active slide-1 text-left">#}
+                                {#<div class="carousel-caption">#}
+                                    {#<p data-animation="animated fadeInUp">#}
+                                        {#Construction company#}
+                                    {#</p>#}
+                                    {#<h3 data-animation="animated fadeInUp">#}
+                                        {#Welcome to our <span>Vobon</span>#}
+                                    {#</h3>#}
+                                    {#<a href="contact.html" class="btn btn-primary btn-lg" data-animation="animated zoomIn">Contact Us</a>#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<!-- /.item -->#}
+
+                            {#<!-- Second slide -->#}
+                            {#<div class="item slide-2 text-right">#}
+                                {#<div class="carousel-caption">#}
+                                    {#<p data-animation="animated fadeInUp">#}
+                                        {#Construction company#}
+                                    {#</p>#}
+                                    {#<h3 data-animation="animated fadeInUp">#}
+                                        {#We Build <span>Buildings</span>#}
+                                    {#</h3>#}
+                                    {#<a href="contact.html" class="btn btn-primary btn-lg" data-animation="animated zoomIn">Contact Us</a>#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<!-- /.item -->#}
+
+                            {#<!-- Third slide -->#}
+                            {#<div class="item slide-3 text-left">#}
+                                {#<div class="carousel-caption">#}
+                                    {#<p data-animation="animated fadeInUp">#}
+                                        {#Construction company#}
+                                    {#</p>#}
+                                    {#<h3 data-animation="animated fadeInUp">#}
+                                        {#We are very <span>careful</span>#}
+                                    {#</h3>#}
+                                    {#<a href="contact.html" class="btn btn-primary btn-lg" data-animation="animated zoomIn">Contact Us</a>#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<!-- /.item -->#}
+
+                        {#</div>#}
+                        {#<!-- /.carousel-inner -->#}
+
+                        {#<!-- Controls -->#}
+                        {#<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">#}
+                            {#<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>#}
+                            {#<span class="sr-only">Previous</span>#}
+                        {#</a>#}
+                        {#<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">#}
+                            {#<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>#}
+                            {#<span class="sr-only">Next</span>#}
+                        {#</a>#}
+                    {#</div>#}
+                    {#<!-- /.carousel -->#}
+                {#</div>#}
+            {#</section>#}
+
+            {#<!--HEADER-->#}
+            {#<header>#}
+                {#<div class="container">#}
+                    {#<div class="row">#}
+                        {#<div class="col-xs-9" style="text-align: center;">#}
+                            {#<img src="{{ asset('assets/front/img/image_top.jpg') }}"/>#}
+                        {#</div>#}
+                        {#<div class="col-xs-3 langbar ">#}
+                            {#<ul class="list-inline csi-social">#}
+                                {#{% if event.facebookLink is not empty %}#}
+                                    {#<li><a href="{{ event.facebookLink }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>#}
+                                {#{% endif %}#}
+                                {#{% if event.GoogleLink is not empty %}#}
+                                    {#<li><a href="{{ event.GoogleLink }}"><i class="fa fa-google" aria-hidden="true"></i></a></li>#}
+                                {#{% endif %}#}
+                                {#{% if event.tweeterLink is not empty %}#}
+                                    {#<li><a href="{{ event.tweeterLink }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>#}
+                                {#{% endif %}#}
+                                {#{% if event.instagramLink is not empty %}#}
+                                    {#<li><a href="{{ event.instagramLink }}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>#}
+                                {#{% endif %}#}
+
+                            {#</ul>#}
+                                {#<select class="selectpicker" data-width="fit"#}
+                                        {#onchange="if (this.value) window.location.href=this.value">#}
+                                    {#<option {% if app.request.locale == 'en' %}selected{% endif %}#}
+                                            {#value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"#}
+                                            {#data-content='<span class="flag-icon flag-icon-gb"></span>'>{{ 'english'|trans({},'messages') }}</option>#}
+                                    {#<option {% if app.request.locale == 'fr' %}selected{% endif %}#}
+                                            {#value="{{ path(('home'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"#}
+                                            {#data-content='<span class="flag-icon flag-icon-fr"></span>'>{{ 'french'|trans({},'messages') }}</option>#}
+                                {#</select>#}
 
 
 
@@ -132,38 +302,38 @@
                                                 {#data-content='{{ devise.symbol ~ ' ' ~ devise.code|upper }}'>{{ devise.code|upper }}</option>#}
                                     {#{% endfor %}#}
                                 {#</select>#}
-                            </div>
+                            {#</div>#}
 
-                    </div>
+                    {#</div>#}
 
-                </div>
-                {% block header %}
-                    <div id="csi-header" class="csi-header csi-banner-header">
-                        <div class="csi-header-bottom">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        {% include 'front/menu.html.twig' %}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    {% if app.request.get('_route') == 'home' %}
-                                        <div class="col-xs-2 live-streaming" style="    right: 7%  !important;">
-                                            <a href="{{ path('front_live_streaming') }}"><img alt="Streaming en direct"
-                                                                                              src="{{ asset('assets/front/img/live-streaming-now.png') }}"/>
-                                            </a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <!--//.ROW-->
-                            </div>
-                            <!-- //.CONTAINER -->
-                        </div>
-                        <!-- //.INNER-->
-                    </div>
-                {% endblock %}
-            </header>
-            <!--HEADER END-->
+                {#</div>#}
+                {#{% block header %}#}
+                    {#<div id="csi-header" class="csi-header csi-banner-header">#}
+                        {#<div class="csi-header-bottom">#}
+                            {#<div class="container">#}
+                                {#<div class="row">#}
+                                    {#<div class="col-xs-12">#}
+                                        {#{% include 'front/menu.html.twig' %}#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="row">#}
+                                    {#{% if app.request.get('_route') == 'home' %}#}
+                                        {#<div class="col-xs-2 live-streaming" style="    right: 7%  !important;">#}
+                                            {#<a href="{{ path('front_live_streaming') }}"><img alt="Streaming en direct"#}
+                                                                                              {#src="{{ asset('assets/front/img/live-streaming-now.png') }}"/>#}
+                                            {#</a>#}
+                                        {#</div>#}
+                                    {#{% endif %}#}
+                                {#</div>#}
+                                {#<!--//.ROW-->#}
+                            {#</div>#}
+                            {#<!-- //.CONTAINER -->#}
+                        {#</div>#}
+                        {#<!-- //.INNER-->#}
+                    {#</div>#}
+                {#{% endblock %}#}
+            {#</header>#}
+            {#<!--HEADER END-->#}
             {% block main %}{% endblock %}
         {% endblock %}
     </div>
@@ -175,10 +345,38 @@
 {% block javascripts %}
 
     <!-- *** ADD YOUR SITE SCRIPT HERE *** -->
+
+    <script src="{{ asset('assets/front/vobon/js/jquery.min.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('assets/front/vobon/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/libs/jquery.easing.min.js') }}"></script>
+
+    <script src="{{ asset('assets/front/vobon/js/bootstrap-dropdownhover.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/jquery-scrolltofixed-min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/lightbox.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/owl.carousel.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/jarallax.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/jquery.countup.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/jquery.waypoints.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/dyscrollup.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/animated-text.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/wow.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/imagesloaded.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/jquery.filterizr.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vobon/js/google-map.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/front/libs/jquery.validate.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/typed/typed.min.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/jquery.smooth-scroll.min.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/countdown.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/maginificpopup/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/front/libs/jquery.smooth-scroll.min.js') }}"></script>
+    <script src="{{ asset('assets/front/js/custom.script.js') }}"></script>
+    <script src="{{ asset('assets/front/vobon/js/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset('build/js/app.js') }}" type="text/javascript"></script>
 
     <!-- SKILLS SCRIPT  -->
-    <script src="{{ asset('assets/front/libs/jquery.validate.js') }}"></script>
+
 
     <!-- if load google maps then load this api, change api key as it may expire for limit cross as this is provided with any theme -->
     {#<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzfNvH2kifJQ0PhBIyuuG-swdkW1NPQVE"></script>#}
@@ -190,35 +388,35 @@
 
 
     <!-- type js -->
-    <script src="{{ asset('assets/front/libs/typed/typed.min.js') }}"></script>
+
 
 
     <!-- COUNTDOWN   -->
-    <script src="{{ asset('assets/front/libs/countdown.js') }}"></script>
+
 
 
     <!-- SMOTH SCROLL -->
-    <script src="{{ asset('assets/front/libs/jquery.smooth-scroll.min.js') }}"></script>
-    <script src="{{ asset('assets/front/libs/jquery.easing.min.js') }}"></script>
+
 
 
     <!-- adding magnific popup js library -->
-    <script type="text/javascript"
-            src="{{ asset('assets/front/libs/maginificpopup/jquery.magnific-popup.min.js') }}"></script>
+
 
     <!-- SMOTH SCROLL -->
-    <script src="{{ asset('assets/front/libs/jquery.smooth-scroll.min.js') }}"></script>
-    <script src="{{ asset('assets/front/libs/jquery.easing.min.js') }}"></script>
+
 
     {#<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>#}
 
     <!-- CUSTOM SCRIPT  -->
-    <script src="{{ asset('assets/front/js/custom.script.js') }}"></script>
+
 
 
     <script type="text/javascript">
         jQuery(document).ready(function () {
-            // CKEditor
+
+            setTimeout(function(){             jQuery(".dropdown-toggle").dropdown();
+            }, 3000);
+
             jQuery('.datepicker').datepicker({
                 format: 'dd-mm-yyyy'
             });
@@ -226,3 +424,5 @@
 
     </script>
 {% endblock %}
+
+

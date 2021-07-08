@@ -16,6 +16,7 @@
                 <th>Prix</th>
                 <th>Prix d'accompagnat</th>
                 <th>Conférence</th>
+                <th>Afficher prix</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td>{{ tarif.prix }}</td>
                 <td>{{ tarif.prixAccompagnant }}</td>
                 <td>{{ tarif.event.designation }}</td>
+                <td>{{ tarif.formattedVisible }}</td>
                 <td>
                     <a href="{{ path('back_tarif_show', {'id': tarif.id}) }}"><i class="fa fa-eye"></i></a>
                     <a href="{{ path('back_tarif_edit', {'id': tarif.id}) }}"><i class="fa fa-edit"></i></a>

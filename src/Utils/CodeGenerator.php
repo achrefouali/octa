@@ -118,4 +118,29 @@ class CodeGenerator {
         return $generatedCode;
     }
 
+    
+    public function codeGeneratorForPassword(){
+        $chaine ='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN';
+        $number ='123456789';
+
+        $nb_lettres = strlen($chaine) - 1;
+        $nb_number =  strlen($number)-1 ;
+        $generation = '';
+        for ($j = 0; $j < 2; $j++) {
+            $pos1 = mt_rand(0, $nb_number);
+            $car1 = $number[$pos1];
+            $generation .= $car1;
+        }
+        for ($i = 0; $i < 2; $i++) {
+            $pos = mt_rand(0, $nb_lettres);
+            $car = $chaine[$pos];
+            $generation .= $car;
+        }
+
+        
+        
+        
+        return $generation;
+        
+    }
 }

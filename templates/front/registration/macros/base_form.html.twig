@@ -30,6 +30,37 @@
                                 </div>
                             </div>
                         </div>
+
+                        {% elseif field == 'nbAccompanying' %}
+                            <div class="col-md-6 element">
+                                <div class="form-group">
+                                    {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                    <div class="col-sm-8">
+                                        {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                                        {{ form_errors(attribute(form, field)) }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% elseif field == 'hotel' %}
+                        <div class="col-md-6 element">
+                            <div class="form-group">
+                                {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-8">
+                                    {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                                    {{ form_errors(attribute(form, field)) }}
+                                </div>
+                            </div>
+                        </div>
+                        {% elseif field == 'tarif' %}
+                        <div class="col-md-6 element">
+                            <div class="form-group">
+                                {{ form_label(attribute(form, field), null ,  {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-8">
+                                    {{ form_widget(attribute(form, field), {'attr': {'class': class}}) }}
+                                    {{ form_errors(attribute(form, field)) }}
+                                </div>
+                            </div>
+                        </div>
                     {% else %}
                         <div class="col-md-6">
                             <div class="form-group">
@@ -44,6 +75,7 @@
 
                 {% endfor %}
                 {{ form_rest(form) }}
+                <i class='required-field-info'> (*)Champs obligatoire </i>
             </div><!-- panel-body -->
 
             <div class="panel-footer">

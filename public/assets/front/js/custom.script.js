@@ -22,17 +22,17 @@
         /*=========================================================================
          ===  MENU SCROLL FIXED
          ========================================================================== */
-        var s = $(".csi-header-bottom");
-        var pos = s.position();
-
-        $(window).on('scroll', function () {
-            var windowpos = $(window).scrollTop();
-            if (windowpos >= pos.top) {
-                s.addClass("menu-onscroll");
-            } else {
-                s.removeClass("menu-onscroll");
-            }
-        });
+        // var s = $(".csi-header-bottom");
+        // var pos = s.position();
+        //
+        // $(window).on('scroll', function () {
+        //     var windowpos = $(window).scrollTop();
+        //     if (windowpos >= pos.top) {
+        //         s.addClass("menu-onscroll");
+        //     } else {
+        //         s.removeClass("menu-onscroll");
+        //     }
+        // });
 
         /*=========================================================================
          ===  MENU SCROLL FIXED END
@@ -232,10 +232,10 @@
             $('#csi-countdown').countdown(dataTime, function(event) {
                 var $this = $(this).html(event.strftime(''
                     /*+ '<span class="csi-weecks">%w <i> weeks </i></span> '*/
-                    + '<span class="csi-days">%D <i> Days </i></span> '
-                    + '<span class="csi-hr">%H <i> Hour </i></span> '
-                    + '<span class="csi-min">%M <i> Minu </i></span> '
-                    + '<span class="csi-sec">%S <i> Seco </i></span>'
+                    + '<span class="csi-days">%D <i style="right:-72px !important;"> Jours </i></span> '
+                    + '<span class="csi-hr">%H <i style="right:-72px !important;"> Heures </i></span> '
+                    + '<span class="csi-min">%M <i style="right:-72px !important;"> Minutes </i></span> '
+                    + '<span class="csi-sec">%S <i style="right:-72px !important;"> Secondes </i></span>'
                 ));
             });
         }

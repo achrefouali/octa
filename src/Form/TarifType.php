@@ -17,6 +17,13 @@ class TarifType extends AbstractType
             ->add('prix')
             ->add('prixAccompagnant')
             ->add('enabled')
+
+            ->add('visible', null, [
+                'label' => 'Afficher prix',
+                'translation_domain' => "front"
+
+            ])
+
         ;
     }
 

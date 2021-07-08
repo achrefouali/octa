@@ -7,11 +7,11 @@
 
             <div class="card" id="cardPdf">
                 <div class="card-header">
-                    <h3>{{ 'Devis'|trans }}</h3>
+                    <h3>{{ 'Facture proforma'|trans }}</h3>
                     <strong>{{ 'now'|date }}</strong>
                     <span class="float-right"> <strong>{{ 'Status'|trans({}, 'front') }}:</strong> {{ 'Waiting'|trans({}, 'front') }}</span>
-                    <a class="btn btn-success pull-right"
-                       href="{{path('application_generate_pdf' ) }}"><i class="fa fa-file-text"></i>Générer devis </a>
+                    {#<a class="btn btn-success pull-right"#}
+                       {#href="{{path('application_generate_pdf' ) }}"><i class="fa fa-file-text"></i>Générer devis </a>#}
 
                 </div>
                 <div class="card-body">
@@ -257,7 +257,7 @@
                     <div class="card-information">
                         <div class="panel-group" id="accordion">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
+                                <div class="panel-heading" style="border-bottom: none !important;">
                                     <h4 class="panel-title">
                                         <label for='r11' style='width: 350px;'>
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a>
@@ -288,7 +288,7 @@
 
                 </div>
             </div>
-            <input class="btn btn-primary" type="submit" value="Confirmer"/>
+            <input class="btn btn-primary" type="submit" value="Confirmer" style="font-size: 18px; font-family: Lato, sans-serif; width: 25%;"/>
         </div>
 
 

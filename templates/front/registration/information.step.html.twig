@@ -25,6 +25,7 @@
                 "dateDepart":"form-control datepicker",
                 "heureDeparture":"form-control ",
                 "numVolDepart":"form-control ",
+                "hotel":"form-control",
                 "tarif":"form-control",
                 "nbAccompanying":"form-control acco",
 
@@ -46,10 +47,15 @@
             $(document).ready(function () {
                 var qeury =  "{{ query }}"
                 if(qeury){
-                    $('.panel-body').children().last().prev().remove();
-                    $('.panel-body').children().last().prev().remove();
+                    $('.element').remove()
+//                    $('.panel-body').children().last().remove()
+//                    $('.panel-body').children().last().remove()
+//                    ("<i class='required-field-info'> (*)Champs obligatoire </i>").insertBefore($('.panel-body').children().last())
+
                 }
+
                 $("#information_nbAccompanying").change(function(){
+                    console.log(true);
                     $('.training-prices-container').remove()
 
                     var number = $(this).val();

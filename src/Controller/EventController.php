@@ -47,7 +47,7 @@ class EventController extends Controller
             }
 
 
-
+/*
             //upload new logo
             $logoUploader = new FileUploader();
             $logo = $event->getLogo();
@@ -88,6 +88,61 @@ class EventController extends Controller
             }
 
 
+             if(!is_null($event->getExcursion())){
+                $excursionFileUploader = new FileUploader();
+                $excursion = $event->getExcursion();
+                $excursionFileUploader->setTargetDirectory($this->getParameter('events_directory'));
+                $excusionName = $excursionFileUploader->upload($excursion);
+
+                $event->setExcursion($excusionName);
+                //End Programme Upload
+            }*/
+                $files =$request->files->get('event');
+
+             if(!is_null($files['logo'])){
+
+                $event->setLogo($files['logo']->getClientOriginalName());
+                $event->setFileLogo($files['logo']);
+                $event->upload('logo');
+              
+            }
+         
+
+            if(!is_null($files['logoFacture'])) {
+
+            $event->setLogoFacture($files['logoFacture']->getClientOriginalName());
+                $event->setFileLogoFacture($files['logoFacture']);
+                $event->upload('logoFacture');
+
+            }
+
+            if(!is_null($files['programFile'])) {
+                //Programme Upload
+
+
+                $event->setProgramFile($files['programFile']->getClientOriginalName());
+                $event->setFileProgram($files['programFile']);
+                $event->upload('programFile');
+
+            
+
+            }
+            if(!is_null($files['brochureFile'])) {
+                 $event->setBrochureFile($files['brochureFile']->getClientOriginalName());
+                $event->setFileBrochure($files['brochureFile']);
+                $event->upload('brochureFile');
+
+            }  
+             if(!is_null($files['excursion'])) {
+
+                $event->setExcursion($files['excursion']->getClientOriginalName());
+                $event->setFileExcursion($files['excursion']);
+                $event->upload('excursion');
+
+            }
+
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
@@ -122,16 +177,19 @@ class EventController extends Controller
         //check logo
         $logoUploader = new FileUploader();
         $logoUploader->setTargetDirectory($this->getParameter('events_directory'));
+
         $oldLogo = $event->getLogo();
+          
         if(!empty($oldLogo)) {
             $logoUploader->setOldFilename($oldLogo);
             $logoName = $logoUploader->getTargetDirectory().$oldLogo;
 
             if(file_exists($logoName)){
                 $event->setLogo(new File($logoName));
-            }else {
-                $event->setLogo(NULL);
             }
+           /* else {
+                $event->setLogo(NULL);
+            }*/
         }
         //end check logo
 
@@ -145,9 +203,8 @@ class EventController extends Controller
 
             if(file_exists($logoFactureName)){
                 $event->setLogoFacture(new File($logoFactureName));
-            }else {
-                $event->setLogoFacture(NULL);
             }
+         
         }
         //end upload logo Facture
 
@@ -162,9 +219,8 @@ class EventController extends Controller
 
                 if (file_exists($programmeFileName)) {
                     $event->setProgramFile(new File($programmeFileName));
-                } else {
-                    $event->setProgramFile(NULL);
-                }
+                } 
+             
             }
         }
         //end upload  Programme File
@@ -180,9 +236,23 @@ class EventController extends Controller
 
                 if (file_exists($brochureFileName)) {
                     $event->setBrochureFile(new File($brochureFileName));
-                } else {
-                    $event->setBrochureFile(NULL);
                 }
+          
+            }
+        }
+
+        if(!is_null($event->getExcursion())) {
+            $excursionFileUploader = new FileUploader();
+            $excursionFileUploader->setTargetDirectory($this->getParameter('events_directory'));
+            $olddexcursionFile = $event->getExcursion();
+            if (!empty($olddexcursionFile)) {
+                $excursionFileUploader->setOldFilename($olddexcursionFile);
+                $excursionFileName = $excursionFileUploader->getTargetDirectory() . $olddexcursionFile;
+
+                if (file_exists($excursionFileName)) {
+                    $event->setExcursion(new File($excursionFileName));
+                } 
+              
             }
         }
         //end upload  Programme File
@@ -212,6 +282,10 @@ class EventController extends Controller
 
             
            $files =$request->files->get('event');
+
+
+
+            
             $documents = $event->getDocuments();
             foreach($documents as $document){
                 $documentUploader = new FileUploader();
@@ -221,51 +295,53 @@ class EventController extends Controller
                 $document->setFile($documentName);
 
             }
-            if(!is_null($files['logo'])){
-                //upload new logo
-                $logoUploader = new FileUploader();
-                $logo = $event->getLogo();
-                $logoUploader->setTargetDirectory($this->getParameter('events_directory'));
-                $logoName = $logoUploader->upload($logo);
 
-                $event->setLogo($logoName);
-                //end upload new file
+          
+            if(!is_null($files['logo'])){
+
+                $event->setLogo($files['logo']->getClientOriginalName());
+                $event->setFileLogo($files['logo']);
+                $event->upload('logo');
+              
             }
+         
 
             if(!is_null($files['logoFacture'])) {
-                //upload new file
-                $logoFactureUploader = new FileUploader();
-                $logoFacture = $event->getLogoFacture();
-                $logoFactureUploader->setTargetDirectory($this->getParameter('events_directory'));
-                $logoFactureName = $logoFactureUploader->upload($logoFacture);
 
-                $event->setLogoFacture($logoFactureName);
-                //end upload new file
+            $event->setLogoFacture($files['logoFacture']->getClientOriginalName());
+                $event->setFileLogoFacture($files['logoFacture']);
+                $event->upload('logoFacture');
+
             }
 
             if(!is_null($files['programFile'])) {
                 //Programme Upload
 
-                    $programeFileUploader = new FileUploader();
-                    $programme = $event->getProgramFile();
-                    $programeFileUploader->setTargetDirectory($this->getParameter('events_directory'));
-                    $programmeName = $programeFileUploader->upload($programme);
 
-                    $event->setProgramFile($programmeName);
-                    //End Programme Upload
+                $event->setProgramFile($files['programFile']->getClientOriginalName());
+                $event->setFileProgram($files['programFile']);
+                $event->upload('programFile');
+
+            
 
             }
             if(!is_null($files['brochureFile'])) {
-                if (!is_null($event->getBrochureFile())) {
-                    $brochureFileUploader = new FileUploader();
-                    $brochure = $event->getBrochureFile();
-                    $brochureFileUploader->setTargetDirectory($this->getParameter('events_directory'));
-                    $brochureName = $brochureFileUploader->upload($brochure);
+                 $event->setBrochureFile($files['brochureFile']->getClientOriginalName());
+                $event->setFileBrochure($files['brochureFile']);
+                $event->upload('brochureFile');
 
-                    $event->setBrochureFile($brochureName);
-                    //End Programme Upload
-                }
+            }  
+             if(!is_null($files['excursion'])) {
+
+                $event->setExcursion($files['excursion']->getClientOriginalName());
+                $event->setFileExcursion($files['excursion']);
+                $event->upload('excursion');
+
             }
+
+
+
+
 
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(

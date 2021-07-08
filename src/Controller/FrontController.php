@@ -28,12 +28,15 @@ use App\Entity\Tarif;
 use App\Form\Front\ProfileType;
 use App\Model\Registration;
 use App\Utils\CodeGenerator;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Serializer\Normalizer\DataUriNormalizer;
 
 /**
  * Class FrontController
@@ -88,7 +91,6 @@ class FrontController extends Controller
                                    ->getRepository(ParticipantType::class)
                                    ->findOneBy(['label' => 'Intervenant'])
         ;
-
 
         $menus = $this->getDoctrine()
             ->getRepository(Menu::class)
@@ -248,13 +250,25 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/page.html.twig',
             [
 
                 'event' => $event,
                 'menus' => $menus,
+                'sponsorsByType'=>$sponsorsByType,
                 'page'  => $page,
+                'configuration'  => $configuration,
                 'devises'             => $devises
             ]
         );
@@ -286,11 +300,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/speaker.details.html.twig',
             [
 
                 'event'       => $event,
+                'configuration'       => $configuration,
                 'menus'       => $menus,
                 'intervenant' => $intervenant,
                 'devises'             => $devises
@@ -304,7 +323,7 @@ class FrontController extends Controller
      */
     public function registration(Request $request)
     {
-        $query=$request->query->has('from');
+        $query=$request->query->has('from') || !$request->query->has('tarif')  ;
        
         $event = $this->getDoctrine()
                       ->getRepository(Event::class)
@@ -348,6 +367,7 @@ class FrontController extends Controller
                 $bags['withEvent']         = true;
                 $bags['tarifEvent']        = $tarifEntity->getPrix();
                 $bags['tarifLabel']        = $tarifEntity->getLabel();
+                $bags['tarifId']=$tarifEntity->getId();
             }
         }
 
@@ -408,12 +428,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/registration.html.twig',
             [
                 "form"  => $form->createView(),
                 'event' => $event,
+                'configuration' => $configuration,
                 'menus' => $menus,
                 'bags'              => $bags,
                 'step'  => $bags['step'],
@@ -445,7 +469,10 @@ class FrontController extends Controller
                        ->getRepository(Hotel::class)
                        ->findBy(['enabled' => true])
         ;
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         $session = $request->getSession();
 
         $bags = $session->get('registration_bags');
@@ -549,6 +576,7 @@ class FrontController extends Controller
             [
                 "hotels" => $hotels,
                 'event'  => $event,
+                'configuration'  => $configuration,
                 'menus'  => $menus,
                 'bags'              => $bags,
                 'step'   => $bags['step'],
@@ -597,10 +625,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/registration.html.twig',
             [
                 'event'       => $event,
+                'configuration'       => $configuration,
                 'menus'       => $menus,
                 'bags'              => $bags,
                 'step'        => $bags['step'],
@@ -686,12 +720,24 @@ class FrontController extends Controller
 
 
            if(!isset($bags['file'])){
-               $html2   = $this->renderView(
-                   'front/registration/pdf/pdf.html.twig',
+
+
+               $pdfOptions = new Options();
+               $pdfOptions->set('defaultFont', 'Arial');
+
+               // Instantiate Dompdf with our options
+               $dompdf = new Dompdf($pdfOptions);
+               $logo1 = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+               $normalizer = new DataUriNormalizer();
+               $avatar = $normalizer->normalize(new \SplFileObject($logo1));
+               
+               // Retrieve the HTML generated in our twig file
+               $html = $this->renderView('front/registration/pdf/pdf.html.twig',
                    [
 
                        'event'             => $event,
                        'configuration'     => $configuration,
+                       'avatar'     => $avatar,
                        'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
                        'menus'             => $menus,
                        'bags'              => $bags,
@@ -700,18 +746,54 @@ class FrontController extends Controller
                        'step'              => $bags['step'],
                        'devises'             => $devises,
                        'nbNights' => $nbNights
-                   ]
-               );
+                   ]);
 
+               // Load HTML to Dompdf
+               $dompdf->loadHtml($html);
+               // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+               $dompdf->setPaper('A4', 'portrait');
+               // Render the HTML as PDF
+               $dompdf->render();
+               // Store PDF Binary Data
+               $output = $dompdf->output();
                $file = $this->generateRandomString().'.pdf';
-               $this->get('knp_snappy.pdf')->generateFromHtml($html2, $this->container->getParameter('pdf_directory').$file,[
-                   'lowquality' => false,
-                   'encoding' => 'utf-8',
-                   'images' => true,
-
-               ]);
-
+               $pdfFilepath =  $this->container->getParameter('pdf_directory') .$file;
+               // Write file to the desired path
+               file_put_contents($pdfFilepath, $output);
                $bags['file']=$file;
+             if($bags['withEvent']){
+                 $dompdf2 = new Dompdf($pdfOptions);
+
+                 $html2 = $this->renderView('front/registration/pdf/pdfAcco.html.twig',
+                     [
+
+                         'event'             => $event,
+                         'configuration'     => $configuration,
+                         'avatar'     => $avatar,
+                         'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
+                         'menus'             => $menus,
+                         'bags'              => $bags,
+                         'array_packages'    => $array_packages,
+                         'array_supplements' => $array_supplements,
+                         'step'              => $bags['step'],
+                         'devises'             => $devises,
+                         'nbNights' => $nbNights
+                     ]);
+
+                 // Load HTML to Dompdf
+                 $dompdf2->loadHtml($html2);
+                 // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+                 $dompdf2->setPaper('A4', 'portrait');
+                 // Render the HTML as PDF
+                 $dompdf2->render();
+                 // Store PDF Binary Data
+                 $output2 = $dompdf2->output();
+                 $file2 = $this->generateRandomString().'.pdf';
+                 $pdfFilepath2 =  $this->container->getParameter('pdf_directory') .$file2;
+                 // Write file to the desired path
+                 file_put_contents($pdfFilepath2, $output2);
+                 $bags['file2']=$file2;
+             }
            }
             
             
@@ -766,18 +848,51 @@ class FrontController extends Controller
             if($bags['withEvent']){
                 $reservationEvent = new ReservationEvent();
                 $reservationEvent->setEvent($event);
-                $reservationEvent->setTotal($bags['tarifEvent']);
+                $totalAc=0;
+                if(isset($bags['accom'])){
+                    if(!empty($bags['accom'])){
+                        $nbAccompagnat = sizeof($bags['accom']);
+                        $totalAc = $bags['tarifAcco']*$nbAccompagnat;
+                    }
+                }
+                $reservationEvent->setTotal($bags['tarifEvent']+$totalAc);
+                if(isset($bags['tarifId'])){
+                    $reservationEvent->setTarifId($bags['tarifId']);
+                }
                 $reservationEvent->setPaymentMethod($payment_method);
+                if(isset($bags['informations']['hotel'])){
+                    $hotelObject = $this->getDoctrine()->getRepository(Hotel::class)->find($bags['informations']['hotel']);
+                    $reservationEvent->setHotel($hotelObject);
+                }
                 if(isset($bags['file'])){
                     $reservationEvent->setDevis($bags['file']);
                 }
+                if(isset($bags['file2'])){
+                    $reservationEvent->setDevisAcco($bags['file2']);
+                }
 
                 $em->persist($reservationEvent);
-
+                $bags['hotelPersist']=false ;
                 $total_price = (empty($reservation->getTotalPrice()))?0: $reservation->getTotalPrice();
                 $reservation->setTotalPrice(($total_price + $reservationEvent->getTotal()));
 
                 $reservation->addReservationsEvent($reservationEvent);
+
+
+                   if(isset($bags['accom'])){
+
+                            foreach($bags['accom'] as $item){
+                                $accompagnant= new Accompanying();
+                                $accompagnant->setLastname($item['Nom']);
+                                $accompagnant->setFirtname($item['Prenom']);
+                                $accompagnant->setType($item['relation']);
+                                $accompagnant->setReservationEvent($reservationEvent);
+                                $reservationEvent->addAccompanying($accompagnant);
+                                $em->persist($accompagnant);
+
+                            }
+                            $em->flush();
+                        }
             }
 
                     if (!empty($bags['informations'])) {
@@ -861,24 +976,11 @@ class FrontController extends Controller
                     }
 
 
-                        if(isset($bags['accom'])){
-
-                            foreach($bags['accom'] as $item){
-                                $accompagnant= new Accompanying();
-                                $accompagnant->setLastname($item['Nom']);
-                                $accompagnant->setFirtname($item['Prenom']);
-                                $accompagnant->setType($item['relation']);
-                                $accompagnant->setReservation($reservation);
-                                $reservation->addAccompanying($accompagnant);
-                                $em->persist($accompagnant);
-
-                            }
-                            $em->flush();
-                        }
+                     
 
 //                    if(empty($participant->getPassword()) || empty($participant->getSalt())){
                         //*envoi de mail ici */
-                        $password    = CodeGenerator::passwordGenerator(16);
+                        $password    = CodeGenerator::codeGeneratorForPassword();
                         $passwordtmp = $password;
                         $participant->setSalt(md5(uniqid()));
 
@@ -935,24 +1037,42 @@ class FrontController extends Controller
                     $em->persist($reservation);
                     $em->flush();
 
-
+                        $logo = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+                        $normalizer = new DataUriNormalizer();
+                        $avatar = $normalizer->normalize(new \SplFileObject($logo));
                     $html   = $this->renderView(
                         'front/registration/reservation.ticket.html.twig',
                         [
                             'event'         => $event,
+                            'avatar'         => $avatar,
                             'configuration' => $configuration,
                             'bags'          => $bags,
                         ]
                     );
-                    $params = ['lowquality' => false, 'encoding'   => 'utf-8' ];
+
                     try {
-                        $pdf = $this->get('knp_snappy.pdf')->getOutputFromHtml(
-                            $html,
-                            $params
-                        )
-                        ;
+
+                        $pdfOptions = new Options();
+                        $pdfOptions->set('defaultFont', 'Arial');
+
+                        // Instantiate Dompdf with our options
+                        $dompdf = new Dompdf($pdfOptions);
+
+                        // Retrieve the HTML generated in our twig file
+
+                        // Load HTML to Dompdf
+                        $dompdf->loadHtml($html);
+
+                        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+                        $dompdf->setPaper('A4', 'portrait');
+
+                        // Render the HTML as PDF
+                        $dompdf->render();
+  
+
+                        $output = $dompdf->output();
                         $content_pdf = new \Swift_Attachment(
-                            $pdf,
+                            $output,
                             'ticket_reservation_'.$reservation->getId().'.pdf',
                             'application/pdf'
                         );
@@ -962,7 +1082,6 @@ class FrontController extends Controller
                             ->setTo($participant->getEmail())
                             ->setBody(
                                 $this->renderView(
-                                // templates/emails/registration.html.twig
                                     'front/emails/email.registration.html.twig',
                                     [
                                         'name'     => $name,
@@ -977,7 +1096,9 @@ class FrontController extends Controller
 
                         $mailer->send($message);
 
-                    } catch (\RuntimeException $e) {}
+                    } catch (\RuntimeException $e) {
+
+                    }
 
 //                     
                         
@@ -1033,7 +1154,9 @@ class FrontController extends Controller
                 $reservation->setTotalPrice(($total_price + $reservationHotel->getTotal()));
 
                 $em->persist($reservationHotel);
+                $bags['hotelPersist']=true ;
                 $reservation->addReservationsHotel($reservationHotel);
+
             }
 
             if (!empty($bags['supplements'])) {
@@ -1066,39 +1189,64 @@ class FrontController extends Controller
             $em->persist($reservation);
             $em->flush();
 
+            if($bags['withEvent']){
+                $bags['reservationId']= $reservationEvent->getId();
+            }
+            if($bags['withHotel']) {
+                $bags['reservationId']= $reservationHotel->getId();
+            }
+
+
+
+            $session->set('registration_bags', $bags);
+            $file = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+            $normalizer = new DataUriNormalizer();
+            $avatar = $normalizer->normalize(new \SplFileObject($file));
+
+
             $html   = $this->renderView(
                 'front/registration/reservation.hotel.ticket.html.twig',
                 [
                     'event'         => $event,
                     'configuration' => $configuration,
                     'bags'          => $bags,
+                    'avatar'          => $avatar,
                     'reservation' => $reservation,
                     'array_packages'    => $array_packages,
                     'array_supplements' => $array_supplements,
                 ]
             );
-            $params = [
-                'lowquality' => false,
-                //'orientation' => 'Portrait',
-                //'page-size' => "A4",
-                'encoding'   => 'utf-8',
-                //'header-spacing' => 20,
-                //'footer-center' => '[page]',
-                // 'footer-right' => date('Y'),
-                //'footer-font-size' => 12,
-                //'footer-spacing' => 20
 
-            ];
             try {
-                $pdf = $this->get('knp_snappy.pdf')->getOutputFromHtml(
-                    $html,
-                    $params
-                )
-                ;
+
+
+
+
+                $pdfOptions = new Options();
+                $pdfOptions->set('defaultFont', 'Arial');
+
+                // Instantiate Dompdf with our options
+                $dompdf = new Dompdf($pdfOptions);
+
+                // Retrieve the HTML generated in our twig file
+
+                // Load HTML to Dompdf
+                $dompdf->loadHtml($html);
+
+                // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+                $dompdf->setPaper('A4', 'portrait');
+
+                // Render the HTML as PDF
+                $dompdf->render();
+
+
+                $output = $dompdf->output();
+
+
 
 
                 $content_pdf = new \Swift_Attachment(
-                    $pdf,
+                    $output,
                     'ticket_reservation_logement_'.$reservation->getId().'.pdf',
                     'application/pdf'
                 );
@@ -1128,6 +1276,18 @@ class FrontController extends Controller
 
             }
 }
+            if($bags['withEvent']){
+                $bags['reservationId']= $reservationEvent->getId();
+            }
+            if($bags['withHotel']) {
+                $bags['reservationId']= $reservationHotel->getId();
+            }
+
+
+
+            $session->set('registration_bags', $bags);
+
+
             return $this->redirect($this->generateUrl('inscription_success_page'));
         }
 
@@ -1174,9 +1334,15 @@ class FrontController extends Controller
         $session->set('registration_bags', $bags);
 
         $success_hotel = false;
+
         if (!empty($bags['hotels'])) {
             $success_hotel = true;
+
         }
+        
+        
+
+
 
 
         $event = $this->getDoctrine()
@@ -1196,11 +1362,16 @@ class FrontController extends Controller
             ->findBy(['enabled' => true])
         ;
 
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
 
         return $this->render(
             'front/registration.html.twig',
             [
                 'event'         => $event,
+                'configuration'         => $configuration,
                 'menus'         => $menus,
                 'bags'          => $bags,
                 'step'          => $bags['step'],
@@ -1233,11 +1404,18 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
         return $this->render(
             'front/registration/hotel.details.html.twig',
             [
 
+
                 'event'    => $event,
+                'configuration'    => $configuration,
                 'menus'    => $menus,
                 'hotel'    => $hotel,
                 'packages' => $packages,
@@ -1402,6 +1580,11 @@ class FrontController extends Controller
             ->getRepository(Menu::class)
             ->findAll()
         ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
         $result=[];
         if(!empty($event)){
             $participants = $this->getDoctrine()
@@ -1430,11 +1613,16 @@ class FrontController extends Controller
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
         return $this->render(
             'front/participants.list.html.twig',
             [
                 'event'        => $event,
+                'configuration'        => $configuration,
+                'sponsorsByType'        => $sponsorsByType,
                 'menus'        => $menus,
                 'participants' => $result,
                 'devises'             => $devises
@@ -1459,16 +1647,26 @@ class FrontController extends Controller
             ->findAll()
         ;
 
-
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
 
         $devises = $this->getDoctrine()
             ->getRepository(Devise::class)
             ->findBy(['enabled' => true])
         ;
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+
         return $this->render(
             'front/streaming.live.html.twig',
             [
                 'event'        => $event,
+                'sponsorsByType'        => $sponsorsByType,
+                'configuration'        => $configuration,
                 'menus'        => $menus,
                 'devises'             => $devises
             ]
@@ -1506,120 +1704,117 @@ class FrontController extends Controller
      */
     public function generatePdf(Request $request){
 
-        $array_packages = [];
-        $event = $this->getDoctrine()
-            ->getRepository(Event::class)
-            ->findOneBy(['enabled' => true])
-        ;
-        $menus = $this->getDoctrine()
-            ->getRepository(Menu::class)
-            ->findAll()
-        ;
-        $configuration = $this->getDoctrine()
-            ->getRepository(Configuration::class)
-            ->findOneBy(['enabled' => true])
-        ;
-        $session = $request->getSession();
-        $bags    = $session->get('registration_bags');
+//        $array_packages = [];
+//        $event = $this->getDoctrine()
+//            ->getRepository(Event::class)
+//            ->findOneBy(['enabled' => true])
+//        ;
+//        $menus = $this->getDoctrine()
+//            ->getRepository(Menu::class)
+//            ->findAll()
+//        ;
+//        $configuration = $this->getDoctrine()
+//            ->getRepository(Configuration::class)
+//            ->findOneBy(['enabled' => true])
+//        ;
+//        $session = $request->getSession();
+//        $bags    = $session->get('registration_bags');
+//
+//        if (empty($bags)) {
+//            return $this->redirect($this->generateUrl('inscription_page'));
+//        }
+//        if (!empty($bags['hotels'])) {
+//            foreach ($bags['hotels']['packages'] as $key => $package_item) {
+//                if (isset($package_item['id'])) {
+//                    if($package_item['quantity'] > 0){
+//                        $package =  $this->getDoctrine()
+//                            ->getRepository('App\Entity\HotelPackage')->find($package_item['id']);
+//
+//                        $temparr = ["package" => $package, "quantity" => $package_item['quantity']];
+//                        array_push($array_packages, $temparr);
+//                    }
+//
+//                }
+//            }
+//        }
+//
+//        $array_supplements = [];
+//        if (!empty($bags['supplements'])) {
+//            foreach ($bags['supplements'] as $key => $supplement_id) {
+//
+//                $supplement =  $this->getDoctrine()
+//                    ->getRepository('App\Entity\Supplement')->find($supplement_id);
+//
+//                array_push($array_supplements, $supplement);
+//
+//
+//            }
+//        }
+//        $devises = $this->getDoctrine()
+//            ->getRepository(Devise::class)
+//            ->findBy(['enabled' => true])
+//        ;
+//
+//        $nbNights = 1;
+//        if (!empty($bags['hotelDateDebut']) && !empty($bags['hotelDateFin'])) {
+//            $nbNights = \App\Utils\DateUtils::numberDaysBetween($bags['hotelDateDebut'], $bags['hotelDateFin']);
+//        }
+//        $pdfOptions = new Options();
+//        $pdfOptions->set('defaultFont', 'Arial');
+//
+//        // Instantiate Dompdf with our options
+//        $dompdf = new Dompdf($pdfOptions);
+//        $logo = $this->get('kernel')->getRootDir() . '/../public/uploads/events/'.$event->getLogoFacture() ;
+//        $normalizer = new DataUriNormalizer();
+//        $avatar = $normalizer->normalize(new \SplFileObject($logo));
+//        $html2   = $this->renderView(
+//            'front/registration/pdf/pdf.html.twig',
+//            [
+//
+//                'event'             => $event,
+//                'avatar'     => $avatar,
+//                'configuration'     => $configuration,
+//                'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
+//                'menus'             => $menus,
+//                'bags'              => $bags,
+//                'array_packages'    => $array_packages,
+//                'array_supplements' => $array_supplements,
+//                'step'              => $bags['step'],
+//                'devises'             => $devises,
+//                'nbNights' => $nbNights
+//            ]
+//        );
+//
+//
+//        // Load HTML to Dompdf
+//        $dompdf->loadHtml($html2);
+//
+//        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+//        $dompdf->setPaper('A4', 'portrait');
+//
+//        // Render the HTML as PDF
+//        $dompdf->render();
+//
+//        // Store PDF Binary Data
+//        $output = $dompdf->output();
+//
+//        $file = $this->generateRandomString().'.pdf';
+//        $pdfFilepath =  $this->container->getParameter('pdf_directory') .$file;
+//
+//        // Write file to the desired path
+//        file_put_contents($pdfFilepath, $output);
+//
+//       $bags['file']=$file;
+//
+//        $session->set('registration_bags', $bags);
+//
+//
+//            $dompdf->stream("mypdf.pdf", [
+//                "Attachment" => false
+//            ]);
 
-        if (empty($bags)) {
-            return $this->redirect($this->generateUrl('inscription_page'));
-        }
-        if (!empty($bags['hotels'])) {
-            foreach ($bags['hotels']['packages'] as $key => $package_item) {
-                if (isset($package_item['id'])) {
-                    if($package_item['quantity'] > 0){
-                        $package =  $this->getDoctrine()
-                            ->getRepository('App\Entity\HotelPackage')->find($package_item['id']);
 
-                        $temparr = ["package" => $package, "quantity" => $package_item['quantity']];
-                        array_push($array_packages, $temparr);
-                    }
-
-                }
-            }
-        }
-
-        $array_supplements = [];
-        if (!empty($bags['supplements'])) {
-            foreach ($bags['supplements'] as $key => $supplement_id) {
-
-                $supplement =  $this->getDoctrine()
-                    ->getRepository('App\Entity\Supplement')->find($supplement_id);
-
-                array_push($array_supplements, $supplement);
-
-
-            }
-        }
-        $devises = $this->getDoctrine()
-            ->getRepository(Devise::class)
-            ->findBy(['enabled' => true])
-        ;
-
-        $nbNights = 1;
-        if (!empty($bags['hotelDateDebut']) && !empty($bags['hotelDateFin'])) {
-            $nbNights = \App\Utils\DateUtils::numberDaysBetween($bags['hotelDateDebut'], $bags['hotelDateFin']);
-        }
-
-
-        $html2   = $this->renderView(
-            'front/registration/pdf/pdf.html.twig',
-            [
-
-                'event'             => $event,
-                'configuration'     => $configuration,
-                'base_dir' => $this->get('kernel')->getRootDir() . '/../public/',
-                'menus'             => $menus,
-                'bags'              => $bags,
-                'array_packages'    => $array_packages,
-                'array_supplements' => $array_supplements,
-                'step'              => $bags['step'],
-                'devises'             => $devises,
-                'nbNights' => $nbNights
-            ]
-        );
-
-            $file = $this->generateRandomString().'.pdf';
-            $this->get('knp_snappy.pdf')->generateFromHtml($html2, $this->container->getParameter('pdf_directory').$file,[
-                'lowquality' => false,
-                'encoding' => 'utf-8',
-                'images' => true,
-
-            ]);
-
-       $bags['file']=$file;
-
-        $session->set('registration_bags', $bags);
-
-        return new Response(
-//            $this->get('knp_snappy.pdf')->getOutputFromHtml($html2, $params)
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html2,[
-                'lowquality' => false,
-                'encoding' => 'utf-8',
-                'images' => true,
-
-            ]),200,array('lowquality' => false,
-            'orientation' => 'Portrait',
-            'page-size' => "A4",
-            'encoding' => 'utf-8',
-
-
-            //'images' => true,
-            'enable-javascript' => true,
-            'javascript-delay' => 5000,
-            'no-stop-slow-scripts' => true,
-            'header-spacing' => 30,
-            'footer-center' => '[page]',
-            'footer-font-size' => 12,
-            'footer-spacing' => 20,
-            'margin-bottom' => 20,
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="devis.pdf"',
-
-            )
-
-        );
+     return true;
 
         
     }
@@ -1627,5 +1822,299 @@ class FrontController extends Controller
     function generateRandomString($length = 10) {
         return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     }
+    /**
+     * 
+     * @Route("/inscrption/option", name="application_event_inscription_option")
+     */
+    public function registrationOption(Request $request){
+        $session = $request->getSession();
+
+        $currency = $request->get('_currency');
+
+        $devise_criterias = ['main' => true];
+
+        if(!empty($currency)){
+            $devise_criterias = ['code' => $currency];
+        }
+        $devise = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findOneBy($devise_criterias)
+        ;
+
+        $session->set('currency', strtolower($devise->getCode()));
+        if(empty($devise)){
+            throw new \Exception('You have to define at least one main "Devise"');
+        }
+
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+      
+
+        $menus = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll()
+        ;
+
+        $hotels = $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $devises = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        return $this->render(
+            'front/registration/registrationOption.html.twig',
+            [
+                'configuration'      => $configuration,
+                'event'              => $event,
+                'menus'              => $menus,
+                'sponsorsByType'     => $sponsorsByType,
+                'hotels'             => $hotels,
+                'devises'             => $devises
+
+            ]
+        );
+    }
+
+    /**
+     *
+     * @Route("/event/programm", name="application_event_program")
+     */
+    public function programEvent(Request $request){
+        $session = $request->getSession();
+
+        $currency = $request->get('_currency');
+
+        $devise_criterias = ['main' => true];
+
+        if(!empty($currency)){
+            $devise_criterias = ['code' => $currency];
+        }
+        $devise = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findOneBy($devise_criterias)
+        ;
+
+        $session->set('currency', strtolower($devise->getCode()));
+        if(empty($devise)){
+            throw new \Exception('You have to define at least one main "Devise"');
+        }
+
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+
+
+        $menus = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll()
+        ;
+
+        $hotels = $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $devises = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        return $this->render(
+            'front/program.html.twig',
+            [
+                'configuration'      => $configuration,
+                'event'              => $event,
+                'menus'              => $menus,
+                'sponsorsByType'     => $sponsorsByType,
+                'hotels'             => $hotels,
+                'devises'             => $devises
+
+            ]
+        );
+    }
+
+
+
+    /**
+     *
+     * @Route("/event/intervenant", name="application_event_intervenant")
+     */
+    public function intervenantEvent(Request $request){
+        $session = $request->getSession();
+
+        $currency = $request->get('_currency');
+
+        $devise_criterias = ['main' => true];
+
+        if(!empty($currency)){
+            $devise_criterias = ['code' => $currency];
+        }
+        $devise = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findOneBy($devise_criterias)
+        ;
+
+        $session->set('currency', strtolower($devise->getCode()));
+        if(empty($devise)){
+            throw new \Exception('You have to define at least one main "Devise"');
+        }
+
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+
+
+        $menus = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll()
+        ;
+
+        $hotels = $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $devises = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+        $intervenantsByType = $this->getDoctrine()
+            ->getRepository(ParticipantType::class)
+            ->findOneBy(['label' => 'Intervenant'])
+        ;
+        return $this->render(
+            'front/intervenant.html.twig',
+            [
+                'configuration'      => $configuration,
+                'intervenantsByType'      => $intervenantsByType,
+                'event'              => $event,
+                'menus'              => $menus,
+                'sponsorsByType'     => $sponsorsByType,
+                'hotels'             => $hotels,
+                'devises'             => $devises
+
+            ]
+        );
+    }
+    /**
+     *
+     * @Route("/event/sponsors", name="application_event_sponsors")
+     */
+    public function getListSponsors(Request $request){
+        $session = $request->getSession();
+
+        $currency = $request->get('_currency');
+
+        $devise_criterias = ['main' => true];
+
+        if(!empty($currency)){
+            $devise_criterias = ['code' => $currency];
+        }
+        $devise = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findOneBy($devise_criterias)
+        ;
+
+        $session->set('currency', strtolower($devise->getCode()));
+        if(empty($devise)){
+            throw new \Exception('You have to define at least one main "Devise"');
+        }
+
+
+        $configuration = $this->getDoctrine()
+            ->getRepository(Configuration::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+        $event = $this->getDoctrine()
+            ->getRepository(Event::class)
+            ->findOneBy(['enabled' => true])
+        ;
+
+
+
+        $menus = $this->getDoctrine()
+            ->getRepository(Menu::class)
+            ->findAll()
+        ;
+
+        $hotels = $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $devises = $this->getDoctrine()
+            ->getRepository(Devise::class)
+            ->findBy(['enabled' => true])
+        ;
+
+        $sponsorsByType = $this->getDoctrine()
+            ->getRepository(SponsorType::class)
+            ->findBy(['enabled' => true])
+        ;
+        $intervenantsByType = $this->getDoctrine()
+            ->getRepository(ParticipantType::class)
+            ->findOneBy(['label' => 'Intervenant'])
+        ;
+        return $this->render(
+            'front/sponsorspage.html.twig',
+            [
+                'configuration'      => $configuration,
+                'intervenantsByType'      => $intervenantsByType,
+                'event'              => $event,
+                'menus'              => $menus,
+                'sponsorsByType'     => $sponsorsByType,
+                'hotels'             => $hotels,
+                'devises'             => $devises
+
+            ]
+        );
+    }
+
+
 
 }

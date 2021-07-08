@@ -1,0 +1,139 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Page | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Sponsors</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> {{ 'Sponsors'|trans }}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if sponsorsByType is not null %}
+        <!--SPONSORED-->
+        <section>
+            <div id="csi-news" class="csi-news csi-news-singlepage">
+                <div class="csi-inner-bg">
+                    <div class="csi-inner">
+                        <div class="container-about" style="    width: 50% !important;">
+
+                            {% for document in event.documents %}
+                                <a style="    margin-bottom: 5px;
+    /* right: 13%; */
+    margin-left: -21%;
+    /* margin: 0%; */
+    background: #999999;
+    padding: 1.3rem 3rem;
+    font-weight: 400;
+    overflow: hidden;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    transition-duration: .3s;
+    border: 2px solid #999999;
+    letter-spacing: .08rem;" target="_blank" class="btn btn-danger"
+                                   href="{{ asset('uploads/medias/documents/' ~  document.file ) }}">{{ document.designation }}</a>
+                                <br/>
+                            {% endfor %}
+
+                            {% for typeSponsor in sponsorsByType %}
+
+                                <div class="row">
+                                    <div id="myCarouse_{{ typeSponsor.id }}" class="carousel slide" data-ride="carousel">
+
+                                        {% if typeSponsor.sponsors is not empty %}
+                                            <!--//main row-->
+
+                                            <h2 class="sponsored-heading first-heading pageSponsoring" style=" ">{{ typeSponsor.label }}</h2>
+
+                                            <ol class="carousel-indicators">
+                                                {% set i =0 %}
+                                                {% for sponsor in typeSponsor.sponsors if sponsor.enabled %}
+                                                    <li  style="display: none !important;"data-target="#myCarouse_{{ typeSponsor.id }}"
+                                                         data-slide-to="{{ i }}" {% if i==0 %}class="active"{% endif %}></li>
+                                                    {% set i =i+1 %}
+                                                {% endfor %}
+                                            </ol>
+
+                                            <div class=" sponsors-area carousel-inner">
+                                                {% set j = 0 %}
+                                                {% for sponsor in typeSponsor.sponsors if sponsor.enabled %}
+                                                    <div class="  item {% if j==0 %}active {% endif %}"
+                                                         style="">
+
+                                                        <img
+                                                                src="{{ asset('uploads/sponsors/' ~  sponsor.logo ) }}"
+                                                                alt=""/>
+
+                                                    </div>
+                                                    {% set j = j+1 %}
+                                                {% endfor %}
+                                            </div>
+                                            {% if typeSponsor.sponsors|length >1 %}
+
+                                                <!--//col-->
+                                                <a class="left carousel-control" style="    width: 0%!important; left: 16% !important;" href="#myCarouse_{{ typeSponsor.id  }}" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left"> </span>
+
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="right carousel-control"  style="    width: 0%!important; right: 17%!important;"  href="#myCarouse_{{  typeSponsor.id  }}" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right">     </span>
+
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            {% endif %}
+                                        {% endif %}
+                                        <!-- Indicators -->
+
+                                    </div>
+                                </div>
+
+
+
+                                <!--//row-->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!--//container-->
+                </div>
+            </div>
+            <!--//csi-inner-->
+            </div>
+            </div>
+        </section>
+        <!--SPONSORED END-->
+    {% endif %}
+    <!--NEWS-->
+    {#<section>#}
+        {#<div id="csi-news" class="csi-news csi-news-singlepage">#}
+
+            {#<div class="csi-inner" style="padding: 4rem 0;">#}
+                {#<div class="container-about">#}
+                    {#<div class="row ">#}
+
+                        {##}
+                    {#</div>#}
+                {#</div><!-- //.CONTAINER -->#}
+            {#</div><!-- //.INNER -->#}
+        {#</div>#}
+    {#</section> <!--//.NEWS-->#}
+
+{% endblock %}

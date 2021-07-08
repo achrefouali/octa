@@ -1,4 +1,5 @@
 <div class="jumbotron">
+
     <h1 class="display-4">{{ 'Thank you for your registration'|trans({}, 'front') }}</h1>
 
     <p class="lead">
@@ -13,6 +14,20 @@
         <br />
         {{ 'Username'|trans({}, 'front') }}: {{ 'Your E-mail'|trans({}, 'front') }}
         {{ 'Password'|trans({}, 'front') }}: <strong>{% if password is not empty %}{{ password }}{% else %}{{ 'Your old password'|trans({}, 'front') }}{% endif %}</strong>
+       <br />
+
+        {% if bags.file is not null  %}
+        Vous pouvez télécharger la facture à travers ce lien
+
+        <a  target="_blank" class="btn btn-primary pull-right" style="padding: 0.8rem 3rem !important;overflow: hidden;-moz-border-radius: 4px;transition-duration: 0.3s;letter-spacing: 0.08rem;"
+           href={{ asset('uploads/pdf/'~bags.file) }}><i class="fa fa-file-text"></i>Facture Proforma </a>
+
+
+        {% endif  %}
+        {% if bags.file2 is not null  %}
+        <a  target="_blank" class="btn btn-primary pull-right" style="margin-right: 1%; padding: 0.8rem 3rem !important;overflow: hidden;-moz-border-radius: 4px;transition-duration: 0.3s;letter-spacing: 0.08rem;"
+            href={{ asset('uploads/pdf/'~bags.file2) }}><i class="fa fa-file-text"></i>Facture Accompagnants </a>
+        {% endif  %}
     </p>
     <hr class="my-4">
     <p class="lead">

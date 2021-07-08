@@ -1,0 +1,84 @@
+{% extends 'front/layout.html.twig' %}
+{% trans_default_domain 'front' %}
+{% block title %}Page | {{ parent() }}{% endblock %}
+{% block body_attr %}class="single single-post"{% endblock %}
+
+
+
+{% block main %}
+
+    <section class="innerpage-titlebar">
+        <div class="container">
+            <div class="titlebar-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <div class="titlebar-col">
+                            <h2>Intervenants</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 fw600">
+                        <ul class="breadcrumb titlebar-col">
+                            <li><a href="{{ path('home') }}"><i class="icon-home6"></i>{{ 'Home'|trans }}</a></li>
+                            <li class="active"> {{ 'Intervenants'|trans }}</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--NEWS-->
+    <section>
+        <div id="csi-news" class="csi-news csi-news-singlepage">
+
+            <div class="csi-inner" style="padding: 4rem 0;">
+                <div class="container-about">
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="row col-md-8">
+
+                                {% if intervenantsByType is not null %}
+
+                                    {% for intervenant in intervenantsByType.participants if intervenant.enabled %}
+                                        <div class="col-md-3 col-sm-6 col-xs-6 fw600" style="margin-top: 3%;!important;">
+                                            <div class="our-team">
+                                                <div class="team-pic">
+                                                    {#<img src="{{ asset('uploads/intervenants/2.jpg' ) }}" alt="">#}
+                                                    <img src="{{ asset('uploads/intervenants/' ~  intervenant.picture ) }}" alt="">
+                                                </div>
+                                                <div class="team-profile">
+                                                    <h3 class="team-title">
+                                                        <a  style="font-size: 20px;!important;"href="{{ path('intervenant_page', {slug : intervenant.slug}) }}">{{ intervenant.firstname ~ ' ' ~ intervenant.lastname }}</a>
+                                                        <small>{{ intervenant.poste }}</small>
+                                                    </h3>
+                                                    <ul class="team-social">
+
+                                                        <li><a href="{{ intervenant.tweeterLink }}" class="fa fa-twitter"></a></li>
+                                                        <li><a href="{{ intervenant.linkedinLink }}" class="fa fa-linkedin"></a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    {% endfor %}
+
+                                {% endif %}
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="about-col">
+                                    <div class="about-image">
+                                        {% include 'front/sponsorsList.html.twig' %}
+                                    </div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section> <!--//.NEWS-->
+
+{% endblock %}

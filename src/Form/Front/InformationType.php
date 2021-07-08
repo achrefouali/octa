@@ -23,8 +23,9 @@ class InformationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
         
     {
-        $array=range(1,100,1);
-        $array = array_filter(array_merge(array(0), $array));
+        $array=range(0,100,1);
+//        dump($array);exit;
+//        $array = array_filter(array_merge(array(0), $array));
 
         $organisme=$options['organisme'];
         
@@ -54,7 +55,7 @@ class InformationType extends AbstractType
             ->add('poste', TextType::class, [
                 'label' => 'form.poste',
                 'attr' => ['placeholder' => 'form.poste'],
-                'required' => false,
+                'required' => true,
                 'translation_domain' => "front"
             ])
             ->add('telephone', TextType::class, [
@@ -138,6 +139,9 @@ class InformationType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');
                 },
+                'label' => 'form.pays',
+                'placeholder'=>'Choisir un pays',
+                'translation_domain' => "front"
                
 //                'label'=>'form.pays'
 //                 'translation_domain' => "front"
@@ -190,6 +194,20 @@ class InformationType extends AbstractType
                  'translation_domain' => "front"
              ]);
          }
+        $builder
+
+            ->add('hotel', EntityType::class, [
+                'class' => 'App\Entity\Hotel',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.designation', 'ASC');
+                },
+                'required'=>false,
+                'placeholder'=>'Choisir un hotel'
+
+//                'label'=>'form.pays'
+//                 'translation_domain' => "front"
+            ]);
 
        
     }
